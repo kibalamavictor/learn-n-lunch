@@ -1,0 +1,200 @@
+ :root {
+      --mm-bg: #d6f0fb;
+      --mm-gap: 28px;
+      --mm-black: #000;
+      --mm-yellow: #f6c33c;
+    }
+
+    * { box-sizing: border-box; padding: 0; }
+
+    body {
+      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    /* === Section === */
+    .mm-section {
+      background: var(--mm-bg);
+      padding: 56px 60px 90px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mm-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* === Header === */
+    .mm-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .mm-title-col { flex: 0 0 300px; }
+    .mm-title {
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 0.95;
+      letter-spacing: 1px;
+      color: var(--mm-black);
+      text-transform: uppercase;
+    }
+
+    .mm-desc-col { flex: 1 1 420px; padding-top: 8px; }
+    .mm-desc {
+      max-width: 500px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #0b1a1f;
+    }
+
+    /* === Carousel === */
+    .mm-carousel-area { position: relative; margin-top: 12px; }
+
+    .mm-nav {
+      position: absolute;
+      right: 0;
+      top: -6px;
+      display: flex;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .mm-nav-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 56px;
+      height: 34px;
+      background: #fff;
+      border: 1px solid var(--mm-black);
+      box-shadow: 3px 3px 0 var(--mm-black);
+      cursor: pointer;
+      font-size: 18px;
+      position: relative;
+      top: -50px;
+    }
+
+    .mm-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .mm-carousel-viewport {
+      overflow: hidden;
+      padding: 8px 0 24px 0;
+    }
+
+    .mm-carousel-track {
+      display: flex;
+      gap: var(--mm-gap);
+      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
+      will-change: transform;
+      padding-bottom: 6px;
+    }
+
+    /* === Cards === */
+    .mm-card {
+      position: relative;
+      flex: 0 0 calc((100% - (var(--mm-gap) * 2)) / 3);
+      height: 520px;
+      border: 1px solid var(--mm-black);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background: #fff;
+    }
+
+    .mm-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .mm-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 56px;
+      height: 15px;
+      box-shadow: 2px 2px 0 var(--mm-black);
+      z-index: 2;
+      border: 1px solid #000 ;
+    }
+
+    .mm-box {
+      position: relative;
+     
+      background: #fff;
+      width: 76%;
+      max-width: 360px;
+      padding: 22px;
+      margin: 0 0% 32px 12%;
+      border: 1px solid var(--mm-black);
+    //   box-shadow: 6px 6px 0 var(--mm-black);
+      z-index: 2;
+    }
+
+    .mm-head {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      font-weight: 300;
+      color: #000;
+    }
+
+    .mm-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--mm-yellow);
+      padding: 6px 40px;
+      border: 1px solid var(--mm-black);
+      box-shadow: 4px 4px 0 var(--mm-black);
+      text-decoration: none;
+      color: #000;
+      font-weight: 300;
+      font-size: 15px;
+    }
+
+    /* === Footer Button === */
+    .mm-more-wrap {
+      margin-top: 28px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .mm-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      padding: 10px 35px;
+      border: 2px solid var(--mm-black);
+      box-shadow: 4px 4px 0 var(--mm-black);
+      text-decoration: none;
+      color: #000;
+      font-weight: 300;
+      font-size: 18px;
+      
+    }
+
+    /* === Responsive === */
+    @media (max-width:1080px) {
+      .mm-card { flex: 0 0 calc((100% - var(--mm-gap)) / 2); height: 480px; }
+      .mm-title { font-size: 48px; }
+    }
+
+    @media (max-width:680px) {
+      .mm-card { flex: 0 0 100%; height: 420px; }
+      .mm-box { width: 88%; margin-left: 6%; }
+      .mm-section { padding-left: 18px; padding-right: 18px; }
+    }
