@@ -94,6 +94,76 @@ document.addEventListener('click', (e) => {
 });
 
 
+// HIDE NAV LIST
+
+document.addEventListener('click', (e) => {
+  if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+    mobileMenuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
+
+window.addEventListener('scroll', () => {
+  if (navMenu.classList.contains('active')) {
+    mobileMenuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
+
+
+
+
+
+/* ---------- scroll show/hide logic ---------- */
+/* Robust logic:
+   - don't hide while mobile menu is open
+   - add small tolerance to avoid jitter
+   - only hide once user scrolled down some amount (50px)
+   - keep navbar visible at top
+*/
+let lastScrollY = window.pageYOffset || 0;
+const tolerance = 10;    // pixels of tolerance to ignore tiny moves
+const visibleAfter = 50; // only start hiding after this scroll distance
+
+window.addEventListener('scroll', () => {
+  const currentY = window.pageYOffset || 0;
+
+  // don't change state if movement is tiny
+  if (Math.abs(currentY - lastScrollY) <= tolerance) {
+    return;
+  }
+
+  // if mobile menu is active, keep navbar visible
+  if (navMenu.classList.contains('active')) {
+    navbar.classList.remove('hide');
+    navbar.classList.add('visible-shadow');
+    lastScrollY = currentY;
+    return;
+  }
+
+  // if at very top, always show
+  if (currentY <= 0) {
+    navbar.classList.remove('hide');
+    navbar.classList.remove('visible-shadow');
+    lastScrollY = currentY;
+    return;
+  }
+
+  // scroll DOWN: hide only when we've scrolled past "visibleAfter"
+  if (currentY > lastScrollY && currentY > visibleAfter) {
+    navbar.classList.add('hide');
+    navbar.classList.remove('visible-shadow');
+  } else {
+    // scroll UP: show
+    navbar.classList.remove('hide');
+    // add subtle shadow when not at the very top
+    if (currentY > 30) navbar.classList.add('visible-shadow');
+    else navbar.classList.remove('visible-shadow');
+  }
+
+  lastScrollY = currentY;
+}, { passive: true });
+
 
 
 
