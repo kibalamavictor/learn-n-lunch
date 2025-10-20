@@ -23,34 +23,34 @@
     // NAV-BAR
 
 
-    function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
+    // function toggleMenu() {
+    //         const navLinks = document.getElementById('navLinks');
+    //         navLinks.classList.toggle('active');
+    //     }
 
-        let currentSlide = 0;
-        const images = document.querySelectorAll('.carousel-image');
-        const totalSlides = images.length;
-        let autoAdvanceInterval;
+    //     let currentSlide = 0;
+    //     const images = document.querySelectorAll('.carousel-image');
+    //     const totalSlides = images.length;
+    //     let autoAdvanceInterval;
         
-        function showSlide(index) {
-            images.forEach((img, i) => {
-                img.classList.remove('active');
-                if (i === index) {
-                    img.classList.add('active');
-                }
-            });
-        }
+    //     function showSlide(index) {
+    //         images.forEach((img, i) => {
+    //             img.classList.remove('active');
+    //             if (i === index) {
+    //                 img.classList.add('active');
+    //             }
+    //         });
+    //     }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
+    //     function nextSlide() {
+    //         currentSlide = (currentSlide + 1) % totalSlides;
+    //         showSlide(currentSlide);
+    //     }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
+    //     function prevSlide() {
+    //         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    //         showSlide(currentSlide);
+    //     }
 
         // // Auto-advance only on mobile view
         // function setupAutoAdvance() {
@@ -69,6 +69,29 @@
         // // Re-check on window resize
         // window.addEventListener('resize', setupAutoAdvance);
 
+
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+  mobileMenuToggle.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+    mobileMenuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
 
 
 
