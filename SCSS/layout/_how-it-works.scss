@@ -1,8 +1,10 @@
+ @use '../util';
+
 .how-it-works-section {
         background: #000;
         color: #fff;
         padding: 10% 20px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-family: util.$font-n;
         position: relative;
         overflow: hidden;
     }
@@ -14,10 +16,10 @@
 
     .how-it-works-title {
         font-size: 50px;
-        font-weight: 700;
         text-transform: uppercase;
         margin-bottom: 80px;
         line-height: 1.1;
+        font-family: util.$font-a;
     }
 
     .how-it-works-flows {
@@ -34,10 +36,9 @@
     }
 
     .flow-label {
-        font-size: 20px;
-        font-weight: 900;
-        text-transform: uppercase;
-        padding: 15px 50px;
+        font-size: 25px;
+        font-family: util.$font-a;
+        padding: 8px 40px;
         border: 2px solid #fff;
         transform: rotate(-10deg);
         display: inline-block;
@@ -158,9 +159,8 @@
     }
 
     .flow-cta {
-        padding: 15px 50px;
+        padding: 8px 40px;
         font-size: 20px;
-        font-weight: 700;
         border: 2px solid #fff;
         background: transparent;
         color: #fff;
@@ -195,27 +195,27 @@
     }
 
     /* Decorative elements */
-    .how-it-works-section::before,
-    .how-it-works-section::after {
-        content: '';
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        background: #1a1a1a;
-        border: 2px dashed rgba(255, 255, 255, 0.3);
-    }
+    // .how-it-works-section::before,
+    // .how-it-works-section::after {
+    //     content: '';
+    //     position: absolute;
+    //     width: 60px;
+    //     height: 60px;
+    //     background: #1a1a1a;
+    //     border: 2px dashed rgba(255, 255, 255, 0.3);
+    // }
 
-    .how-it-works-section::before {
-        top: 20px;
-        left: 20px;
-        clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%, 50% 100%, 0 100%);
-    }
+    // .how-it-works-section::before {
+    //     top: 20px;
+    //     left: 20px;
+    //     clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%, 50% 100%, 0 100%);
+    // }
 
-    .how-it-works-section::after {
-        bottom: 20px;
-        right: 20px;
-        clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, 0 50%, 50% 50%);
-    }
+    // .how-it-works-section::after {
+    //     bottom: 20px;
+    //     right: 20px;
+    //     clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, 0 50%, 50% 50%);
+    // }
 
     @media (max-width: 1024px) {
         .flow-row {
@@ -245,7 +245,7 @@
 
         .flow-label {
             font-size: 24px;
-            padding: 15px 30px;
+            padding: 7px 30px;
         }
 
         .flow-arrow {
@@ -261,9 +261,9 @@
         }
 
         .flow-cta {
-            padding: 12px 35px;
-            font-size: 18px;
-            width: 100%;
+            // padding: 12px 35px;
+            font-size: 17px;
+            // width: 100%;
             justify-content: center;
         }
 
