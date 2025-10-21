@@ -2,8 +2,8 @@
 
 .how-it-works-section {
         background: #000;
-        color: #fff;
-        padding: 10% 20px;
+        color: var(--white);
+        padding: 7% 20px 15%;
         font-family: util.$font-n;
         position: relative;
         overflow: hidden;
@@ -15,11 +15,12 @@
     }
 
     .how-it-works-title {
-        font-size: 50px;
+        font-size: 45px;
         text-transform: uppercase;
         margin-bottom: 80px;
         line-height: 1.1;
         font-family: util.$font-a;
+        letter-spacing: 2px;
     }
 
     .how-it-works-flows {
@@ -54,7 +55,7 @@
         position: absolute;
         width: 12px;
         height: 12px;
-        background: #fff;
+        background: var(--white);
     }
 
     .flow-label::before {
@@ -73,7 +74,7 @@
         position: absolute;
         width: 12px;
         height: 12px;
-        background: #fff;
+        background: var(--white);
     }
 
 
@@ -121,7 +122,7 @@
     }
 
     .flow-label.donors {
-        background: #fbbf24;
+        background: var(--mm-yellow);
         color: #000;
         border-color: #000;
         transform: rotate(25deg);
@@ -129,12 +130,12 @@
 
     .flow-label.donors::before,
     .flow-label.donors::after {
-        border: 2px solid #fbbf24;
+        border: 2px solid var(--mm-yellow);
     }
 
     .flow-label.donors .flow-label-corner-tl-d,
     .flow-label.donors .flow-label-corner-br-d {
-        border: 2px solid #fbbf24;
+        border: 2px solid var(--mm-yellow);
     }
 
     .flow-steps {
@@ -150,7 +151,7 @@
     }
 
     .flow-arrow.white {
-        color: #fff;
+        color: var(--white);
     }
 
     .flow-step {
@@ -161,9 +162,9 @@
     .flow-cta {
         padding: 8px 40px;
         font-size: 20px;
-        border: 2px solid #fff;
+        border: 2px solid var(--white);
         background: transparent;
-        color: #fff;
+        color: var(--white);
         cursor: pointer;
         transition: all 0.3s ease;
         text-decoration: none;
@@ -171,26 +172,27 @@
         align-items: center;
         gap: 10px;
         white-space: nowrap;
-        box-shadow: 2px 2px #fff;
+        box-shadow: 2px 2px var(--white);
+        margin: 0 auto;
     }
 
     .flow-steps .donate {
-        box-shadow: 2px 2px #fbbf24;
+        box-shadow: 2px 2px var(--mm-yellow);
     }
 
     .flow-cta:hover {
-        background: #fff;
+        background: var(--white);
         color: #000;
         transform: translateY(-2px);
     }
 
     .flow-cta.donate {
-        border-color: #fbbf24;
-        color: #fbbf24;
+        border-color: var(--mm-yellow);
+        color: var(--mm-yellow);
     }
 
     .flow-cta.donate:hover {
-        background: #fbbf24;
+        background: var(--mm-yellow);
         color: #000;
     }
 

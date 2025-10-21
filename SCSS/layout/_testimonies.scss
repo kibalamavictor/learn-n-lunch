@@ -1,3 +1,7 @@
+@use '../util';
+
+
+
 #app {
   width: 100%;
   max-width: 1400px;
@@ -105,9 +109,9 @@
   font-size: 2.5rem;
   font-weight: 900;
   line-height: 1.2;
-  color: #1a1a1a;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  padding-right: 90px;
   letter-spacing: -0.02em;
 }
 
@@ -118,15 +122,14 @@
 
 .mtm-author {
   font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-weight: 900;
+  font-family: util.$font-n;
   margin-bottom: 0.25rem;
 }
 
 .mtm-affiliation {
   font-size: 1rem;
-  font-weight: 400;
-  color: #1a1a1a;
+  font-family: util.$font-n;
 }
 
 @media (max-width: 1024px) {
@@ -194,6 +197,7 @@
 
   .mtm-quote {
     font-size: 1.25rem;
+    padding-right: 0;
   }
 
   .mtm-author {
