@@ -1,0 +1,150 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #000;
+  background-color: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// body {
+//   margin: 0;
+//   padding: 0;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 100vh;
+//   background-color: #f5f5f5;
+// }
+
+.mission-vision-section {
+  display: flex;
+  gap: 100px;
+  padding: 40px;
+  max-width: 1500px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.card {
+  flex: 1;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 30px 50px 80px;
+  position: relative;
+  box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 1);
+}
+
+.card h2 {
+  margin: 0 0 40px 0;
+  font-size: 2.5em;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #000;
+  max-width: 450px;
+}
+
+.card-accent {
+  position: absolute;
+  bottom: 5px;
+  left: 250px;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+}
+
+.card-accent-2 {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+}
+
+.mission-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.vision-card {
+  position: relative;
+}
+
+.vision-accent-bar {
+  position: absolute;
+  left: 10px;
+  bottom: 5%;
+//   transform: translateY(-50%);
+  width: 15px;
+  height: 150px;
+  background-color: #000;
+  z-index: 5;
+}
+
+.vision-accent-box {
+  position: absolute;
+  left: -40px;
+  bottom: 20px;
+  width: 300px;
+  height: 90px;
+  background-color: var(--bg-light-linen-blue);
+  z-index: 0;
+}
+
+.vision-card h2,
+.vision-card p {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .mission-vision-section {
+    flex-direction: column;
+    gap: 60px;
+    padding: 30px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 40px 30px;
+  }
+
+  .card h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+
+  .card p {
+    font-size: 1em;
+  }
+
+  .vision-accent-box {
+    width: 250px;
+    height: 70px;
+    right: 30px;
+    bottom: 60px;
+  }
+
+  .vision-accent-bar {
+    height: 100px;
+  }
+}

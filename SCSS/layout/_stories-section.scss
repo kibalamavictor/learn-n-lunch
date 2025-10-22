@@ -66,13 +66,14 @@
       place-items: center;
       width: 56px;
       height: 34px;
-      background: #fff;
+      background: var(--white);
       border: 1px solid var(--mm-black);
       box-shadow: 3px 3px 0 var(--mm-black);
       cursor: pointer;
       font-size: 18px;
       position: relative;
       top: -50px;
+      box-shadow: 2px 2px 0px var(--text-dark);
     }
 
     .mm-nav-btn:disabled {
@@ -174,7 +175,7 @@
       background: #fff;
       padding: 10px 35px;
       border: 2px solid var(--mm-black);
-      box-shadow: 4px 4px 0 var(--mm-black);
+      // box-shadow: 4px 4px 0 var(--mm-black);
       text-decoration: none;
       color: #000;
       font-weight: 300;

@@ -82,7 +82,7 @@ a {
 }
 
 .navbar {
-  background-color: var(--bg-light-linen-blue);
+  // background-color: var(--bg-light-linen-blue);
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -153,7 +153,7 @@ a {
     background-color: #fff;
     border: 1px solid #000;
     padding: 0.7rem 2rem;
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 1);
+    box-shadow: 3px 3px 0px var(--text-dark);
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
@@ -231,7 +231,7 @@ a {
     left: -100%;
     top: 72px;
     flex-direction: column;
-    background-color: var(--bg-light-linen-blue);
+    background-color: var(--white);
     width: 100%;
     text-align: center;
     transition: left 0.3s ease;
@@ -344,7 +344,7 @@ a {
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+            box-shadow: 2px 2px 0px var(--text-dark);
         }
 
         // .carousel-btn:hover {
