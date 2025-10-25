@@ -1,7 +1,7 @@
   @use '../util';
  
  .footer-cta-section {
-        // background: #e5e5e5;
+        background: var(--white);
         padding: 60px 40px;
         justify-content: center;
     }
@@ -158,9 +158,9 @@
 
 
     .footer-main {
-        // background: #e5e5e5;
+        background: var(--white);
         padding: 25px 20px 10%;
-        // border-top: 2px solid #000;
+        
     }
 
     .footer-content {

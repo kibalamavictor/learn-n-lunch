@@ -11,7 +11,7 @@
     background: white;
     overflow: hidden;
     // max-height: 500px;
-    padding: 50px 40px;
+    padding: 50px 30px;
   }
   .lnl-hero-content {
     background: #F5B800;
@@ -119,12 +119,16 @@
     }
 
     .our-story-section-2 {
-        left: 20%;
+      left: 20%;
     }
 
     .bold-statement-2 {
-    font-size: 1.8rem;
-    padding: 0 40px;
+      font-size: 1.8rem;
+      padding: 0 40px;
+    }
+
+    .lnl-hero-image {
+      max-height: 200px;
     }
 
   }

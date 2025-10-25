@@ -20,7 +20,7 @@
 
 .lnl-community-section {
     max-width: 700px;
-    margin: 80px auto;
+    margin: 60px auto 150px;
     padding: 60px 20px;
     display: flex;
     align-items: center;
@@ -35,8 +35,8 @@
 
   .lnl-community-title {
     font-size: 5.5rem;
-    font-weight: 900;
-    text-transform: uppercase;
+    font-family: util.$font-a;
+    text-align: right;
     color: #000;
     letter-spacing: -3px;
     line-height: 0.9;
@@ -47,12 +47,51 @@
   .lnl-community-highlight {
     position: absolute;
     bottom: 30px;
-    left: -30px;
-    width: 310px;
+    left: 67px;
+    width: 215px;
     height: 70px;
-    background: #F5B800;
+    background: var(--mm-yellow);
     z-index: 1;
   }
+
+
+  .lnl-community-highlight-2 {
+    position: absolute;
+    bottom: -90px;
+    left: 155px;
+    width: 70px;
+    height: 280px;
+    background: var(--mm-yellow);
+    z-index: 1;
+  }
+
+
+
+  .lnl-community-highlight-3 {
+    position: absolute;
+    bottom: 20px;
+    left: 260px;
+    width: 210px;
+    height: 65px;
+    background: var(--mm-yellow);
+    z-index: 1;
+    transform: rotate(165deg);
+  }
+
+
+
+  .lnl-community-highlight-4 {
+    position: absolute;
+    bottom: 30px;
+    left: 70px;
+    width: 240px;
+    height: 70px;
+    background: var(--mm-yellow);
+    z-index: 1;
+  }
+
+
+
 
   .lnl-community-text {
     flex: 0 0 auto;
@@ -70,7 +109,6 @@
   @media (max-width: 968px) {
     .lnl-community-section {
       flex-direction: column;
-      align-items: flex-start;
       gap: 40px;
       padding: 40px 20px;
     }
@@ -83,6 +121,20 @@
       width: 230px;
       height: 55px;
       bottom: 15px;
+    }
+
+    .lnl-community-highlight-2 {
+      
+      z-index: -1;
+    }
+
+    .lnl-community-highlight-3 {
+      bottom: 0px;
+      left: 0px;
+      // width: 45px;
+      // height: 110px;
+      z-index: -1;
+      // transform: rotate(-100deg);
     }
 
     .lnl-community-text {
@@ -98,6 +150,31 @@
     .lnl-community-section {
       padding: 30px 20px;
       margin: 40px auto;
+    }
+
+    .lnl-community-highlight-2 {
+      bottom: -70px;
+      left: 155px;
+      width: 50px;
+      height: 210px;
+      z-index: -1;
+    }
+
+    .lnl-community-highlight-3 {
+      bottom: -20px;
+      left: 0px;
+      width: 45px;
+      height: 110px;
+      z-index: -1;
+      transform: rotate(-100deg);
+    }
+
+    .our-values {
+      font-size: 2rem;
+    }
+
+    .our-values-container {
+      padding: 40px 20px;
     }
 
     .lnl-community-title {
