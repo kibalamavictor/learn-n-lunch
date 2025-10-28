@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn N' Lunch - No Student Should Study Hungry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,600&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/style.css" />
+</head>
+<body>
+
+
+<nav class="navbar">
+      <div class="nav-container">
+        <a href="./index.html" class="logo">
+           <img src="./logo.png" alt="Learn N' Lunch Logo" class="logo">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-menu">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./about.html" class="nav-link">About Us</a></li>
+          <li><a href="./impact.html" class="nav-link">Impact</a></li>
+          <li><a href="#get-involved" class="nav-link">Get Involved</a></li>
+          <li><a href="./stories.html" class="nav-link">Stories</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
+          <li class="mobile-donate">
+            <a href="./donate.html" class="donate-btn">
+              <span><img src="./heart-black.svg" style="width: 14px;"></span> Donate
+            </a>
+          </li>
+        </ul>
+
+        <a href="./donate.html" class="donate-btn desktop-donate">
+          <span><img src="./heart-black.svg" style="width: 14px;"></span> Donate
+        </a>
+      </div>
+    </nav>
+
+
+
+
+<!-- HERO -->
+
+
+<section class="stories-section">
+  <div class="stories-container">
+    <div class="stories-text-area">
+      <h1 class="stories-hero-heading">CAMPUS STORIES <br> & UPDATES</h1>
+      <!-- <div class="hero-title-background" ></div>x -->
+      <div class="stories-hero-desc">
+        <p>Get the latest stories, events, and updates from our campuses. From student voices to donor spotlights, this is where our journey comes to life.</p>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="stories-search-bar">
+      <div class="stories-search-input">
+        <input type="text" id="storiesSearchInput" placeholder="Search stories...">
+      </div>
+      <button class="stories-search-btn" id="storiesSearchBtn">Search</button>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="stories-filter-buttons">
+      <button class="stories-filter-btn white active" data-category="all">All</button>
+      <button class="stories-filter-btn blue" data-category="students">Student Stories</button>
+      <button class="stories-filter-btn yellow" data-category="events">Events & Campus Life</button>
+      <button class="stories-filter-btn mint" data-category="reports">Impact Reports</button>
+      <button class="stories-filter-btn dark" data-category="donors">Donor Highlights</button>
+    </div>
+
+    <p class="stories-recents-title">RECENTS</p>
+
+    <!-- Example articles -->
+    <!-- <div class="stories-articles" id="storiesArticleList">
+      <div class="stories-article" data-category="students"><h3>Student Spotlight: Jane’s Story</h3><p>How one student overcame hunger...</p></div>
+      <div class="stories-article" data-category="events"><h3>Campus Meal Drive</h3><p>Over 300 meals served...</p></div>
+      <div class="stories-article" data-category="reports"><h3>Impact Report 2025</h3><p>Review our milestones...</p></div>
+      <div class="stories-article" data-category="donors"><h3>Donor Highlight: The Smith Foundation</h3><p>Supporting campus kitchens...</p></div>
+      <div class="stories-article" data-category="students"><h3>From Hunger to Hope</h3><p>John’s journey through the lunch program.</p></div>
+    </div> -->
+  </div>
+</section>
+
+
+
+
+
+
+<!-- HERO-SECTION -->
+
+
+
+
+
+
+    <div class="st-hero-container stories-article" data-category="students">
+
+
+        <div class="makerere-lunch-section">
+            <div class="makerere-lunch-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80" alt="Three students sitting together enjoying drinks during Campus Lunch Day">
+            </div>
+            
+            <div class="makerere-lunch-content">
+                <h2 class="makerere-lunch-title">Campus Lunch Day: Makerere University Recap</h2>
+                <p class="makerere-lunch-description">Over 500 students joined us for our first Campus Lunch Day! From warm meals to lively conversations, it was a day of fueling minds and building community.</p>
+                <a href="#" class="makerere-lunch-cta-btn">
+                Read more
+                <span class="makerere-lunch-arrow"><img src="./pixelated-arrow.svg" class="arrow-move" style="width: 20px; "/></span>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- STORIES - SECTION -->
+
+
+
+<section class="mm-section" style="background: white; padding: 56px 20px 90px; max-width: 1140px; margin: 0 auto;">
+    <div class="mm-container">
+
+      
+        
+
+      <div class="mm-carousel-area">
+        <div class="mm-nav">
+          <button id="mm-prev" class="mm-nav-btn">
+            <img src="./pixelated-arrow-2.svg" style="width: 20px;"/>
+          </button>
+          <button id="mm-next" class="mm-nav-btn">
+            <img src="./pixelated-arrow.svg" style="width: 20px;"/>
+          </button>
+        </div>
+
+        <div class="mm-carousel-viewport">
+          <div class="mm-carousel-track" id="mm-track">
+
+            <article class="mm-card" style="height: 450px;">
+              <img src="https://picsum.photos/id/1011/1200/900" alt="Story 1" class="mm-img" loading="lazy">
+              <span class="mm-tag" style="background:#d3eeff;"></span>
+              <div class="mm-box">
+                <p class="mm-head">How One Meal Changed My Exam Week</p>
+                <a href="#" class="mm-cta">Read more <span><img src="./pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card" style="height: 450px;">
+              <img src="https://picsum.photos/id/1016/1200/900" alt="Story 2" class="mm-img" loading="lazy">
+              <span class="mm-tag" style="background:#fdc039;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Campus Lunch Day at Makerere</p>
+                <a href="#" class="mm-cta">Read more <span><img src="./pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card" style="height: 450px;">
+              <img src="https://picsum.photos/id/1027/1200/900" alt="Story 3" class="mm-img" loading="lazy">
+              <span class="mm-tag" style="background:#7be4d3;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Why Donors Believe in Learn n' Lunch</p>
+                <a href="#" class="mm-cta">Read more <span><img src="./pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card" style="height: 450px;">
+              <img src="https://picsum.photos/id/1005/1200/900" alt="Story 4" class="mm-img" loading="lazy">
+              <span class="mm-tag" style="background:#ffd8a8;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Student Success Stories from Our Program</p>
+                <a href="#" class="mm-cta">Read more <span><img src="./pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+  <!-- CAMPUS - LUNCH - SHOWCASE -->
+
+
+
+
+
+
+
+
+<section class="campus-lunch-section">
+  <div class="campus-lunch-grid">
+
+    <!-- Main Card -->
+    <div class="campus-feature-card main-card">
+      <img src="./assets/stories/lunch-day-1.png" alt="Volunteer holding food" class="campus-feature-image" />
+      <div class="campus-feature-content">
+        <h3 class="campus-feature-title">
+          Campus Lunch Day: Makerere University Recap
+        </h3>
+        <p class="campus-feature-text">
+          Over 500 students joined us for our first Campus Lunch Day! From warm meals
+          to lively conversations, it was a day of fueling minds and building community.
+        </p>
+        <a href="#" class="campus-feature-button">
+          Read more <span class="arrow">
+            <img src="./pixelated-arrow.svg" style="width: 15px;"/>
+          </span>
+        </a>
+      </div>
+      <span class="campus-feature-tag"></span>
+    </div>
+
+    <!-- Small Card 1 -->
+    <div class="campus-mini-card">
+      <img src="./assets/stories/lunch-day-2.png" alt="Student storing food" class="campus-mini-image" />
+      <div class="campus-mini-content">
+        <p class="campus-mini-title">Campus Lunch Day at Makerere University</p>
+        <a href="#" class="campus-feature-button">
+          Read more <span class="arrow">
+            <img src="./pixelated-arrow.svg" style="width: 15px;"/>
+          </span>
+        </a>
+      </div>
+      <span class="campus-feature-tag"></span>
+    </div>
+
+    <!-- Small Card 2 -->
+    <div class="campus-mini-card">
+      <img src="./assets/stories/lunch-day-3.png" alt="Food items" class="campus-mini-image" />
+      <div class="campus-mini-content">
+        <p class="campus-mini-title">Campus Lunch Day at Kyambogo University</p>
+        <a href="#" class="campus-feature-button">
+          Read more <span class="arrow">
+            <img src="./pixelated-arrow.svg" style="width: 15px;"/>
+          </span>
+        </a>
+      </div>
+      <span class="campus-feature-tag"></span>
+    </div>
+
+  </div>
+</section>
+
+
+  
+
+
+
+
+
+
+ <script src="./js/ap.js"></script>
+  </body>
+
+
+</html>

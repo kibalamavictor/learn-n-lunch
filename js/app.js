@@ -341,3 +341,46 @@ document.querySelectorAll('.mtm-next-button').forEach(button => {
 
 
 
+
+
+
+
+
+// ST - HERO
+
+
+
+const storiesSearchInput = document.getElementById("storiesSearchInput");
+  const storiesSearchBtn = document.getElementById("storiesSearchBtn");
+  const storiesArticles = document.querySelectorAll(".stories-article");
+  const storiesFilterBtns = document.querySelectorAll(".stories-filter-btn");
+
+  // Filter by category
+  storiesFilterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      storiesFilterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const category = btn.dataset.category;
+
+      storiesArticles.forEach(article => {
+        article.style.display =
+          category === "all" || article.dataset.category === category
+            ? "block"
+            : "none";
+      });
+    });
+  });
+
+  // Search functionality
+  storiesSearchBtn.addEventListener("click", () => {
+    const term = storiesSearchInput.value.toLowerCase();
+    storiesArticles.forEach(article => {
+      const text = article.textContent.toLowerCase();
+      article.style.display = text.includes(term) ? "block" : "none";
+    });
+  });
+
+  // Press Enter to trigger search
+  storiesSearchInput.addEventListener("keyup", e => {
+    if (e.key === "Enter") storiesSearchBtn.click();
+  });

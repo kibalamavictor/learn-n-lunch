@@ -1,0 +1,90 @@
+<div className="min-h-screen bg-white text-gray-900 p-6 sm:p-12 lg:p-24">
+<label className="block text-sm font-medium mb-1">Email Address *</label>
+<input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border-2 rounded focus:outline-none" placeholder="name@email.com" />
+{errors.email ? <p className="text-red-600 text-sm mt-1">{errors.email}</p> : null}
+</div>
+
+
+<div className="flex gap-4 items-center">
+<div className="flex-shrink-0">
+<label className="sr-only">Country code</label>
+<select value={phoneCountry} onChange={(e) => setPhoneCountry(e.target.value)} className="px-4 py-3 border-2 rounded focus:outline-none">
+<option>+256</option>
+<option>+254</option>
+<option>+1</option>
+<option>+44</option>
+</select>
+</div>
+<div className="flex-1">
+<label className="sr-only">Phone number</label>
+<input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="w-full px-4 py-3 border-2 rounded focus:outline-none" placeholder="700 000 000 (optional)" />
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- {/* Payment Options */} -->
+<section>
+<h3 className="text-lg font-medium mb-4">Payment Options:</h3>
+<div className="flex gap-4 items-center flex-wrap">
+<label className={`p-3 border-2 rounded cursor-pointer ${paymentMethod === 'card' ? 'border-black shadow-md' : 'border-gray-300'}`}>
+<input type="radio" name="payment" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} className="sr-only" />
+<div className="w-20 h-12 flex items-center justify-center">VISA<br/>MC</div>
+</label>
+
+
+<label className={`p-3 border-2 rounded cursor-pointer ${paymentMethod === 'paypal' ? 'border-black shadow-md' : 'border-gray-300'}`}>
+<input type="radio" name="payment" value="paypal" checked={paymentMethod === 'paypal'} onChange={() => setPaymentMethod('paypal')} className="sr-only" />
+<div className="w-20 h-12 flex items-center justify-center">PayPal</div>
+</label>
+
+
+<label className={`p-3 border-2 rounded cursor-pointer ${paymentMethod === 'momo' ? 'border-black shadow-md' : 'border-gray-300'}`}>
+<input type="radio" name="payment" value="momo" checked={paymentMethod === 'momo'} onChange={() => setPaymentMethod('momo')} className="sr-only" />
+<div className="w-20 h-12 flex items-center justify-center">MoMo</div>
+</label>
+
+
+<label className={`p-3 border-2 rounded cursor-pointer ${paymentMethod === 'airtel' ? 'border-black shadow-md' : 'border-gray-300'}`}>
+<input type="radio" name="payment" value="airtel" checked={paymentMethod === 'airtel'} onChange={() => setPaymentMethod('airtel')} className="sr-only" />
+<div className="w-20 h-12 flex items-center justify-center">Airtel</div>
+</label>
+</div>
+</section>
+
+
+{/* Checkbox */}
+<section className="flex items-start gap-4">
+<div>
+<label className="inline-flex items-center cursor-pointer">
+<input type="checkbox" checked={optInUpdates} onChange={(e) => setOptInUpdates(e.target.checked)} className="form-checkbox h-5 w-5 text-emerald-600" />
+<span className="ml-3 text-sm">I'd like to receive updates on the impact of my donation.</span>
+</label>
+</div>
+</section>
+
+
+<!-- {/* Summary & Submit */} -->
+<section className="pt-6 border-t">
+<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+<div>
+<p className="text-sm">You will donate <strong>{currency === 'UGX' ? 'UGX ' : '$'}{effectiveAmount()}</strong> ({frequency === 'monthly' ? 'recurring monthly' : 'one-time'})</p>
+</div>
+<div className="flex items-center gap-4">
+<button type="submit" className="px-6 py-3 rounded bg-emerald-600 text-white font-medium shadow-md">Donate</button>
+</div>
+</div>
+</section>
+
+
+</form>
+</main>
+</div>
+
+
+{/* Small footer notes */}
+<footer className="max-w-6xl mx-auto mt-12 text-xs text-gray-500">
+<p>Secure payments powered by your payment provider. This demo is front-end only; replace the placeholders with your provider SDK and server endpoints before going live.</p>
+</footer>
+</div>
