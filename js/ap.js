@@ -271,3 +271,16 @@ customInput.addEventListener("input", () => {
   }
 });
 
+
+
+// DONATION FREQUENCY
+
+const freqButtons = document.querySelectorAll(".frequency-btn");
+
+freqButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    freqButtons.forEach(b => b.classList.remove("active-frequency"));
+    btn.classList.add("active-frequency");
+  });
+});
+

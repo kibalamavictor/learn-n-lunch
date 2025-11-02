@@ -100,28 +100,39 @@
 
 </section>
 
-    <!-- Donation Frequency Section -->
-    <section class="form-section">
-      <label class="section-label">Donation Frequency:</label>
-      
-      <div class="frequency-options">
-        <button type="button" class="frequency-btn active-frequency">
-          One-time
-        </button>
-        
-        <button type="button" class="frequency-btn">
-          <svg class="smile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-            <line x1="9" y1="9" x2="9.01" y2="9"/>
-            <line x1="15" y1="9" x2="15.01" y2="9"/>
-          </svg>
-          Monthly
-        </button>
-      </div>
-      
+   <!-- Donation Frequency Section -->
+<section class="form-section">
+  <label class="section-label">Donation Frequency:</label>
+  
+  <div class="frequency-options">
+    
+    <!-- One-time -->
+    <div class="frequency-option">
+      <button type="button" class="frequency-btn active-frequency" data-default="One-time">
+        One-time
+      </button>
+    </div>
+
+    <!-- Monthly + Note -->
+    <div class="frequency-option">
+      <button type="button" class="frequency-btn" data-default="Monthly">
+        <svg class="smile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        Monthly
+      </button>
+
       <p class="frequency-note">Become a Meal Champion</p>
-    </section>
+    </div>
+
+  </div>
+</section>
+
+
+
 
     <!-- Donor Details Section -->
     <section class="form-section">
