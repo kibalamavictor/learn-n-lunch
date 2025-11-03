@@ -201,6 +201,8 @@
 
 .smile-icon {
   stroke: currentColor;
+  height: 18;
+  width: 18;
 }
 
 /* Responsive alignment */
@@ -255,11 +257,12 @@
     background: #444;
     color: #fff;
     font-size: 1rem;
+    border-radius: 0;
     box-shadow: 3px 3px #000;
     cursor: pointer;
     outline: none;
     min-width: 100px;
-    height: 70px;
+    height: 58px;
   }
 
   .phone-input {
@@ -274,7 +277,7 @@
   }
 
   .payment-method-btn {
-    padding: 1.2rem;
+    padding: 1.8rem;
     border: 3px solid #000;
     background: #fff;
     cursor: pointer;
@@ -282,8 +285,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 3px 3px #000;
     aspect-ratio: 1;
-    max-height: 140px;
+    max-height: 120px;
+    width: 145px;
   }
 
   .payment-method-btn:hover {
@@ -305,12 +310,13 @@
   }
 
   .custom-checkbox {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
+    min-width: 40px;
+    height: 40px;
     border: 3px solid #000;
     cursor: pointer;
+    border-radius: 0;
     appearance: none;
+    box-shadow: 3px 3px #000;
     background: #fff;
     position: relative;
     margin-top: 2px;
@@ -336,6 +342,7 @@
     color: #333;
     cursor: pointer;
     line-height: 1.5;
+    max-width: 300px;
   }
 
   /* Responsive Design */
@@ -350,7 +357,7 @@
 
   @media (max-width: 768px) {
     .donation-form-container {
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 4rem;
     }
 
 
