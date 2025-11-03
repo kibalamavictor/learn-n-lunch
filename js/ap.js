@@ -284,3 +284,53 @@ freqButtons.forEach(btn => {
   });
 });
 
+
+
+
+
+
+
+// STATS-IMPACT-PAGE
+
+
+function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target.toLocaleString() + '+';
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current).toLocaleString() + '+';
+      }
+    }, 16);
+  }
+  
+  function initCounterAnimation() {
+    const counterBox = document.querySelector('.stats-number-box');
+    const target = parseInt(counterBox.getAttribute('data-target'));
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(counterBox, target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    observer.observe(counterBox);
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounterAnimation);
+  } else {
+    initCounterAnimation();
+  }
+
+
+
