@@ -210,79 +210,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const buttons = document.querySelectorAll(".amount-option");
-const customInput = document.getElementById("custom-amount-input");
+// const buttons = document.querySelectorAll(".amount-option");
+// const customInput = document.getElementById("custom-amount-input");
 
-buttons.forEach((button) => {
-  const defaultLabel = button.dataset.default;
+// buttons.forEach((button) => {
+//   const defaultLabel = button.dataset.default;
 
-  button.addEventListener("click", () => {
-    const isCustom = button.dataset.amount === "custom";
+//   button.addEventListener("click", () => {
+//     const isCustom = button.dataset.amount === "custom";
 
-    // Toggle if already selected
-    if (button.classList.contains("selected")) {
-      button.classList.remove("selected");
-      button.innerHTML = defaultLabel;
+//     // Toggle if already selected
+//     if (button.classList.contains("selected")) {
+//       button.classList.remove("selected");
+//       button.innerHTML = defaultLabel;
 
-      if (isCustom) {
-        customInput.style.display = "none";
-      }
+//       if (isCustom) {
+//         customInput.style.display = "none";
+//       }
 
-      return;
-    }
+//       return;
+//     }
 
-    // Unselect others
-    buttons.forEach((b) => {
-      b.classList.remove("selected");
-      b.innerHTML = b.dataset.default;
-    });
+//     // Unselect others
+//     buttons.forEach((b) => {
+//       b.classList.remove("selected");
+//       b.innerHTML = b.dataset.default;
+//     });
 
-    // Select this one
-    button.classList.add("selected");
-    button.innerHTML = `
-      <svg class="checkmark-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-    `;
+//     // Select this one
+//     button.classList.add("selected");
+//     button.innerHTML = `
+//       <svg class="checkmark-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+//         <polyline points="20 6 9 17 4 12"></polyline>
+//       </svg>
+//     `;
 
-    if (isCustom) {
-      customInput.style.display = "block";
-      customInput.focus();
-    } else {
-      customInput.style.display = "none";
-    }
-  });
-});
+//     if (isCustom) {
+//       customInput.style.display = "block";
+//       customInput.focus();
+//     } else {
+//       customInput.style.display = "none";
+//     }
+//   });
+// });
   
-  customInput.addEventListener("input", () => {
-  if (customInput.value < 0) {
-    customInput.value = 0;
-  }
-});
+//   customInput.addEventListener("input", () => {
+//   if (customInput.value < 0) {
+//     customInput.value = 0;
+//   }
+// });
 
 
-customInput.addEventListener("input", () => {
-  // Remove non-numeric characters (including negative signs and decimals)
-  customInput.value = customInput.value.replace(/[^0-9]/g, "");
+// customInput.addEventListener("input", () => {
+//   // Remove non-numeric characters (including negative signs and decimals)
+//   customInput.value = customInput.value.replace(/[^0-9]/g, "");
 
-  // Prevent zero or empty
-  if (customInput.value === "" || Number(customInput.value) < 1) {
-    customInput.value = "";
-  }
-});
+//   // Prevent zero or empty
+//   if (customInput.value === "" || Number(customInput.value) < 1) {
+//     customInput.value = "";
+//   }
+// });
 
 
 
-// DONATION FREQUENCY
+// // DONATION FREQUENCY
 
-const freqButtons = document.querySelectorAll(".frequency-btn");
+// const freqButtons = document.querySelectorAll(".frequency-btn");
 
-freqButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    freqButtons.forEach(b => b.classList.remove("active-frequency"));
-    btn.classList.add("active-frequency");
-  });
-});
+// freqButtons.forEach(btn => {
+//   btn.addEventListener("click", () => {
+//     freqButtons.forEach(b => b.classList.remove("active-frequency"));
+//     btn.classList.add("active-frequency");
+//   });
+// });
 
 
 
@@ -293,44 +293,44 @@ freqButtons.forEach(btn => {
 // STATS-IMPACT-PAGE
 
 
-function animateCounter(element, target, duration = 2000) {
-    const start = 0;
-    const increment = target / (duration / 16);
-    let current = start;
+// function animateCounter(element, target, duration = 2000) {
+//     const start = 0;
+//     const increment = target / (duration / 16);
+//     let current = start;
     
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        element.textContent = target.toLocaleString() + '+';
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current).toLocaleString() + '+';
-      }
-    }, 16);
-  }
+//     const timer = setInterval(() => {
+//       current += increment;
+//       if (current >= target) {
+//         element.textContent = target.toLocaleString() + '+';
+//         clearInterval(timer);
+//       } else {
+//         element.textContent = Math.floor(current).toLocaleString() + '+';
+//       }
+//     }, 16);
+//   }
   
-  function initCounterAnimation() {
-    const counterBox = document.querySelector('.stats-number-box');
-    const target = parseInt(counterBox.getAttribute('data-target'));
+//   function initCounterAnimation() {
+//     const counterBox = document.querySelector('.stats-number-box');
+//     const target = parseInt(counterBox.getAttribute('data-target'));
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(counterBox, target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+//     const observer = new IntersectionObserver((entries) => {
+//       entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//           animateCounter(counterBox, target);
+//           observer.unobserve(entry.target);
+//         }
+//       });
+//     }, { threshold: 0.5 });
     
-    observer.observe(counterBox);
-  }
+//     observer.observe(counterBox);
+//   }
   
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCounterAnimation);
-  } else {
-    initCounterAnimation();
-  }
+//   // Initialize when DOM is ready
+//   if (document.readyState === 'loading') {
+//     document.addEventListener('DOMContentLoaded', initCounterAnimation);
+//   } else {
+//     initCounterAnimation();
+//   }
 
 
 

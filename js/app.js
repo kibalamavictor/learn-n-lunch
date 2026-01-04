@@ -40,7 +40,7 @@
   if (navbar) {
     let lastScrollY = window.pageYOffset || 0;
     const tolerance = 10;
-    const visibleAfter = 50;
+    const visibleAfter = 10;
 
     window.addEventListener("scroll", () => {
       const currentY = window.pageYOffset || 0;
