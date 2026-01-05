@@ -80,50 +80,105 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =======================
      STORIES SECTION
   ==========================*/
-  const mmTrack = document.getElementById("mm-track");
-  const mmPrev = document.getElementById("mm-prev");
-  const mmNext = document.getElementById("mm-next");
+  // const mmTrack = document.getElementById("mm-track");
+  // const mmPrev = document.getElementById("mm-prev");
+  // const mmNext = document.getElementById("mm-next");
 
-  if (mmTrack && mmPrev && mmNext) {
-    const mmCards = Array.from(mmTrack.querySelectorAll(".mm-card"));
-    const mmGap = 28;
-    let mmIndex = 0;
-    let mmPerView = 3;
-    let mmCardWidth = 0;
+  // if (mmTrack && mmPrev && mmNext) {
+  //   const mmCards = Array.from(mmTrack.querySelectorAll(".mm-card"));
+  //   const mmGap = 28;
+  //   let mmIndex = 0;
+  //   let mmPerView = 3;
+  //   let mmCardWidth = 0;
 
-    function mmComputeLayout() {
-      const w = window.innerWidth;
-      mmPerView = w <= 680 ? 1 : w <= 1080 ? 2 : 3;
-      mmCardWidth = mmCards[0].offsetWidth;
-      const maxIndex = Math.max(0, mmCards.length - mmPerView);
-      if (mmIndex > maxIndex) mmIndex = maxIndex;
-      mmUpdate();
-    }
+  //   function mmComputeLayout() {
+  //     const w = window.innerWidth;
+  //     mmPerView = w <= 680 ? 1 : w <= 1080 ? 2 : 3;
+  //     mmCardWidth = mmCards[0].offsetWidth;
+  //     const maxIndex = Math.max(0, mmCards.length - mmPerView);
+  //     if (mmIndex > maxIndex) mmIndex = maxIndex;
+  //     mmUpdate();
+  //   }
 
-    function mmUpdate() {
-      const offset = mmIndex * (mmCardWidth + mmGap);
-      mmTrack.style.transform = `translateX(-${offset}px)`;
-      mmPrev.disabled = mmIndex === 0;
-      mmNext.disabled = mmIndex >= mmCards.length - mmPerView;
-    }
+  //   function mmUpdate() {
+  //     const offset = mmIndex * (mmCardWidth + mmGap);
+  //     mmTrack.style.transform = `translateX(-${offset}px)`;
+  //     mmPrev.disabled = mmIndex === 0;
+  //     mmNext.disabled = mmIndex >= mmCards.length - mmPerView;
+  //   }
 
-    mmNext.onclick = () => {
-      if (mmIndex < mmCards.length - mmPerView) {
-        mmIndex++;
+  //   mmNext.onclick = () => {
+  //     if (mmIndex < mmCards.length - mmPerView) {
+  //       mmIndex++;
+  //       mmUpdate();
+  //     }
+  //   };
+
+  //   mmPrev.onclick = () => {
+  //     if (mmIndex > 0) {
+  //       mmIndex--;
+  //       mmUpdate();
+  //     }
+  //   };
+
+  //   window.addEventListener("resize", mmComputeLayout);
+  //   window.addEventListener("load", mmComputeLayout);
+  // }
+
+
+
+
+
+  // Find all carousel sections
+  const mmSections = document.querySelectorAll(".mm-section");
+
+  mmSections.forEach((section) => {
+    const mmTrack = section.querySelector(".mm-carousel-track");
+    const mmPrev = section.querySelector("#mm-prev");
+    const mmNext = section.querySelector("#mm-next");
+
+    if (mmTrack && mmPrev && mmNext) {
+      const mmCards = Array.from(mmTrack.querySelectorAll(".mm-card"));
+      const mmGap = 28;
+      let mmIndex = 0;
+      let mmPerView = 3;
+      let mmCardWidth = 0;
+
+      function mmComputeLayout() {
+        const w = window.innerWidth;
+        mmPerView = w <= 680 ? 1 : w <= 1080 ? 2 : 3;
+        mmCardWidth = mmCards[0].offsetWidth;
+        const maxIndex = Math.max(0, mmCards.length - mmPerView);
+        if (mmIndex > maxIndex) mmIndex = maxIndex;
         mmUpdate();
       }
-    };
 
-    mmPrev.onclick = () => {
-      if (mmIndex > 0) {
-        mmIndex--;
-        mmUpdate();
+      function mmUpdate() {
+        const offset = mmIndex * (mmCardWidth + mmGap);
+        mmTrack.style.transform = `translateX(-${offset}px)`;
+        mmPrev.disabled = mmIndex === 0;
+        mmNext.disabled = mmIndex >= mmCards.length - mmPerView;
       }
-    };
 
-    window.addEventListener("resize", mmComputeLayout);
-    window.addEventListener("load", mmComputeLayout);
-  }
+      mmNext.onclick = () => {
+        if (mmIndex < mmCards.length - mmPerView) {
+          mmIndex++;
+          mmUpdate();
+        }
+      };
+
+      mmPrev.onclick = () => {
+        if (mmIndex > 0) {
+          mmIndex--;
+          mmUpdate();
+        }
+      };
+
+      window.addEventListener("resize", mmComputeLayout);
+      window.addEventListener("load", mmComputeLayout);
+    }
+  });
+
 
 
   /* =======================
@@ -210,79 +265,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// const buttons = document.querySelectorAll(".amount-option");
-// const customInput = document.getElementById("custom-amount-input");
+const buttons = document.querySelectorAll(".amount-option");
+const customInput = document.getElementById("custom-amount-input");
 
-// buttons.forEach((button) => {
-//   const defaultLabel = button.dataset.default;
+buttons.forEach((button) => {
+  const defaultLabel = button.dataset.default;
 
-//   button.addEventListener("click", () => {
-//     const isCustom = button.dataset.amount === "custom";
+  button.addEventListener("click", () => {
+    const isCustom = button.dataset.amount === "custom";
 
-//     // Toggle if already selected
-//     if (button.classList.contains("selected")) {
-//       button.classList.remove("selected");
-//       button.innerHTML = defaultLabel;
+    // Toggle if already selected
+    if (button.classList.contains("selected")) {
+      button.classList.remove("selected");
+      button.innerHTML = defaultLabel;
 
-//       if (isCustom) {
-//         customInput.style.display = "none";
-//       }
+      if (isCustom) {
+        customInput.style.display = "none";
+      }
 
-//       return;
-//     }
+      return;
+    }
 
-//     // Unselect others
-//     buttons.forEach((b) => {
-//       b.classList.remove("selected");
-//       b.innerHTML = b.dataset.default;
-//     });
+    // Unselect others
+    buttons.forEach((b) => {
+      b.classList.remove("selected");
+      b.innerHTML = b.dataset.default;
+    });
 
-//     // Select this one
-//     button.classList.add("selected");
-//     button.innerHTML = `
-//       <svg class="checkmark-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-//         <polyline points="20 6 9 17 4 12"></polyline>
-//       </svg>
-//     `;
+    // Select this one
+    button.classList.add("selected");
+    button.innerHTML = `
+      <svg class="checkmark-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    `;
 
-//     if (isCustom) {
-//       customInput.style.display = "block";
-//       customInput.focus();
-//     } else {
-//       customInput.style.display = "none";
-//     }
-//   });
-// });
+    if (isCustom) {
+      customInput.style.display = "block";
+      customInput.focus();
+    } else {
+      customInput.style.display = "none";
+    }
+  });
+});
   
-//   customInput.addEventListener("input", () => {
-//   if (customInput.value < 0) {
-//     customInput.value = 0;
-//   }
-// });
+  customInput.addEventListener("input", () => {
+  if (customInput.value < 0) {
+    customInput.value = 0;
+  }
+});
 
 
-// customInput.addEventListener("input", () => {
-//   // Remove non-numeric characters (including negative signs and decimals)
-//   customInput.value = customInput.value.replace(/[^0-9]/g, "");
+customInput.addEventListener("input", () => {
+  // Remove non-numeric characters (including negative signs and decimals)
+  customInput.value = customInput.value.replace(/[^0-9]/g, "");
 
-//   // Prevent zero or empty
-//   if (customInput.value === "" || Number(customInput.value) < 1) {
-//     customInput.value = "";
-//   }
-// });
+  // Prevent zero or empty
+  if (customInput.value === "" || Number(customInput.value) < 1) {
+    customInput.value = "";
+  }
+});
 
 
 
-// // DONATION FREQUENCY
+// DONATION FREQUENCY
 
-// const freqButtons = document.querySelectorAll(".frequency-btn");
+const freqButtons = document.querySelectorAll(".frequency-btn");
 
-// freqButtons.forEach(btn => {
-//   btn.addEventListener("click", () => {
-//     freqButtons.forEach(b => b.classList.remove("active-frequency"));
-//     btn.classList.add("active-frequency");
-//   });
-// });
+freqButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    freqButtons.forEach(b => b.classList.remove("active-frequency"));
+    btn.classList.add("active-frequency");
+  });
+});
 
 
 
