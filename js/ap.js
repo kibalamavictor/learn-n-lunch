@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================
-     STORIES SECTION
+     STORIES HERO SECTION
   ==========================*/
   // const mmTrack = document.getElementById("mm-track");
   // const mmPrev = document.getElementById("mm-prev");
@@ -124,6 +124,43 @@ document.addEventListener("DOMContentLoaded", () => {
   //   window.addEventListener("resize", mmComputeLayout);
   //   window.addEventListener("load", mmComputeLayout);
   // }
+
+
+
+
+  (function () {
+  const carousel = document.querySelector('.hero-image-container');
+  if (!carousel) return;
+
+  const images = carousel.querySelectorAll('.carousel-image');
+  const prevBtn = carousel.querySelector('.carousel-btn.prev');
+  const nextBtn = carousel.querySelector('.carousel-btn.next');
+
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showSlide(currentIndex);
+  }
+
+  // Attach events safely
+  nextBtn?.addEventListener('click', nextSlide);
+  prevBtn?.addEventListener('click', prevSlide);
+
+  // Init
+  showSlide(currentIndex);
+})();
 
 
 
