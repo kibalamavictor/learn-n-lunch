@@ -361,6 +361,12 @@ customInput.addEventListener("input", () => {
   if (customInput.value === "" || Number(customInput.value) < 1) {
     customInput.value = "";
   }
+
+  // Prevent numbers above six figures
+  if (Number(customInput.value) > 999999) {
+    customInput.value = customInput.value.slice(0, 6);
+  }
+
 });
 
 
