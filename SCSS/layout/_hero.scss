@@ -1,79 +1,7 @@
  @use '../util';
  
  /* Navigation Bar */
-        // nav {
-        //     background-color: #D4E7F5;
-        //     padding: 1rem 5%;
-        //     display: flex;
-        //     justify-content: space-between;
-        //     align-items: center;
-        //     position: relative;
-        //     z-index: 100;
-        // }
 
-        // .logo {
-        //     height: 50px;
-        // }
-
-        // .nav-links {
-        //     display: flex;
-        //     list-style: none;
-        //     gap: 2.5rem;
-        //     align-items: center;
-        // }
-
-        // .nav-links a {
-        //     text-decoration: none;
-        //     color: #000;
-        //     font-weight: 500;
-        //     font-size: 1rem;
-        //     transition: color 0.3s;
-        // }
-
-        // .nav-links a:hover {
-        //     color: #FF4444;
-        // }
-
-        // .donate-btn {
-        //     background-color: #fff;
-        //     border: 1px solid #000;
-        //     padding: 0.7rem 2rem;
-        //     box-shadow: 3px 3px 0px rgba(0, 0, 0, 1);
-        //     font-weight: bold;
-        //     font-size: 1rem;
-        //     cursor: pointer;
-        //     transition: all 0.3s;
-        //     display: flex;
-        //     align-items: center;
-        //     gap: 0.5rem;
-        // }
-
-        // .donate-btn:hover {
-        //     background-color: #000;
-        //     color: #fff;
-        // }
-
-        // .mobile-menu-btn {
-        //     display: none;
-        //     background: none;
-        //     border: none;
-        //     font-size: 1.5rem;
-        //     cursor: pointer;
-        // }
-
-
-
-
-
-// :root {
-
-// }
-
-// // body {
-// //   margin: 0;
-// //   min-height: 100vh;
-// //   background-color: var(--white);
-// // }
 
 a {
   text-decoration: none;
@@ -281,13 +209,13 @@ a {
         /* Hero Section */
         .hero {
             background-color: var(--bg-light-linen-blue);
-            padding: 7rem 5% 8rem;
+            padding: 8rem 5% 8rem;
             position: relative;
         }
 
         .hero-content {
             display: grid;
-            grid-template-columns: 2fr 1.2fr 1fr;
+            grid-template-columns: 1.8fr 1.2fr 1fr;
             gap: 3.5rem;
             align-items: center;
             max-width: 1400px;
@@ -301,7 +229,7 @@ a {
         .image-frame {
             position: relative;
             box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
-            aspect-ratio: 2 / 1;
+            aspect-ratio: 2 / 1.3;
             border: #000 solid 1px;
         }
 
@@ -351,64 +279,7 @@ a {
             box-shadow: 2px 2px 0px var(--text-dark);
         }
 
-        // .carousel-btn:hover {
-        //     background-color: #000;
-        // }
-
-        // .carousel-btn:active {
-        //     transform: translate(2px, 2px);
-        //     box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
-        // }
-
-        // .carousel-btn:hover::before,
-        // .carousel-btn:hover::after {
-        //     background-color: #fff;
-        // }
-
-        // /* Pixel-style arrows */
-        // .carousel-btn::before,
-        // .carousel-btn::after {
-        //     content: '';
-        //     position: absolute;
-        //     background-color: #000;
-        //     transition: background-color 0.3s;
-        // }
-
-        // /* Left arrow */
-        // .carousel-btn.prev::before {
-        //     width: 16px;
-        //     height: 3px;
-        //     left: 50%;
-        //     top: 50%;
-        //     transform: translate(-50%, -50%);
-        // }
-
-        // .carousel-btn.prev::after {
-        //     width: 3px;
-        //     height: 12px;
-        //     left: 18px;
-        //     top: 50%;
-        //     transform: translateY(-50%);
-        //     clip-path: polygon(0 0, 100% 50%, 0 100%);
-        // }
-
-        // /* Right arrow */
-        // .carousel-btn.next::before {
-        //     width: 16px;
-        //     height: 3px;
-        //     left: 50%;
-        //     top: 50%;
-        //     transform: translate(-50%, -50%);
-        // }
-
-        // .carousel-btn.next::after {
-        //     width: 3px;
-        //     height: 12px;
-        //     right: 18px;
-        //     top: 50%;
-        //     transform: translateY(-50%);
-        //     clip-path: polygon(0 50%, 100% 0, 100% 100%);
-        // }
+        
 
         .hero-text {
             position: relative;
