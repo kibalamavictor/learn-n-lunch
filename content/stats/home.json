@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "valueLabel": "4+",
+      "target": 4,
+      "description": "Campuses <br> Engaged",
+      "order": 1
+    },
+    {
+      "valueLabel": "50+",
+      "target": 50,
+      "description": "Student Leaders <br> Mobilised",
+      "order": 2
+    },
+    {
+      "valueLabel": "5",
+      "target": 5,
+      "description": "Research & Advocacy <br>Initiatives",
+      "order": 3
+    }
+  ]
+}

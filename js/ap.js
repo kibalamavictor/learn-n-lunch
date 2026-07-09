@@ -166,13 +166,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Find all carousel sections
-  const mmSections = document.querySelectorAll(".mm-section");
+  // Find all carousel sections (class-based controls, no duplicate IDs)
+  const mmSections = document.querySelectorAll(".mm-section, [data-carousel-id]");
 
   mmSections.forEach((section) => {
-    const mmTrack = section.querySelector(".mm-carousel-track");
-    const mmPrev = section.querySelector("#mm-prev");
-    const mmNext = section.querySelector("#mm-next");
+    const carouselId = section.dataset.carouselId;
+    const mmTrack = carouselId
+      ? section.querySelector(`[data-carousel-track="${carouselId}"]`)
+      : section.querySelector(".mm-carousel-track");
+    const mmPrev = carouselId
+      ? section.querySelector(`[data-carousel="${carouselId}"].mm-prev-btn`)
+      : section.querySelector(".mm-prev-btn");
+    const mmNext = carouselId
+      ? section.querySelector(`[data-carousel="${carouselId}"].mm-next-btn`)
+      : section.querySelector(".mm-next-btn");
 
     if (mmTrack && mmPrev && mmNext) {
       const mmCards = Array.from(mmTrack.querySelectorAll(".mm-card"));
