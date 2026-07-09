@@ -1,0 +1,367 @@
+backend:
+  name: github
+  repo: kibalamavictor/learn-n-lunch
+  branch: main
+  base_url: https://learn-n-lunch-auth.workers.dev
+  auth_endpoint: auth
+
+site_url: https://www.learnandlunch.org
+display_url: https://www.learnandlunch.org
+logo_url: /logo.png
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Global Site Settings
+        file: content/settings/site.json
+        format: json
+        fields:
+          - { label: Site Name, name: siteName, widget: string }
+          - { label: Default SEO Title, name: defaultSeoTitle, widget: string }
+          - { label: Default SEO Description, name: defaultSeoDescription, widget: text }
+          - label: Navigation Items
+            name: navigation
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: href, widget: string }
+          - label: Footer Social Links
+            name: socialLinks
+            widget: list
+            fields:
+              - { label: Platform, name: platform, widget: string }
+              - { label: URL, name: url, widget: string }
+          - { label: Footer Copyright, name: footerCopyright, widget: string }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home Page
+        file: content/pages/home.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: text }
+              - label: Carousel Images
+                name: carouselImages
+                widget: list
+                fields:
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+          - label: Mission Banner Text
+            name: missionBanner
+            widget: list
+            field: { label: Text Chunk, name: chunk, widget: string }
+          - label: Impact Intro
+            name: impactIntro
+            widget: object
+            fields:
+              - { label: Body, name: body, widget: text }
+              - { label: CTA Label, name: ctaLabel, widget: string }
+              - { label: CTA URL, name: ctaUrl, widget: string }
+              - { label: Left Image, name: leftImage, widget: image }
+              - { label: Left Image Alt, name: leftImageAlt, widget: string }
+              - { label: Right Image, name: rightImage, widget: image }
+              - { label: Right Image Alt, name: rightImageAlt, widget: string }
+          - label: Model Work Cards
+            name: modelWorkCards
+            widget: list
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: text }
+              - { label: Accent Color, name: accentColor, widget: select, options: ["#d3eeff", "#fdc039", "#7be4d3"] }
+          - label: Coalition CTA
+            name: coalitionCta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Button Label, name: buttonLabel, widget: string }
+              - { label: Button URL, name: buttonUrl, widget: string }
+              - { label: Background Image, name: backgroundImage, widget: image }
+              - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
+              - { label: QR Image, name: qrImage, widget: image }
+              - { label: QR Image Alt, name: qrImageAlt, widget: string }
+          - label: Moments
+            name: moments
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Photo Collage
+                name: photos
+                widget: list
+                fields:
+                  - { label: Image, name: image, widget: image }
+                  - { label: Alt Text, name: alt, widget: string }
+              - { label: Slogan Text, name: sloganText, widget: text }
+              - { label: Statement Quote, name: statementQuote, widget: string }
+          - label: Stories Teaser
+            name: storiesTeaser
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: More Label, name: moreLabel, widget: string }
+              - { label: More URL, name: moreUrl, widget: string }
+          - label: Footer CTA
+            name: footerCta
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Button Label, name: buttonLabel, widget: string }
+              - { label: Button URL, name: buttonUrl, widget: string }
+              - { label: Background Image, name: backgroundImage, widget: image }
+              - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
+              - { label: QR Image, name: qrImage, widget: image }
+              - { label: QR Image Alt, name: qrImageAlt, widget: string }
+
+      - name: about
+        label: About Us Page
+        file: content/pages/about-us.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: text }
+              - { label: Image, name: image, widget: image }
+              - { label: Image Alt, name: imageAlt, widget: string }
+          - { label: Stand For Heading, name: standForHeading, widget: string }
+          - { label: Stand For Statement, name: standForStatement, widget: text }
+          - label: Mission Vision
+            name: missionVision
+            widget: object
+            fields:
+              - { label: Mission Text, name: mission, widget: text }
+              - { label: Vision Text, name: vision, widget: text }
+          - label: Values
+            name: values
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Description, name: description, widget: string }
+              - { label: Highlight Variant, name: highlightVariant, widget: select, options: ["highlight", "highlight-2", "highlight-3", "highlight-4"] }
+          - label: Challenge Section
+            name: challenge
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: text }
+              - { label: Image, name: image, widget: image }
+              - { label: Image Alt, name: imageAlt, widget: string }
+
+      - name: impact
+        label: Impact Page
+        file: content/pages/impact.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subtitle, name: subtitle, widget: text }
+              - { label: Image, name: image, widget: image }
+              - { label: Image Alt, name: imageAlt, widget: string }
+              - { label: Meaning Heading, name: meaningHeading, widget: string }
+              - { label: Meaning Body, name: meaningBody, widget: text }
+          - { label: Numbers Heading, name: numbersHeading, widget: string }
+          - { label: Faces Heading, name: facesHeading, widget: string }
+
+      - name: storiesPage
+        label: Stories Listing Page
+        file: content/pages/stories.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Category Filters
+            name: filters
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Slug, name: slug, widget: string }
+          - label: Featured Sections
+            name: featuredSections
+            widget: list
+            fields:
+              - { label: Section Label, name: sectionLabel, widget: string }
+              - { label: Category Slug, name: categorySlug, widget: string }
+              - { label: Lead Post Slug, name: leadPostSlug, widget: string }
+              - label: Additional Post Slugs
+                name: postSlugs
+                widget: list
+                field: { label: Post Slug, name: slug, widget: string }
+
+      - name: donate
+        label: Donate Page
+        file: content/pages/donate.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Description, name: description, widget: text }
+          - label: Donation Amount Presets
+            name: amountPresets
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Value, name: value, widget: number }
+              - { label: Description, name: description, widget: string }
+          - label: Frequency Options
+            name: frequencyOptions
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Default Active, name: isDefault, widget: boolean, default: false }
+              - { label: Note, name: note, widget: string, required: false }
+          - label: Field Labels
+            name: fieldLabels
+            widget: object
+            fields:
+              - { label: Full Name, name: fullName, widget: string }
+              - { label: Email, name: email, widget: string }
+              - { label: Phone, name: phone, widget: string }
+              - { label: Updates Checkbox, name: updatesCheckbox, widget: string }
+
+      - name: getInvolved
+        label: Get Involved Page
+        file: content/pages/get-involved.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - label: Opportunities
+            name: opportunities
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: CTA Label, name: ctaLabel, widget: string }
+              - { label: CTA URL, name: ctaUrl, widget: string }
+
+      - name: contactUs
+        label: Contact Us Page
+        file: content/pages/contact-us.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - { label: Email, name: email, widget: string }
+          - { label: Phone, name: phone, widget: string, required: false }
+          - { label: Address, name: address, widget: text, required: false }
+          - label: Contact CTA
+            name: cta
+            widget: object
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
+
+  - name: team
+    label: Team Members
+    folder: content/team
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Role, name: role, widget: string }
+      - { label: Bio, name: bio, widget: text }
+      - { label: Photo, name: photo, widget: image }
+      - { label: Photo Alt, name: photoAlt, widget: string }
+      - { label: Card Variant, name: cardVariant, widget: select, options: ["member-card-yellow", "member-card-cyan"] }
+      - { label: Card Background Override, name: cardBackground, widget: string, required: false }
+      - { label: Row Layout, name: layout, widget: select, options: ["pair", "solo"], default: "pair" }
+      - { label: Feature Order, name: order, widget: number, value_type: int, min: 1 }
+      - { label: Active, name: isActive, widget: boolean, default: true }
+
+  - name: testimonials
+    label: Testimonials
+    folder: content/testimonials
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Quote, name: quote, widget: text }
+      - { label: Author Name, name: authorName, widget: string }
+      - { label: Affiliation, name: affiliation, widget: string }
+      - { label: Photo, name: photo, widget: image }
+      - { label: Photo Alt, name: photoAlt, widget: string }
+      - { label: Display Order, name: order, widget: number, value_type: int, min: 1 }
+      - { label: Active, name: isActive, widget: boolean, default: true }
+
+  - name: stats
+    label: Stats
+    files:
+      - name: homeStats
+        label: Home Stats
+        file: content/stats/home.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            fields:
+              - { label: Value Label, name: valueLabel, widget: string }
+              - { label: Numeric Target, name: target, widget: number, value_type: int, min: 0 }
+              - { label: Description, name: description, widget: string }
+              - { label: Sort Order, name: order, widget: number, value_type: int, min: 1 }
+
+      - name: impactStats
+        label: Impact Stats
+        file: content/stats/impact.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            fields:
+              - { label: Prefix, name: prefix, widget: string, required: false }
+              - { label: Numeric Target, name: target, widget: number, value_type: int, min: 0 }
+              - { label: Primary Label, name: primaryLabel, widget: string }
+              - { label: Secondary Label, name: secondaryLabel, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Sort Order, name: order, widget: number, value_type: int, min: 1 }
+
+  - name: blog
+    label: Blog Posts
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, hint: "Used for /stories/slug/" }
+      - { label: Excerpt, name: excerpt, widget: text }
+      - { label: Cover Image, name: coverImage, widget: image }
+      - { label: Cover Image Alt, name: coverImageAlt, widget: string }
+      - { label: Author, name: author, widget: string }
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Status, name: status, widget: select, options: ["draft", "published"], default: "draft" }
+      - { label: Published At, name: publishedAt, widget: datetime, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - { label: OG Image, name: ogImage, widget: image, required: false }
+      - { label: Body, name: body, widget: markdown }
