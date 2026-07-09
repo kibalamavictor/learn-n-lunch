@@ -1,0 +1,48 @@
+name: Build Site from CMS Content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "scripts/**"
+      - "admin/config.yml"
+      - "assets/uploads/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Commit rendered HTML
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: rebuild site from CMS content [skip ci]"
+          file_pattern: |
+            index.html
+            about-us/index.html
+            impact/index.html
+            stories/**
+            donate/index.html
+            contact-us/index.html
+            get-involved/index.html
+            students/index.html
+            assets/uploads/**
