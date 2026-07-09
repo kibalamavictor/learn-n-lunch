@@ -1,0 +1,17 @@
+{
+  "name": "learn-n-lunch-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site content pipeline for Decap CMS.",
+  "scripts": {
+    "validate-content": "node scripts/validate-content.js",
+    "optimize-uploads": "node scripts/optimize-uploads.js",
+    "prebuild": "npm run validate-content && npm run optimize-uploads",
+    "build": "node scripts/build-content.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "sharp": "^0.34.3"
+  }
+}
