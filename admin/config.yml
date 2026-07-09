@@ -2,7 +2,7 @@ backend:
   name: github
   repo: kibalamavictor/learn-n-lunch
   branch: main
-  base_url: https://learn-n-lunch-auth.workers.dev
+  base_url: https://learn-n-lunch-auth.learnandlunch.workers.dev
   auth_endpoint: auth
 
 site_url: https://www.learnandlunch.org
