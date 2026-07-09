@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn N' Lunch - No Student Should Study Hungry</title>
+    <meta name="description" content="Student-led initiative addressing campus hunger through evidence, advocacy, and practical support.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,600&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -15,8 +15,7 @@
 </head>
 <body>
 
-
-<nav class="navbar">
+    <nav class="navbar">
       <div class="nav-container">
         <a href="../" class="logo">
            <img src="../logo.png" alt="Learn N' Lunch Logo" class="logo">
@@ -30,25 +29,23 @@
 
         <ul class="nav-menu">
           <li><a href="../" class="nav-link">Home</a></li>
-          <li><a href="../about-us" class="nav-link">About Us</a></li>
-          <li><a href="../impact" class="nav-link">Impact</a></li>
-          <li><a href="../get-involved" class="nav-link">Get Involved</a></li>
-          <li><a href="../stories" class="nav-link">Stories</a></li>
-          <li><a href="mailto:info@learnandlunch.org" class="nav-link">Contact Us</a></li>
+          <li><a href="../about-us/" class="nav-link">About Us</a></li>
+          <li><a href="../impact/" class="nav-link">Impact</a></li>
+          <li><a href="../get-involved/" class="nav-link">Get Involved</a></li>
+          <li><a href="../stories/" class="nav-link">Stories</a></li>
+          <li><a href="../contact-us/" class="nav-link">Contact Us</a></li>
           <li class="mobile-donate">
-            <a href="./" class="donate-btn">
+            <a href="../donate/" class="donate-btn">
               <span><img src="../heart-black.svg" style="width: 14px;"></span> Donate
             </a>
           </li>
         </ul>
 
-        <a href="./" class="donate-btn desktop-donate">
+        <a href="../donate/" class="donate-btn desktop-donate">
           <span><img src="../heart-black.svg" style="width: 14px;"></span> Donate
         </a>
       </div>
     </nav>
-
-
 
 <div class="donation-form-container">
   <div class="donation-form-header">
@@ -59,93 +56,64 @@
   </div>
 
   <form class="donation-form">
-    <!-- Donation Amount Section -->
     <section class="form-section">
-  <label class="section-label">Donation Amount:</label>
-
-  <div class="donation-amount-grid">
-    <!-- Option 1 -->
+      <label class="section-label">Donation Amount:</label>
+      <div class="donation-amount-grid">
+        
     <div class="donation-option">
       <button type="button" class="amount-option" data-amount="5" data-default="$5">$5</button>
       <p class="amount-desc">Feed 1 student for a full day</p>
     </div>
 
-    <!-- Option 2 -->
     <div class="donation-option">
       <button type="button" class="amount-option" data-amount="25" data-default="$25">$25</button>
       <p class="amount-desc">Feed 1 student for a week</p>
     </div>
 
-    <!-- Option 3 -->
     <div class="donation-option">
       <button type="button" class="amount-option" data-amount="100" data-default="$100">$100</button>
       <p class="amount-desc">Support 4 students for a month</p>
     </div>
+        <div class="donation-option">
+          <button type="button" class="amount-option" data-amount="custom" data-default="Other">Other</button>
+          <p class="amount-desc">Custom Amount</p>
+          <input type="number" id="custom-amount-input" class="custom-amount-input" placeholder="Enter amount" min="1" step="1" inputmode="numeric" style="display:none;">
+        </div>
+      </div>
+    </section>
 
-    <!-- Option 4 - Other -->
-    <div class="donation-option">
-      <button type="button" class="amount-option" data-amount="custom" data-default="Other">Other</button>
-      <p class="amount-desc">Custom Amount</p>
-
-      <!-- Custom Amount Input (initially hidden) -->
-        <input 
-        type="number" 
-        id="custom-amount-input" 
-        class="custom-amount-input" 
-        placeholder="Enter amount"
-        min="1"
-        step="1"
-        inputmode="numeric"
-        style="display:none;">
-    
-    </div>
-
-
-</section>
-
-   <!-- Donation Frequency Section -->
-<section class="form-section">
-  <label class="section-label">Donation Frequency:</label>
-  
-  <div class="frequency-options">
-    
-    <!-- One-time -->
+    <section class="form-section">
+      <label class="section-label">Donation Frequency:</label>
+      <div class="frequency-options">
+        
     <div class="frequency-option">
       <button type="button" class="frequency-btn active-frequency" data-default="One-time">
+        
         One-time
       </button>
+      
     </div>
 
-    <!-- Monthly + Note -->
     <div class="frequency-option">
       <button type="button" class="frequency-btn" data-default="Monthly">
-        <img src="./donate/smiley.png" class="smile-icon"/>
+        <img src="../donate/donate/smiley.png" class="smile-icon"/>
         Monthly
       </button>
-
       <p class="frequency-note">Become a Meal Champion</p>
     </div>
+      </div>
+    </section>
 
-  </div>
-</section>
-
-
-
-
-    <!-- Donor Details Section -->
     <section class="form-section">
       <label class="section-label">Donor Details:</label>
-      
       <div class="form-group">
         <label class="input-label">Full name *</label>
         <input type="text" class="form-input" required />
       </div>
-      
       <div class="form-group">
         <label class="input-label">Email Address *</label>
         <input type="email" class="form-input" required />
       </div>
-      
       <div class="form-group">
         <label class="input-label">Phone Number (optional)</label>
         <div class="phone-input-group">
@@ -161,37 +129,20 @@
       </div>
     </section>
 
-    <!-- Payment Options Section -->
     <section class="form-section">
       <label class="section-label">Payment Options:</label>
-      
       <div class="payment-methods-grid">
-        <!-- <button type="button" class="payment-method-btn">
-          <img src="./donate/visa.svg" alt="Visa" class="payment-logo" />
+        <button type="button" class="payment-method-btn">
+          <img src="../donate/donate/mtn-momo.png" alt="MoMo" class="payment-logo" />
         </button>
-        
         <button type="button" class="payment-method-btn">
-          <img src="./donate/master-card.svg" alt="Mastercard" class="payment-logo" />
-        </button>
-        
-        <button type="button" class="payment-method-btn">
-          <img src="./donate/paypal.svg" alt="PayPal" class="payment-logo" />
-        </button> -->
-        
-        <button type="button" class="payment-method-btn">
-          <img src="./donate/mtn-momo.png" alt="MoMo" class="payment-logo" />
-        </button>
-        
-        <button type="button" class="payment-method-btn">
-          <img src="./donate/airtel-money.png" alt="Airtel Money" class="payment-logo" />
+          <img src="../donate/donate/airtel-money.png" alt="Airtel Money" class="payment-logo" />
         </button>
       </div>
     </section>
 
-    <!-- Checkbox Section -->
     <section class="form-section">
       <label class="section-label">Checkbox:</label>
-      
       <div class="checkbox-wrapper">
         <input type="checkbox" id="updates-checkbox" class="custom-checkbox" />
         <label for="updates-checkbox" class="checkbox-label">
@@ -201,16 +152,6 @@
     </section>
   </form>
 </div>
-
-
-
-
-
-
-
-<!-- Footer CTA Section -->
-
-
 
 <section class="footer-cta-section">
     <div class="footer-cta-container">
@@ -223,44 +164,35 @@
                     <h2 class="footer-cta-title">
                         BE PART OF THE MOVEMENT.
                     </h2>
-                    <a href="#" class="footer-cta-button">
+                    <a href="../donate/" class="footer-cta-button">
                         <span><img src="../heart-white.svg" style="width: 14px;"></span>
                         <span>Donate Now</span>
                     </a>
                 </div>
                 
                 <div class="footer-cta-qr">
-                    <!-- <span class="footer-qr-corner-bl"></span>
-                    <span class="footer-qr-corner-br"></span> -->
                     <img src="../qr-code.png" alt="QR Code">
                 </div>
             </div>
         </div>
         <hr>
     </div>
-    
 </section>
 
-<!-- Footer Main -->
 <footer class="footer-main">
     <div class="footer-content">
         <div class="footer-social">
-            <a href="https://www.tiktok.com/@learn.n.lunch?_t=ZM-90jhXJNULK0&_r=1" class="footer-social-link" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@learn.n.lunch?_t=ZM-90jhXJNULK0&amp;_r=1" class="footer-social-link" aria-label="TikTok">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
                 </svg>
             </a>
-            <a href="https://www.instagram.com/learnnlunch?utm_source=ig_web_button_share_sheet&igsh=MWZwd21zaXBycXViOQ==" class="footer-social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/learnnlunch?utm_source=ig_web_button_share_sheet&amp;igsh=MWZwd21zaXBycXViOQ==" class="footer-social-link" aria-label="Instagram">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
             </a>
-            <!-- <a href="#" class="footer-social-link" aria-label="Facebook">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-            </a> -->
-            <a href="https://x.com/learn_N_lunch" class="footer-social-link" aria-label="X (Twitter)">
+            <a href="https://x.com/learn_N_lunch" class="footer-social-link" aria-label="X">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
@@ -283,11 +215,6 @@
         </div>
     </div>
 </footer>
-
-
-
- <script src="../js/ap.js"></script>
-  </body>
-
-
+    <script src="../js/ap.js"></script>
+</body>
 </html>
