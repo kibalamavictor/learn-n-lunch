@@ -61,6 +61,7 @@ ${renderStoryCarousel({
     depth,
     title,
     description: post.seoDescription || post.excerpt,
+    ogImage: post.ogImage || post.coverImage,
     activePath: "/stories",
     footerCta: {
       title: "BE PART OF THE MOVEMENT.",

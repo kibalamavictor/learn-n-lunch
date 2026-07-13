@@ -2,10 +2,6 @@ const { escapeHtml, resolveAsset } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
 
-function findPostBySlug(posts, slug) {
-  return posts.find((post) => post.slug === slug);
-}
-
 function renderFeaturedHero(depth, post) {
   if (!post) return "";
   return `
@@ -70,9 +66,37 @@ function renderCampusGrid(depth, posts) {
 </section>`;
 }
 
+function normalizeTagSlug(tag) {
+  return String(tag || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function getPostPrimaryTag(post) {
+  return (post.tags && post.tags[0]) || "";
+}
+
+function getPostsForFilter({ publishedPosts, filter }) {
+  if (!filter || filter.slug === "all") return publishedPosts;
+  const filterSlug = normalizeTagSlug(filter.label || filter.slug);
+
+  return publishedPosts.filter((post) => {
+    const primary = getPostPrimaryTag(post);
+    const primarySlug = normalizeTagSlug(primary);
+    return primarySlug === filterSlug;
+  });
+}
+
 function renderStories({ site, page, publishedPosts }) {
   const depth = 1;
-  const postsBySlug = Object.fromEntries(publishedPosts.map((post) => [post.slug, post]));
+  const sortedPosts = [...publishedPosts].sort((a, b) => {
+    const da = new Date(a.publishedAt || 0).getTime();
+    const db = new Date(b.publishedAt || 0).getTime();
+    return db - da;
+  });
 
   const filterButtons = page.filters
     .map((filter, index) => {
@@ -88,34 +112,28 @@ function renderStories({ site, page, publishedPosts }) {
     })
     .join("\n      ");
 
-  const sectionsHtml = page.featuredSections
-    .map((section, sectionIndex) => {
-      const lead = postsBySlug[section.leadPostSlug] || publishedPosts[0];
-      const sectionPosts = section.postSlugs
-        .map((slug) => postsBySlug[slug])
-        .filter(Boolean);
-      const carouselPosts = lead ? [lead, ...sectionPosts].slice(0, 4) : sectionPosts.slice(0, 4);
-      const carouselId = `stories-${section.categorySlug}-${sectionIndex}`;
+  const filters = Array.isArray(page.filters) ? page.filters : [{ label: "All", slug: "all" }];
+
+  const sectionsHtml = filters
+    .map((filter, filterIndex) => {
+      const categorySlug = filter.slug;
+      const sectionLabel = filter.slug === "all" ? "RECENTS" : filter.label;
+      const postsForFilter = getPostsForFilter({ publishedPosts: sortedPosts, filter });
+      const lead = postsForFilter[0] || sortedPosts[0];
+      const carouselPosts = postsForFilter.slice(0, 12);
+      const carouselId = `stories-${categorySlug}-${filterIndex}`;
 
       const titleHtml =
-        section.categorySlug === "all"
+        categorySlug === "all"
           ? `<div class="donor-highlight-container stories-article" data-category="all" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
-      <p class="stories-recents-title">${escapeHtml(section.sectionLabel)}</p>
+      <p class="stories-recents-title">${escapeHtml(sectionLabel)}</p>
     </div>`
-          : `<section class="campus-lunch-section stories-article" data-category="${escapeHtml(section.categorySlug)}">
-  <p class="stories-recents-title">${escapeHtml(section.sectionLabel).replace(" & ", " <br> ")}</p>`;
+          : `<section class="campus-lunch-section stories-article" data-category="${escapeHtml(categorySlug)}">
+  <p class="stories-recents-title">${escapeHtml(sectionLabel).replace(" & ", " <br> ")}</p>`;
 
-      const heroBlock =
-        section.categorySlug === "all" || section.categorySlug === "donors"
-          ? renderFeaturedHero(depth, lead)
-          : "";
+      const heroBlock = categorySlug === "all" ? renderFeaturedHero(depth, lead) : "";
 
-      const gridBlock =
-        section.categorySlug === "events" || section.categorySlug === "reports"
-          ? renderCampusGrid(depth, carouselPosts)
-          : "";
-
-      const closeTag = section.categorySlug !== "all" && section.categorySlug !== "donors" ? "" : "";
+      const gridBlock = categorySlug === "events" || categorySlug === "reports" ? renderCampusGrid(depth, carouselPosts) : "";
 
       return `
     ${titleHtml}
@@ -126,13 +144,9 @@ function renderStories({ site, page, publishedPosts }) {
       posts: carouselPosts,
       carouselId,
       sectionClass: "stories-article",
-      dataCategory: section.categorySlug,
-      sectionStyle:
-        section.categorySlug === "all"
-          ? "background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;"
-          : "background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;"
-    })}
-    ${closeTag}`;
+      dataCategory: categorySlug,
+      sectionStyle: "background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;"
+    })}`;
     })
     .join("\n");
 

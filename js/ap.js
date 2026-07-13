@@ -1,5 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* =======================
+     BLOG SHARE BUTTON
+  ==========================*/
+  const shareButtons = document.querySelectorAll(".share-button");
+  if (shareButtons.length > 0) {
+    async function copyToClipboard(text) {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+      return false;
+    }
+
+    shareButtons.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const url = window.location.href;
+        const title = document.title || "Learn N' Lunch";
+
+        try {
+          if (navigator.share) {
+            await navigator.share({ title, url });
+            return;
+          }
+        } catch (err) {
+          // fall through to clipboard fallback
+        }
+
+        try {
+          const ok = await copyToClipboard(url);
+          if (ok) {
+            const original = btn.textContent;
+            btn.textContent = "Link copied";
+            setTimeout(() => {
+              btn.textContent = original;
+            }, 1500);
+            return;
+          }
+        } catch (err) {
+          // fall through to prompt fallback
+        }
+
+        window.prompt("Copy this link:", url);
+      });
+    });
+  }
+
     
   /* =======================
      NAV BAR

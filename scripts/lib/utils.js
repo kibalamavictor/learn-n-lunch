@@ -1,6 +1,27 @@
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
+const MarkdownIt = require("markdown-it");
+
+const md = new MarkdownIt({
+  html: false,
+  linkify: true,
+  breaks: true
+});
+
+const defaultHeadingOpen =
+  md.renderer.rules.heading_open ||
+  function (tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+
+md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
+  const token = tokens[idx];
+  if (token.tag === "h2") {
+    token.attrSet("class", "sub-heading");
+  }
+  return defaultHeadingOpen(tokens, idx, options, env, self);
+};
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -63,37 +84,7 @@ function formatPublishDate(isoDate) {
 }
 
 function markdownToHtml(markdown) {
-  const lines = markdown.split("\n");
-  const chunks = [];
-  let paragraph = [];
-
-  function flushParagraph() {
-    if (paragraph.length === 0) return;
-    chunks.push(`<p>${escapeHtml(paragraph.join(" "))}</p>`);
-    paragraph = [];
-  }
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) {
-      flushParagraph();
-      continue;
-    }
-    if (trimmed.startsWith("### ")) {
-      flushParagraph();
-      chunks.push(`<h3>${escapeHtml(trimmed.slice(4))}</h3>`);
-      continue;
-    }
-    if (trimmed.startsWith("## ")) {
-      flushParagraph();
-      chunks.push(`<h2 class="sub-heading">${escapeHtml(trimmed.slice(3))}</h2>`);
-      continue;
-    }
-    paragraph.push(trimmed);
-  }
-
-  flushParagraph();
-  return chunks.join("\n        ");
+  return md.render(markdown || "");
 }
 
 module.exports = {
