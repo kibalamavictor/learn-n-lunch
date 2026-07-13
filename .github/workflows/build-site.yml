@@ -32,6 +32,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -59,31 +60,44 @@ jobs:
 
       - name: Sync rendered HTML back to repo
         id: sync
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: chore: rebuild site from CMS content
-          title: chore: rebuild site from CMS content
-          body: |
-            Automated sync of rendered HTML after a CMS content change.
-            Deploy already completed; this PR keeps the repo HTML in sync with `content/`.
-          branch: bot/sync-rendered-html
-          base: main
-          delete-branch: true
-          labels: automated, cms-sync
-          add-paths: |
-            index.html
-            about-us/index.html
-            impact/index.html
-            stories/
-            donate/index.html
-            contact-us/index.html
-            get-involved/index.html
-            students/index.html
-            assets/uploads/
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            index.html \
+            about-us/index.html \
+            impact/index.html \
+            stories \
+            donate/index.html \
+            contact-us/index.html \
+            get-involved/index.html \
+            students/index.html \
+            assets/uploads
+
+          if git diff --staged --quiet; then
+            echo "No HTML changes to commit."
+            echo "pull-request-number=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BRANCH="bot/sync-rendered-html-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
+          git commit -m "chore: rebuild site from CMS content"
+          git push origin "$BRANCH"
+
+          PR_URL=$(gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "chore: rebuild site from CMS content" \
+            --body "Automated sync of rendered HTML after a CMS content change. Deploy already completed; this PR keeps the repo HTML in sync with content/.")
+          PR_NUMBER="${PR_URL##*/}"
+          echo "pull-request-number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 
       - name: Auto-merge HTML sync PR
-        if: steps.sync.outputs.pull-request-number
+        if: steps.sync.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
