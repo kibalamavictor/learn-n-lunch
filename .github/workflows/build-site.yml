@@ -52,6 +52,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No HTML changes to commit."
           else
-            git commit -m "chore: rebuild site from CMS content [skip ci]"
+            git commit -m "chore: rebuild site from CMS content"
             git push
           fi
