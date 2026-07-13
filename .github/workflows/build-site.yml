@@ -66,6 +66,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          mkdir -p assets/uploads
+
           git add \
             index.html \
             about-us/index.html \
@@ -74,8 +76,8 @@ jobs:
             donate/index.html \
             contact-us/index.html \
             get-involved/index.html \
-            students/index.html \
-            assets/uploads
+            students/index.html
+          git add assets/uploads 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "No HTML changes to commit."
@@ -92,7 +94,8 @@ jobs:
             --base main \
             --head "$BRANCH" \
             --title "chore: rebuild site from CMS content" \
-            --body "Automated sync of rendered HTML after a CMS content change. Deploy already completed; this PR keeps the repo HTML in sync with content/.")
+            --body "Automated sync of rendered HTML after a CMS content change. Deploy already completed; this PR keeps the repo HTML in sync with content/." \
+            2>&1) || { echo "$PR_URL"; exit 1; }
           PR_NUMBER="${PR_URL##*/}"
           echo "pull-request-number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 

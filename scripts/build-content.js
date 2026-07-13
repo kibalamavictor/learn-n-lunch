@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Render CMS content in content/ to static HTML; synced via build-site.yml PR.
+// Render CMS content in content/ to static HTML; synced to main via PR.
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
 const { writeFileEnsured } = require("./lib/utils");
