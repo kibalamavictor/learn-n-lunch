@@ -3,6 +3,11 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "content/**"
+      - "scripts/**"
+      - "admin/config.yml"
+      - "assets/uploads/**"
   workflow_dispatch:
 
 permissions:
