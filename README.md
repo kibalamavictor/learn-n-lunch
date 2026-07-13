@@ -20,4 +20,9 @@ Start here:
 
 ## Branch protection note
 
-If HTML sync PRs fail to auto-merge, enable **Allow auto-merge** in repo settings and/or allow `github-actions[bot]` to bypass required pull request rules for the sync PR branch.
+HTML sync needs **one** of these configured in GitHub repo settings:
+
+1. **Direct push (simplest):** Settings → Branches → `main` → edit protection → under “Bypass list”, add **`github-actions`** (or allow the bot to push to `main`).
+2. **PR auto-merge fallback:** Settings → General → Pull Requests → enable **Allow auto-merge**, and Settings → Actions → General → enable **Allow GitHub Actions to create and approve pull requests**.
+
+If sync fails, check the “Sync rendered HTML back to repo” step log in Actions.

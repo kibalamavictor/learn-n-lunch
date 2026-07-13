@@ -59,15 +59,14 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Sync rendered HTML back to repo
-        id: sync
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           mkdir -p assets/uploads
-
           git add \
             index.html \
             about-us/index.html \
@@ -77,31 +76,33 @@ jobs:
             contact-us/index.html \
             get-involved/index.html \
             students/index.html
-          git add assets/uploads 2>/dev/null || true
+          git add assets/uploads/* 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "No HTML changes to commit."
-            echo "pull-request-number=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          BRANCH="bot/sync-rendered-html-${{ github.run_id }}"
-          git checkout -b "$BRANCH"
           git commit -m "chore: rebuild site from CMS content"
-          git push origin "$BRANCH"
 
-          PR_URL=$(gh pr create \
+          if git push origin HEAD:main; then
+            echo "Synced rendered HTML via direct push to main."
+            exit 0
+          fi
+
+          echo "Direct push blocked by branch protection; opening sync PR..."
+          git reset --soft HEAD~1
+          SYNC_BRANCH="bot/sync-rendered-html-${GITHUB_RUN_ID}"
+          git checkout -b "${SYNC_BRANCH}"
+          git commit -m "chore: rebuild site from CMS content"
+          git push -u origin "${SYNC_BRANCH}"
+
+          PR_NUMBER=$(gh pr create \
             --base main \
-            --head "$BRANCH" \
+            --head "${SYNC_BRANCH}" \
             --title "chore: rebuild site from CMS content" \
-            --body "Automated sync of rendered HTML after a CMS content change. Deploy already completed; this PR keeps the repo HTML in sync with content/." \
-            2>&1) || { echo "$PR_URL"; exit 1; }
-          PR_NUMBER="${PR_URL##*/}"
-          echo "pull-request-number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+            --body "Automated HTML sync after CMS build. Deploy already completed." \
+            --json number --query .number)
 
-      - name: Auto-merge HTML sync PR
-        if: steps.sync.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr merge "${{ steps.sync.outputs.pull-request-number }}" --auto --merge
+          gh pr merge "${PR_NUMBER}" --auto --merge
+          echo "Opened PR #${PR_NUMBER} for auto-merge."
