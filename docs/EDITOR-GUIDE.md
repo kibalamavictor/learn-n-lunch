@@ -13,7 +13,16 @@ This guide is for **non-technical editors** who want to update the Learn N’ Lu
 2. Click **Login with GitHub**
 3. Approve the authorization prompt if requested
 
-If login fails, tell a maintainer. (Authentication is handled by a Cloudflare Worker OAuth proxy.)
+If login fails, tell a maintainer. Authentication is handled by a Cloudflare Worker OAuth proxy at `https://learn-n-lunch-auth.learnandlunch.workers.dev`.
+
+## How publishing reaches the live site
+
+When you publish in the CMS, two automated GitHub workflows run:
+
+1. **Build Site from CMS Content** — rebuilds HTML from `content/`, deploys the live site, then opens a short-lived PR to keep the repo’s HTML files in sync.
+2. **Deploy static site to GitHub Pages** — redeploys on other repo updates that are not CMS content changes.
+
+You only use `/admin/`; these workflows run automatically in the background.
 
 ## Draft vs Published (important)
 

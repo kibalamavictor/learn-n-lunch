@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Render CMS content in content/ to static HTML; deployed by build-site.yml.
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
 const { writeFileEnsured } = require("./lib/utils");

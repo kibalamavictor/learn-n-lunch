@@ -14,6 +14,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  pull-requests: write
 
 concurrency:
   group: pages
@@ -57,24 +58,33 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Sync rendered HTML back to repo
-        continue-on-error: true
+        id: sync
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: chore: rebuild site from CMS content
+          title: chore: rebuild site from CMS content
+          body: |
+            Automated sync of rendered HTML after a CMS content change.
+            Deploy already completed; this PR keeps the repo HTML in sync with `content/`.
+          branch: bot/sync-rendered-html
+          base: main
+          delete-branch: true
+          labels: automated, cms-sync
+          add-paths: |
+            index.html
+            about-us/index.html
+            impact/index.html
+            stories/
+            donate/index.html
+            contact-us/index.html
+            get-involved/index.html
+            students/index.html
+            assets/uploads/
+
+      - name: Auto-merge HTML sync PR
+        if: steps.sync.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            index.html \
-            about-us/index.html \
-            impact/index.html \
-            stories \
-            donate/index.html \
-            contact-us/index.html \
-            get-involved/index.html \
-            students/index.html \
-            assets/uploads
-          if git diff --staged --quiet; then
-            echo "No HTML changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: rebuild site from CMS content"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          gh pr merge "${{ steps.sync.outputs.pull-request-number }}" --auto --merge
