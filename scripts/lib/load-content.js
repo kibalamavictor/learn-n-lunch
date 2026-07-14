@@ -26,7 +26,13 @@ function loadCollection(folder) {
 }
 
 function loadBlogPosts() {
-  return loadCollection("blog").sort((a, b) => {
+  const blog = loadCollection("blog");
+  const reports = loadCollection("reports").map((post) => ({
+    ...post,
+    tags: post.tags?.length ? post.tags : ["Impact Reports"]
+  }));
+
+  return [...blog, ...reports].sort((a, b) => {
     const aDate = new Date(a.publishedAt || 0).getTime();
     const bDate = new Date(b.publishedAt || 0).getTime();
     return bDate - aDate;

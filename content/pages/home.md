@@ -89,8 +89,7 @@ moments:
       alt: Group of volunteers
     - image: /img7.png
       alt: Group of volunteers
-  sloganText: NO STUDENT SHOULD STUDY HUNGRY · ALWAYS HERE FOR YOU · NO STUDENT
-    SHOULD STUDY HUNGRY · ALWAYS HERE FOR YOU ·
+  sloganText: "NO STUDENT SHOULD STUDY HUNGRY · ALWAYS HERE FOR YOU ·  "
   statementQuote: No student should have to choose between lunch and learning.
 storiesTeaser:
   heading: STORIES OF CHANGE

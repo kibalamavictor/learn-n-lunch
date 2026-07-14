@@ -83,8 +83,81 @@ function formatPublishDate(isoDate) {
     .toUpperCase();
 }
 
+function normalizeTagSlug(tag) {
+  return String(tag || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+const POST_TAG_TO_FILTER = {
+  "student-stories": "students",
+  "events-and-campus-life": "events",
+  "impact-reports": "reports",
+  "donor-highlights": "donors"
+};
+
+const FILTER_TAG_COLORS = {
+  students: "#bce2f4",
+  events: "#f6b931",
+  reports: "#61cdbb",
+  donors: "#222222",
+  all: "#ffffff"
+};
+
+function getPostCategorySlug(post) {
+  const primaryTag = (post?.tags && post.tags[0]) || "";
+  const tagSlug = normalizeTagSlug(primaryTag);
+  return POST_TAG_TO_FILTER[tagSlug] || "all";
+}
+
+function getPostTagColor(post) {
+  return FILTER_TAG_COLORS[getPostCategorySlug(post)] || FILTER_TAG_COLORS.all;
+}
+
+function getPostSearchText(post) {
+  return [post.title, post.excerpt, ...(post.tags || [])].filter(Boolean).join(" ");
+}
+
+function isReportPost(post) {
+  return Boolean(post?.reportPdf) || getPostCategorySlug(post) === "reports";
+}
+
+function sortPostsByDate(posts) {
+  return [...posts].sort((a, b) => {
+    const da = new Date(a.publishedAt || 0).getTime();
+    const db = new Date(b.publishedAt || 0).getTime();
+    return db - da;
+  });
+}
+
+function getRelatedPosts(post, publishedPosts, limit = 4) {
+  const others = publishedPosts.filter((item) => item.slug !== post.slug);
+  const category = getPostCategorySlug(post);
+
+  if (isReportPost(post)) {
+    const reportPeers = others.filter((item) => isReportPost(item));
+    if (reportPeers.length > 0) {
+      return sortPostsByDate(reportPeers).slice(0, limit);
+    }
+  }
+
+  const sameCategory = others.filter((item) => getPostCategorySlug(item) === category);
+  const pool = sameCategory.length > 0 ? sameCategory : others;
+  return sortPostsByDate(pool).slice(0, limit);
+}
+
 function markdownToHtml(markdown) {
   return md.render(markdown || "");
+}
+
+function resolveMarkdownPaths(html, depth) {
+  return String(html || "").replace(/\b(src|href)="(\/[^"]*)"/g, (match, attr, assetPath) => {
+    if (assetPath.startsWith("//")) return match;
+    return `${attr}="${resolveAsset(depth, assetPath)}"`;
+  });
 }
 
 module.exports = {
@@ -97,5 +170,12 @@ module.exports = {
   listMarkdownFiles,
   writeFileEnsured,
   formatPublishDate,
-  markdownToHtml
+  markdownToHtml,
+  resolveMarkdownPaths,
+  normalizeTagSlug,
+  getPostCategorySlug,
+  getPostTagColor,
+  getPostSearchText,
+  isReportPost,
+  getRelatedPosts
 };

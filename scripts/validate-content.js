@@ -168,6 +168,20 @@ function validate() {
     }
   }
 
+  const reportFiles = listFiles(path.join(ROOT, "content/reports"), ".md");
+  for (const filePath of reportFiles) {
+    const data = readMarkdownData(filePath);
+    validateRequired(data.title, "title", filePath);
+    validateRequired(data.slug, "slug", filePath);
+    validateRequired(data.excerpt, "excerpt", filePath);
+    validateRequired(data.coverImage, "coverImage", filePath);
+    validateRequired(data.reportPdf, "reportPdf", filePath);
+    validateRequired(data.status, "status", filePath);
+    if (data.status === "published") {
+      validateRequired(data.publishedAt, "publishedAt", filePath);
+    }
+  }
+
   if (errors.length > 0) {
     console.error("Content validation failed:");
     errors.forEach((error) => console.error(`- ${error}`));

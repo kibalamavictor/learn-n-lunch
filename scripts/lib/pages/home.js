@@ -1,7 +1,5 @@
-const { escapeHtml, resolveAsset } = require("../utils");
+const { escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug } = require("../utils");
 const { renderPage } = require("../partials");
-
-const TAG_COLORS = ["#d3eeff", "#fdc039", "#7be4d3", "#ffd8a8"];
 
 function renderHome({ site, page, stats, testimonials, publishedPosts }) {
   const depth = 0;
@@ -13,12 +11,9 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     )
     .join("\n                    ");
 
-  const bannerUnit = [
-    `<span class="banner-text">${escapeHtml(page.missionBanner[0] || "NO STUDENT SHOULD STUDY HUNGRY")}</span>`,
-    `<span class="banner-text">• LEARN N' LUNCH •  •</span>`
-  ].join("\n            ");
-  const bannerChunks = Array.from({ length: 3 })
-    .map(() => bannerUnit)
+  const missionBannerText = `${page.missionBanner[0] || "NO STUDENT SHOULD STUDY HUNGRY"} • LEARN N' LUNCH •  • `;
+  const bannerRepeats = Array.from({ length: 8 })
+    .map(() => `<span class="banner-text-2">${escapeHtml(missionBannerText)}</span>`)
     .join("\n            ");
 
   const statsHtml = stats.items
@@ -115,13 +110,18 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     )
     .join("\n    ");
 
+  const sloganRepeats = Array.from({ length: 8 })
+    .map(() => `<span class="banner-text-2">${escapeHtml(page.moments.sloganText)}</span>`)
+    .join("\n        ");
+
   const storyCards = publishedPosts
     .slice(0, 4)
-    .map((post, index) => {
-      const tagColor = TAG_COLORS[index % TAG_COLORS.length];
-      return `<article class="mm-card">
+    .map((post) => {
+      const categorySlug = getPostCategorySlug(post);
+      const tagColor = getPostTagColor(post);
+      return `<article class="mm-card" data-category="${escapeHtml(categorySlug)}">
               <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:${tagColor};"></span>
+              <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
                 <p class="mm-head">${escapeHtml(post.title)}</p>
                 <a href="${resolveAsset(depth, `stories/${post.slug}/`)}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;"/></span></a>
@@ -194,15 +194,11 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     </section>
 
     <div class="scrolling-banner-2">
-        <div class="banner-content">
-            ${bannerChunks}
-        </div>
+        ${bannerRepeats}
     </div>
 
     <div class="scrolling-banner">
-        <div class="banner-content">
-            ${bannerChunks}
-        </div>
+        ${bannerRepeats}
     </div>
 
     <section class="learn-lunch-section">
@@ -274,9 +270,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
   <div class="moments-collage">
     ${photos}
     <div class="slogan">
-      <div class="scroll-text">
-        ${escapeHtml(page.moments.sloganText)}
-      </div>
+        ${sloganRepeats}
     </div>
   </div>
 </section>

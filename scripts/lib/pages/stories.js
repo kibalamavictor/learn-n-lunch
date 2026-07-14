@@ -1,11 +1,14 @@
-const { escapeHtml, resolveAsset } = require("../utils");
+const { escapeHtml, resolveAsset, getPostCategorySlug, getPostSearchText } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
 
 function renderFeaturedHero(depth, post) {
   if (!post) return "";
+  const categorySlug = getPostCategorySlug(post);
+  const searchText = getPostSearchText(post);
+
   return `
-    <div class="st-hero-container stories-article" data-category="all">
+    <div class="st-hero-container stories-item" data-category="${escapeHtml(categorySlug)}" data-search="${escapeHtml(searchText)}">
         <div class="makerere-lunch-section">
             <div class="makerere-lunch-image-wrapper">
                 <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}">
@@ -23,71 +26,33 @@ function renderFeaturedHero(depth, post) {
     </div>`;
 }
 
-function renderCampusGrid(depth, posts) {
+function getPostsForCategory(posts, categorySlug) {
+  return posts.filter((post) => getPostCategorySlug(post) === categorySlug);
+}
+
+function formatSectionTitle(title) {
+  const parts = title.split(" & ");
+  if (parts.length < 2) return escapeHtml(title);
+  return `${escapeHtml(parts[0])} <br> ${escapeHtml(parts.slice(1).join(" & "))}`;
+}
+
+function renderCategorySection(depth, { categorySlug, title, posts, carouselId }) {
   if (!posts.length) return "";
-  const [main, ...rest] = posts;
-  const miniCards = rest
-    .slice(0, 2)
-    .map(
-      (post) => `
-    <div class="campus-mini-card">
-      <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="campus-mini-image" />
-      <div class="campus-mini-content">
-        <p class="campus-mini-title">${escapeHtml(post.title)}</p>
-        <a href="${resolveAsset(depth, `stories/${post.slug}/`)}" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>`
-    )
-    .join("\n");
 
   return `
-<section class="campus-lunch-section stories-article" data-category="events">
-  <div class="campus-lunch-grid">
-    <div class="campus-feature-card main-card">
-      <img src="${resolveAsset(depth, main.coverImage)}" alt="${escapeHtml(main.coverImageAlt || main.title)}" class="campus-feature-image" />
-      <div class="campus-feature-content">
-        <h3 class="campus-feature-title">${escapeHtml(main.title)}</h3>
-        <p class="campus-feature-text">${escapeHtml(main.excerpt)}</p>
-        <a href="${resolveAsset(depth, `stories/${main.slug}/`)}" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
+  <div class="stories-category-section" data-category="${escapeHtml(categorySlug)}">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+      <p class="stories-recents-title">${formatSectionTitle(title)}</p>
     </div>
-    ${miniCards}
-  </div>
-</section>`;
-}
 
-function normalizeTagSlug(tag) {
-  return String(tag || "")
-    .trim()
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
-function getPostPrimaryTag(post) {
-  return (post.tags && post.tags[0]) || "";
-}
-
-function getPostsForFilter({ publishedPosts, filter }) {
-  if (!filter || filter.slug === "all") return publishedPosts;
-  const filterSlug = normalizeTagSlug(filter.label || filter.slug);
-
-  return publishedPosts.filter((post) => {
-    const primary = getPostPrimaryTag(post);
-    const primarySlug = normalizeTagSlug(primary);
-    return primarySlug === filterSlug;
-  });
+    ${renderStoryCarousel({
+      depth,
+      posts,
+      carouselId,
+      sectionClass: "stories-results-carousel",
+      sectionStyle: "background: white; padding: 0 20px 20px; max-width: 1140px; margin: 0 auto;"
+    })}
+  </div>`;
 }
 
 function renderStories({ site, page, publishedPosts }) {
@@ -98,7 +63,10 @@ function renderStories({ site, page, publishedPosts }) {
     return db - da;
   });
 
-  const filterButtons = page.filters
+  const filters = Array.isArray(page.filters) ? page.filters : [{ label: "All", slug: "all" }];
+  const categoryFilters = filters.filter((filter) => filter.slug !== "all");
+
+  const filterButtons = filters
     .map((filter, index) => {
       const classMap = {
         all: "white",
@@ -112,42 +80,33 @@ function renderStories({ site, page, publishedPosts }) {
     })
     .join("\n      ");
 
-  const filters = Array.isArray(page.filters) ? page.filters : [{ label: "All", slug: "all" }];
+  const lead = sortedPosts[0];
+  const recentsSection = `
+  <div class="stories-category-section" data-category="all">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+      <p class="stories-recents-title">RECENTS</p>
+    </div>
 
-  const sectionsHtml = filters
-    .map((filter, filterIndex) => {
-      const categorySlug = filter.slug;
-      const sectionLabel = filter.slug === "all" ? "RECENTS" : filter.label;
-      const postsForFilter = getPostsForFilter({ publishedPosts: sortedPosts, filter });
-      const lead = postsForFilter[0] || sortedPosts[0];
-      const carouselPosts = postsForFilter.slice(0, 12);
-      const carouselId = `stories-${categorySlug}-${filterIndex}`;
+    ${renderFeaturedHero(depth, lead)}
 
-      const titleHtml =
-        categorySlug === "all"
-          ? `<div class="donor-highlight-container stories-article" data-category="all" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
-      <p class="stories-recents-title">${escapeHtml(sectionLabel)}</p>
-    </div>`
-          : `<section class="campus-lunch-section stories-article" data-category="${escapeHtml(categorySlug)}">
-  <p class="stories-recents-title">${escapeHtml(sectionLabel).replace(" & ", " <br> ")}</p>`;
-
-      const heroBlock = categorySlug === "all" ? renderFeaturedHero(depth, lead) : "";
-
-      const gridBlock = categorySlug === "events" || categorySlug === "reports" ? renderCampusGrid(depth, carouselPosts) : "";
-
-      return `
-    ${titleHtml}
-    ${heroBlock}
-    ${gridBlock}
     ${renderStoryCarousel({
       depth,
-      posts: carouselPosts,
-      carouselId,
-      sectionClass: "stories-article",
-      dataCategory: categorySlug,
-      sectionStyle: "background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;"
-    })}`;
-    })
+      posts: sortedPosts,
+      carouselId: "stories-recents",
+      sectionClass: "stories-results-carousel",
+      sectionStyle: "background: white; padding: 0 20px 56px; max-width: 1140px; margin: 0 auto;"
+    })}
+  </div>`;
+
+  const categorySections = categoryFilters
+    .map((filter) =>
+      renderCategorySection(depth, {
+        categorySlug: filter.slug,
+        title: filter.label,
+        posts: getPostsForCategory(sortedPosts, filter.slug),
+        carouselId: `stories-${filter.slug}`
+      })
+    )
     .join("\n");
 
   const body = `
@@ -162,9 +121,9 @@ function renderStories({ site, page, publishedPosts }) {
 
     <div class="stories-search-bar">
       <div class="stories-search-input">
-        <input type="text" id="storiesSearchInput" placeholder="................">
+        <input type="text" id="storiesSearchInput" placeholder="Search stories..." aria-label="Search stories">
       </div>
-      <button class="stories-search-btn" id="storiesSearchBtn">Search</button>
+      <button class="stories-search-btn" id="storiesSearchBtn" type="button">Search</button>
     </div>
 
     <div class="stories-filter-buttons">
@@ -173,7 +132,13 @@ function renderStories({ site, page, publishedPosts }) {
   </div>
 </section>
 
-${sectionsHtml}`;
+<section class="stories-results" id="storiesResults">
+  <p id="storiesEmptyState" class="stories-empty-state" hidden>No stories match your search. Try another keyword or filter.</p>
+
+  ${recentsSection}
+
+  ${categorySections}
+</section>`;
 
   return renderPage({
     site,

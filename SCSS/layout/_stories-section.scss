@@ -129,7 +129,11 @@
 
     .mm-box {
       position: relative;
-     
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 152px;
+      box-sizing: border-box;
       background: #fff;
       width: 76%;
       max-width: 360px;
@@ -143,8 +147,16 @@
     .mm-head {
       font-size: 1.2rem;
       line-height: 1.4;
-      margin-bottom: 16px;
+      margin: 0 0 16px;
       font-family: util.$font-n;
+      flex: 0 0 calc(1.2rem * 1.4 * 2);
+      min-height: calc(1.2rem * 1.4 * 2);
+      max-height: calc(1.2rem * 1.4 * 2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
     }
 
     .mm-cta {
@@ -159,7 +171,17 @@
       color: #000;
       font-weight: 300;
       font-size: 1.1rem;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-top: auto;
+      white-space: nowrap;
     }
+
+    .mm-tag--students { background: #bce2f4; }
+    .mm-tag--events { background: #f6b931; }
+    .mm-tag--reports { background: #61cdbb; }
+    .mm-tag--donors { background: #222222; }
+    .mm-tag--all { background: #ffffff; }
 
     /* === Footer Button === */
     .mm-more-wrap {
@@ -191,6 +213,6 @@
 
     @media (max-width:680px) {
       .mm-card { flex: 0 0 100%; height: 420px; }
-      .mm-box { width: 88%; margin-left: 6%; }
+      .mm-box { width: 88%; margin-left: 6%; height: 148px; }
       .mm-section { padding-left: 18px; padding-right: 18px; }
     }

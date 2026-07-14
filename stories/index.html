@@ -59,9 +59,9 @@
 
     <div class="stories-search-bar">
       <div class="stories-search-input">
-        <input type="text" id="storiesSearchInput" placeholder="................">
+        <input type="text" id="storiesSearchInput" placeholder="Search stories..." aria-label="Search stories">
       </div>
-      <button class="stories-search-btn" id="storiesSearchBtn">Search</button>
+      <button class="stories-search-btn" id="storiesSearchBtn" type="button">Search</button>
     </div>
 
     <div class="stories-filter-buttons">
@@ -74,137 +74,188 @@
   </div>
 </section>
 
+<section class="stories-results" id="storiesResults">
+  <p id="storiesEmptyState" class="stories-empty-state" hidden>No stories match your search. Try another keyword or filter.</p>
 
-    <div class="donor-highlight-container stories-article" data-category="all" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+  
+  <div class="stories-category-section" data-category="all">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
       <p class="stories-recents-title">RECENTS</p>
     </div>
+
     
-    <div class="st-hero-container stories-article" data-category="all">
+    <div class="st-hero-container stories-item" data-category="reports" data-search="Impact Report 2025 Download or preview the Learn N' Lunch 2025 impact report — program metrics, campus reach, student outcomes, and priorities for 2026. Impact Reports">
         <div class="makerere-lunch-section">
             <div class="makerere-lunch-image-wrapper">
-                <img src="../donate/donate/paypal.svg" alt="PayPal logo icon">
+                <img src="../impact/impact/impact-hero-image.png" alt="Learn N' Lunch 2025 impact report hero artwork">
             </div>
             
             <div class="makerere-lunch-content">
-                <h2 class="makerere-lunch-title">Sustainable Campus Support: What It Takes [PLACEHOLDER]</h2>
-                <p class="makerere-lunch-description">Placeholder strategy post exercising lists, links, images, and blockquotes.</p>
-                <a href="../stories/sustainable-campus-support/" class="makerere-lunch-cta-btn">
+                <h2 class="makerere-lunch-title">Impact Report 2025</h2>
+                <p class="makerere-lunch-description">Download or preview the Learn N' Lunch 2025 impact report — program metrics, campus reach, student outcomes, and priorities for 2026.</p>
+                <a href="../stories/impact-report-2025/" class="makerere-lunch-cta-btn">
                 Read more
                 <span class="makerere-lunch-arrow"><img src="../pixelated-arrow.svg" class="arrow-move" style="width: 20px; "/></span>
                 </a>
             </div>
         </div>
     </div>
+
     
-    
-<section class="mm-section stories-article" data-carousel-id="stories-all-0" data-category="all" style="background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;">
+<section class="mm-section stories-results-carousel" data-carousel-id="stories-recents" style="background: white; padding: 0 20px 56px; max-width: 1140px; margin: 0 auto;">
     <div class="mm-container">
       <div class="mm-carousel-area">
         <div class="mm-nav">
-          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-all-0" aria-label="Previous stories">
+          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-recents" aria-label="Previous stories">
             <img src="../pixelated-arrow-2.svg" style="width: 20px;"/>
           </button>
-          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-all-0" aria-label="Next stories">
+          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-recents" aria-label="Next stories">
             <img src="../pixelated-arrow.svg" style="width: 20px;"/>
           </button>
         </div>
 
         <div class="mm-carousel-viewport">
-          <div class="mm-carousel-track" data-carousel-track="stories-all-0">
+          <div class="mm-carousel-track" data-carousel-track="stories-recents">
             
-            <article class="mm-card">
-              <img src="../donate/donate/paypal.svg" alt="PayPal logo icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
+            <article class="mm-card stories-item" data-category="reports" data-search="Impact Report 2025 Download or preview the Learn N' Lunch 2025 impact report — program metrics, campus reach, student outcomes, and priorities for 2026. Impact Reports">
+              <img src="../impact/impact/impact-hero-image.png" alt="Learn N' Lunch 2025 impact report hero artwork" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--reports" style="background:#61cdbb;"></span>
               <div class="mm-box">
-                <p class="mm-head">Sustainable Campus Support: What It Takes [PLACEHOLDER]</p>
-                <a href="../stories/sustainable-campus-support/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../donate/donate/visa.svg" alt="Visa logo icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Donor Spotlight: Community Partners [PLACEHOLDER]</p>
-                <a href="../stories/donor-spotlight-community-partners/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../pixelated-arrow.svg" alt="Pixelated arrow icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#7be4d3;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Campus Welfare Dialogue: Outcomes &amp; Next Steps [PLACEHOLDER]</p>
-                <a href="../stories/campus-welfare-dialogue-outcomes/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../heart-black.svg" alt="Black heart icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#ffd8a8;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Student Ambassadors Update [PLACEHOLDER]</p>
-                <a href="../stories/student-ambassadors-update/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../impact/impact/ninja.svg" alt="Ninja icon from impact assets" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Impact Report 2025 [PLACEHOLDER]</p>
+                <p class="mm-head">Impact Report 2025</p>
                 <a href="../stories/impact-report-2025/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
-              <img src="../pixelated-arrow-white.svg" alt="Pixelated arrow icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
+            <article class="mm-card stories-item" data-category="events" data-search="Campus Lunch Day: Makerere University Recap Extended recap of Makerere's Campus Lunch Day — logistics, volunteer roles, student feedback, and photos from the field. Events &amp; Campus Life">
+              <img src="../stories/stories/lunch-day-3.png" alt="Campus Lunch Day volunteers at Makerere University" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--events" style="background:#f6b931;"></span>
               <div class="mm-box">
-                <p class="mm-head">Campus Lunch Day at Kyambogo University [PLACEHOLDER]</p>
-                <a href="../stories/campus-lunch-day-at-kyambogo-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../pixelated-arrow-yellow.svg" alt="Pixelated arrow icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#7be4d3;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Campus Lunch Day at Makerere University [PLACEHOLDER]</p>
-                <a href="../stories/campus-lunch-day-at-makerere-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../lnl-favicon.svg" alt="Learn N' Lunch favicon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#ffd8a8;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Student Success Stories From Our Program [PLACEHOLDER]</p>
-                <a href="../stories/student-success-stories-from-our-program/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../association-form.svg" alt="Association form icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Why Donors Believe in Learn N' Lunch [PLACEHOLDER]</p>
-                <a href="../stories/why-donors-believe-in-learn-n-lunch/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../heart-yellow.svg" alt="Learn N' Lunch heart icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Campus Lunch Day: Makerere University (Recap) [PLACEHOLDER]</p>
+                <p class="mm-head">Campus Lunch Day: Makerere University Recap</p>
                 <a href="../stories/campus-lunch-day-makerere-university-recap/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
+            <article class="mm-card stories-item" data-category="events" data-search="Campus Lunch Day at Makerere University Hundreds of students received warm meals between lectures as Learn N' Lunch and campus partners hosted Campus Lunch Day at Makerere. Events &amp; Campus Life">
+              <img src="../stories/stories/lunch-day-1.png" alt="Students lining up for meals during Campus Lunch Day at Makerere" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--events" style="background:#f6b931;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Campus Lunch Day at Makerere University</p>
+                <a href="../stories/campus-lunch-day-at-makerere-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="donors" data-search="Donor Spotlight: Community Partners Local businesses and community groups are helping Learn N' Lunch scale dignified meal support — meet the partners behind recent campus events. Donor Highlights">
+              <img src="../footer-image-h.png" alt="Volunteers packing meals for campus distribution" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--donors" style="background:#222222;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Donor Spotlight: Community Partners</p>
+                <a href="../stories/donor-spotlight-community-partners/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="events" data-search="Campus Lunch Day at Kyambogo University Learn N' Lunch brought warm meals and peer support to Kyambogo University, reaching students who often skip lunch during long teaching days. Events &amp; Campus Life">
+              <img src="../stories/stories/lunch-day-2.png" alt="Volunteers serving food at Kyambogo University" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--events" style="background:#f6b931;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Campus Lunch Day at Kyambogo University</p>
+                <a href="../stories/campus-lunch-day-at-kyambogo-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="students" data-search="Student Success Stories From Our Program Three students share how reliable campus meals changed their focus, finances, and confidence during demanding semesters. Student Stories">
+              <img src="../students/students/students.png" alt="Student studying on campus with books" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--students" style="background:#bce2f4;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Student Success Stories From Our Program</p>
+                <a href="../stories/student-success-stories-from-our-program/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="reports" data-search="Student Ambassadors Update — Fall 2025 Meet the student ambassadors expanding Learn N' Lunch across Ugandan universities — roles, campuses, and what they are building this semester. Impact Reports">
+              <img src="../about-us/about/photos/team.jpg" alt="Learn N' Lunch student ambassadors and team members" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--reports" style="background:#61cdbb;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Student Ambassadors Update — Fall 2025</p>
+                <a href="../stories/student-ambassadors-update/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="donors" data-search="Sustainable Campus Support: What It Takes One-off meal events help — but lasting change requires funding rhythms, campus coordination, and student-led systems. Here is our sustainability model. Donor Highlights">
+              <img src="../new/frame-card-2.jpg" alt="Students receiving support during a campus lunch event" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--donors" style="background:#222222;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Sustainable Campus Support: What It Takes</p>
+                <a href="../stories/sustainable-campus-support/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="students" data-search="How One Meal Changed My Exam Week A student's perspective on how consistent access to meals transformed focus, confidence, and exam performance. Student Stories">
               <img src="../students/students/students.png" alt="Student studying with books" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#7be4d3;"></span>
+              <span class="mm-tag mm-tag--students" style="background:#bce2f4;"></span>
+              <div class="mm-box">
+                <p class="mm-head">How One Meal Changed My Exam Week</p>
+                <a href="../stories/how-one-meal-changed-my-exam-week/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="donors" data-search="Why Donors Believe in Learn N' Lunch Transparency, student leadership, and measurable outcomes — three reasons donors trust Learn N' Lunch to turn contributions into dignified campus support. Donor Highlights">
+              <img src="../hero-image.png" alt="Learn N' Lunch community and campus support imagery" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--donors" style="background:#222222;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Why Donors Believe in Learn N' Lunch</p>
+                <a href="../stories/why-donors-believe-in-learn-n-lunch/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="reports" data-search="Campus Welfare Dialogue: Outcomes &amp; Next Steps Student leaders, faculty, and Learn N' Lunch agreed on concrete actions to improve meal access and welfare communication across partner campuses. Impact Reports">
+              <img src="../new/board-room.jpg" alt="Campus welfare dialogue session with student and faculty representatives" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--reports" style="background:#61cdbb;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Campus Welfare Dialogue: Outcomes &amp; Next Steps</p>
+                <a href="../stories/campus-welfare-dialogue-outcomes/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  
+  <div class="stories-category-section" data-category="students">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+      <p class="stories-recents-title">Student Stories</p>
+    </div>
+
+    
+<section class="mm-section stories-results-carousel" data-carousel-id="stories-students" style="background: white; padding: 0 20px 20px; max-width: 1140px; margin: 0 auto;">
+    <div class="mm-container">
+      <div class="mm-carousel-area">
+        <div class="mm-nav">
+          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-students" aria-label="Previous stories">
+            <img src="../pixelated-arrow-2.svg" style="width: 20px;"/>
+          </button>
+          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-students" aria-label="Next stories">
+            <img src="../pixelated-arrow.svg" style="width: 20px;"/>
+          </button>
+        </div>
+
+        <div class="mm-carousel-viewport">
+          <div class="mm-carousel-track" data-carousel-track="stories-students">
+            
+            <article class="mm-card stories-item" data-category="students" data-search="Student Success Stories From Our Program Three students share how reliable campus meals changed their focus, finances, and confidence during demanding semesters. Student Stories">
+              <img src="../students/students/students.png" alt="Student studying on campus with books" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--students" style="background:#bce2f4;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Student Success Stories From Our Program</p>
+                <a href="../stories/student-success-stories-from-our-program/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="students" data-search="How One Meal Changed My Exam Week A student's perspective on how consistent access to meals transformed focus, confidence, and exam performance. Student Stories">
+              <img src="../students/students/students.png" alt="Student studying with books" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--students" style="background:#bce2f4;"></span>
               <div class="mm-box">
                 <p class="mm-head">How One Meal Changed My Exam Week</p>
                 <a href="../stories/how-one-meal-changed-my-exam-week/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
@@ -215,137 +266,53 @@
       </div>
     </div>
   </section>
-
-    <section class="campus-lunch-section stories-article" data-category="students">
-  <p class="stories-recents-title">Student Stories</p>
-    
-    
-    
-<section class="mm-section stories-article" data-carousel-id="stories-students-1" data-category="students" style="background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;">
-    <div class="mm-container">
-      <div class="mm-carousel-area">
-        <div class="mm-nav">
-          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-students-1" aria-label="Previous stories">
-            <img src="../pixelated-arrow-2.svg" style="width: 20px;"/>
-          </button>
-          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-students-1" aria-label="Next stories">
-            <img src="../pixelated-arrow.svg" style="width: 20px;"/>
-          </button>
-        </div>
-
-        <div class="mm-carousel-viewport">
-          <div class="mm-carousel-track" data-carousel-track="stories-students-1">
-            
-            <article class="mm-card">
-              <img src="../lnl-favicon.svg" alt="Learn N' Lunch favicon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Student Success Stories From Our Program [PLACEHOLDER]</p>
-                <a href="../stories/student-success-stories-from-our-program/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../students/students/students.png" alt="Student studying with books" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
-              <div class="mm-box">
-                <p class="mm-head">How One Meal Changed My Exam Week</p>
-                <a href="../stories/how-one-meal-changed-my-exam-week/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <section class="campus-lunch-section stories-article" data-category="events">
-  <p class="stories-recents-title">Events &amp; Campus Life</p>
-    
-    
-<section class="campus-lunch-section stories-article" data-category="events">
-  <div class="campus-lunch-grid">
-    <div class="campus-feature-card main-card">
-      <img src="../pixelated-arrow-white.svg" alt="Pixelated arrow icon" class="campus-feature-image" />
-      <div class="campus-feature-content">
-        <h3 class="campus-feature-title">Campus Lunch Day at Kyambogo University [PLACEHOLDER]</h3>
-        <p class="campus-feature-text">Placeholder event post (Kyambogo) using lists, links, images, and quotes.</p>
-        <a href="../stories/campus-lunch-day-at-kyambogo-university/" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="../pixelated-arrow.svg" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>
-    
-    <div class="campus-mini-card">
-      <img src="../pixelated-arrow-yellow.svg" alt="Pixelated arrow icon" class="campus-mini-image" />
-      <div class="campus-mini-content">
-        <p class="campus-mini-title">Campus Lunch Day at Makerere University [PLACEHOLDER]</p>
-        <a href="../stories/campus-lunch-day-at-makerere-university/" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="../pixelated-arrow.svg" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>
-
-    <div class="campus-mini-card">
-      <img src="../heart-yellow.svg" alt="Learn N' Lunch heart icon" class="campus-mini-image" />
-      <div class="campus-mini-content">
-        <p class="campus-mini-title">Campus Lunch Day: Makerere University (Recap) [PLACEHOLDER]</p>
-        <a href="../stories/campus-lunch-day-makerere-university-recap/" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="../pixelated-arrow.svg" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>
   </div>
-</section>
+
+  <div class="stories-category-section" data-category="events">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+      <p class="stories-recents-title">Events <br> Campus Life</p>
+    </div>
+
     
-<section class="mm-section stories-article" data-carousel-id="stories-events-2" data-category="events" style="background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;">
+<section class="mm-section stories-results-carousel" data-carousel-id="stories-events" style="background: white; padding: 0 20px 20px; max-width: 1140px; margin: 0 auto;">
     <div class="mm-container">
       <div class="mm-carousel-area">
         <div class="mm-nav">
-          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-events-2" aria-label="Previous stories">
+          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-events" aria-label="Previous stories">
             <img src="../pixelated-arrow-2.svg" style="width: 20px;"/>
           </button>
-          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-events-2" aria-label="Next stories">
+          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-events" aria-label="Next stories">
             <img src="../pixelated-arrow.svg" style="width: 20px;"/>
           </button>
         </div>
 
         <div class="mm-carousel-viewport">
-          <div class="mm-carousel-track" data-carousel-track="stories-events-2">
+          <div class="mm-carousel-track" data-carousel-track="stories-events">
             
-            <article class="mm-card">
-              <img src="../pixelated-arrow-white.svg" alt="Pixelated arrow icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
+            <article class="mm-card stories-item" data-category="events" data-search="Campus Lunch Day: Makerere University Recap Extended recap of Makerere's Campus Lunch Day — logistics, volunteer roles, student feedback, and photos from the field. Events &amp; Campus Life">
+              <img src="../stories/stories/lunch-day-3.png" alt="Campus Lunch Day volunteers at Makerere University" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--events" style="background:#f6b931;"></span>
               <div class="mm-box">
-                <p class="mm-head">Campus Lunch Day at Kyambogo University [PLACEHOLDER]</p>
-                <a href="../stories/campus-lunch-day-at-kyambogo-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+                <p class="mm-head">Campus Lunch Day: Makerere University Recap</p>
+                <a href="../stories/campus-lunch-day-makerere-university-recap/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
-              <img src="../pixelated-arrow-yellow.svg" alt="Pixelated arrow icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
+            <article class="mm-card stories-item" data-category="events" data-search="Campus Lunch Day at Makerere University Hundreds of students received warm meals between lectures as Learn N' Lunch and campus partners hosted Campus Lunch Day at Makerere. Events &amp; Campus Life">
+              <img src="../stories/stories/lunch-day-1.png" alt="Students lining up for meals during Campus Lunch Day at Makerere" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--events" style="background:#f6b931;"></span>
               <div class="mm-box">
-                <p class="mm-head">Campus Lunch Day at Makerere University [PLACEHOLDER]</p>
+                <p class="mm-head">Campus Lunch Day at Makerere University</p>
                 <a href="../stories/campus-lunch-day-at-makerere-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
-              <img src="../heart-yellow.svg" alt="Learn N' Lunch heart icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#7be4d3;"></span>
+            <article class="mm-card stories-item" data-category="events" data-search="Campus Lunch Day at Kyambogo University Learn N' Lunch brought warm meals and peer support to Kyambogo University, reaching students who often skip lunch during long teaching days. Events &amp; Campus Life">
+              <img src="../stories/stories/lunch-day-2.png" alt="Volunteers serving food at Kyambogo University" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--events" style="background:#f6b931;"></span>
               <div class="mm-box">
-                <p class="mm-head">Campus Lunch Day: Makerere University (Recap) [PLACEHOLDER]</p>
-                <a href="../stories/campus-lunch-day-makerere-university-recap/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+                <p class="mm-head">Campus Lunch Day at Kyambogo University</p>
+                <a href="../stories/campus-lunch-day-at-kyambogo-university/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
           </div>
@@ -353,94 +320,53 @@
       </div>
     </div>
   </section>
-
-    <section class="campus-lunch-section stories-article" data-category="reports">
-  <p class="stories-recents-title">Impact Reports</p>
-    
-    
-<section class="campus-lunch-section stories-article" data-category="events">
-  <div class="campus-lunch-grid">
-    <div class="campus-feature-card main-card">
-      <img src="../pixelated-arrow.svg" alt="Pixelated arrow icon" class="campus-feature-image" />
-      <div class="campus-feature-content">
-        <h3 class="campus-feature-title">Campus Welfare Dialogue: Outcomes &amp; Next Steps [PLACEHOLDER]</h3>
-        <p class="campus-feature-text">Placeholder outcomes post using blockquotes, lists, links, and an inline image.</p>
-        <a href="../stories/campus-welfare-dialogue-outcomes/" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="../pixelated-arrow.svg" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>
-    
-    <div class="campus-mini-card">
-      <img src="../heart-black.svg" alt="Black heart icon" class="campus-mini-image" />
-      <div class="campus-mini-content">
-        <p class="campus-mini-title">Student Ambassadors Update [PLACEHOLDER]</p>
-        <a href="../stories/student-ambassadors-update/" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="../pixelated-arrow.svg" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>
-
-    <div class="campus-mini-card">
-      <img src="../impact/impact/ninja.svg" alt="Ninja icon from impact assets" class="campus-mini-image" />
-      <div class="campus-mini-content">
-        <p class="campus-mini-title">Impact Report 2025 [PLACEHOLDER]</p>
-        <a href="../stories/impact-report-2025/" class="campus-feature-button">
-          Read more <span class="arrow">
-            <img src="../pixelated-arrow.svg" style="width: 15px;"/>
-          </span>
-        </a>
-      </div>
-      <span class="campus-feature-tag"></span>
-    </div>
   </div>
-</section>
+
+  <div class="stories-category-section" data-category="reports">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+      <p class="stories-recents-title">Impact Reports</p>
+    </div>
+
     
-<section class="mm-section stories-article" data-carousel-id="stories-reports-3" data-category="reports" style="background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;">
+<section class="mm-section stories-results-carousel" data-carousel-id="stories-reports" style="background: white; padding: 0 20px 20px; max-width: 1140px; margin: 0 auto;">
     <div class="mm-container">
       <div class="mm-carousel-area">
         <div class="mm-nav">
-          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-reports-3" aria-label="Previous stories">
+          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-reports" aria-label="Previous stories">
             <img src="../pixelated-arrow-2.svg" style="width: 20px;"/>
           </button>
-          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-reports-3" aria-label="Next stories">
+          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-reports" aria-label="Next stories">
             <img src="../pixelated-arrow.svg" style="width: 20px;"/>
           </button>
         </div>
 
         <div class="mm-carousel-viewport">
-          <div class="mm-carousel-track" data-carousel-track="stories-reports-3">
+          <div class="mm-carousel-track" data-carousel-track="stories-reports">
             
-            <article class="mm-card">
-              <img src="../pixelated-arrow.svg" alt="Pixelated arrow icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
+            <article class="mm-card stories-item" data-category="reports" data-search="Impact Report 2025 Download or preview the Learn N' Lunch 2025 impact report — program metrics, campus reach, student outcomes, and priorities for 2026. Impact Reports">
+              <img src="../impact/impact/impact-hero-image.png" alt="Learn N' Lunch 2025 impact report hero artwork" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--reports" style="background:#61cdbb;"></span>
               <div class="mm-box">
-                <p class="mm-head">Campus Welfare Dialogue: Outcomes &amp; Next Steps [PLACEHOLDER]</p>
-                <a href="../stories/campus-welfare-dialogue-outcomes/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+                <p class="mm-head">Impact Report 2025</p>
+                <a href="../stories/impact-report-2025/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
-              <img src="../heart-black.svg" alt="Black heart icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
+            <article class="mm-card stories-item" data-category="reports" data-search="Student Ambassadors Update — Fall 2025 Meet the student ambassadors expanding Learn N' Lunch across Ugandan universities — roles, campuses, and what they are building this semester. Impact Reports">
+              <img src="../about-us/about/photos/team.jpg" alt="Learn N' Lunch student ambassadors and team members" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--reports" style="background:#61cdbb;"></span>
               <div class="mm-box">
-                <p class="mm-head">Student Ambassadors Update [PLACEHOLDER]</p>
+                <p class="mm-head">Student Ambassadors Update — Fall 2025</p>
                 <a href="../stories/student-ambassadors-update/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
-              <img src="../impact/impact/ninja.svg" alt="Ninja icon from impact assets" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#7be4d3;"></span>
+            <article class="mm-card stories-item" data-category="reports" data-search="Campus Welfare Dialogue: Outcomes &amp; Next Steps Student leaders, faculty, and Learn N' Lunch agreed on concrete actions to improve meal access and welfare communication across partner campuses. Impact Reports">
+              <img src="../new/board-room.jpg" alt="Campus welfare dialogue session with student and faculty representatives" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--reports" style="background:#61cdbb;"></span>
               <div class="mm-box">
-                <p class="mm-head">Impact Report 2025 [PLACEHOLDER]</p>
-                <a href="../stories/impact-report-2025/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+                <p class="mm-head">Campus Welfare Dialogue: Outcomes &amp; Next Steps</p>
+                <a href="../stories/campus-welfare-dialogue-outcomes/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
           </div>
@@ -448,50 +374,52 @@
       </div>
     </div>
   </section>
+  </div>
 
-    <section class="campus-lunch-section stories-article" data-category="donors">
-  <p class="stories-recents-title">Donor Highlights</p>
+  <div class="stories-category-section" data-category="donors">
+    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+      <p class="stories-recents-title">Donor Highlights</p>
+    </div>
+
     
-    
-    
-<section class="mm-section stories-article" data-carousel-id="stories-donors-4" data-category="donors" style="background: white; padding: 56px 20px 20px; max-width: 1140px; margin: 0 auto;">
+<section class="mm-section stories-results-carousel" data-carousel-id="stories-donors" style="background: white; padding: 0 20px 20px; max-width: 1140px; margin: 0 auto;">
     <div class="mm-container">
       <div class="mm-carousel-area">
         <div class="mm-nav">
-          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-donors-4" aria-label="Previous stories">
+          <button class="mm-nav-btn mm-prev-btn" data-carousel="stories-donors" aria-label="Previous stories">
             <img src="../pixelated-arrow-2.svg" style="width: 20px;"/>
           </button>
-          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-donors-4" aria-label="Next stories">
+          <button class="mm-nav-btn mm-next-btn" data-carousel="stories-donors" aria-label="Next stories">
             <img src="../pixelated-arrow.svg" style="width: 20px;"/>
           </button>
         </div>
 
         <div class="mm-carousel-viewport">
-          <div class="mm-carousel-track" data-carousel-track="stories-donors-4">
+          <div class="mm-carousel-track" data-carousel-track="stories-donors">
             
-            <article class="mm-card">
-              <img src="../donate/donate/paypal.svg" alt="PayPal logo icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#d3eeff;"></span>
+            <article class="mm-card stories-item" data-category="donors" data-search="Donor Spotlight: Community Partners Local businesses and community groups are helping Learn N' Lunch scale dignified meal support — meet the partners behind recent campus events. Donor Highlights">
+              <img src="../footer-image-h.png" alt="Volunteers packing meals for campus distribution" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--donors" style="background:#222222;"></span>
               <div class="mm-box">
-                <p class="mm-head">Sustainable Campus Support: What It Takes [PLACEHOLDER]</p>
-                <a href="../stories/sustainable-campus-support/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
-              </div>
-            </article>
-
-            <article class="mm-card">
-              <img src="../donate/donate/visa.svg" alt="Visa logo icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#fdc039;"></span>
-              <div class="mm-box">
-                <p class="mm-head">Donor Spotlight: Community Partners [PLACEHOLDER]</p>
+                <p class="mm-head">Donor Spotlight: Community Partners</p>
                 <a href="../stories/donor-spotlight-community-partners/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
 
-            <article class="mm-card">
-              <img src="../association-form.svg" alt="Association form icon" class="mm-img" loading="lazy">
-              <span class="mm-tag" style="background:#7be4d3;"></span>
+            <article class="mm-card stories-item" data-category="donors" data-search="Sustainable Campus Support: What It Takes One-off meal events help — but lasting change requires funding rhythms, campus coordination, and student-led systems. Here is our sustainability model. Donor Highlights">
+              <img src="../new/frame-card-2.jpg" alt="Students receiving support during a campus lunch event" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--donors" style="background:#222222;"></span>
               <div class="mm-box">
-                <p class="mm-head">Why Donors Believe in Learn N' Lunch [PLACEHOLDER]</p>
+                <p class="mm-head">Sustainable Campus Support: What It Takes</p>
+                <a href="../stories/sustainable-campus-support/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
+              </div>
+            </article>
+
+            <article class="mm-card stories-item" data-category="donors" data-search="Why Donors Believe in Learn N' Lunch Transparency, student leadership, and measurable outcomes — three reasons donors trust Learn N' Lunch to turn contributions into dignified campus support. Donor Highlights">
+              <img src="../hero-image.png" alt="Learn N' Lunch community and campus support imagery" class="mm-img" loading="lazy">
+              <span class="mm-tag mm-tag--donors" style="background:#222222;"></span>
+              <div class="mm-box">
+                <p class="mm-head">Why Donors Believe in Learn N' Lunch</p>
                 <a href="../stories/why-donors-believe-in-learn-n-lunch/" class="mm-cta">Read more <span><img src="../pixelated-arrow.svg" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>
@@ -500,6 +428,8 @@
       </div>
     </div>
   </section>
+  </div>
+</section>
 
 <section class="footer-cta-section">
     <div class="footer-cta-container">

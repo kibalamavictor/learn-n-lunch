@@ -403,27 +403,22 @@ a {
             width: 120%;
             left: -10%;
             background-color: var(--text-dark);
-            color: var(--white);
             font-family: util.$font-m;
             padding: 1.2rem 0;
             overflow: hidden;
+            white-space: nowrap;
             position: relative;
             transform: rotate(-3deg);
             margin-top: -3rem;
 
-        }
-
-        .banner-content {
-            display: flex;
-            white-space: nowrap;
-            animation: scroll 6s linear infinite;
-        }
-
-        .banner-text {
-            font-size: 2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 0 1rem;
+            .banner-text-2 {
+                display: inline-block;
+                color: var(--white);
+                font-size: 2rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                animation: scroll 20s linear infinite;
+            }
         }
 
         /* Scrolling Banner 2 */
@@ -434,20 +429,20 @@ a {
             left: -10%;
             background-color: var(--white);
             font-family: util.$font-m;
-            color: #000;
             padding: 1.2rem 0;
             overflow: hidden;
+            white-space: nowrap;
             position: relative;
             transform: rotate(2deg);
             margin-top: -3rem;
-        }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
+            .banner-text-2 {
+                display: inline-block;
+                color: #000;
+                font-size: 2rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                animation: scroll 20s linear infinite;
             }
         }
 
@@ -498,7 +493,8 @@ a {
             //     // display: none;
             // }
 
-            .banner-text {
+            .scrolling-banner .banner-text-2,
+            .scrolling-banner-2 .banner-text-2 {
                 font-size: 1.5rem;
             }
 

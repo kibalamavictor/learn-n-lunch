@@ -126,6 +126,22 @@
   .stories-filter-btn.mint { background: #61cdbb; color: var(--text-dark); }
   .stories-filter-btn.dark { background: #222; color: #f6b931; }
 
+  .stories-empty-state {
+    max-width: 1140px;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    text-align: center;
+    font-family: util.$font-n;
+    font-size: 1.1rem;
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    background: #fff;
+  }
+
+  .stories-category-section {
+    margin-bottom: 1rem;
+  }
+
   .stories-recents-title {
     font-size: 2.5rem;
     // font-weight: 800;

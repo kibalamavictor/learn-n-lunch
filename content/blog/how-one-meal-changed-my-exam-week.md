@@ -33,6 +33,8 @@ With food in my stomach, I could finally focus again. My revision sessions becam
 
 And my story isn't unique. In just one semester, Learn n' Lunch has served over 12,000 meals across 4 major universities. That means thousands of students didn't have to choose between hunger and their education. Every plate served is more than food. It's energy for a lecture. Confidence for an exam. A step closer to graduation.
 
+![Students on campus during a Learn N' Lunch event](/new/frame-card-3.jpg)
+
 ### Why This Matters
 
 Education is about potential — but hunger limits that potential. How can students give their best when they're running on empty? Learn n' Lunch was built to change this reality. To fuel not just stomachs, but also minds and futures.

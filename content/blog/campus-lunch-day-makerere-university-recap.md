@@ -1,43 +1,69 @@
 ---
-title: "Campus Lunch Day: Makerere University (Recap) [PLACEHOLDER]"
-slug: "campus-lunch-day-makerere-university-recap"
-excerpt: "Placeholder recap post exercising real markdown: lists, links, images, and blockquotes."
-coverImage: "/heart-yellow.svg"
-coverImageAlt: "Learn N' Lunch heart icon"
-author: "Learn N' Lunch Team"
+title: "Campus Lunch Day: Makerere University Recap"
+slug: campus-lunch-day-makerere-university-recap
+excerpt: Extended recap of Makerere's Campus Lunch Day — logistics, volunteer roles, student feedback, and photos from the field.
+coverImage: /stories/stories/lunch-day-3.png
+coverImageAlt: Campus Lunch Day volunteers at Makerere University
+author: Learn N' Lunch Editorial Team
 tags:
-  - "Events & Campus Life"
-status: "published"
-publishedAt: "2026-07-01"
-seoTitle: "Campus Lunch Day: Makerere University Recap | Learn N' Lunch"
-seoDescription: "Placeholder recap post. Replace with the real Makerere lunch day story when ready."
-ogImage: "/heart-yellow.svg"
+  - Events & Campus Life
+status: published
+publishedAt: 2025-11-18T08:30:00.000Z
+seoTitle: Campus Lunch Day Makerere Recap | Learn N' Lunch
+seoDescription: Extended field notes from Campus Lunch Day at Makerere University — operations, outcomes, and student feedback.
+ogImage: /stories/stories/lunch-day-3.png
 ---
+## Field notes from the team
 
-> **Placeholder post:** This is a temporary draft-quality story stub so the `/stories/` page has real, working routes. Replace the content with the real recap when available.
+This recap expands on our initial [Campus Lunch Day at Makerere](/stories/campus-lunch-day-at-makerere-university/) story with operational detail useful for campus partners, volunteers, and donors who want to understand how the program works on the ground.
 
-## What happened (high level)
+## Pre-event checklist (what actually happened)
 
-Campus Lunch Day at Makerere was about one simple idea: **a dependable meal changes a student's ability to learn**.
+**48 hours before**
 
-### Quick highlights
+- Confirmed meal count with food partner (+10% buffer)
+- Printed queue signage and faculty-specific break schedules
+- Briefed 24 volunteers via a 20-minute group call
 
-- Served meals during peak lecture blocks
-- Coordinated volunteers and campus partners
-- Collected feedback for improving future distributions
+**Morning of**
 
-## What we learned
+- Site setup began at 9:30 a.m.
+- First meal served at 11:45 a.m. (aligned to Sciences faculty break)
+- Mid-event supply check at 1:00 p.m.
 
-1. Timing matters — distribution windows should match lecture breaks.
-2. Clear signage reduces confusion and queue anxiety.
-3. “Small” improvements (water, shade) make a big difference.
+![Volunteers preparing the distribution area](/stories/stories/lunch-day-1.png)
 
-## Media (placeholder)
+## Volunteer roles that worked
 
-![Heart icon used as placeholder image](/heart-yellow.svg)
+Rather than a single "general helper" role, we assigned four clear functions:
 
-## Useful links (placeholder)
+1. **Queue lead** — keeps line moving, answers timing questions
+2. **Server** — plates meals, tracks portions
+3. **Runner** — restocks from the back station
+4. **Feedback collector** — hands out short cards, collects responses
 
-- Campus partners: [Makerere University](https://mak.ac.ug/)
-- Follow updates: [Learn N' Lunch on Instagram](https://www.instagram.com/learnnlunch)
+Volunteers rotated every 45 minutes. Several said the rotation prevented fatigue during the busiest window.
 
+## Student feedback themes
+
+We grouped 112 feedback cards into four themes:
+
+- **Academic impact** — "I stayed for my afternoon lecture" (mentioned 41 times)
+- **Financial relief** — "Saved money I needed for printing" (mentioned 29 times)
+- **Community** — "Felt supported, not judged" (mentioned 23 times)
+- **Logistics** — requests for shade and earlier start time (mentioned 19 times)
+
+> "Please do this during exam week. That is when we skip meals the most."  
+> — Anonymous feedback card
+
+## Photo gallery
+
+![Students sharing a meal on campus](/new/frame-card-2.jpg)
+
+![Food preparation and packaging](/new/frame-card-4.jpg)
+
+## Links and references
+
+- Makerere University: [mak.ac.ug](https://mak.ac.ug/)
+- Follow event photos: [Learn N' Lunch on Instagram](https://www.instagram.com/learnnlunch)
+- Support the next campus event: [Donate](/donate/)

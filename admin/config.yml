@@ -393,3 +393,37 @@ collections:
       - { label: SEO Description, name: seoDescription, widget: text, required: false }
       - { label: OG Image, name: ogImage, widget: image, required: false }
       - { label: Body, name: body, widget: markdown }
+
+  - name: reports
+    label: Reports & Documents
+    label_singular: Report
+    folder: content/reports
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, hint: "Used for /stories/slug/ (e.g. impact-report-2026)" }
+      - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards and above the PDF viewer." }
+      - { label: Cover Image, name: coverImage, widget: image, hint: "Thumbnail image for Stories listings." }
+      - { label: Cover Image Alt, name: coverImageAlt, widget: string }
+      - { label: Author, name: author, widget: string, default: "Learn N' Lunch Editorial Team" }
+      - label: Report PDF
+        name: reportPdf
+        widget: file
+        required: true
+        hint: "Upload the PDF. It will be previewable and downloadable on the report page."
+        media_folder: assets/uploads
+        public_folder: /assets/uploads
+      - { label: Report PDF Label, name: reportPdfLabel, widget: string, required: false, hint: "Accessible document name (e.g. Impact Report 2025)" }
+      - label: Intro Text
+        name: body
+        widget: markdown
+        required: false
+        hint: "Optional short intro shown above the PDF viewer."
+      - { label: Status, name: status, widget: select, options: ["draft", "published"], default: "draft" }
+      - { label: Published At, name: publishedAt, widget: datetime, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - { label: OG Image, name: ogImage, widget: image, required: false }

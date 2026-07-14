@@ -2,7 +2,7 @@
 // Render CMS content in content/ to static HTML; synced to main after deploy.
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
-const { writeFileEnsured } = require("./lib/utils");
+const { writeFileEnsured, getRelatedPosts } = require("./lib/utils");
 const { renderHome } = require("./lib/pages/home");
 const { renderAbout } = require("./lib/pages/about");
 const { renderImpact } = require("./lib/pages/impact");
@@ -84,9 +84,7 @@ function build() {
   );
 
   publishedBlogPosts.forEach((post) => {
-    const relatedPosts = publishedBlogPosts
-      .filter((item) => item.slug !== post.slug)
-      .slice(0, 4);
+    const relatedPosts = getRelatedPosts(post, publishedBlogPosts);
 
     writePage(
       `stories/${post.slug}/index.html`,

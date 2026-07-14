@@ -228,44 +228,65 @@ document.addEventListener("DOMContentLoaded", () => {
       : section.querySelector(".mm-next-btn");
 
     if (mmTrack && mmPrev && mmNext) {
-      const mmCards = Array.from(mmTrack.querySelectorAll(".mm-card"));
-      const mmGap = 28;
       let mmIndex = 0;
       let mmPerView = 3;
       let mmCardWidth = 0;
+      const mmGap = 28;
+
+      function getVisibleCards() {
+        return Array.from(mmTrack.querySelectorAll(".mm-card")).filter(
+          (card) => card.style.display !== "none"
+        );
+      }
 
       function mmComputeLayout() {
+        const mmCards = getVisibleCards();
+        if (mmCards.length === 0) {
+          mmTrack.style.transform = "translateX(0)";
+          mmPrev.disabled = true;
+          mmNext.disabled = true;
+          return;
+        }
+
         const w = window.innerWidth;
         mmPerView = w <= 680 ? 1 : w <= 1080 ? 2 : 3;
         mmCardWidth = mmCards[0].offsetWidth;
         const maxIndex = Math.max(0, mmCards.length - mmPerView);
         if (mmIndex > maxIndex) mmIndex = maxIndex;
-        mmUpdate();
+        mmUpdate(mmCards, maxIndex);
       }
 
-      function mmUpdate() {
+      function mmUpdate(mmCards, maxIndex) {
         const offset = mmIndex * (mmCardWidth + mmGap);
         mmTrack.style.transform = `translateX(-${offset}px)`;
         mmPrev.disabled = mmIndex === 0;
-        mmNext.disabled = mmIndex >= mmCards.length - mmPerView;
+        mmNext.disabled = mmIndex >= maxIndex;
       }
 
       mmNext.onclick = () => {
-        if (mmIndex < mmCards.length - mmPerView) {
+        const mmCards = getVisibleCards();
+        const maxIndex = Math.max(0, mmCards.length - mmPerView);
+        if (mmIndex < maxIndex) {
           mmIndex++;
-          mmUpdate();
+          mmUpdate(mmCards, maxIndex);
         }
       };
 
       mmPrev.onclick = () => {
+        const mmCards = getVisibleCards();
+        const maxIndex = Math.max(0, mmCards.length - mmPerView);
         if (mmIndex > 0) {
           mmIndex--;
-          mmUpdate();
+          mmUpdate(mmCards, maxIndex);
         }
       };
 
-      window.addEventListener("resize", mmComputeLayout);
+      window.addEventListener("resize", () => {
+        mmIndex = 0;
+        mmComputeLayout();
+      });
       window.addEventListener("load", mmComputeLayout);
+      mmComputeLayout();
     }
   });
 
@@ -305,43 +326,128 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================
-     STORIES HERO SECTION
+     MOMENTS PARALLAX
+  ==========================*/
+  (function initMomentsParallax() {
+    const section = document.querySelector(".moments-section");
+    const collage = document.querySelector(".moments-collage");
+    const photos = section ? Array.from(section.querySelectorAll(".moments-collage .photo")) : [];
+    if (!section || !collage || photos.length === 0) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let ticking = false;
+
+    function updateMomentsParallax() {
+      const viewportCenter = window.innerHeight * 0.5;
+      const focusRadius = window.innerHeight * 0.42;
+      let activeIndex = -1;
+      let highestFocus = 0;
+      const metrics = photos.map((photo, index) => {
+        const rect = photo.getBoundingClientRect();
+        const photoCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(photoCenter - viewportCenter);
+        const focus = Math.max(0, 1 - distance / focusRadius);
+        if (focus > highestFocus) {
+          highestFocus = focus;
+          activeIndex = index;
+        }
+        return { photo, photoCenter, focus };
+      });
+
+      metrics.forEach(({ photo, photoCenter, focus }, index) => {
+        const isActive = index === activeIndex && focus > 0.2;
+        const parallaxY = (photoCenter - viewportCenter) * -0.18;
+        const scale = isActive ? 1 + focus * 0.14 : 1 + focus * 0.04;
+
+        photo.style.setProperty("--moments-y", `${parallaxY.toFixed(1)}px`);
+        photo.style.setProperty("--moments-scale", scale.toFixed(3));
+        photo.style.zIndex = isActive ? "20" : String(2 + Math.round(focus * 6));
+        photo.classList.toggle("moments-photo--active", isActive);
+      });
+
+      ticking = false;
+    }
+
+    function onScrollOrResize() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateMomentsParallax);
+      }
+    }
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    updateMomentsParallax();
+  })();
+
+
+  /* =======================
+     STORIES SEARCH & FILTER
   ==========================*/
   const storiesSearchInput = document.getElementById("storiesSearchInput");
   const storiesSearchBtn = document.getElementById("storiesSearchBtn");
-  const storiesArticles = document.querySelectorAll(".stories-article");
   const storiesFilterBtns = document.querySelectorAll(".stories-filter-btn");
+  const storiesSections = document.querySelectorAll(".stories-category-section");
+  const storiesEmptyState = document.getElementById("storiesEmptyState");
 
-  if (storiesSearchInput && storiesSearchBtn && storiesArticles.length > 0) {
-    // Filter by category
-    storiesFilterBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        storiesFilterBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const category = btn.dataset.category;
+  if (storiesSearchInput && storiesSections.length > 0) {
+    function getActiveCategory() {
+      const activeBtn = document.querySelector(".stories-filter-btn.active");
+      return activeBtn?.dataset.category || "all";
+    }
 
-        storiesArticles.forEach(article => {
-          article.style.display =
-            category === "all" || article.dataset.category === category
-              ? "block"
-              : "none";
+    function applyStoriesFilter() {
+      const category = getActiveCategory();
+      const term = storiesSearchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      storiesSections.forEach((section) => {
+        const sectionCategory = section.dataset.category || "all";
+        const sectionMatchesFilter =
+          category === "all" ? true : sectionCategory === category;
+
+        let visibleInSection = 0;
+        section.querySelectorAll(".stories-item").forEach((item) => {
+          const searchText = (item.dataset.search || item.textContent || "").toLowerCase();
+          const searchMatch = !term || searchText.includes(term);
+          const visible = sectionMatchesFilter && searchMatch;
+
+          item.style.display = visible ? "" : "none";
+          if (visible) visibleInSection += 1;
         });
+
+        const sectionVisible = sectionMatchesFilter && visibleInSection > 0;
+        section.style.display = sectionVisible ? "" : "none";
+        if (sectionVisible) visibleCount += visibleInSection;
+      });
+
+      if (storiesEmptyState) {
+        storiesEmptyState.hidden = visibleCount > 0;
+      }
+
+      window.dispatchEvent(new Event("resize"));
+    }
+
+    storiesFilterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        storiesFilterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyStoriesFilter();
       });
     });
 
-    // Search functionality
-    storiesSearchBtn.addEventListener("click", () => {
-      const term = storiesSearchInput.value.toLowerCase();
-      storiesArticles.forEach(article => {
-        const text = article.textContent.toLowerCase();
-        article.style.display = text.includes(term) ? "block" : "none";
-      });
+    if (storiesSearchBtn) {
+      storiesSearchBtn.addEventListener("click", applyStoriesFilter);
+    }
+
+    storiesSearchInput.addEventListener("input", applyStoriesFilter);
+    storiesSearchInput.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") applyStoriesFilter();
     });
 
-    // Press Enter to trigger search
-    storiesSearchInput.addEventListener("keyup", e => {
-      if (e.key === "Enter") storiesSearchBtn.click();
-    });
+    applyStoriesFilter();
   }
 
 });

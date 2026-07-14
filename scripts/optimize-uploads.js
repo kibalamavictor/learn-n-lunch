@@ -8,6 +8,7 @@ const MAX_WIDTH = 1600;
 const MAX_BYTES = 300 * 1024;
 const QUALITY_STEPS = [82, 76, 70, 64, 58, 52, 46, 40];
 const INPUT_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"]);
+const PASS_THROUGH_EXTENSIONS = new Set([".svg", ".gif", ".avif", ".pdf"]);
 
 function gatherFiles(dirPath) {
   if (!fs.existsSync(dirPath)) return [];
@@ -70,7 +71,7 @@ async function run() {
   for (const filePath of files) {
     const ext = path.extname(filePath).toLowerCase();
     if (!INPUT_EXTENSIONS.has(ext)) {
-      if (ext === ".svg" || ext === ".gif" || ext === ".avif") continue;
+      if (PASS_THROUGH_EXTENSIONS.has(ext)) continue;
       nonCompliant.push(`${filePath} has unsupported extension ${ext}`);
       continue;
     }
@@ -82,7 +83,7 @@ async function run() {
   const postFiles = gatherFiles(UPLOADS_DIR);
   for (const filePath of postFiles) {
     const ext = path.extname(filePath).toLowerCase();
-    if (ext !== ".webp" && ext !== ".svg" && ext !== ".gif" && ext !== ".avif") {
+    if (ext !== ".webp" && !PASS_THROUGH_EXTENSIONS.has(ext)) {
       nonCompliant.push(`${filePath} is not an allowed optimized format`);
       continue;
     }

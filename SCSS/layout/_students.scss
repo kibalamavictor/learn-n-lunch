@@ -6,7 +6,7 @@
   .exam-story-container {
     max-width: 1160px;
     margin: 0 auto;
-    padding: 4rem 2rem 2rem;
+    padding: 7.5rem 2rem 2rem;
     font-family: util.$font-n;
   }
 
@@ -15,6 +15,11 @@
     align-items: center;
     gap: 1rem;
     margin-bottom: 3rem;
+
+    .share-button {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
   }
 
   .back-button {
@@ -54,9 +59,6 @@
   }
 
   .exam-story-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 2rem;
   }
 
@@ -157,11 +159,17 @@
 
   @media (max-width: 768px) {
     .exam-story-container {
-      padding: 1rem;
+      padding: 6.5rem 1rem 1rem;
     }
 
     .exam-story-header {
       margin-bottom: 2rem;
+      flex-wrap: wrap;
+      row-gap: 0.75rem;
+
+      .share-button {
+        margin-left: auto;
+      }
     }
 
     .category-badge {
