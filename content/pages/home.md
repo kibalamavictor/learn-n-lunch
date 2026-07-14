@@ -45,6 +45,25 @@ modelWorkCards:
       education while long term solutions are developed, ensuring students
       access food with dignity.
     accentColor: "#7be4d3"
+howItWorks:
+  titleLine1: NO STUDENT SHOULD
+  titleLine2: STUDY HUNGRY.
+  studentsFlow:
+    label: For Students
+    steps:
+      - Sign up
+      - Get access to meals
+      - Focus on learning.
+    ctaLabel: Sign up
+    ctaUrl: https://forms.gle/NyLAiZgKy5mq6qLh8
+  donorsFlow:
+    label: For Donors
+    steps:
+      - Donate
+      - Fund meals
+      - Empower students to succeed.
+    ctaLabel: Donate Now
+    ctaUrl: /donate/
 coalitionCta:
   title: Join Our National Student Coalition
   buttonLabel: Sign Up Now

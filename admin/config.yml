@@ -82,6 +82,34 @@ collections:
               - { label: Heading, name: heading, widget: string }
               - { label: Body, name: body, widget: text }
               - { label: Accent Color, name: accentColor, widget: select, options: ["#d3eeff", "#fdc039", "#7be4d3"] }
+          - label: How It Works
+            name: howItWorks
+            widget: object
+            fields:
+              - { label: Title Line 1, name: titleLine1, widget: string }
+              - { label: Title Line 2, name: titleLine2, widget: string }
+              - label: Students Flow
+                name: studentsFlow
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - label: Steps
+                    name: steps
+                    widget: list
+                    field: { label: Step, name: step, widget: string }
+                  - { label: CTA Label, name: ctaLabel, widget: string }
+                  - { label: CTA URL, name: ctaUrl, widget: string }
+              - label: Donors Flow
+                name: donorsFlow
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - label: Steps
+                    name: steps
+                    widget: list
+                    field: { label: Step, name: step, widget: string }
+                  - { label: CTA Label, name: ctaLabel, widget: string }
+                  - { label: CTA URL, name: ctaUrl, widget: string }
           - label: Coalition CTA
             name: coalitionCta
             widget: object

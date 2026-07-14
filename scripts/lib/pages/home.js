@@ -45,6 +45,68 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     )
     .join("\n");
 
+  function renderFlowSteps(steps, arrowClass, arrowImage) {
+    return steps
+      .map((step) => {
+        const arrow = `<span class="flow-arrow${arrowClass ? ` ${arrowClass}` : ""}">
+                        <img src="${resolveAsset(depth, arrowImage)}" />
+                    </span>`;
+        return `${arrow}
+                    <span class="flow-step">${escapeHtml(step)}</span>`;
+      })
+      .join("\n                    ");
+  }
+
+  function renderHowItWorksFlow(flow, variant) {
+    const isDonors = variant === "donors";
+    const arrowImage = isDonors ? "pixelated-arrow-yellow.svg" : "pixelated-arrow-white.svg";
+    const arrowClass = isDonors ? "" : " white";
+    const labelClass = isDonors ? "flow-label donors" : "flow-label";
+    const cornerTl = isDonors ? "flow-label-corner-tl-d" : "flow-label-corner-tl";
+    const cornerBr = isDonors ? "flow-label-corner-br-d" : "flow-label-corner-br";
+    const ctaClass = isDonors ? "flow-cta donate" : "flow-cta";
+    const ctaUrl = flow.ctaUrl.startsWith("http")
+      ? flow.ctaUrl
+      : resolveAsset(depth, flow.ctaUrl.replace(/^\//, ""));
+    const ctaInner = isDonors
+      ? `<span><img src="${resolveAsset(depth, "heart-yellow.svg")}" style="width: 14px;"></span> ${escapeHtml(flow.ctaLabel)}`
+      : escapeHtml(flow.ctaLabel);
+
+    return `
+            <div class="flow-row">
+                <div class="${labelClass}">
+                    ${escapeHtml(flow.label)}
+                    <span class="${cornerTl}"></span>
+                    <span class="${cornerBr}"></span>
+                </div>
+                <div class="flow-steps">
+                    ${renderFlowSteps(flow.steps, arrowClass, arrowImage)}
+                    <span class="flow-arrow${arrowClass}">
+                        <img src="${resolveAsset(depth, arrowImage)}" />
+                    </span>
+                    <a href="${escapeHtml(ctaUrl)}" class="${ctaClass}"${isDonors ? "" : ' target="_blank" rel="noopener noreferrer"'}>${ctaInner}</a>
+                </div>
+            </div>`;
+  }
+
+  const howItWorks = page.howItWorks;
+  const howItWorksHtml = howItWorks
+    ? `
+<section class="how-it-works-section">
+    <div class="how-it-works-container">
+        <h2 class="how-it-works-title">
+            ${escapeHtml(howItWorks.titleLine1)}<br>
+            ${escapeHtml(howItWorks.titleLine2)}
+        </h2>
+
+        <div class="how-it-works-flows">
+            ${renderHowItWorksFlow(howItWorks.studentsFlow, "students")}
+            ${renderHowItWorksFlow(howItWorks.donorsFlow, "donors")}
+        </div>
+    </div>
+</section>`
+    : "";
+
   const photoClasses = ["p1", "p2", "p3", "p4", "p5", "p6", "p7"];
   const photos = page.moments.photos
     .map(
@@ -177,6 +239,8 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       <div class="model-work"></div>
       ${modelCards}
     </section>
+
+    ${howItWorksHtml}
 
     <section class="donate-cta-section">
     <div class="donate-cta-container">
