@@ -243,3 +243,28 @@ if (document.readyState === 'loading') {
   window.addEventListener("resize", render, { passive: true });
   render();
 })();
+
+// IMPACT PAGE — More Than Meals / What's Next card reveal
+(function initImpactMoreNextCards() {
+  const cards = document.querySelectorAll("#lnl-more-next .lnl-mn-card");
+  if (!cards.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    cards.forEach((card) => card.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+})();

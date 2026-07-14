@@ -57,7 +57,8 @@ function loadAllContent() {
     },
     stats: {
       home: loadStats("home"),
-      impact: loadStats("impact")
+      impact: loadStats("impact"),
+      impactMap: loadStats("impact-map")
     },
     team: loadCollection("team").filter((member) => member.isActive !== false),
     testimonials: loadCollection("testimonials").filter((item) => item.isActive !== false),

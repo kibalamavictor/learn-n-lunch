@@ -1,5 +1,6 @@
 const { escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, sortPostsByDate } = require("../utils");
 const { renderPage } = require("../partials");
+const { renderImpactMap } = require("../render-impact-map");
 
 function getFacesCarouselPosts(posts, limit = 5) {
   const sorted = sortPostsByDate(posts);
@@ -55,7 +56,57 @@ function renderImpactFacesCarousel(depth, posts) {
   </section>`;
 }
 
-function renderImpact({ site, page, stats, publishedPosts = [] }) {
+const BANNER_TEXT = "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·  ";
+
+function renderScrollingBanner() {
+  const bannerRepeats = Array.from({ length: 8 })
+    .map(() => `<span class="banner-text-2">${escapeHtml(BANNER_TEXT)}</span>`)
+    .join("\n      ");
+
+  return `
+  <div class="impact-scroll-banner">
+    <div class="team-banner-2">
+      ${bannerRepeats}
+    </div>
+  </div>`;
+}
+
+function renderImpactMoreNext() {
+  return `
+  <section id="lnl-more-next" class="lnl-more-next" aria-label="Learn N' Lunch — more than meals and what's next">
+    <div class="lnl-mn-grid">
+      <article class="lnl-mn-card lnl-mn-card--meals">
+        <span class="lnl-mn-sq lnl-mn-sq--tl" aria-hidden="true"></span>
+        <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>
+
+        <span class="lnl-mn-chip lnl-mn-chip--blue" aria-hidden="true"></span>
+        <h2>More Than Meals</h2>
+
+        <p>Learn N&rsquo; Lunch is about more than food:</p>
+        <ul>
+          <li>Campus Lunch Days &mdash; bringing hundreds of students together for shared meals.</li>
+          <li>Ambassador Program &mdash; empowering students to lead awareness campaigns.</li>
+          <li>Nutrition &amp; Wellness Talks &mdash; helping students understand healthy eating habits.</li>
+        </ul>
+      </article>
+
+      <article class="lnl-mn-card lnl-mn-card--next">
+        <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>
+
+        <span class="lnl-mn-chip lnl-mn-chip--green" aria-hidden="true"></span>
+        <h2>What&rsquo;s Next</h2>
+
+        <ul>
+          <li>20,000 meals by the end of this semester.</li>
+          <li>Expansion to 2 new universities in 2026.</li>
+          <li>A digital donation &amp; meal-tracking platform for full transparency.</li>
+        </ul>
+      </article>
+    </div>
+  </section>`;
+}
+
+function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
   const depth = 1;
 
   const statsHtml = stats.items
@@ -127,7 +178,13 @@ function renderImpact({ site, page, stats, publishedPosts = [] }) {
 
   ${renderImpactFacesCarousel(depth, publishedPosts)}
 
-  <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image pixel-image--flipped" alt="" aria-hidden="true"/>`;
+  <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image pixel-image--flipped" alt="" aria-hidden="true"/>
+
+  ${renderImpactMap(depth, impactMap)}
+
+  ${renderScrollingBanner()}
+
+  ${renderImpactMoreNext()}`;
 
   return renderPage({
     site,
@@ -135,7 +192,7 @@ function renderImpact({ site, page, stats, publishedPosts = [] }) {
     title: site.defaultSeoTitle,
     description: site.defaultSeoDescription,
     activePath: "/impact",
-    scripts: ["js/app.js"],
+    scripts: ["js/app.js", "js/impact-map.js"],
     footerCta: {
       title: "BE PART OF THE MOVEMENT.",
       buttonLabel: "Donate Now",

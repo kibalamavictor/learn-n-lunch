@@ -369,6 +369,75 @@ collections:
               - { label: Description, name: description, widget: text }
               - { label: Sort Order, name: order, widget: number, value_type: int, min: 1 }
 
+      - name: impactMap
+        label: Impact Campus Map
+        file: content/stats/impact-map.json
+        format: json
+        fields:
+          - { label: Map Image, name: mapImage, widget: image }
+          - { label: Map Image Alt, name: mapAlt, widget: string }
+          - label: Section Header
+            name: header
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Mobile Cluster (overlapping pins)
+            name: cluster
+            widget: object
+            collapsed: true
+            fields:
+              - label: Campus IDs in cluster
+                name: ids
+                widget: list
+                field: { label: Campus ID, name: id, widget: string }
+              - { label: Cluster Pin X (%), name: x, widget: number, value_type: float, step: 0.1 }
+              - { label: Cluster Pin Y (%), name: y, widget: number, value_type: float, step: 0.1 }
+          - label: Campuses
+            name: campuses
+            widget: list
+            fields:
+              - { label: ID, name: id, widget: string, hint: "Unique slug, e.g. makerere" }
+              - { label: Abbreviation, name: abbr, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Place, name: place, widget: string }
+              - { label: Report Summary, name: report, widget: text }
+              - { label: Signpost X (%), name: x, widget: number, value_type: float, step: 0.1, hint: "Map anchor for signpost label" }
+              - { label: Signpost Y (%), name: y, widget: number, value_type: float, step: 0.1, hint: "Map anchor for signpost label" }
+              - label: Desktop Offset
+                name: desktopOffset
+                widget: object
+                required: false
+                collapsed: true
+                hint: "Nudge pin and signpost together on desktop when campuses overlap. Small values (~2–3) usually work."
+                fields:
+                  - { label: Offset X (%), name: x, widget: number, value_type: float, step: 0.1, required: false }
+                  - { label: Offset Y (%), name: y, widget: number, value_type: float, step: 0.1, required: false }
+              - label: Desktop Position (optional)
+                name: pinDesktop
+                widget: object
+                required: false
+                collapsed: true
+                hint: "Absolute desktop position for pin and signpost. Overrides Desktop Offset when both X and Y are set."
+                fields:
+                  - { label: Pin X (%), name: x, widget: number, value_type: float, step: 0.1, required: false }
+                  - { label: Pin Y (%), name: y, widget: number, value_type: float, step: 0.1, required: false }
+              - { label: Status, name: status, widget: select, options: ["active", "soon"], default: "active" }
+              - { label: Label Direction, name: labelDir, widget: select, options: ["up", "flip", "below"], default: "up" }
+              - { label: Blurb, name: blurb, widget: text }
+              - label: Stat A
+                name: statA
+                widget: object
+                fields:
+                  - { label: Value, name: value, widget: string }
+                  - { label: Label, name: label, widget: string }
+              - label: Stat B
+                name: statB
+                widget: object
+                fields:
+                  - { label: Value, name: value, widget: string }
+                  - { label: Label, name: label, widget: string }
+
   - name: blog
     label: Blog Posts
     folder: content/blog

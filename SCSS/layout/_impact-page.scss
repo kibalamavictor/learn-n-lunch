@@ -14,6 +14,19 @@
     transform: scaleY(-1);
   }
 
+  .impact-scroll-banner {
+    position: relative;
+    z-index: 3;
+    background: transparent;
+    padding: clamp(8px, 2vw, 16px) 0 clamp(20px, 3.5vw, 32px);
+    overflow: visible;
+
+    .team-banner-2 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
 .impact-hero-section {
     width: 100%;
     background: var(--greenish);

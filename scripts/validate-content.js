@@ -133,6 +133,18 @@ function validate() {
     });
   }
 
+  const impactMapPath = path.join(ROOT, "content/stats/impact-map.json");
+  const impactMap = readJson(impactMapPath);
+  if (impactMap) {
+    validateRequired(impactMap.campuses, "campuses", impactMapPath);
+    impactMap.campuses.forEach((campus, index) => {
+      validateRequired(campus.id, `campuses[${index}].id`, impactMapPath);
+      validateRequired(campus.name, `campuses[${index}].name`, impactMapPath);
+      validateRequired(campus.x, `campuses[${index}].x`, impactMapPath);
+      validateRequired(campus.y, `campuses[${index}].y`, impactMapPath);
+    });
+  }
+
   const teamFiles = listFiles(path.join(ROOT, "content/team"), ".md");
   assert(teamFiles.length > 0, "[required] content/team: add at least one team entry");
   for (const filePath of teamFiles) {

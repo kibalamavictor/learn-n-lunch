@@ -47,6 +47,7 @@ function build() {
       site,
       page: pages.impact,
       stats: stats.impact,
+      impactMap: stats.impactMap,
       publishedPosts: publishedBlogPosts
     })
   );

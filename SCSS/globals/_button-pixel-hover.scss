@@ -1,0 +1,138 @@
+@use '../util';
+
+@keyframes lnl-pixel-pop {
+  0% {
+    opacity: 0;
+    transform: translate(0, 6px) scale(0.9);
+  }
+
+  20% {
+    opacity: 0.35;
+    transform: translate(0, 5px) scale(0.92);
+  }
+
+  40% {
+    opacity: 0.55;
+    transform: translate(0, 3px) scale(0.95);
+  }
+
+  60% {
+    opacity: 0.75;
+    transform: translate(0, 2px) scale(0.97);
+  }
+
+  80% {
+    opacity: 0.9;
+    transform: translate(0, 1px) scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes lnl-pixel-jitter {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  4% {
+    transform: translate(1px, 0);
+  }
+
+  8% {
+    transform: translate(0, -1px);
+  }
+
+  12% {
+    transform: translate(-1px, 0);
+  }
+
+  16% {
+    transform: translate(0, 1px);
+  }
+
+  20% {
+    transform: translate(0, 0);
+  }
+
+  62% {
+    transform: translate(0, 0);
+  }
+
+  66% {
+    transform: translate(-1px, 1px);
+  }
+
+  70% {
+    transform: translate(1px, -1px);
+  }
+
+  74% {
+    transform: translate(0, 0);
+  }
+}
+
+@mixin lnl-pixel-hover {
+  &:hover:not(:disabled):not(.selected):not(.active),
+  &:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+  }
+}
+
+.learn-lunch-cta,
+.footer-cta-button,
+.donate-cta-button,
+.donate-btn,
+.mm-cta,
+.mm-more,
+.campus-feature-button,
+.makerere-lunch-cta-btn,
+.mtm-nav-button,
+.mm-nav-btn,
+.impact-faces-nav,
+.carousel-btn,
+.back-button,
+.share-button,
+.stories-search-btn,
+.stories-filter-btn,
+.amount-option,
+.frequency-btn,
+.payment-method-btn,
+.pdf-report-btn,
+.lnl-signpost__close,
+.mobile-menu-toggle {
+  @include lnl-pixel-hover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .learn-lunch-cta,
+  .footer-cta-button,
+  .donate-cta-button,
+  .donate-btn,
+  .mm-cta,
+  .mm-more,
+  .campus-feature-button,
+  .makerere-lunch-cta-btn,
+  .mtm-nav-button,
+  .mm-nav-btn,
+  .impact-faces-nav,
+  .carousel-btn,
+  .back-button,
+  .share-button,
+  .stories-search-btn,
+  .stories-filter-btn,
+  .amount-option,
+  .frequency-btn,
+  .payment-method-btn,
+  .pdf-report-btn,
+  .lnl-signpost__close,
+  .mobile-menu-toggle {
+    &:hover:not(:disabled):not(.selected):not(.active),
+    &:focus-visible:not(:disabled):not(.selected):not(.active) {
+      animation: none !important;
+    }
+  }
+}

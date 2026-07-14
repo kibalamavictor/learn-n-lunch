@@ -35,10 +35,9 @@
   text-decoration: none;
   box-shadow: 4px 4px rgba(0, 0, 0, 1);
 
-  &:hover,
-  &:focus-visible {
+  &:hover:not(.active),
+  &:focus-visible:not(.active) {
     background: var(--mm-yellow);
-    transform: translateY(-2px);
   }
 }
 
