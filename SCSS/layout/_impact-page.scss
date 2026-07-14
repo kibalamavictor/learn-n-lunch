@@ -7,6 +7,11 @@
     height: 200px;
     object-fit: cover;
     background-color: #fff;
+    display: block;
+  }
+
+  .pixel-image--flipped {
+    transform: scaleY(-1);
   }
 
 .impact-hero-section {
@@ -334,5 +339,129 @@
 
     .stats-description {
       line-height: 1.5;
+    }
+  }
+
+  /* Faces Behind the Numbers — fan carousel */
+  .impact-faces-section {
+    background: var(--greenish);
+    padding: 0 20px 72px;
+    text-align: center;
+  }
+
+  .impact-faces-carousel {
+    position: relative;
+    max-width: 1200px;
+    height: 477px;
+    margin: 0 auto;
+  }
+
+  .impact-faces-stage {
+    position: relative;
+    height: 100%;
+  }
+
+  .impact-faces-card.mm-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    flex: none;
+    width: min(277px, 63vw);
+    height: 400px;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+    cursor: pointer;
+    will-change: transform, opacity;
+
+    .mm-tag {
+      top: 14px;
+      left: 14px;
+      width: 43px;
+      height: 12px;
+    }
+
+    .mm-box {
+      height: 117px;
+      padding: 17px;
+      margin: 0 0 25px 12%;
+    }
+
+    .mm-head {
+      font-size: 0.92rem;
+      margin: 0 0 12px;
+      flex: 0 0 calc(0.92rem * 1.4 * 2);
+      min-height: calc(0.92rem * 1.4 * 2);
+      max-height: calc(0.92rem * 1.4 * 2);
+    }
+
+    .mm-cta {
+      padding: 5px 31px;
+      font-size: 0.85rem;
+      gap: 8px;
+      box-shadow: 3px 3px 0 var(--mm-black);
+
+      span img {
+        width: 14px !important;
+        padding-top: 5px !important;
+      }
+    }
+  }
+
+  .impact-faces-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    display: inline-grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    background: var(--white);
+    border: 2px solid var(--text-dark);
+    box-shadow: 3px 3px 0 var(--text-dark);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .impact-faces-prev {
+    left: 0;
+  }
+
+  .impact-faces-next {
+    right: 0;
+  }
+
+  .impact-faces-more-wrap {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .impact-faces-more {
+    background: var(--mm-yellow, #fdc039);
+  }
+
+  @media (max-width: 768px) {
+    .impact-faces-carousel {
+      height: 385px;
+    }
+
+    .impact-faces-card.mm-card {
+      height: 323px;
+    }
+
+    .impact-faces-nav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .impact-faces-section {
+      padding-bottom: 56px;
+    }
+
+    .impact-faces-card.mm-card .mm-box {
+      width: 88%;
+      margin-left: 6%;
+      height: 114px;
     }
   }

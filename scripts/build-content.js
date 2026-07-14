@@ -46,7 +46,8 @@ function build() {
     renderImpact({
       site,
       page: pages.impact,
-      stats: stats.impact
+      stats: stats.impact,
+      publishedPosts: publishedBlogPosts
     })
   );
 

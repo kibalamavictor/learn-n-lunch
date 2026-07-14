@@ -1,7 +1,61 @@
-const { escapeHtml, resolveAsset } = require("../utils");
+const { escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, sortPostsByDate } = require("../utils");
 const { renderPage } = require("../partials");
 
-function renderImpact({ site, page, stats }) {
+function getFacesCarouselPosts(posts, limit = 5) {
+  const sorted = sortPostsByDate(posts);
+  const studentPosts = sorted.filter((post) => getPostCategorySlug(post) === "students");
+  if (studentPosts.length >= limit) return studentPosts.slice(0, limit);
+
+  const usedSlugs = new Set(studentPosts.map((post) => post.slug));
+  const fillers = sorted.filter(
+    (post) => !usedSlugs.has(post.slug) && getPostCategorySlug(post) !== "reports" && !post.reportPdf
+  );
+
+  return [...studentPosts, ...fillers].slice(0, limit);
+}
+
+function renderImpactFacesCarousel(depth, posts) {
+  const facesPosts = getFacesCarouselPosts(posts);
+  if (!facesPosts.length) return "";
+
+  const cards = facesPosts
+    .map((post, index) => {
+      const categorySlug = getPostCategorySlug(post);
+      const tagColor = getPostTagColor(post);
+      const postUrl = resolveAsset(depth, `stories/${post.slug}/`);
+
+      return `
+        <article class="impact-faces-card mm-card" data-index="${index}">
+          <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
+          <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
+          <div class="mm-box">
+            <p class="mm-head">${escapeHtml(post.title)}</p>
+            <a href="${postUrl}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;" alt=""/></span></a>
+          </div>
+        </article>`;
+    })
+    .join("\n");
+
+  return `
+  <section class="impact-faces-section" aria-label="Student stories carousel">
+    <div class="impact-faces-carousel" id="impactFacesCarousel">
+      <button type="button" class="impact-faces-nav impact-faces-prev" aria-label="Previous story">
+        <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" width="20" height="20" alt=""/>
+      </button>
+      <button type="button" class="impact-faces-nav impact-faces-next" aria-label="Next story">
+        <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" width="20" height="20" alt=""/>
+      </button>
+      <div class="impact-faces-stage">
+        ${cards}
+      </div>
+    </div>
+    <div class="impact-faces-more-wrap">
+      <a href="${resolveAsset(depth, "stories/")}" class="impact-faces-more mm-more">See More Student Stories <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 4px;" alt=""/></span></a>
+    </div>
+  </section>`;
+}
+
+function renderImpact({ site, page, stats, publishedPosts = [] }) {
   const depth = 1;
 
   const statsHtml = stats.items
@@ -69,7 +123,11 @@ function renderImpact({ site, page, stats }) {
 
   <div class="impact-hero-top bottom">
     <p class="impact-hero-title">${escapeHtml(page.facesHeading).replace("the Numbers", "the Numbers<br>")}</p>
-  </div>`;
+  </div>
+
+  ${renderImpactFacesCarousel(depth, publishedPosts)}
+
+  <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image pixel-image--flipped" alt="" aria-hidden="true"/>`;
 
   return renderPage({
     site,

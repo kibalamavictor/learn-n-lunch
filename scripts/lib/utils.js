@@ -177,5 +177,6 @@ module.exports = {
   getPostTagColor,
   getPostSearchText,
   isReportPost,
+  sortPostsByDate,
   getRelatedPosts
 };

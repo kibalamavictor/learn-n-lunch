@@ -136,3 +136,110 @@ if (document.readyState === 'loading') {
 } else {
   initCounterAnimation();
 }
+
+// IMPACT PAGE — Faces Behind the Numbers fan carousel
+(function initImpactFacesCarousel() {
+  const carousel = document.getElementById("impactFacesCarousel");
+  if (!carousel) return;
+
+  const cards = [...carousel.querySelectorAll(".impact-faces-card")];
+  const prevBtn = carousel.querySelector(".impact-faces-prev");
+  const nextBtn = carousel.querySelector(".impact-faces-next");
+  if (!cards.length || !prevBtn || !nextBtn) return;
+
+  let active = 0;
+  let startX = 0;
+  const total = cards.length;
+
+  cards.forEach((card, index) => {
+    card.addEventListener("click", (event) => {
+      if (event.target.closest(".mm-cta")) return;
+      active = index;
+      render();
+    });
+
+    const cta = card.querySelector(".mm-cta");
+    if (cta) {
+      cta.addEventListener("click", (event) => event.stopPropagation());
+    }
+  });
+
+  function render() {
+    cards.forEach((card, index) => {
+      let offset = index - active;
+
+      if (offset > total / 2) offset -= total;
+      if (offset < -total / 2) offset += total;
+
+      if (Math.abs(offset) > 1) {
+        card.style.opacity = "0";
+        card.style.pointerEvents = "none";
+        card.style.zIndex = "0";
+        card.style.transform = "translate(-50%, -50%) scale(0.8)";
+        return;
+      }
+
+      card.style.pointerEvents = "auto";
+      card.style.opacity = "1";
+
+      const mobile = window.innerWidth < 768;
+      let x = 0;
+      let rotate = 0;
+      let scale = 1;
+      let z = 3;
+
+      if (offset === -1) {
+        x = mobile ? -73 : -192;
+        rotate = mobile ? -6 : -12;
+        scale = 0.88;
+        z = 2;
+      } else if (offset === 0) {
+        x = 0;
+        rotate = 0;
+        scale = 1;
+        z = 3;
+      } else if (offset === 1) {
+        x = mobile ? 73 : 192;
+        rotate = mobile ? 6 : 12;
+        scale = 0.88;
+        z = 2;
+      }
+
+      card.style.zIndex = String(z);
+      card.style.transform = `translate(-50%, -50%) translateX(${x}px) rotate(${rotate}deg) scale(${scale})`;
+    });
+  }
+
+  function next() {
+    active = (active + 1) % total;
+    render();
+  }
+
+  function prev() {
+    active = (active - 1 + total) % total;
+    render();
+  }
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") next();
+    if (event.key === "ArrowLeft") prev();
+  });
+
+  carousel.addEventListener("touchstart", (event) => {
+    startX = event.touches[0].clientX;
+  }, { passive: true });
+
+  carousel.addEventListener("touchend", (event) => {
+    const delta = event.changedTouches[0].clientX - startX;
+    if (Math.abs(delta) > 40) {
+      if (delta < 0) next();
+      else prev();
+    }
+  }, { passive: true });
+
+  window.addEventListener("resize", render, { passive: true });
+  render();
+})();
