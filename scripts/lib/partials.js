@@ -164,6 +164,7 @@ function renderPage({
   ogImage,
   activePath,
   navbarStyle,
+  bodyClass = "",
   body,
   scripts = ["js/ap.js"],
   headExtra = "",
@@ -172,10 +173,11 @@ function renderPage({
   const scriptTags = scripts
     .map((script) => `<script src="${resolveAsset(depth, script)}"></script>`)
     .join("\n    ");
+  const bodyAttrs = bodyClass ? ` class="${bodyClass}"` : "";
 
   return `${renderHead({ depth, title, description, ogImage })}${headExtra}
 </head>
-<body>
+<body${bodyAttrs}>
 ${renderNav({ depth, site, activePath, navbarStyle })}
 ${body}
 ${renderFooterCta({ depth, cta: footerCta })}

@@ -381,7 +381,7 @@
     flex: none;
     width: min(277px, 63vw);
     height: 400px;
-    transition: transform 0.45s ease, opacity 0.45s ease;
+    transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
     cursor: pointer;
     will-change: transform, opacity;
 
@@ -455,11 +455,40 @@
 
   @media (max-width: 768px) {
     .impact-faces-carousel {
-      height: 385px;
+      height: auto;
+    }
+
+    .impact-faces-stage {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      height: auto;
+      padding: 8px 0 24px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     .impact-faces-card.mm-card {
+      position: relative;
+      left: auto;
+      top: auto;
+      flex: 0 0 min(277px, 63vw);
+      width: min(277px, 63vw);
       height: 323px;
+      transform: none !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      z-index: auto !important;
+      transition: none;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .impact-faces-nav {

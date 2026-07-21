@@ -10,24 +10,12 @@
 }
 
 .mtm-testimonial-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 0;
   min-height: 500px;
   position: relative;
 }
 
 .mtm-testimonial-container.mtm-hidden {
   display: none;
-}
-
-.mtm-left-section {
-  background-color: #fff;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
 }
 
 .mtm-title {
@@ -39,11 +27,18 @@
   padding: 20px 20px 50px;
 }
 
+.mtm-right-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  min-height: 500px;
+}
+
 .mtm-profile-image-container {
   display: flex;
   justify-content: left;
   align-items: center;
-  flex: 1;
+  background-color: #fff;
+  padding: 2rem;
 }
 
 .mtm-profile-image {
@@ -55,7 +50,7 @@
   box-shadow: 3px 4px #000;
 }
 
-.mtm-right-section {
+.mtm-right-body {
   background-color: #f5b941;
   padding: 4rem;
   display: flex;
@@ -87,10 +82,6 @@
   color: #1a1a1a;
   box-shadow: 2px 2px 0px var(--text-dark);
 }
-
-// .mtm-nav-button:first-child {
-//   border-right: none;
-// }
 
 .mtm-nav-button:hover {
   background-color: #f0f0f0;
@@ -133,15 +124,8 @@
 }
 
 @media (max-width: 1024px) {
-  .mtm-testimonial-container {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
   .mtm-profile-image-container {
     justify-content: center;
-  }
-  .mtm-left-section {
-    padding: 2rem;
   }
 
   .mtm-title {
@@ -153,7 +137,7 @@
     height: 200px;
   }
 
-  .mtm-right-section {
+  .mtm-right-body {
     padding: 3rem 2rem;
     min-height: 400px;
   }
@@ -161,22 +145,38 @@
   .mtm-quote {
     font-size: 1.75rem;
   }
+}
 
-//   .mtm-navigation {
-//     top: 1rem;
-//     right: 1rem;
-//   }
+@media (max-width: 768px) {
+  #app {
+    padding-bottom: 0;
+  }
+
+  .mtm-right-section {
+    grid-template-columns: 1fr;
+    background-color: #f5b941;
+  }
+
+  .mtm-profile-image-container {
+    order: 2;
+    background-color: transparent;
+    padding: 0 1.5rem 2rem;
+    justify-content: center;
+  }
+
+  .mtm-right-body {
+    order: 1;
+    padding: 2.5rem 1.5rem 1.5rem;
+    min-height: auto;
+  }
+
+  .mtm-navigation {
+    top: 1rem;
+    right: 1.5rem;
+  }
 }
 
 @media (max-width: 640px) {
-//   body {
-//     padding: 1rem;
-//   }
-
-  .mtm-left-section {
-    padding: 1.5rem;
-  }
-
   .mtm-title {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -187,12 +187,8 @@
     height: 150px;
   }
 
-  .mtm-profile-image-container {
-    justify-content: center;
-  }
-
-  .mtm-right-section {
-    padding: 2rem 1.5rem;
+  .mtm-right-body {
+    padding: 2rem 1.5rem 1rem;
   }
 
   .mtm-quote {
@@ -207,12 +203,4 @@
   .mtm-affiliation {
     font-size: 0.875rem;
   }
-
-  .mtm-navigation {
-  position: absolute;
-  top: 21rem;
-  right: 8.3rem;
-  display: flex;
-  gap: 8px;
-}
 }

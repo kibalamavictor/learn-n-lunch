@@ -67,8 +67,7 @@
     justify-content: center;
   }
 
-  .pdf-report-frame {
-    min-height: 480px;
-    height: 70vh;
+  .pdf-report-viewer {
+    display: none;
   }
 }

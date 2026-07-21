@@ -476,6 +476,41 @@ document.addEventListener("DOMContentLoaded", () => {
     applyStoriesFilter();
   }
 
+  /* =======================
+     HOW IT WORKS — flow label tap to CTA
+  ==========================*/
+  const FLOW_MOBILE_BREAKPOINT = 768;
+  const flowRows = document.querySelectorAll(".how-it-works-flows .flow-row");
+
+  flowRows.forEach((row) => {
+    const label = row.querySelector(".flow-label");
+    const cta = row.querySelector(".flow-cta");
+    if (!label || !cta) return;
+
+    label.setAttribute("role", "button");
+    label.setAttribute("tabindex", "0");
+    label.setAttribute("aria-label", `Scroll to ${cta.textContent.trim()}`);
+
+    function scrollRowToCta() {
+      if (window.innerWidth > FLOW_MOBILE_BREAKPOINT) return;
+
+      const maxScroll = row.scrollWidth - row.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const ctaEnd = cta.offsetLeft + cta.offsetWidth;
+      const target = Math.min(maxScroll, Math.max(0, ctaEnd - row.clientWidth + 16));
+      row.scrollTo({ left: target, behavior: "smooth" });
+    }
+
+    label.addEventListener("click", scrollRowToCta);
+    label.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        scrollRowToCta();
+      }
+    });
+  });
+
 });
 
 

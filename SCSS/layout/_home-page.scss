@@ -1,0 +1,45 @@
+@use '../util';
+
+.page-home {
+    .home-model-heading {
+        font-family: util.$font-a;
+        font-size: 2rem;
+        padding: 3.5rem 0 0 1.5rem;
+        text-transform: uppercase;
+        color: var(--text-dark);
+    }
+
+    .mission-vision-section .card h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-home {
+        .home-model-heading,
+        .how-it-works-title,
+        .donate-cta-title,
+        .moments-heading,
+        .mm-title,
+        .mtm-title,
+        .footer-cta-title {
+            font-size: 1.87rem;
+        }
+
+        .bold-statement {
+            font-size: 3rem;
+        }
+
+        .mission-vision-section .card h3 {
+            font-size: 1.6rem;
+        }
+
+        .mission-vision-section {
+            padding-top: 0.75rem;
+
+            .model-work {
+                display: none;
+            }
+        }
+    }
+}

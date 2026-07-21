@@ -142,6 +142,7 @@ if (document.readyState === 'loading') {
   const carousel = document.getElementById("impactFacesCarousel");
   if (!carousel) return;
 
+  const stage = carousel.querySelector(".impact-faces-stage");
   const cards = [...carousel.querySelectorAll(".impact-faces-card")];
   const prevBtn = carousel.querySelector(".impact-faces-prev");
   const nextBtn = carousel.querySelector(".impact-faces-next");
@@ -150,10 +151,24 @@ if (document.readyState === 'loading') {
   let active = 0;
   let startX = 0;
   const total = cards.length;
+  const MOBILE_BREAKPOINT = 768;
+
+  function isMobileScroll() {
+    return window.innerWidth < MOBILE_BREAKPOINT;
+  }
+
+  function clearFanStyles() {
+    cards.forEach((card) => {
+      card.style.transform = "";
+      card.style.opacity = "";
+      card.style.pointerEvents = "";
+      card.style.zIndex = "";
+    });
+  }
 
   cards.forEach((card, index) => {
     card.addEventListener("click", (event) => {
-      if (event.target.closest(".mm-cta")) return;
+      if (isMobileScroll() || event.target.closest(".mm-cta")) return;
       active = index;
       render();
     });
@@ -165,6 +180,11 @@ if (document.readyState === 'loading') {
   });
 
   function render() {
+    if (isMobileScroll()) {
+      clearFanStyles();
+      return;
+    }
+
     cards.forEach((card, index) => {
       let offset = index - active;
 
@@ -182,7 +202,7 @@ if (document.readyState === 'loading') {
       card.style.pointerEvents = "auto";
       card.style.opacity = "1";
 
-      const mobile = window.innerWidth < 768;
+      const mobile = window.innerWidth < MOBILE_BREAKPOINT;
       let x = 0;
       let rotate = 0;
       let scale = 1;
@@ -224,15 +244,18 @@ if (document.readyState === 'loading') {
   nextBtn.addEventListener("click", next);
 
   document.addEventListener("keydown", (event) => {
+    if (isMobileScroll()) return;
     if (event.key === "ArrowRight") next();
     if (event.key === "ArrowLeft") prev();
   });
 
   carousel.addEventListener("touchstart", (event) => {
+    if (isMobileScroll()) return;
     startX = event.touches[0].clientX;
   }, { passive: true });
 
   carousel.addEventListener("touchend", (event) => {
+    if (isMobileScroll()) return;
     const delta = event.changedTouches[0].clientX - startX;
     if (Math.abs(delta) > 40) {
       if (delta < 0) next();
@@ -240,7 +263,10 @@ if (document.readyState === 'loading') {
     }
   }, { passive: true });
 
-  window.addEventListener("resize", render, { passive: true });
+  window.addEventListener("resize", () => {
+    if (isMobileScroll() && stage) stage.scrollLeft = 0;
+    render();
+  }, { passive: true });
   render();
 })();
 

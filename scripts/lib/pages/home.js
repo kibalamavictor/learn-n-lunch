@@ -34,7 +34,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       (card, index) => `
       <div class="card ${index === 0 ? "mission-card" : "vision-card"}">
         <div class="mm-tag" style="background:${card.accentColor};"></div>
-        <h3 style="font-size: 2rem;">${escapeHtml(card.heading)}</h3>
+        <h3>${escapeHtml(card.heading)}</h3>
         <p>${escapeHtml(card.body)}</p>
       </div>`
     )
@@ -69,7 +69,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
 
     return `
             <div class="flow-row">
-                <div class="${labelClass}">
+                <div class="${labelClass}" role="button" tabindex="0" aria-label="Scroll to ${escapeHtml(flow.ctaLabel)}">
                     ${escapeHtml(flow.label)}
                     <span class="${cornerTl}"></span>
                     <span class="${cornerBr}"></span>
@@ -134,21 +134,21 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     .map(
       (item, index) => `
       <div class="mtm-testimonial-container${index === 0 ? "" : " mtm-hidden"}" data-testimonial="${index}">
-        <div class="mtm-left-section">
+        <div class="mtm-right-section">
           <div class="mtm-profile-image-container">
             <img src="${resolveAsset(depth, item.photo)}" alt="${escapeHtml(item.photoAlt || item.authorName)}" class="mtm-profile-image" />
           </div>
-        </div>
-        <div class="mtm-right-section">
-          <div class="mtm-navigation">
-            <button class="mtm-nav-button mtm-prev-button" aria-label="Previous testimonial"><img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/></button>
-            <button class="mtm-nav-button mtm-next-button" aria-label="Next testimonial"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/></button>
-          </div>
-          <div class="mtm-testimonial-content">
-            <div class="mtm-quote">${escapeHtml(item.quote)}</div>
-            <div class="mtm-author-info">
-              <div class="mtm-author">${escapeHtml(item.authorName)},</div>
-              <div class="mtm-affiliation">${escapeHtml(item.affiliation)}</div>
+          <div class="mtm-right-body">
+            <div class="mtm-navigation">
+              <button class="mtm-nav-button mtm-prev-button" aria-label="Previous testimonial"><img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/></button>
+              <button class="mtm-nav-button mtm-next-button" aria-label="Next testimonial"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/></button>
+            </div>
+            <div class="mtm-testimonial-content">
+              <div class="mtm-quote">${escapeHtml(item.quote)}</div>
+              <div class="mtm-author-info">
+                <div class="mtm-author">${escapeHtml(item.authorName)},</div>
+                <div class="mtm-affiliation">${escapeHtml(item.affiliation)}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -228,7 +228,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     </section>
 
     <div class="mm-container">
-      <h2 style="font-size: 2rem; padding: 3.5rem 0 0 1.5rem;">HOW OUR MODEL WORKS</h2>
+      <h2 class="home-model-heading">HOW OUR MODEL WORKS</h2>
     </div>
     
     <section class="mission-vision-section" style="gap: 70px;">
@@ -337,6 +337,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     description: site.defaultSeoDescription,
     activePath: "/",
     navbarStyle: "background-color: #D3EEFF;",
+    bodyClass: "page-home",
     headExtra,
     footerCta: page.footerCta,
     body
