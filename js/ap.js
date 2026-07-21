@@ -214,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Find all carousel sections (class-based controls, no duplicate IDs)
   const mmSections = document.querySelectorAll(".mm-section, [data-carousel-id]");
+  const MOBILE_SCROLL_BREAKPOINT = 768;
 
   mmSections.forEach((section) => {
     const carouselId = section.dataset.carouselId;
@@ -226,12 +227,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const mmNext = carouselId
       ? section.querySelector(`[data-carousel="${carouselId}"].mm-next-btn`)
       : section.querySelector(".mm-next-btn");
+    const mmViewport = section.querySelector(".mm-carousel-viewport");
+    const isTouchCarousel = section.classList.contains("mm-touch-carousel");
 
     if (mmTrack && mmPrev && mmNext) {
       let mmIndex = 0;
       let mmPerView = 3;
       let mmCardWidth = 0;
       const mmGap = 28;
+
+      function isScrollMode() {
+        return isTouchCarousel && window.innerWidth <= MOBILE_SCROLL_BREAKPOINT;
+      }
+
+      function enableScrollMode() {
+        mmTrack.style.transform = "";
+        mmTrack.style.transition = "none";
+        if (mmViewport) mmViewport.scrollLeft = 0;
+        mmPrev.disabled = true;
+        mmNext.disabled = true;
+      }
 
       function getVisibleCards() {
         return Array.from(mmTrack.querySelectorAll(".mm-card")).filter(
@@ -240,6 +255,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       function mmComputeLayout() {
+        if (isScrollMode()) {
+          enableScrollMode();
+          return;
+        }
+
+        mmTrack.style.transition = "";
+
         const mmCards = getVisibleCards();
         if (mmCards.length === 0) {
           mmTrack.style.transform = "translateX(0)";
@@ -264,6 +286,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       mmNext.onclick = () => {
+        if (isScrollMode()) return;
+
         const mmCards = getVisibleCards();
         const maxIndex = Math.max(0, mmCards.length - mmPerView);
         if (mmIndex < maxIndex) {
@@ -273,6 +297,8 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       mmPrev.onclick = () => {
+        if (isScrollMode()) return;
+
         const mmCards = getVisibleCards();
         const maxIndex = Math.max(0, mmCards.length - mmPerView);
         if (mmIndex > 0) {

@@ -279,7 +279,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     “${escapeHtml(page.moments.statementQuote)}”
 </h2>
 
-<section class="mm-section" data-carousel-id="home-stories">
+<section class="mm-section mm-touch-carousel" data-carousel-id="home-stories">
     <div class="mm-container">
       <div class="mm-header">
         <div class="mm-title-col">

@@ -139,7 +139,13 @@
   }
 
   .stories-category-section {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stories-section-heading {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1.25rem 0 0.75rem;
   }
 
   .stories-recents-title {
@@ -149,6 +155,8 @@
     text-transform: uppercase;
     z-index: 10;
     padding: 0 20px;
+    margin: 0;
+    line-height: 1.1;
   }
 
   
@@ -320,6 +328,51 @@
     padding: 6rem 0 2rem;
   }
 
+    .stories-search-bar {
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0 1.25rem;
+    }
+
+    .stories-search-input {
+      flex: 1;
+      width: auto;
+      min-width: 0;
+      height: 44px;
+      padding: 0.35rem 0.6rem 0.35rem 1.5rem;
+    }
+
+    .stories-search-input input {
+      font-size: 0.9rem;
+      padding: 0.25rem;
+    }
+
+    .stories-search-btn {
+      flex-shrink: 0;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.85rem;
+      height: 44px;
+      align-self: stretch;
+    }
+
+    .stories-filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .stories-filter-btn {
+      flex: 0 0 auto;
+      width: auto;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      line-height: 1.2;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: 2px 2px 0 #000;
+    }
+
 
     .makerere-lunch-title {
       font-size: 2rem;
@@ -336,6 +389,10 @@
 
      .stories-recents-title {
     font-size: 2.1rem;
+  }
+
+  .stories-section-heading {
+    padding: 0.75rem 0 0.5rem;
   }
 
   }

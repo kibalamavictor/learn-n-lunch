@@ -16,6 +16,31 @@
       overflow: hidden;
     }
 
+    .mm-section:not(:has(.mm-header)),
+    .mm-section.stories-results-carousel,
+    .mm-section.stories-article {
+      overflow: visible;
+
+      .mm-carousel-area {
+        margin-top: 0;
+      }
+
+      .mm-nav {
+        position: static;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+      }
+
+      .mm-nav-btn {
+        position: static;
+        top: auto;
+      }
+    }
+
+    .mm-section.stories-results-carousel {
+      padding-top: 20px;
+    }
+
     .mm-container {
       max-width: 1300px;
       margin: 0 auto;
@@ -211,8 +236,97 @@
       .mm-title { font-size: 2.5rem; }
     }
 
+    @media (max-width:768px) {
+      .mm-section.mm-touch-carousel {
+        .mm-nav {
+          display: none;
+        }
+
+        .mm-carousel-viewport {
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
+        .mm-carousel-track {
+          transform: none !important;
+          transition: none;
+          width: max-content;
+        }
+
+        .mm-card {
+          flex: 0 0 min(277px, 63vw);
+          width: min(277px, 63vw);
+          height: 323px;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+        }
+
+        .mm-tag {
+          top: 14px;
+          left: 14px;
+          width: 43px;
+          height: 12px;
+        }
+
+        .mm-box {
+          height: 117px;
+          padding: 17px;
+          margin: 0 0 25px 12%;
+          width: 76%;
+          max-width: 360px;
+        }
+
+        .mm-head {
+          font-size: 0.92rem;
+          margin: 0 0 12px;
+          flex: 0 0 calc(0.92rem * 1.4 * 2);
+          min-height: calc(0.92rem * 1.4 * 2);
+          max-height: calc(0.92rem * 1.4 * 2);
+        }
+
+        .mm-cta {
+          padding: 5px 31px;
+          font-size: 0.85rem;
+          gap: 8px;
+          box-shadow: 3px 3px 0 var(--mm-black);
+
+          span img {
+            width: 14px !important;
+            padding-top: 5px !important;
+          }
+        }
+      }
+    }
+
     @media (max-width:680px) {
-      .mm-card { flex: 0 0 100%; height: 420px; }
-      .mm-box { width: 88%; margin-left: 6%; height: 148px; }
+      .mm-section:not(.mm-touch-carousel) .mm-card {
+        flex: 0 0 100%;
+        height: 420px;
+      }
+
+      .mm-section:not(.mm-touch-carousel) .mm-box {
+        width: 88%;
+        margin-left: 6%;
+        height: 148px;
+      }
+
       .mm-section { padding-left: 18px; padding-right: 18px; }
+    }
+
+    @media (max-width:480px) {
+      .mm-section.mm-touch-carousel {
+        .mm-box {
+          width: 88%;
+          margin-left: 6%;
+          height: 114px;
+        }
+      }
     }

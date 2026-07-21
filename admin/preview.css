@@ -26,6 +26,11 @@ body {
   line-height: 1.6;
 }
 
+.preview-blog-body {
+  margin-top: 1.5rem;
+  line-height: 1.6;
+}
+
 .preview-tag {
   display: inline-block;
   border: 1px solid #000;

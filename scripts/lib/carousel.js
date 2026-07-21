@@ -28,7 +28,7 @@ function renderStoryCarousel({
     .join("\n");
 
   return `
-<section class="mm-section ${sectionClass}" data-carousel-id="${carouselId}"${sectionStyle ? ` style="${sectionStyle}"` : ""}>
+<section class="mm-section mm-touch-carousel ${sectionClass}" data-carousel-id="${carouselId}"${sectionStyle ? ` style="${sectionStyle}"` : ""}>
     <div class="mm-container">
       <div class="mm-carousel-area">
         <div class="mm-nav">

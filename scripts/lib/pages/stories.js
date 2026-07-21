@@ -41,7 +41,7 @@ function renderCategorySection(depth, { categorySlug, title, posts, carouselId }
 
   return `
   <div class="stories-category-section" data-category="${escapeHtml(categorySlug)}">
-    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+    <div class="donor-highlight-container stories-section-heading">
       <p class="stories-recents-title">${formatSectionTitle(title)}</p>
     </div>
 
@@ -50,7 +50,7 @@ function renderCategorySection(depth, { categorySlug, title, posts, carouselId }
       posts,
       carouselId,
       sectionClass: "stories-results-carousel",
-      sectionStyle: "background: white; padding: 0 20px 20px; max-width: 1140px; margin: 0 auto;"
+      sectionStyle: "background: white; padding: 20px 20px 20px; max-width: 1140px; margin: 0 auto;"
     })}
   </div>`;
 }
@@ -83,7 +83,7 @@ function renderStories({ site, page, publishedPosts }) {
   const lead = sortedPosts[0];
   const recentsSection = `
   <div class="stories-category-section" data-category="all">
-    <div class="donor-highlight-container" style="max-width: 1140px; margin: 0 auto; padding: 3.5rem 0 2rem;">
+    <div class="donor-highlight-container stories-section-heading">
       <p class="stories-recents-title">RECENTS</p>
     </div>
 
@@ -94,7 +94,7 @@ function renderStories({ site, page, publishedPosts }) {
       posts: sortedPosts,
       carouselId: "stories-recents",
       sectionClass: "stories-results-carousel",
-      sectionStyle: "background: white; padding: 0 20px 56px; max-width: 1140px; margin: 0 auto;"
+      sectionStyle: "background: white; padding: 20px 20px 56px; max-width: 1140px; margin: 0 auto;"
     })}
   </div>`;
 

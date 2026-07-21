@@ -1,9 +1,16 @@
 (function () {
   const CMS = window.CMS || window.netlifyCMS || window.DecapCMS;
-  if (!CMS) return;
+  const h = window.h;
+  if (!CMS || !h) return;
 
   CMS.registerPreviewStyle("/dist/style.css");
   CMS.registerPreviewStyle("/admin/preview.css");
+
+  const normalizeTag = (tag) => {
+    if (typeof tag === "string") return tag;
+    if (tag && typeof tag.tag === "string") return tag.tag;
+    return "";
+  };
 
   const PagePreview = ({ entry }) => {
     const data = entry.getIn(["data"]).toJS();
@@ -11,28 +18,31 @@
     const heading = hero.heading || data.heading || data.title || "Page Preview";
     const body = hero.body || data.intro || data.description || "";
 
-    return CMS.createElement(
+    return h(
       "div",
       { className: "preview-hero" },
-      CMS.createElement("h1", null, heading),
-      body ? CMS.createElement("p", null, body) : null
+      h("h1", null, heading),
+      body ? h("p", null, body) : null
     );
   };
 
-  const BlogPreview = ({ entry }) => {
+  const BlogPreview = ({ entry, widgetFor }) => {
     const data = entry.getIn(["data"]).toJS();
-    const tags = data.tags || [];
+    const tags = (data.tags || []).map(normalizeTag).filter(Boolean);
 
-    return CMS.createElement(
+    return h(
       "div",
       { className: "preview-blog" },
-      CMS.createElement("h1", null, data.title || "Blog Post"),
-      data.excerpt ? CMS.createElement("p", null, data.excerpt) : null,
-      CMS.createElement(
-        "div",
-        null,
-        tags.map((tag) => CMS.createElement("span", { className: "preview-tag", key: tag }, tag))
-      )
+      h("h1", null, data.title || "Blog Post"),
+      data.excerpt ? h("p", null, data.excerpt) : null,
+      tags.length
+        ? h(
+            "div",
+            null,
+            tags.map((tag) => h("span", { className: "preview-tag", key: tag }, tag))
+          )
+        : null,
+      widgetFor ? h("div", { className: "preview-blog-body" }, widgetFor("body")) : null
     );
   };
 
