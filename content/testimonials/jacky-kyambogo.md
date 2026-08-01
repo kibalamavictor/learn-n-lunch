@@ -6,5 +6,5 @@ affiliation: Kyambogo University
 photo: /about-us/about/photos/olga.jpg
 photoAlt: Jacky profile photo
 order: 1
-isActive: false
+isActive: true
 ---
