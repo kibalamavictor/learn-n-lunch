@@ -6,5 +6,5 @@ affiliation: Uganda Christian University
 photo: /about-us/about/photos/cyrus.jpg
 photoAlt: Michael profile photo
 order: 3
-isActive: false
+isActive: true
 ---
