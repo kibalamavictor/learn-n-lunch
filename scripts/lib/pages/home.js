@@ -139,15 +139,17 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
             <img src="${resolveAsset(depth, item.photo)}" alt="${escapeHtml(item.photoAlt || item.authorName)}" class="mtm-profile-image" />
           </div>
           <div class="mtm-right-body">
-            <div class="mtm-navigation">
-              <button class="mtm-nav-button mtm-prev-button" aria-label="Previous testimonial"><img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/></button>
-              <button class="mtm-nav-button mtm-next-button" aria-label="Next testimonial"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/></button>
-            </div>
             <div class="mtm-testimonial-content">
               <div class="mtm-quote">${escapeHtml(item.quote)}</div>
-              <div class="mtm-author-info">
-                <div class="mtm-author">${escapeHtml(item.authorName)},</div>
-                <div class="mtm-affiliation">${escapeHtml(item.affiliation)}</div>
+              <div class="mtm-author-row">
+                <div class="mtm-author-info">
+                  <div class="mtm-author">${escapeHtml(item.authorName)},</div>
+                  <div class="mtm-affiliation">${escapeHtml(item.affiliation)}</div>
+                </div>
+                <div class="mtm-navigation">
+                  <button class="mtm-nav-button mtm-prev-button" aria-label="Previous testimonial"><img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/></button>
+                  <button class="mtm-nav-button mtm-next-button" aria-label="Next testimonial"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/></button>
+                </div>
               </div>
             </div>
           </div>

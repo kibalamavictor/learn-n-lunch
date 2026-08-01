@@ -59,6 +59,10 @@
   position: relative;
 }
 
+.mtm-author-row {
+  display: block;
+}
+
 .mtm-navigation {
   position: absolute;
   top: -3rem;
@@ -152,27 +156,54 @@
     padding-bottom: 0;
   }
 
+  .mtm-testimonial-container,
+  .mtm-right-section {
+    min-height: auto;
+  }
+
   .mtm-right-section {
     grid-template-columns: 1fr;
     background-color: #f5b941;
   }
 
   .mtm-profile-image-container {
-    order: 2;
     background-color: transparent;
-    padding: 0 1.5rem 2rem;
+    padding: 2rem 1.5rem 0;
     justify-content: center;
   }
 
+  .mtm-profile-image {
+    width: 143px;
+    height: 143px;
+  }
+
   .mtm-right-body {
-    order: 1;
-    padding: 2.5rem 1.5rem 1.5rem;
+    padding: 0 1.5rem 2.5rem;
     min-height: auto;
+    justify-content: flex-start;
+  }
+
+  .mtm-quote {
+    margin-top: 2rem;
+  }
+
+  .mtm-author-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .mtm-author-info {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .mtm-navigation {
-    top: 1rem;
-    right: 1.5rem;
+    position: static;
+    top: auto;
+    right: auto;
+    flex-shrink: 0;
   }
 }
 
@@ -183,12 +214,12 @@
   }
 
   .mtm-profile-image {
-    width: 150px;
-    height: 150px;
+    width: 107px;
+    height: 107px;
   }
 
   .mtm-right-body {
-    padding: 2rem 1.5rem 1rem;
+    padding: 0 1.5rem 2rem;
   }
 
   .mtm-quote {
