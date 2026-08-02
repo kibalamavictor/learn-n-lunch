@@ -14,11 +14,11 @@ tags:
   - Student Stories
   - Donor Highlights
 status: published
-publishedAt: 2026-03-28T09:00:00.000Z
+publishedAt: 2026-04-06T12:00:00.000+03:00
 seoDescription: Learn N' Lunch and Body and Soil Africa explore a partnership to
   move beyond food relief — empowering university students through nutrition
   education, sustainable agriculture, and hands-on food systems learning.
-ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-02.webp
+ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-11.webp
 ---
 ## There is no revolution without education
 
@@ -31,8 +31,6 @@ Learn and Lunch shared its vision of changing the narrative around campus hunger
 **A key lesson** from the engagement was *that lasting solutions require empowerment through food systems*. Students should not only receive food support but should understand how to maximize available resources, make affordable nutritious choices, engage in food production, and develop skills that improve their livelihoods.
 
 BODY & SOIL Africa's approach strongly aligned with this vision by emphasizing the connection between healthy bodies and healthy soils. Through sustainable agriculture, practical learning spaces, nutrition education, and community empowerment, they highlighted the importance of creating systems where people can actively participate in producing and accessing nutritious foods.
-
-![](/assets/uploads/learn-n-lunch-body-and-soil-partnership-11.webp)
 
 Our minds were sparked by a practical nutrition education session led by Ms. Maria Schiffer — breaking down complex nutritional knowledge into a memorable leaflet covering balanced diets, nutrient maximization, food diversity, fiber, gut health, and the value of locally available foods such as beans, dubbed **"The Bean Protocol."**
 
