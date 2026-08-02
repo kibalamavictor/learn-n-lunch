@@ -119,7 +119,7 @@
 
   .exam-story-image-wrapper {
     width: 100%;
-    max-width: 900px;
+    max-width: 680px;
     margin: 0;
     position: relative;
     overflow: hidden;
@@ -166,6 +166,12 @@
 
     p:has(> img:only-child) {
       margin: 0;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .blog-content img {
+      max-width: 560px;
     }
   }
 

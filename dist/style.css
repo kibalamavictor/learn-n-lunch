@@ -3775,7 +3775,7 @@ hr {
 
 .exam-story-image-wrapper {
   width: 100%;
-  max-width: 900px;
+  max-width: 680px;
   margin: 0;
   position: relative;
   overflow: hidden;
@@ -3820,6 +3820,11 @@ hr {
   margin: 0;
 }
 
+@media (min-width: 769px) {
+  .blog-content img {
+    max-width: 560px;
+  }
+}
 @media (max-width: 768px) {
   .exam-story-container {
     padding: 6.5rem 1rem 1rem;
@@ -5791,5 +5796,3 @@ a, a:visited, a:active {
     animation: none !important;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
