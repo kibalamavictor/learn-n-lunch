@@ -75,7 +75,7 @@ coalitionCta:
 moments:
   heading: MOMENTS THAT MATTER
   photos:
-    - image: /assets/uploads/body-soil_bean_spring_wrapers-5425.jpeg
+    - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-05.webp
       alt: Volunteer smiling at food shelf
     - image: /img2.png
       alt: Packing fresh produce
