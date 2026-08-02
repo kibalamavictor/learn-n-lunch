@@ -13,7 +13,7 @@ author: Mercy Lawino
 tags:
   - Student Stories
   - Donor Highlights
-status: draft
+status: published
 seoTitle: ""
 seoDescription: Learn N' Lunch and Body and Soil Africa explore a partnership to
   move beyond food relief — empowering university students through nutrition
