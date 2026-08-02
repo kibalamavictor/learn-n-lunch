@@ -2,13 +2,20 @@
 title: About Us
 hero:
   heading: Who We Are
-  body: Learn and Lunch is a student led organisation working to address campus hunger in Uganda. We treat hunger not as a personal failure, but as a structural challenge within higher education that requires evidence, coordination, and institutional response.
-  image: /about-us/about/photos/team.jpg
+  body: Learn and Lunch is a student led organisation working to address campus
+    hunger in Uganda. We treat hunger not as a personal failure, but as a
+    structural challenge within higher education that requires evidence,
+    coordination, and institutional response.
+  image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-10.webp
   imageAlt: Students sharing a meal donation
 standForHeading: What We Stand For
-standForStatement: We believe no student should have to choose between food and education. We stand for dignity, equity, accountability, and student leadership. Our work centers lived experience while protecting consent and wellbeing.
+standForStatement: We believe no student should have to choose between food and
+  education. We stand for dignity, equity, accountability, and student
+  leadership. Our work centers lived experience while protecting consent and
+  wellbeing.
 missionVision:
-  mission: To fuel students with accessible meals so they can concentrate on learning and building their futures.
+  mission: To fuel students with accessible meals so they can concentrate on
+    learning and building their futures.
   vision: A Uganda where no student studies hungry.
 values:
   - name: COMMUNITY
@@ -25,7 +32,13 @@ values:
     highlightVariant: highlight-4
 challenge:
   heading: THE CHALLENGE
-  body: Food insecurity among university students in Uganda is rarely discussed or documented. Many students rely on inconsistent meals, informal coping strategies, or complete meal skipping to survive academic life. Because hunger is normalized and stigmatized, it remains largely invisible to institutions and policymakers. Learn and Lunch exists to challenge this silence by documenting realities, amplifying student voices responsibly, and pushing for systemic solutions.
-  image: /about-us/about/photos/team.jpg
+  body: Food insecurity among university students in Uganda is rarely discussed or
+    documented. Many students rely on inconsistent meals, informal coping
+    strategies, or complete meal skipping to survive academic life. Because
+    hunger is normalized and stigmatized, it remains largely invisible to
+    institutions and policymakers. Learn and Lunch exists to challenge this
+    silence by documenting realities, amplifying student voices responsibly, and
+    pushing for systemic solutions.
+  image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-08.webp
   imageAlt: Team members in branded apparel preparing meals
 ---
