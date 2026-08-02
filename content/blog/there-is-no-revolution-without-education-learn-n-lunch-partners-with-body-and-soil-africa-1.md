@@ -5,7 +5,7 @@ slug: no-revolution-without-education-body-and-soil-partnership
 excerpt: On March 28, 2026, Learn N' Lunch visited Body and Soil Africa in
   Mityana to explore a partnership tackling campus hunger — not through
   temporary food relief, but by empowering students with the knowledge and
-  skills to become active participants in sustainable food systems.
+  skills to become active participants in sustainable food systems
 coverImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-04.webp
 coverImageAlt: Learn N' Lunch team members meeting with Body and Soil Africa
   staff during a partnership visit in Mityana, Uganda
