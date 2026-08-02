@@ -76,7 +76,7 @@ moments:
   heading: MOMENTS THAT MATTER
   photos:
     - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-05.webp
-      alt: Volunteer smiling at food shelf
+      alt: learn and lunch team serving themselves a food at body & soil
     - image: /img2.png
       alt: Packing fresh produce
     - image: /img3.png
@@ -85,7 +85,7 @@ moments:
       alt: Bag with groceries
     - image: /img5.png
       alt: Packed meals and water bottles
-    - image: /img6.png
+    - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-08.webp
       alt: Group of volunteers
     - image: /img7.png
       alt: Group of volunteers
