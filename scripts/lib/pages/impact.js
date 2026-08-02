@@ -15,9 +15,16 @@ function getFacesCarouselPosts(posts, limit = 5) {
   return [...studentPosts, ...fillers].slice(0, limit);
 }
 
-function renderImpactFacesCarousel(depth, posts) {
+function renderImpactFacesCarousel(depth, posts, faces = {}) {
   const facesPosts = getFacesCarouselPosts(posts);
   if (!facesPosts.length) return "";
+
+  const ctaLabel = faces.ctaLabel || "See More Student Stories";
+  const ctaUrl = faces.ctaUrl
+    ? faces.ctaUrl.startsWith("http")
+      ? faces.ctaUrl
+      : resolveAsset(depth, faces.ctaUrl.replace(/^\//, ""))
+    : resolveAsset(depth, "stories/");
 
   const cards = facesPosts
     .map((post, index) => {
@@ -51,16 +58,15 @@ function renderImpactFacesCarousel(depth, posts) {
       </div>
     </div>
     <div class="impact-faces-more-wrap">
-      <a href="${resolveAsset(depth, "stories/")}" class="impact-faces-more mm-more">See More Student Stories <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 4px;" alt=""/></span></a>
+      <a href="${ctaUrl}" class="impact-faces-more mm-more">${escapeHtml(ctaLabel)} <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 4px;" alt=""/></span></a>
     </div>
   </section>`;
 }
 
-const BANNER_TEXT = "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·  ";
-
-function renderScrollingBanner() {
+function renderScrollingBanner(bannerText) {
+  const text = `${bannerText || "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·"}  `;
   const bannerRepeats = Array.from({ length: 8 })
-    .map(() => `<span class="banner-text-2">${escapeHtml(BANNER_TEXT)}</span>`)
+    .map(() => `<span class="banner-text-2">${escapeHtml(text)}</span>`)
     .join("\n      ");
 
   return `
@@ -71,7 +77,20 @@ function renderScrollingBanner() {
   </div>`;
 }
 
-function renderImpactMoreNext() {
+function renderImpactMoreNext(moreThanMeals = {}, whatsNext = {}) {
+  const mealsHeading = moreThanMeals.heading || "More Than Meals";
+  const mealsIntro = moreThanMeals.intro || "";
+  const mealsItems = Array.isArray(moreThanMeals.items) ? moreThanMeals.items : [];
+  const nextHeading = whatsNext.heading || "What's Next";
+  const nextItems = Array.isArray(whatsNext.items) ? whatsNext.items : [];
+
+  const mealsList = mealsItems
+    .map((item) => `<li>${escapeHtml(typeof item === "string" ? item : item.point || "")}</li>`)
+    .join("\n          ");
+  const nextList = nextItems
+    .map((item) => `<li>${escapeHtml(typeof item === "string" ? item : item.point || "")}</li>`)
+    .join("\n          ");
+
   return `
   <section id="lnl-more-next" class="lnl-more-next" aria-label="Learn N' Lunch — more than meals and what's next">
     <div class="lnl-mn-grid">
@@ -80,27 +99,19 @@ function renderImpactMoreNext() {
         <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>
 
         <span class="lnl-mn-chip lnl-mn-chip--blue" aria-hidden="true"></span>
-        <h2>More Than Meals</h2>
+        <h2>${escapeHtml(mealsHeading)}</h2>
 
-        <p>Learn N&rsquo; Lunch is about more than food:</p>
-        <ul>
-          <li>Campus Lunch Days &mdash; bringing hundreds of students together for shared meals.</li>
-          <li>Ambassador Program &mdash; empowering students to lead awareness campaigns.</li>
-          <li>Nutrition &amp; Wellness Talks &mdash; helping students understand healthy eating habits.</li>
-        </ul>
+        ${mealsIntro ? `<p>${escapeHtml(mealsIntro)}</p>` : ""}
+        ${mealsList ? `<ul>\n          ${mealsList}\n        </ul>` : ""}
       </article>
 
       <article class="lnl-mn-card lnl-mn-card--next">
         <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>
 
         <span class="lnl-mn-chip lnl-mn-chip--green" aria-hidden="true"></span>
-        <h2>What&rsquo;s Next</h2>
+        <h2>${escapeHtml(nextHeading)}</h2>
 
-        <ul>
-          <li>20,000 meals by the end of this semester.</li>
-          <li>Expansion to 2 new universities in 2026.</li>
-          <li>A digital donation &amp; meal-tracking platform for full transparency.</li>
-        </ul>
+        ${nextList ? `<ul>\n          ${nextList}\n        </ul>` : ""}
       </article>
     </div>
   </section>`;
@@ -108,6 +119,11 @@ function renderImpactMoreNext() {
 
 function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
   const depth = 1;
+  const faces = page.faces || {
+    heading: page.facesHeading || "Faces Behind the Numbers",
+    ctaLabel: "See More Student Stories",
+    ctaUrl: "/stories/"
+  };
 
   const statsHtml = stats.items
     .map(
@@ -173,18 +189,35 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
   ${statsHtml}
 
   <div class="impact-hero-top bottom">
-    <p class="impact-hero-title">${escapeHtml(page.facesHeading).replace("the Numbers", "the Numbers<br>")}</p>
+    <p class="impact-hero-title">${escapeHtml(faces.heading || "Faces Behind the Numbers").replace("the Numbers", "the Numbers<br>")}</p>
   </div>
 
-  ${renderImpactFacesCarousel(depth, publishedPosts)}
+  ${renderImpactFacesCarousel(depth, publishedPosts, faces)}
 
   <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image pixel-image--flipped" alt="" aria-hidden="true"/>
 
   ${renderImpactMap(depth, impactMap)}
 
-  ${renderScrollingBanner()}
+  ${renderScrollingBanner(page.scrollBanner)}
 
-  ${renderImpactMoreNext()}`;
+  ${renderImpactMoreNext(page.moreThanMeals, page.whatsNext)}`;
+
+  const footerCta = page.footerCta
+    ? {
+        ...page.footerCta,
+        buttonUrl: page.footerCta.buttonUrl?.startsWith("http")
+          ? page.footerCta.buttonUrl
+          : resolveAsset(depth, String(page.footerCta.buttonUrl || "donate/").replace(/^\//, ""))
+      }
+    : {
+        title: "BE PART OF THE MOVEMENT.",
+        buttonLabel: "Donate Now",
+        buttonUrl: resolveAsset(depth, "donate/"),
+        backgroundImage: "/students/students/students-footer.png",
+        backgroundImageAlt: "Volunteers packing food",
+        qrImage: "/qr-code.png",
+        qrImageAlt: "QR Code"
+      };
 
   return renderPage({
     site,
@@ -193,15 +226,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
     description: site.defaultSeoDescription,
     activePath: "/impact",
     scripts: ["js/app.js", "js/impact-map.js"],
-    footerCta: {
-      title: "BE PART OF THE MOVEMENT.",
-      buttonLabel: "Donate Now",
-      buttonUrl: resolveAsset(depth, "donate/"),
-      backgroundImage: "/students/students/students-footer.png",
-      backgroundImageAlt: "Volunteers packing food",
-      qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
-    },
+    footerCta,
     body
   });
 }

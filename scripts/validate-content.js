@@ -83,7 +83,11 @@ function validate() {
   validatePage("impact.md", [
     { key: "hero", label: "hero" },
     { key: "numbersHeading", label: "numbersHeading" },
-    { key: "facesHeading", label: "facesHeading" }
+    { key: "faces", label: "faces" },
+    { key: "scrollBanner", label: "scrollBanner" },
+    { key: "moreThanMeals", label: "moreThanMeals" },
+    { key: "whatsNext", label: "whatsNext" },
+    { key: "footerCta", label: "footerCta" }
   ]);
 
   validatePage("stories.md", [

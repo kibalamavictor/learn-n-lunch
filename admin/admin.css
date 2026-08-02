@@ -1,24 +1,17 @@
 /* Learn N' Lunch — Decap CMS admin chrome
-   Matches site neo-brutalist aesthetic: Anton + Nunito, hard borders, offset shadows.
-   Uses resilient attribute selectors so Emotion class hashes don't break branding. */
+   Flat single-color UI: hard 2px borders, no shadows, no gradients. */
 
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap");
 
 :root {
   --lnl-blue: #d3eeff;
-  --lnl-blue-deep: #157da6;
-  --lnl-yellow: #f6c33c;
-  --lnl-gold: #fdb714;
   --lnl-sky: #0ea5e9;
   --lnl-sky-hover: #0284c7;
-  --lnl-mint: #61cdbb;
-  --lnl-green: #2f9f82;
+  --lnl-yellow: #f6c33c;
   --lnl-black: #000;
   --lnl-white: #fff;
   --lnl-gray: #464646;
   --lnl-border: 2px solid #000;
-  --lnl-shadow: 4px 4px 0 #000;
-  --lnl-shadow-sm: 2px 2px 0 #000;
   --lnl-font-display: "Anton", sans-serif;
   --lnl-font-body: "Nunito", sans-serif;
   --lnl-brand-bar-h: 44px;
@@ -31,8 +24,7 @@ body {
   font-family: var(--lnl-font-body) !important;
   color: var(--lnl-black) !important;
   background: var(--lnl-blue) !important;
-  background-image:
-    linear-gradient(180deg, #d3eeff 0%, #eaf6ff 45%, #fff8e7 100%) !important;
+  background-image: none !important;
   touch-action: manipulation;
 }
 
@@ -40,6 +32,7 @@ body {
 [id^="nc-root"] {
   font-family: var(--lnl-font-body) !important;
   min-height: 100vh;
+  background: var(--lnl-blue) !important;
 }
 
 /* ——— Typography ——— */
@@ -54,6 +47,9 @@ h3,
   text-transform: uppercase !important;
   letter-spacing: 0.02em;
   font-weight: 400 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 p,
@@ -75,7 +71,7 @@ header,
 [class*="AppHeaderContent"] {
   background: var(--lnl-blue) !important;
   border-bottom: var(--lnl-border) !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  box-shadow: none !important;
 }
 
 [class*="AppHeaderButton"],
@@ -84,14 +80,15 @@ header,
   border: 1px solid transparent !important;
   border-radius: 0 !important;
   font-weight: 700 !important;
+  box-shadow: none !important;
 }
 
 [class*="AppHeaderButton"]:hover,
 [class*="AppHeaderContent"] a:hover,
 [class*="AppHeaderContent"] button:hover {
   background: var(--lnl-yellow) !important;
-  border-color: var(--lnl-black) !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  border: var(--lnl-border) !important;
+  box-shadow: none !important;
 }
 
 /* ——— Main shell / sidebar ——— */
@@ -107,13 +104,15 @@ aside,
 [class*="SidebarNav"] {
   background: var(--lnl-white) !important;
   border-right: var(--lnl-border) !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  box-shadow: none !important;
 }
 
 [class*="SidebarNavLink"],
 [class*="SidebarLink"],
 aside a {
   border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
   font-weight: 700 !important;
   color: var(--lnl-black) !important;
 }
@@ -128,10 +127,11 @@ aside a:hover {
 [class*="SidebarNavLink"][aria-current="page"],
 aside a[aria-current="page"] {
   background: var(--lnl-yellow) !important;
-  box-shadow: inset 4px 0 0 var(--lnl-black) !important;
+  box-shadow: none !important;
+  border-left: 4px solid var(--lnl-black) !important;
 }
 
-/* ——— Cards / collection list (main cards keep shadow) ——— */
+/* ——— Cards / collection list ——— */
 [class*="Card"],
 [class*="EntryCard"],
 [class*="WorkflowCard"],
@@ -140,17 +140,17 @@ aside a[aria-current="page"] {
   background: var(--lnl-white) !important;
   border: var(--lnl-border) !important;
   border-radius: 0 !important;
-  box-shadow: var(--lnl-shadow) !important;
+  box-shadow: none !important;
 }
 
 [class*="Card"]:hover,
 [class*="EntryCard"]:hover,
 [class*="FileCard"]:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 var(--lnl-black) !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
-/* Nested / inner panels — border only, no shadow */
+/* Nested / editor panels */
 [class*="ControlContainer"],
 [class*="ControlContainerControl"],
 [class*="ListItem"],
@@ -161,23 +161,34 @@ aside a[aria-current="page"] {
 [class*="ControlPaneContainer"] [class*="ListCard"],
 [class*="EditorContainer"] [class*="EntryCard"] {
   background: var(--lnl-white) !important;
-  border: 2px solid #000 !important;
+  border: var(--lnl-border) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   transform: none !important;
 }
 
-[class*="EditorContainer"] [class*="Card"]:hover,
-[class*="ControlPaneContainer"] [class*="Card"]:hover,
-[class*="ControlContainer"]:hover {
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/* Headings / titles — no boxes */
+/* Words / titles inside cards — no border or box */
+[class*="CardHeading"],
+[class*="CardTitle"],
+[class*="EntryCard"] h2,
+[class*="EntryCard"] h3,
+[class*="EntryCard"] p,
+[class*="ListCard"] h2,
+[class*="ListCard"] h3,
+[class*="ListCard"] p,
+[class*="FileCard"] h2,
+[class*="FileCard"] h3,
+[class*="FileCard"] p,
+[class*="WorkflowCard"] h2,
+[class*="WorkflowCard"] h3,
+[class*="WorkflowCard"] p,
+[class*="Card"] h1,
+[class*="Card"] h2,
+[class*="Card"] h3,
+[class*="Card"] p,
+[class*="Card"] span,
 [class*="CollectionTop"],
 [class*="CollectionLabel"],
-[class*="CardHeading"],
 [class*="CollectionDescription"],
 [class*="CollectionTop"] h1,
 [class*="CollectionTop"] h2,
@@ -186,7 +197,10 @@ aside a[aria-current="page"] {
 [class*="FieldLabel"],
 label[class*="label"],
 [class*="ControlLabel"],
-[class*="WorkflowColumnHeader"] {
+[class*="WorkflowColumnHeader"],
+[class*="summary"],
+[class*="CardMeta"],
+[class*="CardBody"] {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -199,6 +213,7 @@ label[class*="label"],
 [class*="EditorContainer"],
 [class*="ViewStyleToggle"] {
   background: var(--lnl-white) !important;
+  box-shadow: none !important;
 }
 
 [class*="ControlContainer"],
@@ -217,15 +232,20 @@ label[class*="label"],
   color: var(--lnl-black) !important;
   text-transform: none !important;
   font-family: var(--lnl-font-body) !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
-/* Hints / helper text */
 [class*="FieldHint"],
 [class*="hint"],
 [class*="HelperText"] {
   color: var(--lnl-gray) !important;
   font-size: 0.9rem !important;
   line-height: 1.45 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 /* Inputs */
@@ -250,10 +270,10 @@ select:focus,
 [contenteditable="true"]:focus {
   outline: 2px solid var(--lnl-sky) !important;
   outline-offset: 1px !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  box-shadow: none !important;
 }
 
-/* ——— Buttons (neo-brutalist CTAs) ——— */
+/* ——— Buttons ——— */
 button,
 [class*="Button"],
 [class*="button"],
@@ -261,9 +281,9 @@ a[class*="Button"] {
   border-radius: 0 !important;
   font-weight: 800 !important;
   font-family: var(--lnl-font-body) !important;
+  box-shadow: none !important;
 }
 
-/* Primary actions */
 [class*="SaveButton"],
 [class*="PublishButton"],
 [class*="LoginButton"],
@@ -273,7 +293,7 @@ button[class*="primary"],
   background: var(--lnl-sky) !important;
   color: var(--lnl-white) !important;
   border: var(--lnl-border) !important;
-  box-shadow: var(--lnl-shadow) !important;
+  box-shadow: none !important;
   text-transform: none !important;
 }
 
@@ -282,23 +302,23 @@ button[class*="primary"],
 [class*="LoginButton"]:hover,
 button[class*="primary"]:hover {
   background: var(--lnl-sky-hover) !important;
+  box-shadow: none !important;
 }
 
-/* Secondary / new entry */
 [class*="NewEntryButton"],
 [class*="CollectionTopNewButton"],
 [class*="ToolbarButton"] {
   background: var(--lnl-yellow) !important;
   color: var(--lnl-black) !important;
   border: var(--lnl-border) !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  box-shadow: none !important;
 }
 
 /* ——— Login page ——— */
 [class*="AuthenticationPage"],
 [class*="LoginPage"],
 [class*="nc-githubAuthenticationPage"] {
-  background: transparent !important;
+  background: var(--lnl-blue) !important;
   min-height: 100vh !important;
   display: flex !important;
   align-items: center !important;
@@ -310,7 +330,7 @@ button[class*="primary"]:hover {
 [class*="nc-githubAuthenticationPage-card"] {
   background: var(--lnl-white) !important;
   border: var(--lnl-border) !important;
-  box-shadow: 8px 8px 0 var(--lnl-black) !important;
+  box-shadow: none !important;
   border-radius: 0 !important;
   padding: 2rem !important;
   max-width: 420px;
@@ -323,15 +343,21 @@ button[class*="primary"]:hover {
   text-transform: uppercase !important;
   font-size: 2rem !important;
   margin-bottom: 0.75rem !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 [class*="AuthenticationPage"] p,
 [class*="LoginPage"] p {
   font-family: var(--lnl-font-body) !important;
   line-height: 1.5 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
-/* Brand strip — not sticky, so it doesn’t cover the editor publish toolbar */
+/* Brand strip */
 body::before {
   content: "LEARN N' LUNCH · CMS";
   display: flex;
@@ -349,11 +375,33 @@ body::before {
   line-height: 1;
   padding: 0 1.25rem;
   border-bottom: var(--lnl-border);
+  box-shadow: none;
 }
 
-/* Editor publish / save toolbar — always visible above content */
+/* Hide main app header on entry editor — prevents blue bar at bottom */
+body:has([class*="EditorContainer"]) [class*="AppHeader"],
+body:has([class*="EntryEditor"]) [class*="AppHeader"],
+body:has([class*="EditorContainer"]) [class*="AppHeaderContent"],
+body:has([class*="EntryEditor"]) [class*="AppHeaderContent"],
+[class*="EditorContainer"] [class*="AppHeader"],
+[class*="EntryEditor"] [class*="AppHeader"],
+[class*="EditorControlBar"] {
+  display: none !important;
+}
+
+/* Entry pages: white canvas so page bottom isn’t a blue strip */
+body:has([class*="EditorContainer"]),
+body:has([class*="EntryEditor"]),
+body:has([class*="EditorContainer"]) #nc-root,
+body:has([class*="EntryEditor"]) #nc-root,
+[class*="EditorContainer"],
+[class*="EntryEditor"],
+[class*="AppMainContainer"]:has([class*="EditorContainer"]) {
+  background: var(--lnl-white) !important;
+}
+
+/* Main publish / save toolbar (top only) */
 [class*="EditorToolbar"],
-[class*="ToolbarContainer"],
 [class*="EditorContainer"] > header,
 [class*="EntryEditor"] header {
   position: sticky !important;
@@ -368,10 +416,16 @@ body::before {
   gap: 0.5rem !important;
   min-height: 56px !important;
   padding: 0.5rem 1rem !important;
-  background: var(--lnl-blue) !important;
+  background: var(--lnl-white) !important;
   border-bottom: var(--lnl-border) !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  box-shadow: none !important;
   box-sizing: border-box !important;
+}
+
+/* Nested toolbars (markdown, etc.) — no blue strip */
+[class*="ToolbarContainer"] {
+  background: var(--lnl-white) !important;
+  box-shadow: none !important;
 }
 
 [class*="EditorToolbar"] > *,
@@ -400,21 +454,23 @@ body::before {
   visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto !important;
+  box-shadow: none !important;
 }
 
 /* ——— Editorial workflow columns ——— */
 [class*="WorkflowList"],
 [class*="WorkflowColumn"] {
-  background: rgba(255, 255, 255, 0.7) !important;
-  border: 1px solid #000 !important;
+  background: var(--lnl-white) !important;
+  border: var(--lnl-border) !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 [class*="WorkflowColumnHeader"] {
   font-family: var(--lnl-font-display) !important;
   text-transform: uppercase !important;
   background: transparent !important;
-  border-bottom: none !important;
+  border: none !important;
   box-shadow: none !important;
 }
 
@@ -422,12 +478,13 @@ body::before {
 [class*="MediaLibrary"],
 [class*="MediaLibraryModal"] {
   border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 [class*="MediaLibraryCard"] {
-  border: 1px solid #000 !important;
+  border: var(--lnl-border) !important;
   border-radius: 0 !important;
-  box-shadow: var(--lnl-shadow-sm) !important;
+  box-shadow: none !important;
 }
 
 /* ——— Toast / notifications ——— */
@@ -435,20 +492,407 @@ body::before {
 [class*="notif"] {
   border: var(--lnl-border) !important;
   border-radius: 0 !important;
-  box-shadow: var(--lnl-shadow) !important;
+  box-shadow: none !important;
   font-family: var(--lnl-font-body) !important;
 }
 
-/* ——— Collection top description ——— */
 [class*="CollectionDescription"],
 [class*="description"] {
   font-family: var(--lnl-font-body) !important;
   line-height: 1.5 !important;
   color: var(--lnl-gray) !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
-/* Soften Decap's default rounded look globally inside the app */
+/* Kill residual shadows / gradients from Decap defaults */
 #nc-root *,
 [id^="nc-root"] * {
   border-radius: 0 !important;
 }
+
+#nc-root *[style*="box-shadow"],
+[id^="nc-root"] *[style*="box-shadow"] {
+  box-shadow: none !important;
+}
+
+#nc-root *[style*="linear-gradient"],
+[id^="nc-root"] *[style*="linear-gradient"],
+#nc-root *[style*="radial-gradient"],
+[id^="nc-root"] *[style*="radial-gradient"] {
+  background-image: none !important;
+}
+
+/* ——— Mobile responsiveness ———
+   Adapted from responsive-decap / Justin Searls patterns for Decap CMS. */
+@media (max-width: 899px) {
+  :root {
+    --lnl-brand-bar-h: 36px;
+  }
+
+  body::before {
+    font-size: 0.8rem;
+    padding: 0 0.85rem;
+    letter-spacing: 0.04em;
+  }
+
+  html,
+  body,
+  #nc-root,
+  [id^="nc-root"] {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Header + main shell fill the viewport */
+  [class*="AppHeaderContent"],
+  [class*="AppMainContainer"] {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    box-sizing: border-box !important;
+  }
+
+  [class*="AppHeader"],
+  [class*="AppHeaderContent"] {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  [class*="AppHeaderContent"] {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  [class*="AppHeaderButton"] {
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+    font-size: 0.8rem !important;
+    min-height: 40px !important;
+  }
+
+  [class*="AppHeaderQuickNewButton"] {
+    width: 100% !important;
+  }
+
+  /* Collections: stack sidebar above list */
+  [class*="CollectionContainer"] {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  [class*="SidebarContainer"],
+  aside,
+  [class*="SidebarNav"] {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-right: none !important;
+    border-bottom: var(--lnl-border) !important;
+    box-shadow: none !important;
+  }
+
+  [class*="SidebarNav"],
+  [class*="SidebarNavLinks"],
+  aside nav,
+  aside ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+    padding: 0.75rem !important;
+  }
+
+  [class*="SidebarNavLink"],
+  [class*="SidebarLink"],
+  aside a {
+    flex: 1 1 auto !important;
+    min-width: calc(50% - 0.35rem) !important;
+    padding: 0.65rem 0.75rem !important;
+    border: var(--lnl-border) !important;
+    background: var(--lnl-white) !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  [class*="SidebarNavLink-active"],
+  [class*="SidebarNavLink"][aria-current="page"],
+  aside a[aria-current="page"] {
+    background: var(--lnl-yellow) !important;
+    border-left: var(--lnl-border) !important;
+  }
+
+  [class*="CollectionMain"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+  }
+
+  [class*="CollectionTop"] {
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    padding: 0 0.25rem !important;
+  }
+
+  [class*="CollectionTopNewButton"],
+  [class*="NewEntryButton"] {
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    height: auto !important;
+    min-height: 44px !important;
+  }
+
+  [class*="SearchInput"],
+  [class*="CollectionTop"] input {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0.35rem !important;
+    box-sizing: border-box !important;
+  }
+
+  [class*="ViewControls"] {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  [class*="Card"],
+  [class*="EntryCard"],
+  [class*="WorkflowCard"],
+  [class*="ListCard"],
+  [class*="FileCard"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Editor: single column, usable toolbar */
+  [class*="EditorContainer"],
+  [class*="ToolbarContainer"],
+  [class*="EntryEditor"] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  [class*="EditorToolbar"],
+  [class*="ToolbarContainer"],
+  [class*="EditorContainer"] > header,
+  [class*="EntryEditor"] header {
+    position: sticky !important;
+    top: 0 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+    padding: 0.65rem 0.75rem !important;
+    min-height: auto !important;
+  }
+
+  [class*="EditorToolbar"] > *,
+  [class*="ToolbarContainer"] > *,
+  [class*="ToolbarSubSectionFirst"],
+  [class*="ToolbarSubSectionLast"] {
+    width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+  }
+
+  [class*="SaveButton"],
+  [class*="PublishButton"],
+  [class*="DeleteButton"],
+  [class*="StatusPublishedButton"],
+  [class*="PublishedButton"],
+  [class*="EditorToolbar"] button,
+  [class*="ToolbarContainer"] button {
+    min-height: 44px !important;
+    padding: 0.55rem 0.85rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  [class*="BackCollection"] {
+    display: none !important;
+  }
+
+  [class*="BackStatus"] {
+    font-size: 0.75rem !important;
+  }
+
+  /* Stack editor above preview on mobile — keep live preview visible */
+  [class*="SplitPane"],
+  [class*="EditorContainer"] [class*="SplitPane"],
+  [class*="EntryEditor"] [class*="SplitPane"] {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  [class*="Pane"],
+  [class*="Resizer"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    position: static !important;
+    height: auto !important;
+  }
+
+  [class*="Resizer"] {
+    display: none !important;
+  }
+
+  [class*="ControlPaneContainer"],
+  [class*="PreviewPaneContainer"],
+  [class*="PreviewPane"],
+  [class*="FrameContainer"] {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 240px !important;
+    height: auto !important;
+    position: static !important;
+  }
+
+  [class*="PreviewPaneContainer"],
+  [class*="PreviewPane"] {
+    border-top: var(--lnl-border) !important;
+    margin-top: 0.75rem !important;
+  }
+
+  [class*="ControlPaneContainer"],
+  [class*="PreviewPaneContainer-ControlPaneContainer"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 0.75rem 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+
+  [class*="ControlContainer"],
+  [class*="ControlContainerControl"],
+  [class*="ObjectControl"],
+  [class*="ListControl"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  input,
+  textarea,
+  select,
+  [contenteditable="true"],
+  [class*="textInput"],
+  [class*="TextInput"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important; /* avoid iOS zoom on focus */
+  }
+
+  /* Workflow board → stacked columns */
+  [class*="WorkflowContainer"],
+  [class*="WorkflowList"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  [class*="WorkflowColumn"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Modals + media library */
+  [class*="StyledModal"],
+  [class*="Modal"],
+  [class*="MediaLibraryModal"] {
+    width: min(94vw, 100%) !important;
+    max-width: 94vw !important;
+    margin: 0.75rem auto !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  [class*="LibraryTop"] {
+    overflow-x: auto !important;
+    height: auto !important;
+    padding-bottom: 0.5rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  [class*="LibraryTitle"] {
+    display: none !important;
+  }
+
+  [class*="MediaLibraryCard"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Dropdowns pinned for thumb reach */
+  [class*="DropdownList"] {
+    position: fixed !important;
+    left: 5% !important;
+    right: 5% !important;
+    bottom: 12px !important;
+    top: auto !important;
+    width: 90% !important;
+    min-width: 0 !important;
+    max-height: 50vh !important;
+    overflow-y: auto !important;
+    background: var(--lnl-white) !important;
+    border: var(--lnl-border) !important;
+    box-shadow: none !important;
+    z-index: 3000 !important;
+  }
+
+  /* Login card */
+  [class*="AuthenticationPage"] > div,
+  [class*="LoginPage"] > div,
+  [class*="nc-githubAuthenticationPage-card"] {
+    width: min(92vw, 420px) !important;
+    max-width: 92vw !important;
+    margin: 1rem !important;
+    padding: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body::before {
+    content: "LEARN N' LUNCH · CMS";
+    font-size: 0.72rem;
+  }
+
+  [class*="SidebarNavLink"],
+  [class*="SidebarLink"],
+  aside a {
+    min-width: 100% !important;
+  }
+
+  [class*="AppHeaderButton"] {
+    font-size: 0.72rem !important;
+  }
+
+  [class*="CardHeading"],
+  [class*="CollectionLabel"],
+  [class*="EditorContainer"] h1 {
+    font-size: 1.35rem !important;
+    line-height: 1.2 !important;
+  }
+}
+

@@ -3684,12 +3684,16 @@ hr {
   height: 48px;
   border: 1px solid #000;
   background: #fff;
+  color: #000;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 2px 2px #000;
+}
+.back-button svg {
+  stroke: currentColor;
 }
 
 .back-button:hover {
@@ -3733,6 +3737,7 @@ hr {
   padding: 0.75rem 1.5rem;
   background: #fff;
   border: 2px solid #000;
+  color: #000;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -3750,7 +3755,7 @@ hr {
 }
 
 .exam-story-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 5vw, 4.1666666667rem);
   font-weight: 900;
   line-height: 1.1;
   margin: 0 0 3rem 0;
@@ -3844,6 +3849,16 @@ hr {
   .back-button {
     width: 40px;
     height: 40px;
+    color: #000;
+  }
+  .back-button svg {
+    stroke: #000;
+  }
+  .share-button {
+    color: #000;
+  }
+  .share-button img {
+    filter: none;
   }
   .exam-story-meta {
     flex-direction: column;

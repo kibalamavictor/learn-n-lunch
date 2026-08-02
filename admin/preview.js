@@ -1,9 +1,44 @@
+/**
+ * Learn N' Lunch — Decap CMS live previews
+ * File collections register by FILE name (home, impact, …), not collection name.
+ */
 (function () {
-  const CMS = window.CMS || window.netlifyCMS || window.DecapCMS;
+  const CMS = window.CMS || window.DecapCms || window.netlifyCMS;
   const h = window.h;
-  if (!CMS || !h) return;
+  if (!CMS || !h) {
+    console.warn("[LnL CMS] Preview unavailable: CMS or h() missing.");
+    return;
+  }
 
   CMS.registerPreviewStyle("/admin/preview.css");
+  CMS.registerPreviewStyle(
+    "https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+  );
+
+  /* ——— helpers ——— */
+  const dataOf = (entry) => {
+    try {
+      return entry.getIn(["data"]).toJS() || {};
+    } catch (e) {
+      return {};
+    }
+  };
+
+  const text = (value, fallback) => {
+    if (value === null || value === undefined || value === "") return fallback || "";
+    return String(value);
+  };
+
+  const listItems = (items) => {
+    if (!Array.isArray(items)) return [];
+    return items
+      .map((item) => {
+        if (typeof item === "string") return item;
+        if (!item || typeof item !== "object") return "";
+        return item.point || item.step || item.chunk || item.label || item.title || item.name || "";
+      })
+      .filter(Boolean);
+  };
 
   const normalizeTag = (tag) => {
     if (typeof tag === "string") return tag;
@@ -19,42 +54,95 @@
     if (slug.includes("event")) return "preview-tag is-events";
     if (slug.includes("report")) return "preview-tag is-reports";
     if (slug.includes("donor")) return "preview-tag is-donors";
+    if (slug.includes("student")) return "preview-tag is-students";
     return "preview-tag";
   };
 
-  const PagePreview = ({ entry }) => {
-    const data = entry.getIn(["data"]).toJS();
-    const hero = data.hero || {};
-    const heading = hero.heading || data.heading || data.title || "Page Preview";
-    const body = hero.body || hero.subtitle || hero.description || data.intro || data.description || "";
+  const assetUrl = (getAsset, path) => {
+    if (!path) return "";
+    if (typeof path !== "string") return "";
+    if (/^https?:\/\//i.test(path) || path.startsWith("blob:") || path.startsWith("data:")) {
+      return path;
+    }
+    try {
+      if (typeof getAsset === "function") {
+        const asset = getAsset(path);
+        if (asset && typeof asset.toString === "function") return asset.toString();
+        if (typeof asset === "string") return asset;
+      }
+    } catch (e) {
+      /* fall through */
+    }
+    return path.startsWith("/") ? path : `/${path}`;
+  };
 
+  const section = (title, children) =>
+    h(
+      "section",
+      { className: "preview-section" },
+      title ? h("h2", { className: "preview-section-title" }, title) : null,
+      children
+    );
+
+  const empty = (msg) => h("p", { className: "preview-empty" }, msg);
+
+  const img = (src, alt, className) =>
+    src
+      ? h("img", {
+          className: className || "preview-img",
+          src,
+          alt: alt || ""
+        })
+      : null;
+
+  const bullets = (items) => {
+    const list = listItems(items);
+    if (!list.length) return null;
     return h(
-      "div",
-      { className: "preview-frame preview-hero" },
-      h("div", { className: "preview-kicker" }, "Website page preview"),
-      h("h1", null, heading),
-      body ? h("p", null, body) : h("p", { className: "preview-empty" }, "Add hero text to see it here.")
+      "ul",
+      { className: "preview-list" },
+      list.map((item, i) => h("li", { key: i }, item))
     );
   };
 
-  const BlogPreview = ({ entry, widgetFor }) => {
-    const data = entry.getIn(["data"]).toJS();
-    const tags = (data.tags || []).map(normalizeTag).filter(Boolean);
-    const cover = data.coverImage;
+  const kicker = (label) => h("div", { className: "preview-kicker" }, label);
 
-    return h(
+  const metaRow = (pairs) =>
+    h(
       "div",
-      { className: "preview-frame preview-blog" },
-      h("div", { className: "preview-kicker" }, "Story preview"),
-      cover
-        ? h("img", {
-            className: "preview-cover",
-            src: cover,
-            alt: data.coverImageAlt || data.title || ""
-          })
-        : null,
-      h("h1", null, data.title || "Untitled story"),
-      data.excerpt ? h("p", null, data.excerpt) : null,
+      { className: "preview-meta-row" },
+      pairs
+        .filter((p) => p && p.value)
+        .map((p, i) =>
+          h("div", { className: "preview-meta-item", key: i }, [
+            h("span", { className: "preview-meta-label" }, p.label),
+            h("span", { className: "preview-meta-value" }, p.value)
+          ])
+        )
+    );
+
+  /* ——— Story / Report ——— */
+  const BlogPreview = ({ entry, widgetFor, getAsset }) => {
+    const data = dataOf(entry);
+    const tags = (data.tags || []).map(normalizeTag).filter(Boolean);
+    const cover = assetUrl(getAsset, data.coverImage);
+    const status = text(data.status, "draft");
+
+    return h("div", { className: "preview-frame preview-blog" }, [
+      kicker(data.reportPdf ? "Report preview · live" : "Story preview · live"),
+      h(
+        "div",
+        { className: `preview-status is-${status}` },
+        status === "published" ? "Published" : "Draft"
+      ),
+      cover ? img(cover, data.coverImageAlt || data.title, "preview-cover") : null,
+      h("h1", { className: "preview-title" }, text(data.title, "Untitled story")),
+      data.excerpt ? h("p", { className: "preview-lead" }, data.excerpt) : null,
+      metaRow([
+        { label: "Author", value: data.author },
+        { label: "Slug", value: data.slug ? `/stories/${data.slug}/` : "" },
+        { label: "Published", value: data.publishedAt ? String(data.publishedAt).slice(0, 10) : "" }
+      ]),
       tags.length
         ? h(
             "div",
@@ -62,13 +150,488 @@
             tags.map((tag) => h("span", { className: tagClass(tag), key: tag }, tag))
           )
         : null,
+      data.reportPdf
+        ? h("p", { className: "preview-pdf-note" }, `PDF: ${data.reportPdf}`)
+        : null,
       widgetFor
         ? h("div", { className: "preview-blog-body" }, widgetFor("body"))
-        : h("p", { className: "preview-empty" }, "Write the story body to preview it here.")
-    );
+        : empty("Write the story body to preview it here.")
+    ]);
   };
 
-  CMS.registerPreviewTemplate("pages", PagePreview);
+  /* ——— Home ——— */
+  const HomePreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    const hero = data.hero || {};
+    const intro = data.impactIntro || {};
+    const how = data.howItWorks || {};
+    const moments = data.moments || {};
+    const stories = data.storiesTeaser || {};
+    const footer = data.footerCta || {};
+    const cards = Array.isArray(data.modelWorkCards) ? data.modelWorkCards : [];
+    const carousel = Array.isArray(hero.carouselImages) ? hero.carouselImages : [];
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Home · live preview"),
+      section("Hero", [
+        h("h1", { className: "preview-title" }, text(hero.heading, "Hero heading")),
+        hero.body ? h("p", { className: "preview-lead" }, hero.body) : empty("Add hero body text."),
+        carousel.length
+          ? h(
+              "div",
+              { className: "preview-thumbs" },
+              carousel.map((item, i) =>
+                img(assetUrl(getAsset, item.image), item.alt || `Slide ${i + 1}`, "preview-thumb")
+              )
+            )
+          : null
+      ]),
+      data.missionBanner && listItems(data.missionBanner).length
+        ? section(
+            "Mission banner",
+            h("p", { className: "preview-banner" }, listItems(data.missionBanner).join(" · "))
+          )
+        : null,
+      section("Impact intro", [
+        intro.body ? h("p", null, intro.body) : empty("Add impact intro body."),
+        intro.ctaLabel ? h("span", { className: "preview-btn" }, intro.ctaLabel) : null,
+        h("div", { className: "preview-thumbs" }, [
+          img(assetUrl(getAsset, intro.leftImage), intro.leftImageAlt, "preview-thumb"),
+          img(assetUrl(getAsset, intro.rightImage), intro.rightImageAlt, "preview-thumb")
+        ])
+      ]),
+      cards.length
+        ? section(
+            "How our model works",
+            h(
+              "div",
+              { className: "preview-cards" },
+              cards.map((card, i) =>
+                h(
+                  "article",
+                  {
+                    className: "preview-card",
+                    key: i,
+                    style: { borderTop: `6px solid ${card.accentColor || "#d3eeff"}` }
+                  },
+                  [
+                    h("h3", null, text(card.heading, "Card")),
+                    card.body ? h("p", null, card.body) : null
+                  ]
+                )
+              )
+            )
+          )
+        : null,
+      section("How it works", [
+        h(
+          "h3",
+          { className: "preview-subtitle" },
+          [how.titleLine1, how.titleLine2].filter(Boolean).join(" ") || "How it works title"
+        ),
+        how.studentsFlow
+          ? h("div", { className: "preview-flow" }, [
+              h("strong", null, text(how.studentsFlow.label, "Students")),
+              bullets(how.studentsFlow.steps),
+              how.studentsFlow.ctaLabel
+                ? h("span", { className: "preview-btn" }, how.studentsFlow.ctaLabel)
+                : null
+            ])
+          : null,
+        how.donorsFlow
+          ? h("div", { className: "preview-flow" }, [
+              h("strong", null, text(how.donorsFlow.label, "Donors")),
+              bullets(how.donorsFlow.steps),
+              how.donorsFlow.ctaLabel
+                ? h("span", { className: "preview-btn" }, how.donorsFlow.ctaLabel)
+                : null
+            ])
+          : null
+      ]),
+      section("Moments", [
+        h("h3", { className: "preview-subtitle" }, text(moments.heading, "Moments")),
+        moments.statementQuote
+          ? h("blockquote", { className: "preview-quote" }, moments.statementQuote)
+          : null,
+        Array.isArray(moments.photos) && moments.photos.length
+          ? h(
+              "div",
+              { className: "preview-thumbs" },
+              moments.photos.map((p, i) =>
+                img(assetUrl(getAsset, p.image), p.alt || `Photo ${i + 1}`, "preview-thumb")
+              )
+            )
+          : null
+      ]),
+      section("Stories teaser", [
+        h("h3", { className: "preview-subtitle" }, text(stories.heading, "Stories")),
+        stories.description ? h("p", null, stories.description) : null,
+        stories.moreLabel ? h("span", { className: "preview-btn" }, stories.moreLabel) : null
+      ]),
+      section("Footer CTA", [
+        h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),
+        footer.buttonLabel ? h("span", { className: "preview-btn" }, footer.buttonLabel) : null,
+        img(assetUrl(getAsset, footer.backgroundImage), footer.backgroundImageAlt, "preview-cover")
+      ])
+    ]);
+  };
+
+  /* ——— About ——— */
+  const AboutPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    const hero = data.hero || {};
+    const mv = data.missionVision || {};
+    const values = Array.isArray(data.values) ? data.values : [];
+    const challenge = data.challenge || {};
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("About Us · live preview"),
+      section("Hero", [
+        h("h1", { className: "preview-title" }, text(hero.heading, "About heading")),
+        hero.body ? h("p", { className: "preview-lead" }, hero.body) : null,
+        img(assetUrl(getAsset, hero.image), hero.imageAlt, "preview-cover")
+      ]),
+      data.standForHeading || data.standForStatement
+        ? section(text(data.standForHeading, "We stand for"), [
+            data.standForStatement ? h("p", null, data.standForStatement) : null
+          ])
+        : null,
+      section("Mission & Vision", [
+        mv.mission ? h("p", null, [h("strong", null, "Mission: "), mv.mission]) : null,
+        mv.vision ? h("p", null, [h("strong", null, "Vision: "), mv.vision]) : null
+      ]),
+      values.length
+        ? section(
+            "Values",
+            h(
+              "div",
+              { className: "preview-cards" },
+              values.map((v, i) =>
+                h("article", { className: "preview-card", key: i }, [
+                  h("h3", null, text(v.name, "Value")),
+                  v.description ? h("p", null, v.description) : null
+                ])
+              )
+            )
+          )
+        : null,
+      section("Challenge", [
+        h("h3", { className: "preview-subtitle" }, text(challenge.heading, "Challenge")),
+        challenge.body ? h("p", null, challenge.body) : null,
+        img(assetUrl(getAsset, challenge.image), challenge.imageAlt, "preview-cover")
+      ])
+    ]);
+  };
+
+  /* ——— Impact ——— */
+  const ImpactPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    const hero = data.hero || {};
+    const faces = data.faces || {};
+    const meals = data.moreThanMeals || {};
+    const next = data.whatsNext || {};
+    const footer = data.footerCta || {};
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Impact · live preview"),
+      section("Hero", [
+        h("h1", { className: "preview-title" }, text(hero.heading, "OUR IMPACT")),
+        hero.subtitle ? h("p", { className: "preview-lead" }, hero.subtitle) : null,
+        img(assetUrl(getAsset, hero.image), hero.imageAlt, "preview-cover"),
+        h("h3", { className: "preview-subtitle" }, text(hero.meaningHeading, "What impact means")),
+        hero.meaningBody ? h("p", null, hero.meaningBody) : null
+      ]),
+      section("Numbers", h("h3", { className: "preview-subtitle" }, text(data.numbersHeading, "The Numbers"))),
+      section("Faces", [
+        h("h3", { className: "preview-subtitle" }, text(faces.heading || data.facesHeading, "Faces")),
+        faces.ctaLabel ? h("span", { className: "preview-btn" }, faces.ctaLabel) : null
+      ]),
+      data.scrollBanner
+        ? section("Scroll banner", h("p", { className: "preview-banner" }, data.scrollBanner))
+        : null,
+      section(text(meals.heading, "More Than Meals"), [
+        meals.intro ? h("p", null, meals.intro) : null,
+        bullets(meals.items)
+      ]),
+      section(text(next.heading, "What's Next"), bullets(next.items)),
+      section("Footer CTA", [
+        h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),
+        footer.buttonLabel ? h("span", { className: "preview-btn" }, footer.buttonLabel) : null
+      ])
+    ]);
+  };
+
+  /* ——— Stories listing ——— */
+  const StoriesPagePreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const hero = data.hero || {};
+    const filters = Array.isArray(data.filters) ? data.filters : [];
+    const featured = Array.isArray(data.featuredSections) ? data.featuredSections : [];
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Stories listing · live preview"),
+      section("Hero", [
+        h("h1", { className: "preview-title" }, text(hero.heading, "Stories")),
+        hero.description ? h("p", { className: "preview-lead" }, hero.description) : null
+      ]),
+      filters.length
+        ? section(
+            "Filters",
+            h(
+              "div",
+              { className: "preview-meta" },
+              filters.map((f, i) =>
+                h("span", { className: "preview-tag", key: i }, text(f.label, f.slug))
+              )
+            )
+          )
+        : null,
+      featured.length
+        ? section(
+            "Featured sections",
+            h(
+              "div",
+              { className: "preview-cards" },
+              featured.map((s, i) =>
+                h("article", { className: "preview-card", key: i }, [
+                  h("h3", null, text(s.sectionLabel, "Section")),
+                  h("p", null, `Category: ${text(s.categorySlug, "—")}`),
+                  h("p", null, `Lead: ${text(s.leadPostSlug, "—")}`)
+                ])
+              )
+            )
+          )
+        : null
+    ]);
+  };
+
+  /* ——— Donate / Get Involved / Contact ——— */
+  const DonatePreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const amounts = Array.isArray(data.amountPresets) ? data.amountPresets : [];
+    const freqs = Array.isArray(data.frequencyOptions) ? data.frequencyOptions : [];
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Donate · live preview"),
+      h("h1", { className: "preview-title" }, text(data.heading, "Donate")),
+      data.description ? h("p", { className: "preview-lead" }, data.description) : null,
+      amounts.length
+        ? section(
+            "Amounts",
+            h(
+              "div",
+              { className: "preview-meta" },
+              amounts.map((a, i) =>
+                h("span", { className: "preview-tag", key: i }, `${a.label || a.value}`)
+              )
+            )
+          )
+        : null,
+      freqs.length
+        ? section(
+            "Frequency",
+            h(
+              "div",
+              { className: "preview-meta" },
+              freqs.map((f, i) => h("span", { className: "preview-tag", key: i }, f.label))
+            )
+          )
+        : null
+    ]);
+  };
+
+  const GetInvolvedPreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const ops = Array.isArray(data.opportunities) ? data.opportunities : [];
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Get Involved · live preview"),
+      h("h1", { className: "preview-title" }, text(data.heading, "Get Involved")),
+      data.intro ? h("p", { className: "preview-lead" }, data.intro) : null,
+      ops.length
+        ? h(
+            "div",
+            { className: "preview-cards" },
+            ops.map((op, i) =>
+              h("article", { className: "preview-card", key: i }, [
+                h("h3", null, text(op.title, "Opportunity")),
+                op.description ? h("p", null, op.description) : null,
+                op.ctaLabel ? h("span", { className: "preview-btn" }, op.ctaLabel) : null
+              ])
+            )
+          )
+        : empty("Add opportunities to preview them.")
+    ]);
+  };
+
+  const ContactPreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const cta = data.cta || {};
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Contact · live preview"),
+      h("h1", { className: "preview-title" }, text(data.heading, "Contact Us")),
+      data.intro ? h("p", { className: "preview-lead" }, data.intro) : null,
+      metaRow([
+        { label: "Email", value: data.email },
+        { label: "Phone", value: data.phone },
+        { label: "Address", value: data.address }
+      ]),
+      cta.label ? h("span", { className: "preview-btn" }, cta.label) : null
+    ]);
+  };
+
+  /* ——— Team / Testimonials ——— */
+  const TeamPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Team member · live preview"),
+      img(assetUrl(getAsset, data.photo), data.photoAlt || data.name, "preview-avatar"),
+      h("h1", { className: "preview-title" }, text(data.name, "Team member")),
+      data.role ? h("p", { className: "preview-lead" }, data.role) : null,
+      data.bio ? h("p", null, data.bio) : null
+    ]);
+  };
+
+  const TestimonialPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Testimonial · live preview"),
+      img(assetUrl(getAsset, data.photo), data.photoAlt || data.authorName, "preview-avatar"),
+      h("blockquote", { className: "preview-quote" }, text(data.quote, "Quote")),
+      h("p", null, [
+        h("strong", null, text(data.authorName, "Author")),
+        data.affiliation ? ` — ${data.affiliation}` : ""
+      ])
+    ]);
+  };
+
+  /* ——— Stats / Map ——— */
+  const HomeStatsPreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const items = Array.isArray(data.items) ? data.items : [];
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Home stats · live preview"),
+      items.length
+        ? h(
+            "div",
+            { className: "preview-cards" },
+            items.map((item, i) =>
+              h("article", { className: "preview-card preview-stat", key: i }, [
+                h("div", { className: "preview-stat-value" }, text(item.valueLabel, item.target)),
+                h("p", null, text(item.description, ""))
+              ])
+            )
+          )
+        : empty("Add stat items.")
+    ]);
+  };
+
+  const ImpactStatsPreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const items = Array.isArray(data.items) ? data.items : [];
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Impact stats · live preview"),
+      items.length
+        ? h(
+            "div",
+            { className: "preview-cards" },
+            items.map((item, i) =>
+              h("article", { className: "preview-card preview-stat", key: i }, [
+                h(
+                  "div",
+                  { className: "preview-stat-value" },
+                  `${item.prefix || ""}${item.target || 0}`
+                ),
+                h("h3", null, `${text(item.primaryLabel)} ${text(item.secondaryLabel)}`),
+                item.description ? h("p", null, item.description) : null
+              ])
+            )
+          )
+        : empty("Add impact stats.")
+    ]);
+  };
+
+  const ImpactMapPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    const header = data.header || {};
+    const campuses = Array.isArray(data.campuses) ? data.campuses : [];
+
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Campus map · live preview"),
+      h("h1", { className: "preview-title" }, text(header.title, "Where We're Making Impact")),
+      header.description ? h("p", { className: "preview-lead" }, header.description) : null,
+      img(assetUrl(getAsset, data.mapImage), data.mapAlt, "preview-cover"),
+      campuses.length
+        ? h(
+            "div",
+            { className: "preview-cards" },
+            campuses.map((c, i) =>
+              h("article", { className: "preview-card", key: i }, [
+                h("h3", null, `${text(c.abbr, "")} ${text(c.name, "Campus")}`),
+                h("p", null, text(c.place, "")),
+                h(
+                  "span",
+                  { className: `preview-tag ${c.status === "soon" ? "is-reports" : "is-students"}` },
+                  c.status === "soon" ? "Expanding soon" : "Active"
+                ),
+                c.blurb ? h("p", null, c.blurb) : null,
+                h("p", { className: "preview-empty" }, `Pin: ${c.x ?? "—"}% × ${c.y ?? "—"}%`)
+              ])
+            )
+          )
+        : empty("Add campuses to preview pins.")
+    ]);
+  };
+
+  const SiteSettingsPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Site settings · live preview"),
+      img(assetUrl(getAsset, data.logo), "Logo", "preview-thumb"),
+      h("h1", { className: "preview-title" }, text(data.siteName, "Site name")),
+      metaRow([
+        { label: "SEO title", value: data.defaultSeoTitle },
+        { label: "SEO description", value: data.defaultSeoDescription }
+      ])
+    ]);
+  };
+
+  /* Generic fallback for any unmatched page file */
+  const GenericPagePreview = ({ entry }) => {
+    const data = dataOf(entry);
+    const hero = data.hero || {};
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Page · live preview"),
+      h("h1", { className: "preview-title" }, text(hero.heading || data.heading || data.title, "Page")),
+      h("pre", { className: "preview-json" }, JSON.stringify(data, null, 2))
+    ]);
+  };
+
+  /* Register — files collection uses FILE names; folders use collection names */
+  const filePreviews = {
+    home: HomePreview,
+    about: AboutPreview,
+    impact: ImpactPreview,
+    storiesPage: StoriesPagePreview,
+    donate: DonatePreview,
+    getInvolved: GetInvolvedPreview,
+    contactUs: ContactPreview,
+    homeStats: HomeStatsPreview,
+    impactStats: ImpactStatsPreview,
+    impactMap: ImpactMapPreview,
+    site: SiteSettingsPreview
+  };
+
+  Object.keys(filePreviews).forEach((name) => {
+    CMS.registerPreviewTemplate(name, filePreviews[name]);
+  });
+
+  CMS.registerPreviewTemplate("pages", GenericPagePreview);
+  CMS.registerPreviewTemplate("stats", GenericPagePreview);
+  CMS.registerPreviewTemplate("settings", GenericPagePreview);
   CMS.registerPreviewTemplate("blog", BlogPreview);
   CMS.registerPreviewTemplate("reports", BlogPreview);
+  CMS.registerPreviewTemplate("team", TeamPreview);
+  CMS.registerPreviewTemplate("testimonials", TestimonialPreview);
 })();

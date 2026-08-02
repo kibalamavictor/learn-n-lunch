@@ -14,6 +14,10 @@ public_folder: /assets/uploads
 
 publish_mode: editorial_workflow
 
+# Keep the live preview pane available in the editor
+editor:
+  preview: true
+
 # Collections are ordered for everyday editing:
 # 1) Pages  2) Stories  3) Reports  4) People  5) Numbers  6) Site-wide settings
 
@@ -224,21 +228,78 @@ collections:
       - name: impact
         label: "Impact"
         file: content/pages/impact.md
-        description: "Impact page copy. Numbers and campus map are edited under Numbers & Stats."
+        description: "Impact page copy. Edit Numbers & Stats for the large counters and campus map."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+
           - label: "1 · Hero"
             name: hero
             widget: object
+            collapsed: false
+            summary: "{{fields.heading}}"
             fields:
-              - { label: Heading, name: heading, widget: string }
+              - { label: Heading, name: heading, widget: string, hint: "Main Impact page title, e.g. OUR IMPACT." }
               - { label: Subtitle, name: subtitle, widget: text }
               - { label: Image, name: image, widget: image }
               - { label: Image Alt, name: imageAlt, widget: string }
-              - { label: Meaning Heading, name: meaningHeading, widget: string }
+              - { label: Meaning Heading, name: meaningHeading, widget: string, hint: "e.g. What Impact Means to Us" }
               - { label: Meaning Body, name: meaningBody, widget: text }
-          - { label: "2 · Numbers Section Heading", name: numbersHeading, widget: string }
-          - { label: "3 · Faces Section Heading", name: facesHeading, widget: string }
+
+          - { label: "2 · Numbers Section Heading", name: numbersHeading, widget: string, hint: "Shown above the large counters. Counter values are under Numbers & Stats → Impact — Stat Counters." }
+
+          - label: "3 · Faces Behind the Numbers"
+            name: faces
+            widget: object
+            collapsed: false
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Section Heading, name: heading, widget: string }
+              - { label: CTA Label, name: ctaLabel, widget: string, hint: "Button under the carousel, e.g. See More Student Stories" }
+              - { label: CTA URL, name: ctaUrl, widget: string, default: "/stories/", hint: "Usually /stories/" }
+
+          - label: "4 · Scroll Banner Text"
+            name: scrollBanner
+            widget: string
+            hint: "Phrase that repeats in the scrolling banner above More Than Meals."
+
+          - label: "5 · More Than Meals"
+            name: moreThanMeals
+            widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro, name: intro, widget: text, required: false }
+              - label: Bullet Points
+                name: items
+                widget: list
+                field: { label: Point, name: point, widget: string }
+
+          - label: "6 · What's Next"
+            name: whatsNext
+            widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Bullet Points
+                name: items
+                widget: list
+                field: { label: Point, name: point, widget: string }
+
+          - label: "7 · Footer CTA"
+            name: footerCta
+            widget: object
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Button Label, name: buttonLabel, widget: string }
+              - { label: Button URL, name: buttonUrl, widget: string, hint: "Example: /donate/" }
+              - { label: Background Image, name: backgroundImage, widget: image }
+              - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
+              - { label: QR Image, name: qrImage, widget: image }
+              - { label: QR Image Alt, name: qrImageAlt, widget: string }
 
       - name: storiesPage
         label: "Stories Listing"
