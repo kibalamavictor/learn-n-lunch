@@ -1,6 +1,6 @@
 ---
 title: "There Is No Revolution Without Education: Learn N' Lunch Partners with
-  Body and Soil Africa"
+  Body and Soil"
 slug: no-revolution-without-education-body-and-soil-partnership
 excerpt: On March 28, 2026, Learn N' Lunch visited Body and Soil Africa in
   Mityana to explore a partnership tackling campus hunger — not through
