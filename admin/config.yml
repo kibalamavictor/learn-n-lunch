@@ -14,83 +14,90 @@ public_folder: /assets/uploads
 
 publish_mode: editorial_workflow
 
-collections:
-  - name: settings
-    label: Site Settings
-    files:
-      - name: site
-        label: Global Site Settings
-        file: content/settings/site.json
-        format: json
-        fields:
-          - { label: Site Name, name: siteName, widget: string }
-          - { label: Default SEO Title, name: defaultSeoTitle, widget: string }
-          - { label: Default SEO Description, name: defaultSeoDescription, widget: text }
-          - label: Navigation Items
-            name: navigation
-            widget: list
-            fields:
-              - { label: Label, name: label, widget: string }
-              - { label: URL, name: href, widget: string }
-          - label: Footer Social Links
-            name: socialLinks
-            widget: list
-            fields:
-              - { label: Platform, name: platform, widget: string }
-              - { label: URL, name: url, widget: string }
-          - { label: Footer Copyright, name: footerCopyright, widget: string }
+# Collections are ordered for everyday editing:
+# 1) Pages  2) Stories  3) Reports  4) People  5) Numbers  6) Site-wide settings
 
+collections:
+  # ─────────────────────────────────────────────
+  # WEBSITE PAGES
+  # ─────────────────────────────────────────────
   - name: pages
-    label: Pages
+    label: Website Pages
+    label_singular: Page
+    description: "Edit the main pages of the live site. Open a page, update a section, Save, then Publish when ready."
     files:
       - name: home
-        label: Home Page
+        label: "Home"
         file: content/pages/home.md
+        description: "Homepage — hero, mission, how it works, moments collage, stories teaser, and footer CTA."
         fields:
-          - { label: Title, name: title, widget: string }
-          - label: Hero
+          - { label: "Page Title (SEO)", name: title, widget: string, hint: "Browser tab / SEO title for the homepage." }
+
+          - label: "1 · Hero"
             name: hero
             widget: object
+            collapsed: false
+            summary: "{{fields.heading}}"
             fields:
-              - { label: Heading, name: heading, widget: string }
-              - { label: Body, name: body, widget: text }
+              - { label: Heading, name: heading, widget: string, hint: "Main homepage headline." }
+              - { label: Body, name: body, widget: text, hint: "Short supporting paragraph under the headline." }
               - label: Carousel Images
                 name: carouselImages
                 widget: list
+                summary: "{{fields.alt}}"
+                hint: "Images that rotate in the hero."
                 fields:
                   - { label: Image, name: image, widget: image }
-                  - { label: Alt Text, name: alt, widget: string }
-          - label: Mission Banner Text
+                  - { label: Alt Text, name: alt, widget: string, hint: "Describe the image for accessibility." }
+
+          - label: "2 · Mission Banner Text"
             name: missionBanner
             widget: list
+            summary: "{{fields}}"
+            hint: "Short phrases that scroll in the diagonal banners under the hero."
             field: { label: Text Chunk, name: chunk, widget: string }
-          - label: Impact Intro
+
+          - label: "3 · Impact Intro"
             name: impactIntro
             widget: object
+            collapsed: true
+            summary: "{{fields.ctaLabel}}"
             fields:
               - { label: Body, name: body, widget: text }
-              - { label: CTA Label, name: ctaLabel, widget: string }
-              - { label: CTA URL, name: ctaUrl, widget: string }
+              - { label: CTA Button Label, name: ctaLabel, widget: string }
+              - { label: CTA Button URL, name: ctaUrl, widget: string, hint: "Example: /impact/" }
               - { label: Left Image, name: leftImage, widget: image }
               - { label: Left Image Alt, name: leftImageAlt, widget: string }
               - { label: Right Image, name: rightImage, widget: image }
               - { label: Right Image Alt, name: rightImageAlt, widget: string }
-          - label: Model Work Cards
+
+          - label: "4 · Model Work Cards"
             name: modelWorkCards
             widget: list
+            summary: "{{fields.heading}}"
+            collapsed: true
             fields:
               - { label: Heading, name: heading, widget: string }
               - { label: Body, name: body, widget: text }
-              - { label: Accent Color, name: accentColor, widget: select, options: ["#d3eeff", "#fdc039", "#7be4d3"] }
-          - label: How It Works
+              - label: Accent Color
+                name: accentColor
+                widget: select
+                options:
+                  - { label: "Light blue", value: "#d3eeff" }
+                  - { label: "Yellow", value: "#fdc039" }
+                  - { label: "Mint", value: "#7be4d3" }
+
+          - label: "5 · How It Works"
             name: howItWorks
             widget: object
+            collapsed: true
             fields:
               - { label: Title Line 1, name: titleLine1, widget: string }
               - { label: Title Line 2, name: titleLine2, widget: string }
               - label: Students Flow
                 name: studentsFlow
                 widget: object
+                collapsed: true
                 fields:
                   - { label: Label, name: label, widget: string }
                   - label: Steps
@@ -102,6 +109,7 @@ collections:
               - label: Donors Flow
                 name: donorsFlow
                 widget: object
+                collapsed: true
                 fields:
                   - { label: Label, name: label, widget: string }
                   - label: Steps
@@ -110,41 +118,54 @@ collections:
                     field: { label: Step, name: step, widget: string }
                   - { label: CTA Label, name: ctaLabel, widget: string }
                   - { label: CTA URL, name: ctaUrl, widget: string }
-          - label: Coalition CTA
+
+          - label: "6 · Student Coalition CTA"
             name: coalitionCta
             widget: object
+            collapsed: true
+            summary: "{{fields.title}}"
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Button Label, name: buttonLabel, widget: string }
-              - { label: Button URL, name: buttonUrl, widget: string }
+              - { label: Button URL, name: buttonUrl, widget: string, hint: "Usually a Google Form link." }
               - { label: Background Image, name: backgroundImage, widget: image }
               - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
               - { label: QR Image, name: qrImage, widget: image }
               - { label: QR Image Alt, name: qrImageAlt, widget: string }
-          - label: Moments
+
+          - label: "7 · Moments That Matter"
             name: moments
             widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
             fields:
               - { label: Heading, name: heading, widget: string }
               - label: Photo Collage
                 name: photos
                 widget: list
+                summary: "{{fields.alt}}"
+                hint: "Photos that stack as visitors scroll this section."
                 fields:
                   - { label: Image, name: image, widget: image }
                   - { label: Alt Text, name: alt, widget: string }
-              - { label: Slogan Text, name: sloganText, widget: text }
-              - { label: Statement Quote, name: statementQuote, widget: string }
-          - label: Stories Teaser
+              - { label: Slogan / Scroll Banner Text, name: sloganText, widget: text }
+              - { label: Statement Quote, name: statementQuote, widget: string, hint: "Large quote below the moments section." }
+
+          - label: "8 · Stories Teaser"
             name: storiesTeaser
             widget: object
+            collapsed: true
             fields:
               - { label: Heading, name: heading, widget: string }
               - { label: Description, name: description, widget: text }
-              - { label: More Label, name: moreLabel, widget: string }
-              - { label: More URL, name: moreUrl, widget: string }
-          - label: Footer CTA
+              - { label: More Button Label, name: moreLabel, widget: string }
+              - { label: More Button URL, name: moreUrl, widget: string, hint: "Usually /stories/" }
+
+          - label: "9 · Footer CTA"
             name: footerCta
             widget: object
+            collapsed: true
+            summary: "{{fields.title}}"
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Button Label, name: buttonLabel, widget: string }
@@ -155,11 +176,12 @@ collections:
               - { label: QR Image Alt, name: qrImageAlt, widget: string }
 
       - name: about
-        label: About Us Page
+        label: "About Us"
         file: content/pages/about-us.md
+        description: "About page — hero, stand-for statement, mission/vision, values, and challenge section."
         fields:
-          - { label: Title, name: title, widget: string }
-          - label: Hero
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - label: "1 · Hero"
             name: hero
             widget: object
             fields:
@@ -167,24 +189,32 @@ collections:
               - { label: Body, name: body, widget: text }
               - { label: Image, name: image, widget: image }
               - { label: Image Alt, name: imageAlt, widget: string }
-          - { label: Stand For Heading, name: standForHeading, widget: string }
-          - { label: Stand For Statement, name: standForStatement, widget: text }
-          - label: Mission Vision
+          - { label: "2 · Stand For Heading", name: standForHeading, widget: string }
+          - { label: "2 · Stand For Statement", name: standForStatement, widget: text }
+          - label: "3 · Mission & Vision"
             name: missionVision
             widget: object
+            collapsed: true
             fields:
               - { label: Mission Text, name: mission, widget: text }
               - { label: Vision Text, name: vision, widget: text }
-          - label: Values
+          - label: "4 · Values"
             name: values
             widget: list
+            summary: "{{fields.name}}"
+            collapsed: true
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Description, name: description, widget: string }
-              - { label: Highlight Variant, name: highlightVariant, widget: select, options: ["highlight", "highlight-2", "highlight-3", "highlight-4"] }
-          - label: Challenge Section
+              - label: Highlight Variant
+                name: highlightVariant
+                widget: select
+                options: ["highlight", "highlight-2", "highlight-3", "highlight-4"]
+                hint: "Controls which visual style the value card uses."
+          - label: "5 · Challenge Section"
             name: challenge
             widget: object
+            collapsed: true
             fields:
               - { label: Heading, name: heading, widget: string }
               - { label: Body, name: body, widget: text }
@@ -192,11 +222,12 @@ collections:
               - { label: Image Alt, name: imageAlt, widget: string }
 
       - name: impact
-        label: Impact Page
+        label: "Impact"
         file: content/pages/impact.md
+        description: "Impact page copy. Numbers and campus map are edited under Numbers & Stats."
         fields:
-          - { label: Title, name: title, widget: string }
-          - label: Hero
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - label: "1 · Hero"
             name: hero
             widget: object
             fields:
@@ -206,62 +237,71 @@ collections:
               - { label: Image Alt, name: imageAlt, widget: string }
               - { label: Meaning Heading, name: meaningHeading, widget: string }
               - { label: Meaning Body, name: meaningBody, widget: text }
-          - { label: Numbers Heading, name: numbersHeading, widget: string }
-          - { label: Faces Heading, name: facesHeading, widget: string }
+          - { label: "2 · Numbers Section Heading", name: numbersHeading, widget: string }
+          - { label: "3 · Faces Section Heading", name: facesHeading, widget: string }
 
       - name: storiesPage
-        label: Stories Listing Page
+        label: "Stories Listing"
         file: content/pages/stories.md
+        description: "Stories page header, category filters, and featured section layout. Individual posts are under Stories."
         fields:
-          - { label: Title, name: title, widget: string }
-          - label: Hero
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - label: "1 · Hero"
             name: hero
             widget: object
             fields:
               - { label: Heading, name: heading, widget: string }
               - { label: Description, name: description, widget: text }
-          - label: Category Filters
+          - label: "2 · Category Filters"
             name: filters
             widget: list
+            summary: "{{fields.label}} ({{fields.slug}})"
+            hint: "Buttons at the top of the Stories page. Slug must match post tags."
             fields:
               - { label: Label, name: label, widget: string }
-              - { label: Slug, name: slug, widget: string }
-          - label: Featured Sections
+              - { label: Slug, name: slug, widget: string, hint: "e.g. students, events, reports, donors" }
+          - label: "3 · Featured Sections"
             name: featuredSections
             widget: list
+            summary: "{{fields.sectionLabel}}"
+            collapsed: true
             fields:
               - { label: Section Label, name: sectionLabel, widget: string }
               - { label: Category Slug, name: categorySlug, widget: string }
-              - { label: Lead Post Slug, name: leadPostSlug, widget: string }
+              - { label: Lead Post Slug, name: leadPostSlug, widget: string, hint: "Main featured post for this section." }
               - label: Additional Post Slugs
                 name: postSlugs
                 widget: list
                 field: { label: Post Slug, name: slug, widget: string }
 
       - name: donate
-        label: Donate Page
+        label: "Donate"
         file: content/pages/donate.md
+        description: "Donate page copy, amount presets, and form field labels."
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Description, name: description, widget: text }
-          - label: Donation Amount Presets
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: "1 · Heading", name: heading, widget: string }
+          - { label: "1 · Description", name: description, widget: text }
+          - label: "2 · Donation Amount Presets"
             name: amountPresets
             widget: list
+            summary: "{{fields.label}} — {{fields.value}}"
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Value, name: value, widget: number }
               - { label: Description, name: description, widget: string }
-          - label: Frequency Options
+          - label: "3 · Frequency Options"
             name: frequencyOptions
             widget: list
+            summary: "{{fields.label}}"
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Default Active, name: isDefault, widget: boolean, default: false }
               - { label: Note, name: note, widget: string, required: false }
-          - label: Field Labels
+          - label: "4 · Form Field Labels"
             name: fieldLabels
             widget: object
+            collapsed: true
             fields:
               - { label: Full Name, name: fullName, widget: string }
               - { label: Email, name: email, widget: string }
@@ -269,15 +309,17 @@ collections:
               - { label: Updates Checkbox, name: updatesCheckbox, widget: string }
 
       - name: getInvolved
-        label: Get Involved Page
+        label: "Get Involved"
         file: content/pages/get-involved.md
+        description: "Get Involved page — intro and opportunity cards."
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Intro, name: intro, widget: text }
-          - label: Opportunities
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: "1 · Heading", name: heading, widget: string }
+          - { label: "1 · Intro", name: intro, widget: text }
+          - label: "2 · Opportunities"
             name: opportunities
             widget: list
+            summary: "{{fields.title}}"
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
@@ -285,84 +327,216 @@ collections:
               - { label: CTA URL, name: ctaUrl, widget: string }
 
       - name: contactUs
-        label: Contact Us Page
+        label: "Contact Us"
         file: content/pages/contact-us.md
+        description: "Contact page copy and contact details."
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Intro, name: intro, widget: text }
-          - { label: Email, name: email, widget: string }
-          - { label: Phone, name: phone, widget: string, required: false }
-          - { label: Address, name: address, widget: text, required: false }
-          - label: Contact CTA
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: "1 · Heading", name: heading, widget: string }
+          - { label: "1 · Intro", name: intro, widget: text }
+          - { label: "2 · Email", name: email, widget: string }
+          - { label: "2 · Phone", name: phone, widget: string, required: false }
+          - { label: "2 · Address", name: address, widget: text, required: false }
+          - label: "3 · Contact CTA"
             name: cta
             widget: object
+            collapsed: true
             fields:
               - { label: Label, name: label, widget: string }
               - { label: URL, name: url, widget: string }
 
+  # ─────────────────────────────────────────────
+  # STORIES (blog posts)
+  # ─────────────────────────────────────────────
+  - name: blog
+    label: Stories
+    label_singular: Story
+    description: "Write and publish Stories that appear on /stories/. Use Draft → In Review → Published workflow."
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    sortable_fields: ["title", "publishedAt", "status"]
+    summary: "{{title}} — {{status}}"
+    view_filters:
+      - label: Published
+        field: status
+        pattern: published
+      - label: Draft
+        field: status
+        pattern: draft
+    fields:
+      - { label: "1 · Title", name: title, widget: string, hint: "Story headline shown on cards and the post page." }
+      - { label: "Slug (URL)", name: slug, widget: string, hint: "Becomes /stories/your-slug/. Use lowercase with hyphens." }
+      - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards." }
+      - { label: Cover Image, name: coverImage, widget: image }
+      - { label: Cover Image Alt, name: coverImageAlt, widget: string }
+      - { label: Author, name: author, widget: string }
+
+      - label: "2 · Category Tags"
+        name: tags
+        widget: select
+        multiple: true
+        hint: "The FIRST tag drives Stories page filters. Prefer one of the listed categories."
+        options:
+          - Student Stories
+          - Events & Campus Life
+          - Impact Reports
+          - Donor Highlights
+        default: []
+
+      - label: "3 · Publishing"
+        name: status
+        widget: select
+        options: ["draft", "published"]
+        default: "draft"
+        hint: "Only published stories appear on the live Stories page."
+      - { label: Published At, name: publishedAt, widget: datetime, required: false }
+
+      - label: "4 · SEO (optional)"
+        name: seoTitle
+        widget: string
+        required: false
+        hint: "Leave blank to use the story title."
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - { label: Social Share Image (OG), name: ogImage, widget: image, required: false }
+
+      - label: "5 · Story Body"
+        name: body
+        widget: markdown
+        hint: "Main article content. Supports headings, lists, links, and images."
+
+  # ─────────────────────────────────────────────
+  # REPORTS (PDF stories)
+  # ─────────────────────────────────────────────
+  - name: reports
+    label: Reports & PDFs
+    label_singular: Report
+    description: "Impact reports and PDF documents shown in Stories. Upload the PDF and set status to published when ready."
+    folder: content/reports
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    summary: "{{title}} — {{status}}"
+    fields:
+      - { label: "1 · Title", name: title, widget: string }
+      - { label: "Slug (URL)", name: slug, widget: string, hint: "e.g. impact-report-2025 → /stories/impact-report-2025/" }
+      - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards and above the PDF viewer." }
+      - { label: Cover Image, name: coverImage, widget: image, hint: "Thumbnail for Stories listings." }
+      - { label: Cover Image Alt, name: coverImageAlt, widget: string }
+      - { label: Author, name: author, widget: string, default: "Learn N' Lunch Editorial Team" }
+      - label: "2 · Report PDF"
+        name: reportPdf
+        widget: file
+        required: true
+        hint: "Upload the PDF. Visitors can preview and download it on the report page."
+        media_folder: assets/uploads
+        public_folder: /assets/uploads
+      - { label: Report PDF Label, name: reportPdfLabel, widget: string, required: false, hint: "Accessible document name (e.g. Impact Report 2025)" }
+      - label: "3 · Intro Text"
+        name: body
+        widget: markdown
+        required: false
+        hint: "Optional short intro shown above the PDF viewer."
+      - { label: "4 · Status", name: status, widget: select, options: ["draft", "published"], default: "draft" }
+      - { label: Published At, name: publishedAt, widget: datetime, required: false }
+      - { label: SEO Title, name: seoTitle, widget: string, required: false }
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - { label: OG Image, name: ogImage, widget: image, required: false }
+
+  # ─────────────────────────────────────────────
+  # PEOPLE
+  # ─────────────────────────────────────────────
   - name: team
     label: Team Members
+    label_singular: Team Member
+    description: "People shown on the About Us team section. Set Active off to hide someone without deleting them."
     folder: content/team
     create: true
     slug: "{{slug}}"
     format: frontmatter
     extension: md
+    summary: "{{name}} — {{role}}"
+    sortable_fields: ["name", "order", "isActive"]
     fields:
-      - { label: Name, name: name, widget: string }
-      - { label: Role, name: role, widget: string }
+      - { label: "1 · Name", name: name, widget: string }
+      - { label: Role / Title, name: role, widget: string }
       - { label: Bio, name: bio, widget: text }
       - { label: Photo, name: photo, widget: image }
       - { label: Photo Alt, name: photoAlt, widget: string }
-      - { label: Card Variant, name: cardVariant, widget: select, options: ["member-card-yellow", "member-card-cyan"] }
-      - { label: Card Background Override, name: cardBackground, widget: string, required: false }
-      - { label: Row Layout, name: layout, widget: select, options: ["pair", "solo"], default: "pair" }
-      - { label: Feature Order, name: order, widget: number, value_type: int, min: 1 }
-      - { label: Active, name: isActive, widget: boolean, default: true }
+      - label: "2 · Card Style"
+        name: cardVariant
+        widget: select
+        options:
+          - { label: Yellow card, value: "member-card-yellow" }
+          - { label: Cyan card, value: "member-card-cyan" }
+      - { label: Card Background Override, name: cardBackground, widget: string, required: false, hint: "Optional custom CSS color. Leave blank to use the card style above." }
+      - label: "3 · Layout"
+        name: layout
+        widget: select
+        options: ["pair", "solo"]
+        default: "pair"
+        hint: "pair = side-by-side row; solo = full-width feature."
+      - { label: Display Order, name: order, widget: number, value_type: int, min: 1, hint: "Lower numbers appear first." }
+      - { label: Active on site, name: isActive, widget: boolean, default: true }
 
   - name: testimonials
     label: Testimonials
+    label_singular: Testimonial
+    description: "Quotes in the homepage “Moments That Matter” testimonial carousel."
     folder: content/testimonials
     create: true
     slug: "{{slug}}"
     format: frontmatter
     extension: md
+    summary: "{{authorName}} — {{affiliation}}"
+    sortable_fields: ["authorName", "order", "isActive"]
     fields:
-      - { label: Quote, name: quote, widget: text }
+      - { label: "1 · Quote", name: quote, widget: text }
       - { label: Author Name, name: authorName, widget: string }
-      - { label: Affiliation, name: affiliation, widget: string }
+      - { label: Affiliation / School, name: affiliation, widget: string }
       - { label: Photo, name: photo, widget: image }
       - { label: Photo Alt, name: photoAlt, widget: string }
-      - { label: Display Order, name: order, widget: number, value_type: int, min: 1 }
-      - { label: Active, name: isActive, widget: boolean, default: true }
+      - { label: "2 · Display Order", name: order, widget: number, value_type: int, min: 1, hint: "Lower numbers appear first in the carousel." }
+      - { label: Active on site, name: isActive, widget: boolean, default: true }
 
+  # ─────────────────────────────────────────────
+  # NUMBERS & STATS
+  # ─────────────────────────────────────────────
   - name: stats
-    label: Stats
+    label: Numbers & Stats
+    description: "Numeric callouts and the Impact campus map. Page headings for Impact live under Website Pages → Impact."
     files:
       - name: homeStats
-        label: Home Stats
+        label: "Home — Stat Counters"
         file: content/stats/home.json
         format: json
+        description: "Animated numbers on the homepage impact section."
         fields:
-          - label: Items
+          - label: Stat Items
             name: items
             widget: list
+            summary: "{{fields.valueLabel}} — {{fields.description}}"
             fields:
-              - { label: Value Label, name: valueLabel, widget: string }
-              - { label: Numeric Target, name: target, widget: number, value_type: int, min: 0 }
+              - { label: Value Label, name: valueLabel, widget: string, hint: "What visitors see, e.g. 500+" }
+              - { label: Numeric Target, name: target, widget: number, value_type: int, min: 0, hint: "Number used for the count-up animation." }
               - { label: Description, name: description, widget: string }
               - { label: Sort Order, name: order, widget: number, value_type: int, min: 1 }
 
       - name: impactStats
-        label: Impact Stats
+        label: "Impact — Stat Counters"
         file: content/stats/impact.json
         format: json
+        description: "Large numbers on the Impact page."
         fields:
-          - label: Items
+          - label: Stat Items
             name: items
             widget: list
+            summary: "{{fields.primaryLabel}} {{fields.target}}"
             fields:
-              - { label: Prefix, name: prefix, widget: string, required: false }
+              - { label: Prefix, name: prefix, widget: string, required: false, hint: "Optional text before the number, e.g. +" }
               - { label: Numeric Target, name: target, widget: number, value_type: int, min: 0 }
               - { label: Primary Label, name: primaryLabel, widget: string }
               - { label: Secondary Label, name: secondaryLabel, widget: string }
@@ -370,9 +544,10 @@ collections:
               - { label: Sort Order, name: order, widget: number, value_type: int, min: 1 }
 
       - name: impactMap
-        label: Impact Campus Map
+        label: "Impact — Campus Map"
         file: content/stats/impact-map.json
         format: json
+        description: "Interactive campus map on the Impact page. Pin positions are percentages of the map image."
         fields:
           - { label: Map Image, name: mapImage, widget: image }
           - { label: Map Image Alt, name: mapAlt, widget: string }
@@ -386,6 +561,7 @@ collections:
             name: cluster
             widget: object
             collapsed: true
+            hint: "Groups nearby campuses into one pin on small screens."
             fields:
               - label: Campus IDs in cluster
                 name: ids
@@ -396,6 +572,7 @@ collections:
           - label: Campuses
             name: campuses
             widget: list
+            summary: "{{fields.abbr}} — {{fields.name}}"
             fields:
               - { label: ID, name: id, widget: string, hint: "Unique slug, e.g. makerere" }
               - { label: Abbreviation, name: abbr, widget: string }
@@ -438,61 +615,34 @@ collections:
                   - { label: Value, name: value, widget: string }
                   - { label: Label, name: label, widget: string }
 
-  - name: blog
-    label: Blog Posts
-    folder: content/blog
-    create: true
-    slug: "{{slug}}"
-    format: frontmatter
-    extension: md
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string, hint: "Used for /stories/slug/" }
-      - { label: Excerpt, name: excerpt, widget: text }
-      - { label: Cover Image, name: coverImage, widget: image }
-      - { label: Cover Image Alt, name: coverImageAlt, widget: string }
-      - { label: Author, name: author, widget: string }
-      - label: Tags
-        name: tags
-        widget: list
-        default: []
-      - { label: Status, name: status, widget: select, options: ["draft", "published"], default: "draft" }
-      - { label: Published At, name: publishedAt, widget: datetime, required: false }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - { label: SEO Description, name: seoDescription, widget: text, required: false }
-      - { label: OG Image, name: ogImage, widget: image, required: false }
-      - { label: Body, name: body, widget: markdown }
-
-  - name: reports
-    label: Reports & Documents
-    label_singular: Report
-    folder: content/reports
-    create: true
-    slug: "{{slug}}"
-    format: frontmatter
-    extension: md
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string, hint: "Used for /stories/slug/ (e.g. impact-report-2026)" }
-      - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards and above the PDF viewer." }
-      - { label: Cover Image, name: coverImage, widget: image, hint: "Thumbnail image for Stories listings." }
-      - { label: Cover Image Alt, name: coverImageAlt, widget: string }
-      - { label: Author, name: author, widget: string, default: "Learn N' Lunch Editorial Team" }
-      - label: Report PDF
-        name: reportPdf
-        widget: file
-        required: true
-        hint: "Upload the PDF. It will be previewable and downloadable on the report page."
-        media_folder: assets/uploads
-        public_folder: /assets/uploads
-      - { label: Report PDF Label, name: reportPdfLabel, widget: string, required: false, hint: "Accessible document name (e.g. Impact Report 2025)" }
-      - label: Intro Text
-        name: body
-        widget: markdown
-        required: false
-        hint: "Optional short intro shown above the PDF viewer."
-      - { label: Status, name: status, widget: select, options: ["draft", "published"], default: "draft" }
-      - { label: Published At, name: publishedAt, widget: datetime, required: false }
-      - { label: SEO Title, name: seoTitle, widget: string, required: false }
-      - { label: SEO Description, name: seoDescription, widget: text, required: false }
-      - { label: OG Image, name: ogImage, widget: image, required: false }
+  # ─────────────────────────────────────────────
+  # SITE-WIDE SETTINGS
+  # ─────────────────────────────────────────────
+  - name: settings
+    label: Site Settings
+    description: "Global site name, SEO defaults, navigation, and footer. Change these carefully — they affect every page."
+    files:
+      - name: site
+        label: "Global Site Settings"
+        file: content/settings/site.json
+        format: json
+        fields:
+          - { label: "1 · Site Name", name: siteName, widget: string }
+          - { label: Default SEO Title, name: defaultSeoTitle, widget: string }
+          - { label: Default SEO Description, name: defaultSeoDescription, widget: text }
+          - label: "2 · Navigation"
+            name: navigation
+            widget: list
+            summary: "{{fields.label}} → {{fields.href}}"
+            hint: "Main menu links shown in the site header."
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: href, widget: string, hint: "Example: /about-us/ or https://..." }
+          - label: "3 · Footer Social Links"
+            name: socialLinks
+            widget: list
+            summary: "{{fields.platform}}"
+            fields:
+              - { label: Platform, name: platform, widget: string, hint: "e.g. Instagram, TikTok" }
+              - { label: URL, name: url, widget: string }
+          - { label: "4 · Footer Copyright", name: footerCopyright, widget: string }

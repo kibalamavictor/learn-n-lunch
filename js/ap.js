@@ -352,46 +352,113 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =======================
-     MOMENTS PARALLAX
+     MOMENTS CARD DECK STACK
+     Pins a 70vh stage (title + cards + banner) in the viewport.
+     (CSS sticky fails under body { overflow-x: hidden }.)
   ==========================*/
-  (function initMomentsParallax() {
+  (function initMomentsStack() {
     const section = document.querySelector(".moments-section");
-    const collage = document.querySelector(".moments-collage");
-    const photos = section ? Array.from(section.querySelectorAll(".moments-collage .photo")) : [];
-    if (!section || !collage || photos.length === 0) return;
+    const stack = section ? section.querySelector(".moments-stack") : null;
+    const stage = stack ? stack.querySelector(".moments-stack-stage") : null;
+    const cards = stage ? stage.querySelector(".moments-stack-cards") : null;
+    const photos = cards
+      ? Array.from(cards.querySelectorAll(".photo"))
+      : stage
+        ? Array.from(stage.querySelectorAll(".photo"))
+        : [];
+    if (!section || !stack || !stage || photos.length === 0) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion) {
+      photos.forEach((photo, index) => {
+        photo.classList.add("moments-photo--in-deck");
+        photo.style.opacity = "1";
+        photo.style.zIndex = String(index + 1);
+        photo.style.transform = `translate3d(-50%, -50%, 0) rotate(var(--moments-rotate, 0deg))`;
+      });
+      return;
+    }
 
     let ticking = false;
+    const count = photos.length;
+    const FRAME_RATIO = 0.7;
+    const FRAME_TOP_RATIO = 0.15;
 
-    function updateMomentsParallax() {
-      const viewportCenter = window.innerHeight * 0.5;
-      const focusRadius = window.innerHeight * 0.42;
-      let activeIndex = -1;
-      let highestFocus = 0;
-      const metrics = photos.map((photo, index) => {
-        const rect = photo.getBoundingClientRect();
-        const photoCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(photoCenter - viewportCenter);
-        const focus = Math.max(0, 1 - distance / focusRadius);
-        if (focus > highestFocus) {
-          highestFocus = focus;
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function updateMomentsStack() {
+      const rect = stack.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      const frameH = viewH * FRAME_RATIO;
+      const frameTop = viewH * FRAME_TOP_RATIO;
+      const scrollable = Math.max(1, stack.offsetHeight - viewH);
+      const rawProgress = (-rect.top) / scrollable;
+      const progress = clamp(rawProgress, 0, 1);
+
+      stage.style.height = `${frameH}px`;
+      stage.classList.remove("is-fixed", "is-bottom");
+
+      if (rect.top <= frameTop && rect.bottom > frameTop + frameH) {
+        stage.classList.add("is-fixed");
+        stage.style.top = `${frameTop}px`;
+      } else if (rect.bottom <= frameTop + frameH) {
+        stage.classList.add("is-bottom");
+        stage.style.top = "";
+      } else {
+        stage.style.top = "";
+      }
+
+      const cardProgress = progress * count;
+      let activeIndex = 0;
+
+      // Grow while arriving, peak on top, then shrink as newer cards stack above.
+      const SCALE_START = 0.78;
+      const SCALE_PEAK = 1.14;
+      const SCALE_SETTLED = 0.88;
+
+      photos.forEach((photo, index) => {
+        const local = cardProgress - index;
+        let yOffset = 120;
+        let opacity = 0;
+        let scale = SCALE_START;
+
+        if (local >= 1) {
+          // Fully stacked — gradually shrink as more cards pile on top
+          const buried = local - 1;
+          const shrinkT = clamp(buried / 1.75, 0, 1);
+          yOffset = 0;
+          opacity = 1;
+          scale = SCALE_PEAK + (SCALE_SETTLED - SCALE_PEAK) * shrinkT;
+          activeIndex = index;
+        } else if (local > 0) {
+          // Flying in — gradually grow toward peak size
+          const t = local;
+          yOffset = (1 - t) * 120;
+          opacity = Math.min(1, t * 1.25);
+          scale = SCALE_START + (SCALE_PEAK - SCALE_START) * t;
           activeIndex = index;
         }
-        return { photo, photoCenter, focus };
-      });
 
-      metrics.forEach(({ photo, photoCenter, focus }, index) => {
-        const isActive = index === activeIndex && focus > 0.2;
-        const parallaxY = (photoCenter - viewportCenter) * -0.18;
-        const scale = isActive ? 1 + focus * 0.14 : 1 + focus * 0.04;
-
-        photo.style.setProperty("--moments-y", `${parallaxY.toFixed(1)}px`);
+        photo.style.opacity = String(clamp(opacity, 0, 1));
+        photo.style.zIndex = String(index + 1);
         photo.style.setProperty("--moments-scale", scale.toFixed(3));
-        photo.style.zIndex = isActive ? "20" : String(2 + Math.round(focus * 6));
-        photo.classList.toggle("moments-photo--active", isActive);
+        photo.style.transform =
+          `translate3d(` +
+          `calc(-50% + var(--moments-ox, 0px)), ` +
+          `calc(-50% + ${yOffset.toFixed(2)}% + var(--moments-oy, 0px)), 0)` +
+          ` scale(var(--moments-scale, 1))` +
+          ` rotate(var(--moments-rotate, 0deg))`;
+        photo.classList.toggle("moments-photo--in-deck", local > 0);
+        photo.classList.toggle("moments-photo--active", false);
       });
+
+      const activePhoto = photos[activeIndex];
+      if (activePhoto && cardProgress > 0) {
+        activePhoto.classList.add("moments-photo--active");
+        activePhoto.style.zIndex = String(count + 1);
+      }
 
       ticking = false;
     }
@@ -399,13 +466,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function onScrollOrResize() {
       if (!ticking) {
         ticking = true;
-        requestAnimationFrame(updateMomentsParallax);
+        requestAnimationFrame(updateMomentsStack);
       }
     }
 
     window.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize, { passive: true });
-    updateMomentsParallax();
+    updateMomentsStack();
   })();
 
 

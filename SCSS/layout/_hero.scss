@@ -493,9 +493,14 @@ a {
             //     // display: none;
             // }
 
+            .scrolling-banner,
+            .scrolling-banner-2 {
+                padding: calc(1.2rem / 1.3) 0;
+            }
+
             .scrolling-banner .banner-text-2,
             .scrolling-banner-2 .banner-text-2 {
-                font-size: 1.5rem;
+                font-size: calc(1.5rem / 1.3);
             }
 
             .hero {

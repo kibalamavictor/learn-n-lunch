@@ -1,4 +1,4 @@
-const { escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug } = require("../utils");
+const { escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug, normalizeListStrings } = require("../utils");
 const { renderPage } = require("../partials");
 
 function renderHome({ site, page, stats, testimonials, publishedPosts }) {
@@ -11,7 +11,8 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     )
     .join("\n                    ");
 
-  const missionBannerText = `${page.missionBanner[0] || "NO STUDENT SHOULD STUDY HUNGRY"} • LEARN N' LUNCH •  • `;
+  const missionChunks = normalizeListStrings(page.missionBanner, ["chunk"]);
+  const missionBannerText = `${missionChunks[0] || "NO STUDENT SHOULD STUDY HUNGRY"} • LEARN N' LUNCH •  • `;
   const bannerRepeats = Array.from({ length: 8 })
     .map(() => `<span class="banner-text-2">${escapeHtml(missionBannerText)}</span>`)
     .join("\n            ");
@@ -41,7 +42,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     .join("\n");
 
   function renderFlowSteps(steps, arrowClass, arrowImage) {
-    return steps
+    return normalizeListStrings(steps, ["step"])
       .map((step) => {
         const arrow = `<span class="flow-arrow${arrowClass ? ` ${arrowClass}` : ""}">
                         <img src="${resolveAsset(depth, arrowImage)}" />
@@ -106,9 +107,10 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
   const photos = page.moments.photos
     .map(
       (photo, index) =>
-        `<img src="${resolveAsset(depth, photo.image)}" alt="${escapeHtml(photo.alt)}" class="photo ${photoClasses[index] || "p1"}">`
+        `<img src="${resolveAsset(depth, photo.image)}" alt="${escapeHtml(photo.alt)}" class="photo ${photoClasses[index] || "p1"}" data-stack-index="${index}">`
     )
-    .join("\n    ");
+    .join("\n      ");
+  const stackCount = page.moments.photos.length;
 
   const sloganRepeats = Array.from({ length: 8 })
     .map(() => `<span class="banner-text-2">${escapeHtml(page.moments.sloganText)}</span>`)
@@ -265,14 +267,20 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
 </section>
 
 <section class="moments-section">
-  <div class="moments-heading-section">
-    <h2 class="moments-heading">MOMENTS THAT<br>MATTER</h2>
-  </div>
-
   <div class="moments-collage">
-    ${photos}
-    <div class="slogan">
+    <div class="moments-stack" style="--moments-stack-count: ${stackCount}">
+      <div class="moments-stack-stage">
+        <div class="moments-heading-section">
+          <h2 class="moments-heading">MOMENTS THAT<br>MATTER</h2>
+        </div>
+        <div class="moments-stack-cards">
+      ${photos}
+        </div>
+        <div class="slogan">
         ${sloganRepeats}
+        </div>
+      </div>
+      <div class="moments-stack-track" aria-hidden="true"></div>
     </div>
   </div>
 </section>

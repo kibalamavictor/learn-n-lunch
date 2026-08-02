@@ -193,7 +193,11 @@
 
   @media (max-width: 768px) {
     .impact-hero-top {
-      padding: 5rem 1.5rem 0;
+      padding: 1rem 1.5rem 0;
+    }
+
+    .impact-hero-subtitle {
+      padding: 0 0 1rem;
     }
 
     .impact-hero-image-container {

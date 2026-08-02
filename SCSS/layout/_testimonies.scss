@@ -31,6 +31,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   min-height: 500px;
+  overflow: visible;
 }
 
 .mtm-profile-image-container {
@@ -39,6 +40,7 @@
   align-items: center;
   background-color: #fff;
   padding: 2rem;
+  overflow: visible;
 }
 
 .mtm-profile-image {
@@ -48,6 +50,7 @@
   object-fit: cover;
   border: 2px solid #000;
   box-shadow: 3px 4px #000;
+  flex-shrink: 0;
 }
 
 .mtm-right-body {
@@ -57,6 +60,7 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  overflow: visible;
 }
 
 .mtm-author-row {
@@ -69,6 +73,7 @@
   right: 5rem;
   display: flex;
   gap: 8px;
+  z-index: 2;
 }
 
 .mtm-nav-button {
@@ -149,27 +154,38 @@
   .mtm-quote {
     font-size: 1.75rem;
   }
+
+  .mtm-navigation {
+    right: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   #app {
-    padding-bottom: 0;
+    padding: 0;
   }
 
   .mtm-testimonial-container,
   .mtm-right-section {
-    min-height: auto;
+    min-height: 0;
   }
 
   .mtm-right-section {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
     background-color: #f5b941;
+    overflow: visible;
   }
 
   .mtm-profile-image-container {
+    order: -1;
     background-color: transparent;
     padding: 2rem 1.5rem 0;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
   }
 
   .mtm-profile-image {
@@ -178,9 +194,11 @@
   }
 
   .mtm-right-body {
+    order: 1;
     padding: 0 1.5rem 2.5rem;
-    min-height: auto;
+    min-height: 0;
     justify-content: flex-start;
+    overflow: visible;
   }
 
   .mtm-quote {

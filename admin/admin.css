@@ -1,0 +1,453 @@
+/* Learn N' Lunch — Decap CMS admin chrome
+   Matches site neo-brutalist aesthetic: Anton + Nunito, hard borders, offset shadows.
+   Uses resilient attribute selectors so Emotion class hashes don't break branding. */
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap");
+
+:root {
+  --lnl-blue: #d3eeff;
+  --lnl-blue-deep: #157da6;
+  --lnl-yellow: #f6c33c;
+  --lnl-gold: #fdb714;
+  --lnl-sky: #0ea5e9;
+  --lnl-sky-hover: #0284c7;
+  --lnl-mint: #61cdbb;
+  --lnl-green: #2f9f82;
+  --lnl-black: #000;
+  --lnl-white: #fff;
+  --lnl-gray: #464646;
+  --lnl-border: 2px solid #000;
+  --lnl-shadow: 4px 4px 0 #000;
+  --lnl-shadow-sm: 2px 2px 0 #000;
+  --lnl-font-display: "Anton", sans-serif;
+  --lnl-font-body: "Nunito", sans-serif;
+  --lnl-brand-bar-h: 44px;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--lnl-font-body) !important;
+  color: var(--lnl-black) !important;
+  background: var(--lnl-blue) !important;
+  background-image:
+    linear-gradient(180deg, #d3eeff 0%, #eaf6ff 45%, #fff8e7 100%) !important;
+}
+
+#nc-root,
+[id^="nc-root"] {
+  font-family: var(--lnl-font-body) !important;
+  min-height: 100vh;
+}
+
+/* ——— Typography ——— */
+h1,
+h2,
+h3,
+[class*="AppHeaderContent"] h1,
+[class*="CollectionLabel"],
+[class*="CardHeading"],
+[class*="EditorContainer"] h1 {
+  font-family: var(--lnl-font-display) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em;
+  font-weight: 400 !important;
+}
+
+p,
+label,
+span,
+li,
+td,
+th,
+input,
+textarea,
+select,
+button {
+  font-family: var(--lnl-font-body) !important;
+}
+
+/* ——— Header ——— */
+header,
+[class*="AppHeader"],
+[class*="AppHeaderContent"] {
+  background: var(--lnl-blue) !important;
+  border-bottom: var(--lnl-border) !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+}
+
+[class*="AppHeaderButton"],
+[class*="AppHeaderContent"] a,
+[class*="AppHeaderContent"] button {
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+}
+
+[class*="AppHeaderButton"]:hover,
+[class*="AppHeaderContent"] a:hover,
+[class*="AppHeaderContent"] button:hover {
+  background: var(--lnl-yellow) !important;
+  border-color: var(--lnl-black) !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+}
+
+/* ——— Main shell / sidebar ——— */
+[class*="AppMainContainer"],
+[class*="CollectionContainer"],
+[class*="Entries"],
+main {
+  background: transparent !important;
+}
+
+[class*="SidebarContainer"],
+aside,
+[class*="SidebarNav"] {
+  background: var(--lnl-white) !important;
+  border-right: var(--lnl-border) !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+}
+
+[class*="SidebarNavLink"],
+[class*="SidebarLink"],
+aside a {
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  color: var(--lnl-black) !important;
+}
+
+[class*="SidebarNavLink"]:hover,
+[class*="SidebarLink"]:hover,
+aside a:hover {
+  background: var(--lnl-blue) !important;
+}
+
+[class*="SidebarNavLink-active"],
+[class*="SidebarNavLink"][aria-current="page"],
+aside a[aria-current="page"] {
+  background: var(--lnl-yellow) !important;
+  box-shadow: inset 4px 0 0 var(--lnl-black) !important;
+}
+
+/* ——— Cards / collection list (main cards keep shadow) ——— */
+[class*="Card"],
+[class*="EntryCard"],
+[class*="WorkflowCard"],
+[class*="ListCard"],
+[class*="FileCard"] {
+  background: var(--lnl-white) !important;
+  border: var(--lnl-border) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--lnl-shadow) !important;
+}
+
+[class*="Card"]:hover,
+[class*="EntryCard"]:hover,
+[class*="FileCard"]:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--lnl-black) !important;
+}
+
+/* Nested / inner panels — border only, no shadow */
+[class*="ControlContainer"],
+[class*="ControlContainerControl"],
+[class*="ListItem"],
+[class*="ObjectControl"],
+[class*="ListControl"],
+[class*="EditorContainer"] [class*="Card"],
+[class*="ControlPaneContainer"] [class*="Card"],
+[class*="ControlPaneContainer"] [class*="ListCard"],
+[class*="EditorContainer"] [class*="EntryCard"] {
+  background: var(--lnl-white) !important;
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+[class*="EditorContainer"] [class*="Card"]:hover,
+[class*="ControlPaneContainer"] [class*="Card"]:hover,
+[class*="ControlContainer"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Headings / titles — no boxes */
+[class*="CollectionTop"],
+[class*="CollectionLabel"],
+[class*="CardHeading"],
+[class*="CollectionDescription"],
+[class*="CollectionTop"] h1,
+[class*="CollectionTop"] h2,
+[class*="AppHeaderContent"] h1,
+[class*="EditorContainer"] h1,
+[class*="FieldLabel"],
+label[class*="label"],
+[class*="ControlLabel"],
+[class*="WorkflowColumnHeader"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ——— Editor pane ——— */
+[class*="ControlContainer"],
+[class*="ControlPaneContainer"],
+[class*="EditorControl"],
+[class*="EditorContainer"],
+[class*="ViewStyleToggle"] {
+  background: var(--lnl-white) !important;
+}
+
+[class*="ControlContainer"],
+[class*="ControlContainerControl"] {
+  border-radius: 0 !important;
+}
+
+[class*="ControlContainer"] {
+  margin-bottom: 1rem !important;
+}
+
+[class*="FieldLabel"],
+label[class*="label"],
+[class*="ControlLabel"] {
+  font-weight: 800 !important;
+  color: var(--lnl-black) !important;
+  text-transform: none !important;
+  font-family: var(--lnl-font-body) !important;
+}
+
+/* Hints / helper text */
+[class*="FieldHint"],
+[class*="hint"],
+[class*="HelperText"] {
+  color: var(--lnl-gray) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.45 !important;
+}
+
+/* Inputs */
+input,
+textarea,
+select,
+[contenteditable="true"],
+[class*="textInput"],
+[class*="TextInput"],
+[class*="SelectControl"],
+[class*="DateTimeControl"] input {
+  border: var(--lnl-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--lnl-font-body) !important;
+  background: #fff !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+[contenteditable="true"]:focus {
+  outline: 2px solid var(--lnl-sky) !important;
+  outline-offset: 1px !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+}
+
+/* ——— Buttons (neo-brutalist CTAs) ——— */
+button,
+[class*="Button"],
+[class*="button"],
+a[class*="Button"] {
+  border-radius: 0 !important;
+  font-weight: 800 !important;
+  font-family: var(--lnl-font-body) !important;
+}
+
+/* Primary actions */
+[class*="SaveButton"],
+[class*="PublishButton"],
+[class*="LoginButton"],
+button[class*="primary"],
+[class*="Button-primary"],
+[class*="nc-githubAuthenticationPage-button"] {
+  background: var(--lnl-sky) !important;
+  color: var(--lnl-white) !important;
+  border: var(--lnl-border) !important;
+  box-shadow: var(--lnl-shadow) !important;
+  text-transform: none !important;
+}
+
+[class*="SaveButton"]:hover,
+[class*="PublishButton"]:hover,
+[class*="LoginButton"]:hover,
+button[class*="primary"]:hover {
+  background: var(--lnl-sky-hover) !important;
+}
+
+/* Secondary / new entry */
+[class*="NewEntryButton"],
+[class*="CollectionTopNewButton"],
+[class*="ToolbarButton"] {
+  background: var(--lnl-yellow) !important;
+  color: var(--lnl-black) !important;
+  border: var(--lnl-border) !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+}
+
+/* ——— Login page ——— */
+[class*="AuthenticationPage"],
+[class*="LoginPage"],
+[class*="nc-githubAuthenticationPage"] {
+  background: transparent !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[class*="AuthenticationPage"] > div,
+[class*="LoginPage"] > div,
+[class*="nc-githubAuthenticationPage-card"] {
+  background: var(--lnl-white) !important;
+  border: var(--lnl-border) !important;
+  box-shadow: 8px 8px 0 var(--lnl-black) !important;
+  border-radius: 0 !important;
+  padding: 2rem !important;
+  max-width: 420px;
+}
+
+[class*="AuthenticationPage"] h1,
+[class*="LoginPage"] h1,
+[class*="nc-githubAuthenticationPage"] h1 {
+  font-family: var(--lnl-font-display) !important;
+  text-transform: uppercase !important;
+  font-size: 2rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+[class*="AuthenticationPage"] p,
+[class*="LoginPage"] p {
+  font-family: var(--lnl-font-body) !important;
+  line-height: 1.5 !important;
+}
+
+/* Brand strip — not sticky, so it doesn’t cover the editor publish toolbar */
+body::before {
+  content: "LEARN N' LUNCH · CMS";
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  height: var(--lnl-brand-bar-h);
+  box-sizing: border-box;
+  background: var(--lnl-black);
+  color: var(--lnl-yellow);
+  font-family: var(--lnl-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0 1.25rem;
+  border-bottom: var(--lnl-border);
+}
+
+/* Editor publish / save toolbar — always visible above content */
+[class*="EditorToolbar"],
+[class*="ToolbarContainer"],
+[class*="EditorContainer"] > header,
+[class*="EntryEditor"] header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2000 !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  min-height: 56px !important;
+  padding: 0.5rem 1rem !important;
+  background: var(--lnl-blue) !important;
+  border-bottom: var(--lnl-border) !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+  box-sizing: border-box !important;
+}
+
+[class*="EditorToolbar"] > *,
+[class*="ToolbarContainer"] > *,
+[class*="ToolbarSubSectionFirst"],
+[class*="ToolbarSubSectionLast"] {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+[class*="SaveButton"],
+[class*="PublishButton"],
+[class*="DeleteButton"],
+[class*="StatusPublishedButton"],
+[class*="PublishedButton"],
+[class*="ToolbarDropdown"],
+[class*="EditorToolbar"] button,
+[class*="ToolbarContainer"] button {
+  position: relative !important;
+  z-index: 2001 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* ——— Editorial workflow columns ——— */
+[class*="WorkflowList"],
+[class*="WorkflowColumn"] {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid #000 !important;
+  border-radius: 0 !important;
+}
+
+[class*="WorkflowColumnHeader"] {
+  font-family: var(--lnl-font-display) !important;
+  text-transform: uppercase !important;
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* ——— Media library ——— */
+[class*="MediaLibrary"],
+[class*="MediaLibraryModal"] {
+  border-radius: 0 !important;
+}
+
+[class*="MediaLibraryCard"] {
+  border: 1px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: var(--lnl-shadow-sm) !important;
+}
+
+/* ——— Toast / notifications ——— */
+[class*="Toast"],
+[class*="notif"] {
+  border: var(--lnl-border) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--lnl-shadow) !important;
+  font-family: var(--lnl-font-body) !important;
+}
+
+/* ——— Collection top description ——— */
+[class*="CollectionDescription"],
+[class*="description"] {
+  font-family: var(--lnl-font-body) !important;
+  line-height: 1.5 !important;
+  color: var(--lnl-gray) !important;
+}
+
+/* Soften Decap's default rounded look globally inside the app */
+#nc-root *,
+[id^="nc-root"] * {
+  border-radius: 0 !important;
+}

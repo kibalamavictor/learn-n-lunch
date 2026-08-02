@@ -160,6 +160,21 @@ function resolveMarkdownPaths(html, depth) {
   });
 }
 
+function normalizeListStrings(items, preferredKeys = []) {
+  if (!Array.isArray(items)) return [];
+  return items
+    .map((item) => {
+      if (typeof item === "string" || typeof item === "number") return String(item);
+      if (!item || typeof item !== "object") return "";
+      for (const key of preferredKeys) {
+        if (item[key] != null && item[key] !== "") return String(item[key]);
+      }
+      const first = Object.values(item).find((value) => value != null && value !== "");
+      return first != null ? String(first) : "";
+    })
+    .filter(Boolean);
+}
+
 module.exports = {
   escapeHtml,
   relPrefix,
@@ -173,6 +188,7 @@ module.exports = {
   markdownToHtml,
   resolveMarkdownPaths,
   normalizeTagSlug,
+  normalizeListStrings,
   getPostCategorySlug,
   getPostTagColor,
   getPostSearchText,

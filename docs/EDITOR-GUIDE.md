@@ -2,90 +2,82 @@
 
 This guide is for **non-technical editors** who want to update the Learn N’ Lunch website without using Git directly.
 
-## Where you edit the site
+## Where you edit
 
-- **Admin panel**: `/admin/` (on the live site)
-- **What happens when you publish**: Decap CMS commits your changes to GitHub, then the site rebuilds and updates.
+- **Admin panel**: `/admin/`
+- **Look & feel**: Clean, simple admin UI — easy to scan and edit, with light brand accent only
+- **What happens when you publish**: Decap commits your changes to GitHub, then the site rebuilds automatically.
 
 ## Logging in
 
 1. Go to `/admin/`
 2. Click **Login with GitHub**
-3. Approve the authorization prompt if requested
+3. Approve the authorization prompt if asked
 
-If login fails, tell a maintainer. Authentication is handled by a Cloudflare Worker OAuth proxy at `https://learn-n-lunch-auth.learnandlunch.workers.dev`.
+If login fails, tell a maintainer. Auth is handled by a Cloudflare Worker at `https://learn-n-lunch-auth.learnandlunch.workers.dev`.
 
-## How publishing reaches the live site
+## What’s in the sidebar (where to click)
 
-When you publish in the CMS, two automated GitHub workflows run:
+| Section | Use it for |
+| --- | --- |
+| **Website Pages** | Home, About, Impact, Stories listing, Donate, Get Involved, Contact |
+| **Stories** | Individual story posts on `/stories/` |
+| **Reports & PDFs** | Impact reports and downloadable PDFs |
+| **Team Members** | About page team cards |
+| **Testimonials** | Homepage quote carousel |
+| **Numbers & Stats** | Home/Impact counters and the campus map |
+| **Site Settings** | Site name, nav links, footer social links |
 
-1. **Build Site from CMS Content** — rebuilds HTML from `content/`, deploys the live site, then opens a short-lived PR to keep the repo’s HTML files in sync.
-2. **Deploy static site to GitHub Pages** — redeploys on other repo updates that are not CMS content changes.
+Tip: On long pages (especially **Home**), sections are numbered (`1 · Hero`, `2 · Mission Banner`, …) and many blocks start **collapsed** — open only the section you need.
 
-You only use `/admin/`; these workflows run automatically in the background.
+## Draft vs Published
 
-## Draft vs Published (important)
+Decap uses an **Editorial Workflow**:
 
-Decap is set up with an **Editorial Workflow**, which means items can be:
+- **Draft** — saved, not live
+- **In Review** — ready for someone else to check
+- **Published** — live after the build finishes
 
-- **Draft**: saved but not live on the website
-- **In Review**: ready for someone else to check
-- **Published**: live on the website after the build completes
+Only **Published** stories appear on the public Stories page.
 
-Only **Published** blog posts appear on the public **Stories** page.
+## Editing a page
 
-## Editing a page (small change example)
+1. Open **Website Pages**
+2. Choose a page (e.g. **Home** or **Impact**)
+3. Expand the section you want (e.g. `1 · Hero`)
+4. Edit text/images
+5. **Save**, then **Publish** when ready
 
-1. In `/admin/`, open **Pages**
-2. Choose a page (for example: **About Us** or **Impact**)
-3. Edit the text you want to change
-4. Click **Save**
-5. When ready, click **Publish**
+## Writing a Story
 
-Your change will appear on the live site after the automated build finishes.
+1. Open **Stories** → **New Story**
+2. Fill in:
+   - **Title**, **Slug** (URL becomes `/stories/<slug>/`)
+   - **Excerpt**, **Cover image** + alt text
+   - **Category Tags** — the **first** tag drives Stories filters
+   - **Status**: `published` when ready
+   - **Story Body** (markdown)
+3. **Save**, then **Publish**
 
-## Writing a Stories/Blog post
-
-1. In `/admin/`, open **Blog**
-2. Click **New Blog**
-3. Fill in:
-   - **Title**
-   - **Slug** (this becomes the URL: `/stories/<slug>/`)
-   - **Excerpt**
-   - **Cover image** + **Alt text**
-   - **Tags** (these drive filtering on the Stories page)
-   - **Status**: set to `published` when ready to go live
-   - **Published date**
-   - **SEO title/description**
-   - **OG image** (used for link previews when shared)
-4. Write the body using normal markdown:
-   - Bullet and numbered lists
-   - Links like `[text](https://example.com)`
-   - Images like `![alt text](/path/to/image.svg)` (or uploaded images later)
-   - Blockquotes like `> quoted text`
-5. Click **Save**, then **Publish** when ready
-
-## Tags and Stories filters
-
-The Stories page category buttons are driven by the **first tag** on a post.
-
-Use these tag names exactly:
+### Category tags (use exactly)
 
 - `Student Stories`
 - `Events & Campus Life`
 - `Impact Reports`
 - `Donor Highlights`
 
-## IMPORTANT: Placeholder posts currently live
+## Reports / PDFs
 
-Right now there are **10 posts labeled `[PLACEHOLDER]`** (campus/donor/impact stubs) that exist to fill out the Stories page and ensure all referenced URLs work.
+1. Open **Reports & PDFs**
+2. Upload the PDF, set cover image + excerpt
+3. Set **Status** to `published` when ready
 
-**These should be reviewed and rewritten with real content and real photos before being treated as genuine published posts.**
+## Publishing to the live site
 
-You can find them in the CMS under **Blog** (their titles include `[PLACEHOLDER]`), and they live as markdown files under `content/blog/`.
+When you publish, GitHub Actions rebuilds the site from `content/` and deploys it. You only use `/admin/`; builds run in the background.
 
-## What to do if you don’t see your change live
+## If you don’t see your change live
 
-- Wait a few minutes — the build needs time to run.
-- If it still doesn’t appear, tell a maintainer to check the GitHub Actions build logs.
-
+- Wait a few minutes for the build
+- Confirm the entry is **Published** (not Draft)
+- If it’s still missing, ask a maintainer to check GitHub Actions logs
