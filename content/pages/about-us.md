@@ -39,6 +39,6 @@ challenge:
     institutions and policymakers. Learn and Lunch exists to challenge this
     silence by documenting realities, amplifying student voices responsibly, and
     pushing for systemic solutions.
-  image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-08.webp
+  image: /assets/uploads/learn_and_lunch_01.webp
   imageAlt: Team members in branded apparel preparing meals
 ---
