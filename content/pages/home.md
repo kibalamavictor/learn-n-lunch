@@ -25,9 +25,9 @@ impactIntro:
     associations, and policymakers to strengthen campus welfare systems.
   ctaLabel: Learn More
   ctaUrl: /about-us/
-  leftImage: /impact-left.png
+  leftImage: /assets/uploads/learn_and_lunch_06.webp
   leftImageAlt: Students studying together
-  rightImage: /impact-right.png
+  rightImage: /assets/uploads/learn_and_lunch_08.webp
   rightImageAlt: Happy students outdoors
 modelWorkCards:
   - heading: Research and Evidence
@@ -75,7 +75,7 @@ coalitionCta:
 moments:
   heading: MOMENTS THAT MATTER
   photos:
-    - image: /img1.png
+    - image: /assets/uploads/body-soil_bean_spring_wrapers-5425.jpeg
       alt: Volunteer smiling at food shelf
     - image: /img2.png
       alt: Packing fresh produce
