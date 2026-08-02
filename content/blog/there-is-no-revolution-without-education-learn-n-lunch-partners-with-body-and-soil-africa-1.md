@@ -31,7 +31,7 @@ Learn and Lunch shared its vision of changing the narrative around campus hunger
 
 BODY & SOIL Africa's approach strongly aligned with this vision by emphasizing the connection between healthy bodies and healthy soils. Through sustainable agriculture, practical learning spaces, nutrition education, and community empowerment, they highlighted the importance of creating systems where people can actively participate in producing and accessing nutritious foods.
 
-![](/assets/uploads/learn-n-lunch-body-and-soil-partnership-01.webp)
+![](/assets/uploads/learn-n-lunch-body-and-soil-partnership-11.webp)
 
 Our minds were sparked by a practical nutrition education session led by Ms. Maria Schiffer — breaking down complex nutritional knowledge into a memorable leaflet covering balanced diets, nutrient maximization, food diversity, fiber, gut health, and the value of locally available foods such as beans, dubbed **"The Bean Protocol."**
 
