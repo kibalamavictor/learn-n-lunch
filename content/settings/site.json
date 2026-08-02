@@ -1,20 +1,50 @@
 {
-  "siteName": "Learn N' Lunch",
-  "defaultSeoTitle": "Learn N' Lunch - No Student Should Study Hungry",
+  "siteName": "Learn And Lunch",
+  "defaultSeoTitle": "Learn And Lunch - No Student Should Study Hungry",
   "defaultSeoDescription": "Student-led initiative addressing campus hunger through evidence, advocacy, and practical support.",
   "navigation": [
-    { "label": "Home", "href": "/" },
-    { "label": "About Us", "href": "/about-us/" },
-    { "label": "Impact", "href": "/impact/" },
-    { "label": "Get Involved", "href": "/get-involved/" },
-    { "label": "Stories", "href": "/stories/" },
-    { "label": "Contact Us", "href": "/contact-us/" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About Us",
+      "href": "/about-us/"
+    },
+    {
+      "label": "Impact",
+      "href": "/impact/"
+    },
+    {
+      "label": "Get Involved",
+      "href": "/get-involved/"
+    },
+    {
+      "label": "Stories",
+      "href": "/stories/"
+    },
+    {
+      "label": "Contact Us",
+      "href": "/contact-us/"
+    }
   ],
   "socialLinks": [
-    { "platform": "TikTok", "url": "https://www.tiktok.com/@learn.n.lunch?_t=ZM-90jhXJNULK0&_r=1" },
-    { "platform": "Instagram", "url": "https://www.instagram.com/learnnlunch?utm_source=ig_web_button_share_sheet&igsh=MWZwd21zaXBycXViOQ==" },
-    { "platform": "X", "url": "https://x.com/learn_N_lunch" },
-    { "platform": "LinkedIn", "url": "https://www.linkedin.com/company/learn-n-lunch/" }
+    {
+      "platform": "TikTok",
+      "url": "https://www.tiktok.com/@learn.n.lunch?_t=ZM-90jhXJNULK0&_r=1"
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/learnnlunch?utm_source=ig_web_button_share_sheet&igsh=MWZwd21zaXBycXViOQ=="
+    },
+    {
+      "platform": "X",
+      "url": "https://x.com/learn_N_lunch"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/company/learn-n-lunch/"
+    }
   ],
   "footerCopyright": "© 2025 LearnN'Lunch · All Rights Reserved"
 }
