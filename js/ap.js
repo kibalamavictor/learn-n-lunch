@@ -578,6 +578,169 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* =======================
+     TEAM CAROUSEL (MOBILE)
+  ==========================*/
+  const teamCarousel = document.querySelector("[data-team-carousel]");
+  if (teamCarousel) {
+    const viewport = teamCarousel.querySelector(".team-carousel-viewport");
+    const track = teamCarousel.querySelector(".team-carousel-track");
+    const dotsWrap = teamCarousel.querySelector("[data-team-dots]");
+    const slides = track ? Array.from(track.querySelectorAll(".team-member")) : [];
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const INTERVAL_MS = 4500;
+    let index = 0;
+    let timer = null;
+    let resumeTimer = null;
+    let programmaticScroll = false;
+
+    function isMobile() {
+      return mobileQuery.matches;
+    }
+
+    function updateDots() {
+      if (!dotsWrap) return;
+      dotsWrap.querySelectorAll(".team-carousel-dot").forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === index);
+        dot.setAttribute("aria-current", i === index ? "true" : "false");
+      });
+    }
+
+    function nearestIndex() {
+      if (!viewport || !slides.length) return 0;
+      const width = viewport.clientWidth || 1;
+      return Math.min(
+        slides.length - 1,
+        Math.max(0, Math.round(viewport.scrollLeft / width))
+      );
+    }
+
+    function goTo(nextIndex, { smooth = true } = {}) {
+      if (!viewport || !slides.length) return;
+      index = ((nextIndex % slides.length) + slides.length) % slides.length;
+      updateDots();
+
+      if (!isMobile()) {
+        viewport.scrollLeft = 0;
+        return;
+      }
+
+      programmaticScroll = true;
+      viewport.scrollTo({
+        left: index * viewport.clientWidth,
+        behavior: smooth && !reduceMotion.matches ? "smooth" : "auto"
+      });
+      window.setTimeout(() => {
+        programmaticScroll = false;
+      }, smooth && !reduceMotion.matches ? 600 : 50);
+    }
+
+    function stopAutoplay() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      if (resumeTimer) {
+        clearTimeout(resumeTimer);
+        resumeTimer = null;
+      }
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      if (!isMobile() || reduceMotion.matches || slides.length < 2) return;
+      timer = setInterval(() => goTo(index + 1), INTERVAL_MS);
+    }
+
+    function pauseThenResume() {
+      stopAutoplay();
+      resumeTimer = setTimeout(startAutoplay, INTERVAL_MS);
+    }
+
+    function buildDots() {
+      if (!dotsWrap || slides.length < 2) return;
+      dotsWrap.innerHTML = "";
+      slides.forEach((slide, i) => {
+        const name =
+          slide.querySelector(".member-name")?.textContent?.trim() || `Person ${i + 1}`;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "team-carousel-dot";
+        btn.setAttribute("aria-label", `Show ${name}`);
+        btn.addEventListener("click", () => {
+          goTo(i);
+          pauseThenResume();
+        });
+        dotsWrap.appendChild(btn);
+      });
+    }
+
+    function syncMode() {
+      if (!isMobile()) {
+        stopAutoplay();
+        if (viewport) viewport.scrollLeft = 0;
+        index = 0;
+        updateDots();
+        return;
+      }
+      goTo(index, { smooth: false });
+      startAutoplay();
+    }
+
+    buildDots();
+    syncMode();
+
+    if (typeof mobileQuery.addEventListener === "function") {
+      mobileQuery.addEventListener("change", syncMode);
+      reduceMotion.addEventListener("change", syncMode);
+    } else if (typeof mobileQuery.addListener === "function") {
+      mobileQuery.addListener(syncMode);
+      reduceMotion.addListener(syncMode);
+    }
+
+    if (viewport) {
+      let scrollIdle = null;
+      viewport.addEventListener(
+        "scroll",
+        () => {
+          if (!isMobile()) return;
+          index = nearestIndex();
+          updateDots();
+          if (!programmaticScroll) {
+            pauseThenResume();
+          }
+          if (scrollIdle) clearTimeout(scrollIdle);
+          scrollIdle = setTimeout(() => {
+            index = nearestIndex();
+            updateDots();
+          }, 80);
+        },
+        { passive: true }
+      );
+
+      viewport.addEventListener(
+        "touchstart",
+        () => {
+          if (isMobile()) pauseThenResume();
+        },
+        { passive: true }
+      );
+    }
+
+    teamCarousel.addEventListener("pointerenter", stopAutoplay);
+    teamCarousel.addEventListener("pointerleave", startAutoplay);
+    teamCarousel.addEventListener("focusin", stopAutoplay);
+    teamCarousel.addEventListener("focusout", (e) => {
+      if (!teamCarousel.contains(e.relatedTarget)) startAutoplay();
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopAutoplay();
+      else startAutoplay();
+    });
+  }
+
 });
 
 
@@ -716,6 +879,4 @@ freqButtons.forEach(btn => {
 //   } else {
 //     initCounterAnimation();
 //   }
-
-
 

@@ -8,15 +8,14 @@ const TEAM_SECTION = {
     "Learn And Lunch is powered by students and young leaders building ethical, evidence based systems to ensure hunger never limits learning. Through research, student leadership, advocacy, and practical solutions, we work to make campus hunger visible, understood, and addressed with dignity across Ugandan universities."
 };
 
-function renderTeamMember(depth, member, indexInRow) {
+function renderTeamMember(depth, member) {
   const cardStyle = member.cardBackground ? ` style="background: ${member.cardBackground};"` : "";
-  const memberClass = indexInRow === 1 ? "team-member member-2" : "team-member";
-  const soloStyle = member.layout === "solo" ? ' style="margin: 0 auto;"' : "";
+  const soloClass = member.layout === "solo" ? " team-member--solo" : "";
 
   return `
-            <div class="${memberClass}"${soloStyle}>
+            <article class="team-member${soloClass}">
               <div class="member-image">
-                <img src="${resolveAsset(depth, member.photo)}" alt="${escapeHtml(member.photoAlt || member.name)}">
+                <img src="${resolveAsset(depth, member.photo)}" alt="${escapeHtml(member.photoAlt || member.name)}" loading="lazy">
               </div>
               <div class="member-card ${member.cardVariant}"${cardStyle}>
                 <div class="card-decoration"></div>
@@ -24,28 +23,7 @@ function renderTeamMember(depth, member, indexInRow) {
                 <p class="member-role">${escapeHtml(member.role)}</p>
                 <p class="member-bio">${escapeHtml(member.bio)}</p>
               </div>
-            </div>`;
-}
-
-function groupTeamMembers(members) {
-  const groups = [];
-  let index = 0;
-  while (index < members.length) {
-    const member = members[index];
-    if (member.layout === "solo") {
-      groups.push([member]);
-      index += 1;
-      continue;
-    }
-    if (index + 1 < members.length && members[index + 1].layout !== "solo") {
-      groups.push([member, members[index + 1]]);
-      index += 2;
-      continue;
-    }
-    groups.push([member]);
-    index += 1;
-  }
-  return groups;
+            </article>`;
 }
 
 function renderAbout({ site, page, team }) {
@@ -75,18 +53,7 @@ function renderAbout({ site, page, team }) {
     })
     .join("\n");
 
-  const teamGroups = groupTeamMembers(team);
-  const teamCards = teamGroups
-    .map((group) => {
-      const cards = group
-        .map((member, index) => renderTeamMember(depth, member, index))
-        .join("\n");
-      return `
-          <div class="team-cards">
-            ${cards}
-          </div>`;
-    })
-    .join("\n");
+  const teamSlides = team.map((member) => renderTeamMember(depth, member)).join("\n");
 
   const bannerRepeats = Array.from({ length: 8 })
     .map(() => `<span class="banner-text-2">${escapeHtml(TEAM_SECTION.bannerText)}</span>`)
@@ -168,7 +135,14 @@ function renderAbout({ site, page, team }) {
           ${escapeHtml(TEAM_SECTION.description)}
         </p>
 
-        ${teamCards}
+        <div class="team-carousel" data-team-carousel>
+          <div class="team-carousel-viewport">
+            <div class="team-carousel-track">
+              ${teamSlides}
+            </div>
+          </div>
+          <div class="team-carousel-dots" data-team-dots aria-label="Team member slides"></div>
+        </div>
       </div>
     </section>`;
 

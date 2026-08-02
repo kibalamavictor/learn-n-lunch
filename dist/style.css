@@ -2990,11 +2990,25 @@ hr {
   padding: 50px 0 0 40px;
 }
 
-.team-cards {
+.team-carousel {
+  margin: 0 0 90px;
+}
+
+.team-carousel-viewport {
+  overflow: visible;
+}
+
+.team-carousel-track {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 100px;
-  margin: 60px 0 90px;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 100px 60px;
+  margin: 60px auto 0;
+  max-width: 1450px;
+  padding: 40px 40px 0;
+}
+
+.team-carousel-dots {
+  display: none;
 }
 
 .team-member {
@@ -3002,6 +3016,12 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.team-member--solo {
+  grid-column: 1/-1;
+  justify-self: center;
+  align-items: center;
 }
 
 .member-image {
@@ -3073,11 +3093,13 @@ hr {
 }
 
 .member-name {
-  font-size: 1.8rem;
+  font-size: 1.45rem;
   font-weight: 900;
   margin-bottom: 5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  word-break: break-word;
 }
 
 .member-role {
@@ -3093,43 +3115,30 @@ hr {
   font-family: "Nunito", sans-serif;
 }
 
-@media (min-width: 1150px) {
-  .team-cards {
-    max-width: 1450px;
-    margin: 60px auto 90px;
-    padding: 40px 0 0 40px;
-  }
-}
 @media (max-width: 1000px) {
-  .member-card {
-    position: relative;
-    padding: 40px 20px 30px;
-    width: 250px;
-    margin-top: 0;
-    margin-left: 0px;
-    z-index: 1;
-    transform: rotate(15deg);
-  }
-  .team-cards {
+  .team-carousel-track {
     grid-template-columns: 1fr;
+    gap: 80px;
+    padding: 20px 20px 0;
   }
-  .team-member {
+  .member-card {
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .team-member,
+  .team-member--solo {
     margin: 0 auto;
+    align-items: center;
   }
 }
 @media (max-width: 768px) {
   .team-title {
     font-size: 2rem;
+    padding-left: 20px;
   }
-  .banner-text {
-    font-size: 1.2rem;
-  }
-  .team-cards {
-    gap: 100px;
-  }
-  .member-image {
-    width: 220px;
-    height: 220px;
+  .team-description {
+    padding: 30px 20px 0;
+    margin-bottom: 40px;
   }
   .team-banner-2 {
     padding: 7.6923076923px 0;
@@ -3137,17 +3146,86 @@ hr {
   .banner-text-2 {
     font-size: 1.3076923077rem;
   }
+  .team-carousel {
+    margin: 0 0 60px;
+  }
+  .team-carousel-viewport {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    padding: 24px 0 36px;
+  }
+  .team-carousel-viewport::-webkit-scrollbar {
+    display: none;
+  }
+  .team-carousel-track {
+    display: contents;
+  }
+  .team-member,
+  .team-member--solo {
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 8px 16px 28px;
+    margin: 0;
+    align-items: center;
+    justify-self: stretch;
+    grid-column: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .member-image {
+    width: 200px;
+    height: 200px;
+    border-width: 10px;
+  }
+  .member-card {
+    width: min(250px, 72vw);
+    margin-top: -40px;
+    margin-left: 24px;
+    padding: 28px 18px 22px;
+  }
+  .team-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px 0;
+  }
+  .team-carousel-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 1px solid #fff;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .team-carousel-dot.is-active {
+    background: #fff;
+  }
 }
 @media (max-width: 480px) {
   .team-title {
     font-size: 1.5rem;
   }
+  .member-name {
+    font-size: 1.25rem;
+  }
   .member-card {
-    margin-left: 20px;
+    margin-left: 16px;
     padding: 25px 20px;
   }
-  .member-name {
-    font-size: 1.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-carousel-viewport {
+    scroll-behavior: auto;
   }
 }
 .stories-section {
@@ -5811,3 +5889,5 @@ a, a:visited, a:active {
     animation: none !important;
   }
 }
+
+/*# sourceMappingURL=style.css.map */
