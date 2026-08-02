@@ -7,14 +7,14 @@ hero:
     response through research, student networks, and practical solutions to
     ensure no student must choose between learning and eating.
   carouselImages:
-    - image: /new/frame-card-2.jpg
-      alt: Volunteer packing food
-    - image: /new/frame-card-4.jpg
-      alt: Students receiving meals
-    - image: /new/frame-card-3.jpg
-      alt: Food distribution
-    - image: /new/frame-card.jpg
-      alt: Community volunteers
+    - image: /assets/uploads/learn_and_lunch_001.webp
+      alt: Learn and lunch photo frame photo
+    - image: /assets/uploads/learn_and_lunch_002.webp
+      alt: Learn and lunch photo frame photo
+    - image: /assets/uploads/learn_and_lunch_004.webp
+      alt: Learn and lunch photo frame photo
+    - image: /assets/uploads/learn_and_lunch_003.webp
+      alt: Learn and lunch photo frame photo
 missionBanner:
   - NO STUDENT SHOULD STUDY HUNGRY
 impactIntro:
@@ -76,7 +76,7 @@ moments:
   heading: MOMENTS THAT MATTER
   photos:
     - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-05.webp
-      alt: Volunteer smiling at food shelf
+      alt: learn and lunch team serving themselves a food at body & soil
     - image: /img2.png
       alt: Packing fresh produce
     - image: /img3.png
@@ -85,7 +85,7 @@ moments:
       alt: Bag with groceries
     - image: /img5.png
       alt: Packed meals and water bottles
-    - image: /img6.png
+    - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-08.webp
       alt: Group of volunteers
     - image: /img7.png
       alt: Group of volunteers
