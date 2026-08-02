@@ -33,6 +33,7 @@ body {
   background: var(--lnl-blue) !important;
   background-image:
     linear-gradient(180deg, #d3eeff 0%, #eaf6ff 45%, #fff8e7 100%) !important;
+  touch-action: manipulation;
 }
 
 #nc-root,

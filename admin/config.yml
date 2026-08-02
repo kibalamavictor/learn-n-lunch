@@ -392,7 +392,7 @@ collections:
         options: ["draft", "published"]
         default: "draft"
         hint: "Only published stories appear on the live Stories page."
-      - { label: Published At, name: publishedAt, widget: datetime, required: false }
+      - { label: Published At, name: publishedAt, widget: datetime, required: true, hint: "Required when status is Published. Used for sorting Stories." }
 
       - label: "4 · SEO (optional)"
         name: seoTitle

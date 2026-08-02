@@ -8,6 +8,8 @@ html {
 }
 html, body {
   overflow-x: hidden;
+  /* Disable double-tap zoom; pinch-to-zoom still works */
+  touch-action: manipulation;
 //   overflow-y: hidden;
 }
 
