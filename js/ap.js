@@ -497,21 +497,22 @@ document.addEventListener("DOMContentLoaded", () => {
       let visibleCount = 0;
 
       storiesSections.forEach((section) => {
-        const sectionCategory = section.dataset.category || "all";
-        const sectionMatchesFilter =
-          category === "all" ? true : sectionCategory === category;
-
         let visibleInSection = 0;
+
         section.querySelectorAll(".stories-item").forEach((item) => {
+          const itemCategory = item.dataset.category || section.dataset.category || "all";
           const searchText = (item.dataset.search || item.textContent || "").toLowerCase();
           const searchMatch = !term || searchText.includes(term);
-          const visible = sectionMatchesFilter && searchMatch;
+          const categoryMatch = category === "all" || itemCategory === category;
+          const visible = categoryMatch && searchMatch;
 
           item.style.display = visible ? "" : "none";
           if (visible) visibleInSection += 1;
         });
 
-        const sectionVisible = sectionMatchesFilter && visibleInSection > 0;
+        // Show a section whenever it still has matching cards (keeps RECENTS
+        // featured hero visible when filtering by Student Stories, etc.)
+        const sectionVisible = visibleInSection > 0;
         section.style.display = sectionVisible ? "" : "none";
         if (sectionVisible) visibleCount += visibleInSection;
       });
