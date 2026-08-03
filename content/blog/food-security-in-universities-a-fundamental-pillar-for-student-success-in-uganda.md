@@ -1,7 +1,7 @@
 ---
 title: "Food Security in Universities: A Fundamental Pillar for Student Success
   in Uganda"
-slug: /food-security-universities-uganda
+slug: food-security-universities-uganda
 excerpt: Discover why food security in universities is essential for student
   success in Uganda. Learn how Learn And Lunch is tackling campus hunger through
   research, advocacy, and student-led solutions.
