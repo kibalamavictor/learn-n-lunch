@@ -1,5 +1,5 @@
 const path = require("path");
-const { readJson, readMarkdown, listMarkdownFiles } = require("./utils");
+const { readJson, readMarkdown, listMarkdownFiles, normalizePostSlug } = require("./utils");
 
 const ROOT = process.cwd();
 const CONTENT = path.join(ROOT, "content");
@@ -26,9 +26,13 @@ function loadCollection(folder) {
 }
 
 function loadBlogPosts() {
-  const blog = loadCollection("blog");
+  const blog = loadCollection("blog").map((post) => ({
+    ...post,
+    slug: normalizePostSlug(post.slug)
+  }));
   const reports = loadCollection("reports").map((post) => ({
     ...post,
+    slug: normalizePostSlug(post.slug),
     tags: post.tags?.length ? post.tags : ["Impact Reports"]
   }));
 

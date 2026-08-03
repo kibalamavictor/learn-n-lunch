@@ -175,6 +175,12 @@ function validate() {
     const data = readMarkdownData(filePath);
     validateRequired(data.title, "title", filePath);
     validateRequired(data.slug, "slug", filePath);
+    assert(
+      typeof data.slug === "string" &&
+        !String(data.slug).includes("/") &&
+        !String(data.slug).startsWith(" "),
+      `[invalid] ${filePath}: slug must be a plain path segment (no slashes). Got "${data.slug}"`
+    );
     validateRequired(data.excerpt, "excerpt", filePath);
     validateRequired(data.coverImage, "coverImage", filePath);
     validateRequired(data.tags, "tags", filePath);
@@ -189,6 +195,12 @@ function validate() {
     const data = readMarkdownData(filePath);
     validateRequired(data.title, "title", filePath);
     validateRequired(data.slug, "slug", filePath);
+    assert(
+      typeof data.slug === "string" &&
+        !String(data.slug).includes("/") &&
+        !String(data.slug).startsWith(" "),
+      `[invalid] ${filePath}: slug must be a plain path segment (no slashes). Got "${data.slug}"`
+    );
     validateRequired(data.excerpt, "excerpt", filePath);
     validateRequired(data.coverImage, "coverImage", filePath);
     validateRequired(data.reportPdf, "reportPdf", filePath);

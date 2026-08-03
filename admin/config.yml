@@ -429,11 +429,15 @@ collections:
         pattern: draft
     fields:
       - { label: "1 · Title", name: title, widget: string, hint: "Story headline shown on cards and the post page." }
-      - { label: "Slug (URL)", name: slug, widget: string, hint: "Becomes /stories/your-slug/. Use lowercase with hyphens." }
+      - label: "Slug (URL)"
+        name: slug
+        widget: string
+        hint: "URL path only — e.g. food-security-universities-uganda (no leading slash, no /stories/)."
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Use lowercase letters, numbers, and hyphens only. Example: food-security-universities-uganda"]
       - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards." }
       - { label: Cover Image, name: coverImage, widget: image }
       - { label: Cover Image Alt, name: coverImageAlt, widget: string }
-      - { label: Author, name: author, widget: string }
+      - { label: "Writer / Author", name: author, widget: string, hint: "Shown on the story page under the date, e.g. Mercy Lawino." }
 
       - label: "2 · Category Tags"
         name: tags
@@ -465,8 +469,26 @@ collections:
 
       - label: "5 · Story Body"
         name: body
-        widget: markdown
-        hint: "Main article content. Supports headings, lists, links, and images."
+        widget: richtext
+        hint: "Use the toolbar for headings, bold, italic, links, lists, quotes, and images."
+        buttons:
+          - bold
+          - italic
+          - strikethrough
+          - code
+          - link
+          - heading-one
+          - heading-two
+          - heading-three
+          - heading-four
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+        modes:
+          - rich_text
+          - raw
 
   # ─────────────────────────────────────────────
   # REPORTS (PDF stories)
@@ -483,11 +505,15 @@ collections:
     summary: "{{title}} — {{status}}"
     fields:
       - { label: "1 · Title", name: title, widget: string }
-      - { label: "Slug (URL)", name: slug, widget: string, hint: "e.g. impact-report-2025 → /stories/impact-report-2025/" }
+      - label: "Slug (URL)"
+        name: slug
+        widget: string
+        hint: "URL path only — e.g. impact-report-2025 (no leading slash)."
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Use lowercase letters, numbers, and hyphens only. Example: impact-report-2025"]
       - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards and above the PDF viewer." }
       - { label: Cover Image, name: coverImage, widget: image, hint: "Thumbnail for Stories listings." }
       - { label: Cover Image Alt, name: coverImageAlt, widget: string }
-      - { label: Author, name: author, widget: string, default: "Learn N' Lunch Editorial Team" }
+      - { label: "Writer / Author", name: author, widget: string, default: "Learn N' Lunch Editorial Team", hint: "Shown on the report page under the date." }
       - label: "2 · Report PDF"
         name: reportPdf
         widget: file
@@ -498,9 +524,19 @@ collections:
       - { label: Report PDF Label, name: reportPdfLabel, widget: string, required: false, hint: "Accessible document name (e.g. Impact Report 2025)" }
       - label: "3 · Intro Text"
         name: body
-        widget: markdown
+        widget: richtext
         required: false
-        hint: "Optional short intro shown above the PDF viewer."
+        hint: "Optional short intro shown above the PDF viewer. Use the toolbar to format text."
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - bulleted-list
+          - numbered-list
+        modes:
+          - rich_text
+          - raw
       - { label: "4 · Status", name: status, widget: select, options: ["draft", "published"], default: "draft" }
       - { label: Published At, name: publishedAt, widget: datetime, required: false }
       - { label: SEO Title, name: seoTitle, widget: string, required: false }

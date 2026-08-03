@@ -94,6 +94,12 @@ ${renderStoryCarousel({
   <div class="exam-story-content">
     <div class="exam-story-meta">
       <span class="publish-date">${formatPublishDate(post.publishedAt)}</span>
+      ${
+        post.author
+          ? `<span class="exam-story-meta-sep" aria-hidden="true">·</span>
+      <span class="story-author">By ${escapeHtml(post.author)}</span>`
+          : ""
+      }
     </div>
 
     <h1 class="exam-story-title">${escapeHtml(post.title).toUpperCase().replace(" MY", "<br> MY")}</h1>

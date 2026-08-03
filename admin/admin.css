@@ -378,14 +378,14 @@ body::before {
   box-shadow: none;
 }
 
-/* Hide main app header on entry editor — prevents blue bar at bottom */
+/* Hide main app header on entry editor — prevents blue bar at bottom.
+   Do NOT hide EditorControlBar — that is the markdown/richtext formatting toolbar. */
 body:has([class*="EditorContainer"]) [class*="AppHeader"],
 body:has([class*="EntryEditor"]) [class*="AppHeader"],
 body:has([class*="EditorContainer"]) [class*="AppHeaderContent"],
 body:has([class*="EntryEditor"]) [class*="AppHeaderContent"],
 [class*="EditorContainer"] [class*="AppHeader"],
-[class*="EntryEditor"] [class*="AppHeader"],
-[class*="EditorControlBar"] {
+[class*="EntryEditor"] [class*="AppHeader"] {
   display: none !important;
 }
 
@@ -422,10 +422,33 @@ body:has([class*="EntryEditor"]) #nc-root,
   box-sizing: border-box !important;
 }
 
-/* Nested toolbars (markdown, etc.) — no blue strip */
-[class*="ToolbarContainer"] {
+/* Nested toolbars (markdown / richtext formatting) */
+[class*="ToolbarContainer"],
+[class*="EditorControlBar"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   background: var(--lnl-white) !important;
   box-shadow: none !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  flex-wrap: wrap !important;
+  gap: 0.25rem !important;
+  padding: 0.35rem 0.5rem !important;
+}
+
+/* Fix Decap toolbar wrapper stacking buttons vertically */
+[class*="ToolbarContainer"] > div:not([class]),
+[class*="EditorControlBar"] > div:not([class]) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+[class*="ToolbarContainer"] > div:not([class]) > button,
+[class*="EditorControlBar"] > div:not([class]) > button {
+  width: auto !important;
 }
 
 [class*="EditorToolbar"] > *,

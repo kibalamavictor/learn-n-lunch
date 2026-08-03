@@ -13,13 +13,7 @@ tags:
   - Student Stories
 status: published
 publishedAt: 2026-08-03T09:22:00.000+03:00
-seoDescription: >-
-  Discover why food security in universities is essential for student success in
-  Uganda. Learn how Learn And Lunch is tackling campus hunger through research,
-  advocacy, and student-led solutions.
-
-
-  Suggested URL Slug:
+seoDescription: Discover why food security in universities is essential for student success in Uganda. Learn how Learn And Lunch is tackling campus hunger through research, advocacy, and student-led solutions.
 ogImage: /assets/uploads/learn_and_lunch_06.webp
 ---
 When we think about student success, we often focus on quality education, scholarships, and modern learning environments. Yet one essential factor is frequently overlooked: **food security**.

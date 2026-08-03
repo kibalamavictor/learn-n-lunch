@@ -92,6 +92,22 @@ function normalizeTagSlug(tag) {
     .replace(/(^-|-$)/g, "");
 }
 
+/** Strip slashes/spaces so CMS slugs never create /stories//broken/ URLs. */
+function normalizePostSlug(slug) {
+  return String(slug || "")
+    .trim()
+    .replace(/^\/+|\/+$/g, "")
+    .replace(/^stories\//i, "")
+    .replace(/\/+/g, "-");
+}
+
+function collapseMetaText(value) {
+  return String(value ?? "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*Suggested URL Slug:?\s*/gi, " ")
+    .trim();
+}
+
 const POST_TAG_TO_FILTER = {
   "student-stories": "students",
   "events-and-campus-life": "events",
@@ -188,6 +204,8 @@ module.exports = {
   markdownToHtml,
   resolveMarkdownPaths,
   normalizeTagSlug,
+  normalizePostSlug,
+  collapseMetaText,
   normalizeListStrings,
   getPostCategorySlug,
   getPostTagColor,

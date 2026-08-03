@@ -1,4 +1,4 @@
-const { escapeHtml, resolveAsset, resolveHomeHref } = require("./utils");
+const { escapeHtml, resolveAsset, resolveHomeHref, collapseMetaText } = require("./utils");
 
 const SOCIAL_ICONS = {
   TikTok:
@@ -30,7 +30,7 @@ function renderHead({ depth, title, description, ogImage }) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${escapeHtml(title)}</title>
-    ${description ? `<meta name="description" content="${escapeHtml(description)}">` : ""}
+    ${description ? `<meta name="description" content="${escapeHtml(collapseMetaText(description))}">` : ""}
     ${ogImageMeta}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
