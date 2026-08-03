@@ -11,7 +11,7 @@ coverImageAlt: University students participating in a food security awareness
 author: Jowel Nionzima
 tags:
   - Student Stories
-status: draft
+status: published
 publishedAt: 2026-08-03T10:16:00.000+03:00
 seoDescription: Explore how gender influences food insecurity among university
   students in Uganda and why inclusive solutions are essential for student
