@@ -15,8 +15,6 @@ seoDescription: Discover how hidden costs affect university students in Uganda
   and why student support systems are essential for education success.
 ogImage: https://res.cloudinary.com/pr7r5p6g/image/upload/v1785743364/BODY_SOIL_-8304_atibf3.jpg
 ---
-
-
 Higher education is often seen as a pathway to opportunity. For many students, entering university represents hope, ambition, and the possibility of building a better future.
 
 However, the cost of achieving that future goes beyond tuition fees.
