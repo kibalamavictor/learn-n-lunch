@@ -339,3 +339,240 @@ body {
     padding: 12px;
   }
 }
+
+/* ——— Impact campus map · live signpost preview ——— */
+.preview-impact-map {
+  --mm-yellow: #f6c33c;
+  --greenish: #2f9f82;
+  max-width: 860px;
+}
+
+.preview-map-stage {
+  position: relative;
+  width: 100%;
+  margin: 0 0 12px;
+  border: 2px solid #000;
+  background: #fff;
+  overflow: hidden;
+}
+
+.preview-map-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: none;
+  max-height: none;
+  object-fit: contain;
+  background: #eee;
+}
+
+.preview-impact-map .lnl-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background: var(--mm-yellow);
+  border: 3px solid #000;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+}
+
+.preview-impact-map .lnl-pin.is-active {
+  background: var(--greenish);
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.preview-impact-map .lnl-pin.is-soon {
+  background: #fff;
+}
+
+.preview-impact-map .lnl-signpost {
+  position: absolute;
+  transform: translate(-8%, -100%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  padding-bottom: 44px;
+}
+
+.preview-impact-map .lnl-signpost.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.preview-impact-map .lnl-signpost__label {
+  position: relative;
+  background: var(--mm-yellow);
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  padding: 8px 14px;
+  font-weight: 800;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: var(--pv-font);
+}
+
+.preview-impact-map .lnl-signpost__report {
+  position: absolute;
+  top: calc(100% - 18px);
+  left: 0;
+  width: min(240px, calc(100vw - 48px));
+  background: #fff;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  padding: 12px 30px 12px 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 4;
+  pointer-events: none;
+  font-family: var(--pv-font);
+}
+
+.preview-impact-map .lnl-signpost.report-open .lnl-signpost__report,
+.preview-impact-map .lnl-signpost .lnl-signpost__label:hover ~ .lnl-signpost__report,
+.preview-impact-map .lnl-signpost .lnl-signpost__report:hover,
+.preview-impact-map .lnl-signpost .lnl-signpost__label:focus-visible ~ .lnl-signpost__report {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.preview-impact-map .lnl-signpost.flip .lnl-signpost__report {
+  left: auto;
+  right: 0;
+  padding: 12px 14px 12px 30px;
+}
+
+.preview-impact-map .lnl-signpost.below .lnl-signpost__report {
+  top: auto;
+  bottom: calc(100% - 18px);
+  transform: translateY(4px);
+}
+
+.preview-impact-map .lnl-signpost.below.report-open .lnl-signpost__report,
+.preview-impact-map .lnl-signpost.below .lnl-signpost__label:hover ~ .lnl-signpost__report,
+.preview-impact-map .lnl-signpost.below .lnl-signpost__report:hover {
+  transform: translateY(0);
+}
+
+.preview-impact-map .lnl-signpost__close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.preview-impact-map .lnl-signpost.flip .lnl-signpost__close {
+  right: auto;
+  left: 6px;
+}
+
+.preview-impact-map .lnl-signpost__report p {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.preview-impact-map .lnl-signpost__figures {
+  display: flex;
+  gap: 14px;
+}
+
+.preview-impact-map .lnl-signpost__figures div b {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--greenish);
+  line-height: 1.1;
+}
+
+.preview-impact-map .lnl-signpost__figures div span {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.preview-impact-map .lnl-signpost.is-soon-sign .lnl-signpost__figures div b {
+  color: #000;
+}
+
+.preview-impact-map .lnl-signpost::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  width: 8px;
+  height: 44px;
+  background: #000;
+}
+
+.preview-impact-map .lnl-signpost.flip {
+  transform: translate(-92%, -100%);
+}
+
+.preview-impact-map .lnl-signpost.flip::after {
+  left: auto;
+  right: 12px;
+}
+
+.preview-impact-map .lnl-signpost.below {
+  transform: translate(-8%, 0);
+  padding-bottom: 0;
+  padding-top: 44px;
+}
+
+.preview-impact-map .lnl-signpost.below::after {
+  bottom: auto;
+  top: 0;
+}
+
+.preview-signpost-gallery {
+  display: grid;
+  gap: 14px;
+}
+
+.preview-signpost-sample {
+  border: 2px solid #000;
+  background: #fff;
+  overflow: visible;
+}
+
+.preview-signpost-meta {
+  padding: 10px 12px;
+  border-bottom: 2px solid #000;
+  font-size: 12px;
+  font-weight: 700;
+  background: #fff;
+}
+
+.preview-signpost-stage {
+  position: relative;
+  height: 260px;
+  background: #d3eeff;
+  overflow: visible;
+}
+
+.preview-signpost-stage .lnl-signpost {
+  z-index: 5;
+}

@@ -467,6 +467,22 @@
   animation-delay: 0.24s, 2.15s;
 }
 
+.lnl-cluster__label:nth-child(5) {
+  animation-delay: 0.32s, 2.75s;
+}
+
+.lnl-cluster__label:nth-child(6) {
+  animation-delay: 0.4s, 3.35s;
+}
+
+.lnl-cluster__label:nth-child(7) {
+  animation-delay: 0.48s, 3.95s;
+}
+
+.lnl-cluster__label:nth-child(8) {
+  animation-delay: 0.56s, 4.55s;
+}
+
 .lnl-cluster__label.is-active {
   background: var(--greenish);
   color: #fff;

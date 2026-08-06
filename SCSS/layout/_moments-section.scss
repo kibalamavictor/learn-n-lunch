@@ -61,7 +61,7 @@
   position: relative;
   z-index: 4;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
   flex: 0 0 auto;
@@ -252,7 +252,7 @@
 }
 
 /* Responsive */
-@media (max-width: 1570px) {
+@media (max-width: 1470px) {
   .moments-heading-section {
     padding: 0 40px;
   }

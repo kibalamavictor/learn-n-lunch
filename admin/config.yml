@@ -654,18 +654,19 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
-          - label: Mobile Cluster (overlapping pins)
+          - label: Mobile Cluster (optional override)
             name: cluster
             widget: object
             collapsed: true
-            hint: "Groups nearby campuses into one pin on small screens."
+            hint: "Nearby campuses auto-group onto one mobile pole when within ~12% of each other on the map. Use this only to force-merge specific IDs or pin the pole position."
             fields:
-              - label: Campus IDs in cluster
+              - label: Campus IDs to force onto one pole
                 name: ids
                 widget: list
                 field: { label: Campus ID, name: id, widget: string }
-              - { label: Cluster Pin X (%), name: x, widget: number, value_type: float, step: 0.1 }
-              - { label: Cluster Pin Y (%), name: y, widget: number, value_type: float, step: 0.1 }
+                hint: "Optional. Leave empty to rely on auto-clustering. Add IDs here to force those campuses onto the same mobile pole even if slightly farther apart."
+              - { label: Cluster Pin X (%), name: x, widget: number, value_type: float, step: 0.1, hint: "Optional pole position for the forced/manual group" }
+              - { label: Cluster Pin Y (%), name: y, widget: number, value_type: float, step: 0.1, hint: "Optional pole position for the forced/manual group" }
           - label: Campuses
             name: campuses
             widget: list

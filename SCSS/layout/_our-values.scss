@@ -4,7 +4,7 @@
 
 .our-values-container {
 
-    max-width: 1500px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 40px;
 }
@@ -52,6 +52,7 @@
     height: 70px;
     background: var(--mm-yellow);
     z-index: 1;
+    animation: lnl-community-jitter-a 2.6s steps(1, end) infinite;
   }
 
 
@@ -63,6 +64,7 @@
     height: 280px;
     background: var(--mm-yellow);
     z-index: 1;
+    animation: lnl-community-jitter-b 3.2s steps(1, end) 0.35s infinite;
   }
 
 
@@ -76,6 +78,7 @@
     background: var(--mm-yellow);
     z-index: 1;
     transform: rotate(165deg);
+    animation: lnl-community-jitter-c 2.9s steps(1, end) 0.7s infinite;
   }
 
 
@@ -88,6 +91,169 @@
     height: 70px;
     background: var(--mm-yellow);
     z-index: 1;
+    animation: lnl-community-jitter-d 3.5s steps(1, end) 1.1s infinite;
+  }
+
+  /* Seeded stepped jitter — separate translate so rotate on -3 is preserved */
+  @keyframes lnl-community-jitter-a {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+
+    4% {
+      translate: 2px 0;
+    }
+
+    8% {
+      translate: -1px 2px;
+    }
+
+    12% {
+      translate: 1px -2px;
+    }
+
+    16% {
+      translate: -2px 1px;
+    }
+
+    20%,
+    58% {
+      translate: 0 0;
+    }
+
+    63% {
+      translate: 1px 2px;
+    }
+
+    68% {
+      translate: -2px -1px;
+    }
+
+    73% {
+      translate: 0 0;
+    }
+  }
+
+  @keyframes lnl-community-jitter-b {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+
+    6% {
+      translate: -2px 1px;
+    }
+
+    11% {
+      translate: 1px -2px;
+    }
+
+    17% {
+      translate: 2px 2px;
+    }
+
+    22%,
+    64% {
+      translate: 0 0;
+    }
+
+    69% {
+      translate: -1px -2px;
+    }
+
+    74% {
+      translate: 2px 0;
+    }
+
+    79% {
+      translate: 0 0;
+    }
+  }
+
+  @keyframes lnl-community-jitter-c {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+
+    3% {
+      translate: 1px -2px;
+    }
+
+    9% {
+      translate: -2px 0;
+    }
+
+    14% {
+      translate: 2px 1px;
+    }
+
+    19%,
+    55% {
+      translate: 0 0;
+    }
+
+    61% {
+      translate: -1px 2px;
+    }
+
+    66% {
+      translate: 2px -1px;
+    }
+
+    71% {
+      translate: 0 0;
+    }
+  }
+
+  @keyframes lnl-community-jitter-d {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+
+    5% {
+      translate: -1px 2px;
+    }
+
+    10% {
+      translate: 2px -1px;
+    }
+
+    15% {
+      translate: 0 2px;
+    }
+
+    20% {
+      translate: -2px -1px;
+    }
+
+    25%,
+    72% {
+      translate: 0 0;
+    }
+
+    77% {
+      translate: 1px -2px;
+    }
+
+    82% {
+      translate: -2px 1px;
+    }
+
+    87% {
+      translate: 0 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lnl-community-highlight,
+    .lnl-community-highlight-2,
+    .lnl-community-highlight-3,
+    .lnl-community-highlight-4 {
+      animation: none;
+    }
   }
 
 

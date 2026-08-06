@@ -552,35 +552,179 @@
     ]);
   };
 
+  const campusPreviewCoords = (campus) => {
+    const pinDesktop = campus.pinDesktop || {};
+    const deskX = Number(pinDesktop.x);
+    const deskY = Number(pinDesktop.y);
+    if (Number.isFinite(deskX) && Number.isFinite(deskY)) {
+      return { x: deskX, y: deskY };
+    }
+    const offset = campus.desktopOffset || campus.pinDesktopOffset || {};
+    return {
+      x: Number(campus.x || 0) + (Number(offset.x) || 0),
+      y: Number(campus.y || 0) + (Number(offset.y) || 0)
+    };
+  };
+
+  const signpostDirClass = (labelDir) => {
+    if (labelDir === "flip") return " flip";
+    if (labelDir === "below") return " below";
+    return "";
+  };
+
+  const renderSignpost = (campus, opts = {}) => {
+    const coords = campusPreviewCoords(campus);
+    const soon = campus.status === "soon";
+    const className = [
+      "lnl-signpost",
+      signpostDirClass(campus.labelDir),
+      soon ? "is-soon-sign" : "",
+      opts.visible ? "is-visible" : "",
+      opts.reportOpen ? "report-open" : ""
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    const style = opts.positioned
+      ? { left: `${coords.x}%`, top: `${coords.y}%` }
+      : opts.style || null;
+
+    const statA = campus.statA || {};
+    const statB = campus.statB || {};
+    const reportCopy = text(campus.report || campus.blurb, "Add a report summary or blurb.");
+
+    return h(
+      "div",
+      {
+        className,
+        style,
+        key: opts.key || campus.id || campus.abbr
+      },
+      [
+        h(
+          "div",
+          {
+            className: "lnl-signpost__label",
+            tabIndex: 0,
+            role: "button",
+            "aria-label": `${text(campus.name, "Campus")} — impact report`
+          },
+          text(campus.abbr, campus.name || "NEW")
+        ),
+        h("div", { className: "lnl-signpost__report", role: "tooltip" }, [
+          h("button", { type: "button", className: "lnl-signpost__close", "aria-label": "Close" }, "×"),
+          h("p", null, [h("b", null, text(campus.name, "Campus name")), h("br"), reportCopy]),
+          h("div", { className: "lnl-signpost__figures" }, [
+            h("div", null, [
+              h("b", null, text(statA.value, "—")),
+              h("span", null, text(statA.label, "Stat A"))
+            ]),
+            h("div", null, [
+              h("b", null, text(statB.value, "—")),
+              h("span", null, text(statB.label, "Stat B"))
+            ])
+          ])
+        ])
+      ]
+    );
+  };
+
+  const renderPin = (campus, opts = {}) => {
+    const coords = campusPreviewCoords(campus);
+    const soon = campus.status === "soon";
+    return h("button", {
+      type: "button",
+      className: ["lnl-pin", soon ? "is-soon" : "", opts.active ? "is-active" : ""]
+        .filter(Boolean)
+        .join(" "),
+      style: { left: `${coords.x}%`, top: `${coords.y}%` },
+      "aria-label": text(campus.name, "Campus"),
+      key: opts.key || `pin-${campus.id || campus.abbr}`
+    });
+  };
+
   const ImpactMapPreview = ({ entry, getAsset }) => {
     const data = dataOf(entry);
     const header = data.header || {};
     const campuses = Array.isArray(data.campuses) ? data.campuses : [];
+    const mapSrc = assetUrl(getAsset, data.mapImage);
 
-    return h("div", { className: "preview-frame preview-page" }, [
-      kicker("Campus map · live preview"),
+    return h("div", { className: "preview-frame preview-page preview-impact-map" }, [
+      kicker("Campus map · live signpost preview"),
       h("h1", { className: "preview-title" }, text(header.title, "Where We're Making Impact")),
       header.description ? h("p", { className: "preview-lead" }, header.description) : null,
-      img(assetUrl(getAsset, data.mapImage), data.mapAlt, "preview-cover"),
-      campuses.length
-        ? h(
-            "div",
-            { className: "preview-cards" },
-            campuses.map((c, i) =>
-              h("article", { className: "preview-card", key: i }, [
-                h("h3", null, `${text(c.abbr, "")} ${text(c.name, "Campus")}`),
-                h("p", null, text(c.place, "")),
-                h(
-                  "span",
-                  { className: `preview-tag ${c.status === "soon" ? "is-reports" : "is-students"}` },
-                  c.status === "soon" ? "Expanding soon" : "Active"
-                ),
-                c.blurb ? h("p", null, c.blurb) : null,
-                h("p", { className: "preview-empty" }, `Pin: ${c.x ?? "—"}% × ${c.y ?? "—"}%`)
-              ])
+
+      mapSrc
+        ? h("div", { className: "preview-map-stage" }, [
+            h("img", {
+              className: "preview-map-img",
+              src: mapSrc,
+              alt: text(data.mapAlt, "Campus map")
+            }),
+            campuses.map((campus, i) =>
+              renderPin(campus, { key: `map-pin-${campus.id || i}`, active: i === 0 })
+            ),
+            campuses.map((campus, i) =>
+              renderSignpost(campus, {
+                key: `map-sign-${campus.id || i}`,
+                positioned: true,
+                visible: true,
+                reportOpen: false
+              })
             )
-          )
-        : empty("Add campuses to preview pins.")
+          ])
+        : empty("Upload a map image to preview pin and signpost placement."),
+
+      h("p", { className: "preview-empty" }, "Hover a yellow label on the map to open its report."),
+
+      section(
+        "Signpost detail (as on the live site)",
+        campuses.length
+          ? h(
+              "div",
+              { className: "preview-signpost-gallery" },
+              campuses.map((campus, i) =>
+                h(
+                  "article",
+                  {
+                    className: "preview-signpost-sample",
+                    key: `sample-${campus.id || i}`
+                  },
+                  [
+                    h(
+                      "div",
+                      { className: "preview-signpost-meta" },
+                      [
+                        h("strong", null, text(campus.abbr, "ID")),
+                        " · ",
+                        text(campus.place, "Place"),
+                        " · ",
+                        campus.status === "soon" ? "Expanding soon" : "Active",
+                        " · ",
+                        `dir: ${text(campus.labelDir, "up")}`,
+                        " · ",
+                        (() => {
+                          const coords = campusPreviewCoords(campus);
+                          return `${coords.x}% × ${coords.y}%`;
+                        })()
+                      ]
+                    ),
+                    h(
+                      "div",
+                      { className: "preview-signpost-stage" },
+                      renderSignpost(campus, {
+                        key: `detail-${campus.id || i}`,
+                        visible: true,
+                        reportOpen: true,
+                        style: { left: "50%", top: "62%" }
+                      })
+                    )
+                  ]
+                )
+              )
+            )
+          : empty("Add a campus to preview its signpost label, report, and stats.")
+      )
     ]);
   };
 

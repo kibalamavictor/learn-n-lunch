@@ -81,7 +81,7 @@ function renderAbout({ site, page, team }) {
       <p style="font-family: Nunito, sans-serif;">${escapeHtml(page.standForStatement)}</p>
     </div>
 
-    <hr style="margin: 0 auto; max-width: 1420px;">
+    <hr style="margin: 0 auto; max-width: 1400px;">
 
     <section class="mission-vision-section">
       <div class="card mission-card">

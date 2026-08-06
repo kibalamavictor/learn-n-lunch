@@ -270,159 +270,286 @@
 
   select(active);
 
-  (function buildCluster() {
-    const members = CAMPUSES.filter(function (c) {
-      return CLUSTER.ids.indexOf(c.id) !== -1;
-    });
-    if (members.length < 2) return;
+  (function buildClusters() {
+    const CLUSTER_DISTANCE = 12; /* map % — campuses closer than this share a mobile pole */
+    const manualIds = (CLUSTER.ids || [])
+      .map(function (entry) {
+        if (typeof entry === "string") return entry;
+        return entry.id || entry.campusId || "";
+      })
+      .filter(Boolean);
 
-    members.forEach(function (c) {
-      document.getElementById("pin-" + c.id).classList.add("lnl-in-cluster");
-      document.getElementById("sign-" + c.id).classList.add("lnl-in-cluster");
-    });
-
-    const pin = document.createElement("button");
-    pin.type = "button";
-    pin.className = "lnl-pin lnl-cluster-pin";
-    pin.style.left = CLUSTER.x + "%";
-    pin.style.top = CLUSTER.y + "%";
-    pin.style.transform = "translate(-50%,-50%)";
-    pin.style.padding = "0";
-    pin.style.width = "";
-    pin.setAttribute("aria-label", "Kampala-area campuses");
-    pin.addEventListener("click", function () {
-      showCluster();
-    });
-    frame.appendChild(pin);
-
-    const cluster = document.createElement("div");
-    cluster.className = "lnl-cluster";
-    cluster.style.left = CLUSTER.x + "%";
-    cluster.style.top = CLUSTER.y - 1.2 + "%";
-
-    const stack = document.createElement("div");
-    stack.className = "lnl-cluster__stack";
-    members.forEach(function (c) {
-      const b = document.createElement("div");
-      b.className = "lnl-cluster__label";
-      b.setAttribute("tabindex", "0");
-      b.setAttribute("role", "button");
-      b.setAttribute("aria-label", c.name + " — tap for impact report");
-      b.setAttribute("aria-expanded", "false");
-      b.textContent = c.abbr || c.name;
-      b.addEventListener("mouseenter", function () {
-        if (openId !== c.id) {
-          openClusterReport(c, b);
-        }
-      });
-      b.addEventListener("click", function () {
-        openClusterReport(c, b);
-      });
-      b.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openClusterReport(c, b);
-        }
-      });
-      stack.appendChild(b);
-    });
-    cluster.appendChild(stack);
-
-    const report = document.createElement("div");
-    report.className = "lnl-cluster__report";
-    report.setAttribute("role", "tooltip");
-    cluster.appendChild(report);
-    frame.appendChild(cluster);
-
-    let openId = null;
-    const boards = stack.querySelectorAll(".lnl-cluster__label");
-
-    function closeAllBoards() {
-      openId = null;
-      cluster.classList.remove("report-open");
-      boards.forEach(function (x) {
-        x.classList.remove("is-active");
-        x.setAttribute("aria-expanded", "false");
-      });
+    function mapDist(a, b) {
+      const dx = Number(a.x) - Number(b.x);
+      const dy = Number(a.y) - Number(b.y);
+      return Math.sqrt(dx * dx + dy * dy);
     }
 
-    closeClusterReport = closeAllBoards;
+    function resolveClusters() {
+      const n = CAMPUSES.length;
+      if (n < 2) return [];
+
+      const parent = CAMPUSES.map(function (_, i) {
+        return i;
+      });
+
+      function find(i) {
+        while (parent[i] !== i) {
+          parent[i] = parent[parent[i]];
+          i = parent[i];
+        }
+        return i;
+      }
+
+      function union(i, j) {
+        const ri = find(i);
+        const rj = find(j);
+        if (ri !== rj) parent[rj] = ri;
+      }
+
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          if (mapDist(CAMPUSES[i], CAMPUSES[j]) <= CLUSTER_DISTANCE) {
+            union(i, j);
+          }
+        }
+      }
+
+      /* Optional CMS list forces those campuses onto the same pole */
+      const manualIdx = manualIds
+        .map(function (id) {
+          return CAMPUSES.findIndex(function (c) {
+            return c.id === id;
+          });
+        })
+        .filter(function (i) {
+          return i >= 0;
+        });
+      for (let k = 1; k < manualIdx.length; k++) {
+        union(manualIdx[0], manualIdx[k]);
+      }
+
+      const buckets = {};
+      CAMPUSES.forEach(function (campus, i) {
+        const root = find(i);
+        if (!buckets[root]) buckets[root] = [];
+        buckets[root].push(campus);
+      });
+
+      return Object.keys(buckets)
+        .map(function (key) {
+          return buckets[key];
+        })
+        .filter(function (members) {
+          return members.length >= 2;
+        })
+        .map(function (members) {
+          const touchesManual = members.some(function (m) {
+            return manualIds.indexOf(m.id) !== -1;
+          });
+          const useManualPos =
+            touchesManual &&
+            Number.isFinite(Number(CLUSTER.x)) &&
+            Number.isFinite(Number(CLUSTER.y));
+
+          const x = useManualPos
+            ? Number(CLUSTER.x)
+            : members.reduce(function (sum, m) {
+                return sum + Number(m.x);
+              }, 0) / members.length;
+          const y = useManualPos
+            ? Number(CLUSTER.y)
+            : members.reduce(function (sum, m) {
+                return sum + Number(m.y);
+              }, 0) / members.length;
+
+          return { members: members, x: x, y: y };
+        });
+    }
+
+    const groups = resolveClusters();
+    if (!groups.length) return;
+
+    const clusterClosers = [];
+    const clusterHiders = [];
+
+    closeClusterReport = function () {
+      clusterClosers.forEach(function (fn) {
+        fn();
+      });
+    };
     hideCluster = function () {
-      closeAllBoards();
-      cluster.classList.add("is-hidden");
-      pin.classList.remove("is-active");
+      clusterHiders.forEach(function (fn) {
+        fn();
+      });
     };
 
-    function showCluster() {
-      CAMPUSES.forEach(function (x) {
-        const sg = document.getElementById("sign-" + x.id);
-        sg.classList.remove("is-visible", "is-selected", "report-open");
-        sg.querySelector(".lnl-signpost__label").setAttribute("aria-expanded", "false");
-        document.getElementById("pin-" + x.id).classList.remove("is-active");
-      });
-      reportOpen = false;
-      cluster.classList.remove("is-hidden");
-      pin.classList.add("is-active");
-    }
+    groups.forEach(function (group, groupIndex) {
+      const members = group.members;
 
-    pin.classList.add("is-active");
-
-    function openClusterReport(c, board) {
-      CAMPUSES.forEach(function (x) {
-        const s = document.getElementById("sign-" + x.id);
-        s.classList.remove("is-visible", "is-selected", "report-open");
-        s.querySelector(".lnl-signpost__label").setAttribute("aria-expanded", "false");
-        document.getElementById("pin-" + x.id).classList.remove("is-active");
+      members.forEach(function (c) {
+        document.getElementById("pin-" + c.id).classList.add("lnl-in-cluster");
+        document.getElementById("sign-" + c.id).classList.add("lnl-in-cluster");
       });
-      reportOpen = false;
-      if (openId === c.id) {
-        closeAllBoards();
-        return;
+
+      const pin = document.createElement("button");
+      pin.type = "button";
+      pin.className = "lnl-pin lnl-cluster-pin";
+      pin.style.left = group.x + "%";
+      pin.style.top = group.y + "%";
+      pin.style.transform = "translate(-50%,-50%)";
+      pin.style.padding = "0";
+      pin.style.width = "";
+      pin.setAttribute(
+        "aria-label",
+        members.length + " nearby campuses"
+      );
+      pin.addEventListener("click", function () {
+        showCluster();
+      });
+      frame.appendChild(pin);
+
+      const cluster = document.createElement("div");
+      cluster.className = "lnl-cluster";
+      cluster.style.left = group.x + "%";
+      cluster.style.top = group.y - 1.2 + "%";
+      cluster.dataset.clusterIndex = String(groupIndex);
+
+      const stack = document.createElement("div");
+      stack.className = "lnl-cluster__stack";
+      members.forEach(function (c) {
+        const b = document.createElement("div");
+        b.className = "lnl-cluster__label";
+        b.setAttribute("tabindex", "0");
+        b.setAttribute("role", "button");
+        b.setAttribute("aria-label", c.name + " — tap for impact report");
+        b.setAttribute("aria-expanded", "false");
+        b.textContent = c.abbr || c.name;
+        b.addEventListener("mouseenter", function () {
+          if (openId !== c.id) {
+            openClusterReport(c, b);
+          }
+        });
+        b.addEventListener("click", function () {
+          openClusterReport(c, b);
+        });
+        b.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openClusterReport(c, b);
+          }
+        });
+        stack.appendChild(b);
+      });
+      cluster.appendChild(stack);
+
+      const report = document.createElement("div");
+      report.className = "lnl-cluster__report";
+      report.setAttribute("role", "tooltip");
+      cluster.appendChild(report);
+      frame.appendChild(cluster);
+
+      let openId = null;
+      const boards = stack.querySelectorAll(".lnl-cluster__label");
+
+      function closeAllBoards() {
+        openId = null;
+        cluster.classList.remove("report-open");
+        boards.forEach(function (x) {
+          x.classList.remove("is-active");
+          x.setAttribute("aria-expanded", "false");
+        });
       }
-      openId = c.id;
-      boards.forEach(function (x) {
-        x.classList.remove("is-active");
-        x.setAttribute("aria-expanded", "false");
-      });
-      board.classList.add("is-active");
-      board.setAttribute("aria-expanded", "true");
-      report.innerHTML =
-        '<button type="button" class="lnl-signpost__close" aria-label="Close impact report">&times;</button>' +
-        "<p><b>" +
-        c.name +
-        "</b><br>" +
-        (c.report || c.blurb) +
-        "</p>" +
-        '<div class="lnl-signpost__figures">' +
-        "<div><b>" +
-        c.statA.value +
-        "</b><span>" +
-        c.statA.label +
-        "</span></div>" +
-        "<div><b>" +
-        c.statB.value +
-        "</b><span>" +
-        c.statB.label +
-        "</span></div>" +
-        "</div>";
-      report.querySelector(".lnl-signpost__close").addEventListener("click", function (e) {
-        e.stopPropagation();
+
+      function hideThisCluster() {
         closeAllBoards();
-      });
-      cluster.classList.add("report-open");
-      report.style.marginLeft = "0px";
-      requestAnimationFrame(function () {
-        const rect = report.getBoundingClientRect();
-        const m = 12;
-        const oR = rect.right - (window.innerWidth - m);
-        const oL = m - rect.left;
-        if (oR > 0) {
-          report.style.marginLeft = -oR + "px";
-        } else if (oL > 0) {
-          report.style.marginLeft = oL + "px";
+        cluster.classList.add("is-hidden");
+        pin.classList.remove("is-active");
+      }
+
+      clusterClosers.push(closeAllBoards);
+      clusterHiders.push(hideThisCluster);
+
+      function showCluster() {
+        /* Hide other poles' reports, then reveal this stack */
+        groups.forEach(function (_, otherIndex) {
+          if (otherIndex !== groupIndex) {
+            clusterHiders[otherIndex]();
+          }
+        });
+
+        CAMPUSES.forEach(function (x) {
+          const sg = document.getElementById("sign-" + x.id);
+          sg.classList.remove("is-visible", "is-selected", "report-open");
+          sg.querySelector(".lnl-signpost__label").setAttribute("aria-expanded", "false");
+          document.getElementById("pin-" + x.id).classList.remove("is-active");
+        });
+        reportOpen = false;
+        cluster.classList.remove("is-hidden");
+        pin.classList.add("is-active");
+      }
+
+      pin.classList.add("is-active");
+
+      function openClusterReport(c, board) {
+        CAMPUSES.forEach(function (x) {
+          const s = document.getElementById("sign-" + x.id);
+          s.classList.remove("is-visible", "is-selected", "report-open");
+          s.querySelector(".lnl-signpost__label").setAttribute("aria-expanded", "false");
+          document.getElementById("pin-" + x.id).classList.remove("is-active");
+        });
+        reportOpen = false;
+        if (openId === c.id) {
+          closeAllBoards();
+          return;
         }
-      });
-    }
+        openId = c.id;
+        boards.forEach(function (x) {
+          x.classList.remove("is-active");
+          x.setAttribute("aria-expanded", "false");
+        });
+        board.classList.add("is-active");
+        board.setAttribute("aria-expanded", "true");
+        const statA = c.statA || {};
+        const statB = c.statB || {};
+        report.innerHTML =
+          '<button type="button" class="lnl-signpost__close" aria-label="Close impact report">&times;</button>' +
+          "<p><b>" +
+          c.name +
+          "</b><br>" +
+          (c.report || c.blurb || "") +
+          "</p>" +
+          '<div class="lnl-signpost__figures">' +
+          "<div><b>" +
+          (statA.value || "—") +
+          "</b><span>" +
+          (statA.label || "") +
+          "</span></div>" +
+          "<div><b>" +
+          (statB.value || "—") +
+          "</b><span>" +
+          (statB.label || "") +
+          "</span></div>" +
+          "</div>";
+        report.querySelector(".lnl-signpost__close").addEventListener("click", function (e) {
+          e.stopPropagation();
+          closeAllBoards();
+        });
+        cluster.classList.add("report-open");
+        report.style.marginLeft = "0px";
+        requestAnimationFrame(function () {
+          const rect = report.getBoundingClientRect();
+          const m = 12;
+          const oR = rect.right - (window.innerWidth - m);
+          const oL = m - rect.left;
+          if (oR > 0) {
+            report.style.marginLeft = -oR + "px";
+          } else if (oL > 0) {
+            report.style.marginLeft = oL + "px";
+          }
+        });
+      }
+    });
   })();
 
   let resizeTimer;

@@ -86,46 +86,13 @@
 
       a {
         color: inherit;
-        text-decoration: underline;
-        text-underline-offset: 3px;
+        text-decoration: none;
       }
     }
 
     .learn-lunch-cta {
       margin-top: auto;
       align-self: flex-start;
-      transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
-    }
-
-    .lnl-cta--green:hover,
-    .lnl-cta--green:focus-visible {
-      background: var(--greenish);
-      border-color: var(--greenish);
-      color: var(--white);
-      box-shadow: 4px 4px rgba(0, 0, 0, 1);
-      transform: translateY(-2px);
-    }
-
-    .lnl-cta--yellow:hover,
-    .lnl-cta--yellow:focus-visible {
-      background: var(--mm-yellow);
-      border-color: var(--mm-yellow);
-      color: var(--text-dark);
-      box-shadow: 4px 4px rgba(0, 0, 0, 1);
-      transform: translateY(-2px);
-    }
-
-    .lnl-cta--blue:hover,
-    .lnl-cta--blue:focus-visible {
-      background: var(--darker-blue);
-      border-color: var(--darker-blue);
-      color: var(--white);
-      box-shadow: 4px 4px rgba(0, 0, 0, 1);
-      transform: translateY(-2px);
     }
   }
 }

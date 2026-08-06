@@ -3,7 +3,8 @@
   
   
   .lnl-hero-container {
-    max-width: 1500px;
+    max-width: 1400px;
+    width: min(1400px, calc(100% - 4rem)); /* match .navbar 2rem side padding */
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1.4fr;
@@ -11,7 +12,7 @@
     background: white;
     overflow: hidden;
     // max-height: 500px;
-    padding: 100px 30px;
+    padding: 100px 0;
   }
   .lnl-hero-content {
     background: #F5B800;
@@ -106,6 +107,12 @@
     padding: 0 40px;
     }
 
+  }
+
+  @media (max-width: 900px) {
+    .lnl-hero-container {
+      width: min(1400px, calc(100% - 2rem)); /* match .navbar at this breakpoint */
+    }
   }
 
 
