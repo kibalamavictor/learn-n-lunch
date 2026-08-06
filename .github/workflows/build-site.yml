@@ -46,7 +46,11 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      # Pages artifacts must stay small — never ship node_modules
+      - name: Prune build dependencies before Pages upload
+        run: rm -rf node_modules
+
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload static site
@@ -83,7 +87,9 @@ jobs:
             exit 0
           fi
 
-          git commit -m "chore: rebuild site from CMS content"
+          # [skip ci] prevents Deploy static site from re-running and queuing
+          # a second Pages deployment behind this one (which caused timeouts).
+          git commit -m "chore: rebuild site from CMS content [skip ci]"
 
           if git push origin HEAD:main; then
             echo "Synced rendered HTML via direct push to main."
@@ -94,7 +100,7 @@ jobs:
           git reset --soft HEAD~1
           SYNC_BRANCH="bot/sync-rendered-html-${GITHUB_RUN_ID}"
           git checkout -b "${SYNC_BRANCH}"
-          git commit -m "chore: rebuild site from CMS content"
+          git commit -m "chore: rebuild site from CMS content [skip ci]"
           git push -u origin "${SYNC_BRANCH}"
 
           PR_NUMBER=$(gh pr create \
