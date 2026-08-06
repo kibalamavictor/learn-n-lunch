@@ -1,11 +1,11 @@
 ---
 title: Home
 hero:
-  heading: Ending Campus Hunger in Uganda
-  body: In Ugandan universities, rising costs and limited welfare support are
-    causing many students to skip meals. Learn And Lunch is building a national
-    response through research, student networks, and practical solutions to
-    ensure no student must choose between learning and eating.
+  heading: Ending Campus Hunger. Unlocking Student Success.
+  body: Food security is a foundation for learning, wellbeing, and opportunity.
+    Learn And Lunch advocates for a future without campus hunger and builds
+    practical solutions through research, student networks, and partnerships to
+    ensure every university student has the opportunity to succeed.
   carouselImages:
     - image: /assets/uploads/learn_and_lunch_001.webp
       alt: Learn and lunch photo frame photo
@@ -18,11 +18,12 @@ hero:
 missionBanner:
   - NO STUDENT SHOULD STUDY HUNGRY
 impactIntro:
-  body: Learn And Lunch is a student centered initiative working to understand and
-    address food insecurity within Ugandan universities. Through national
-    research, student networks, and institutional engagement, we are documenting
-    the realities students face and working with universities, student
-    associations, and policymakers to strengthen campus welfare systems.
+  body: Learn And Lunch is a student-led organization advancing food security as a
+    foundation for student success in Ugandan universities. Through research,
+    advocacy, student networks, and practical solutions, we work with
+    universities, student leaders, and partners to understand campus food
+    insecurity, influence systems change, and build approaches that ensure
+    students have the opportunity to thrive.
   ctaLabel: Learn More
   ctaUrl: /about-us/
   leftImage: /assets/uploads/learn_and_lunch_06.webp
@@ -31,19 +32,19 @@ impactIntro:
   rightImageAlt: Happy students outdoors
 modelWorkCards:
   - heading: Research and Evidence
-    body: We conduct research across universities to understand student food
-      insecurity and generate evidence that informs dialogue, institutional
-      improvement, and stronger campus welfare systems.
+    body: We generate evidence on student food insecurity across universities to
+      understand the realities students face, identify systemic gaps, and guide
+      effective solutions, policies, and institutional action
     accentColor: "#d3eeff"
-  - heading: Student Networks and Campus Coalitions
-    body: We unite student associations and campus groups into a national coalition
-      that elevates student welfare issues and strengthens collective action
-      addressing campus hunger.
+  - heading: Student Networks & Collective Action
+    body: We connect students, associations, and campus leaders to build a national
+      movement that amplifies student voices, strengthens advocacy, and advances
+      food security as a priority within higher education.
     accentColor: "#fdc039"
-  - heading: Immediate Support and Nutrition Awareness
-    body: We support responsible emergency food initiatives and provide nutrition
-      education while long term solutions are developed, ensuring students
-      access food with dignity.
+  - heading: Innovation & Practical Solutions
+    body: We design, test, and improve practical interventions that address campus
+      hunger, from food access models and nutrition initiatives to student-led
+      solutions that can be adapted and scaled.
     accentColor: "#7be4d3"
 howItWorks:
   titleLine1: NO STUDENT SHOULD
