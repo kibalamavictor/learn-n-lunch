@@ -5,7 +5,7 @@ hero:
   body: Food security is a foundation for learning, wellbeing, and opportunity.
     Learn And Lunch advocates for a future without campus hunger and builds
     practical solutions through research, student networks, and partnerships to
-    ensure every university student has the opportunity to succeed.
+    ensure every university student has the opportunity to succeed
   carouselImages:
     - image: /assets/uploads/learn_and_lunch_001.webp
       alt: Learn and lunch photo frame photo
