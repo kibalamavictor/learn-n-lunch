@@ -116,7 +116,6 @@ a {
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -578,7 +577,6 @@ a {
   font-size: 19px;
   border: 1px solid #1a1a1a;
   cursor: pointer;
-  transition: all 0.3s ease;
   text-decoration: none;
   box-shadow: 4px 4px rgb(0, 0, 0);
 }
@@ -947,6 +945,14 @@ a {
 .flow-cta.donate:hover {
   background: var(--mm-yellow);
   color: #000;
+}
+
+.flow-cta.donate img {
+  transition: filter 0.15s ease;
+}
+
+.flow-cta.donate:hover img {
+  filter: brightness(0);
 }
 
 /* Decorative elements */
@@ -1934,12 +1940,7 @@ a {
   border: 2px solid #000;
   box-shadow: 4px 4px 0 #000;
   cursor: pointer;
-  transition: all 0.3s ease;
   text-decoration: none;
-}
-
-.footer-cta-button:hover {
-  background: #0284c7;
 }
 
 .footer-cta-qr {
@@ -2176,13 +2177,8 @@ hr {
   justify-content: center;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: background-color 0.2s;
   color: #1a1a1a;
   box-shadow: 2px 2px 0px var(--text-dark);
-}
-
-.mtm-nav-button:hover {
-  background-color: #f0f0f0;
 }
 
 .mtm-nav-button:active {
@@ -3896,20 +3892,10 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
   box-shadow: 2px 2px #000;
 }
 .back-button svg {
   stroke: currentColor;
-}
-
-.back-button:hover {
-  background: #000;
-  color: #fff;
-}
-
-.back-button:hover svg {
-  stroke: #fff;
 }
 
 .category-badge {
@@ -3963,17 +3949,7 @@ hr {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
   box-shadow: 2px 2px #000;
-}
-
-.share-button:hover {
-  background: #000;
-  color: #fff;
-}
-
-.share-button:hover svg {
-  stroke: #fff;
 }
 
 .exam-story-title {
@@ -4137,9 +4113,6 @@ hr {
   text-decoration: none;
   box-shadow: 4px 4px rgb(0, 0, 0);
 }
-.pdf-report-btn:hover:not(.active), .pdf-report-btn:focus-visible:not(.active) {
-  background: var(--mm-yellow);
-}
 
 .pdf-report-viewer {
   width: 100%;
@@ -4170,12 +4143,21 @@ hr {
   }
 }
 .donation-form-container {
-  max-width: 800px;
-  margin: 0 auto 0 0;
-  padding: 8rem 2rem 3rem;
+  max-width: 1400px;
+  width: min(1400px, 100% - 4rem); /* match .navbar 2rem side padding */
+  margin: 0 auto;
+  padding: 8rem 0 3rem;
   font-family: "Nunito", sans-serif;
   position: relative;
-  left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left edge lines up with nav logo */
+}
+
+.donation-form-header,
+.donation-form {
+  width: 100%;
+  max-width: 800px;
 }
 
 .donation-form-header {
@@ -4336,6 +4318,10 @@ hr {
   color: #fff;
 }
 
+.active-frequency .smile-icon {
+  filter: brightness(0) invert(1);
+}
+
 .frequency-note {
   font-size: 0.9rem;
   color: #000;
@@ -4344,9 +4330,10 @@ hr {
 }
 
 .smile-icon {
-  stroke: currentColor;
   height: 18px;
   width: 18px;
+  display: block;
+  transition: filter 0.15s ease;
 }
 
 /* Responsive alignment */
@@ -4395,7 +4382,7 @@ hr {
 }
 
 .country-code-select {
-  padding: 1rem;
+  padding: 1rem 0.65rem;
   border: 2px solid #000;
   background: #444;
   color: #fff;
@@ -4404,8 +4391,11 @@ hr {
   box-shadow: 3px 3px #000;
   cursor: pointer;
   outline: none;
-  min-width: 100px;
+  min-width: 4.75rem;
+  width: auto;
+  max-width: 6.5rem;
   height: 58px;
+  flex: 0 0 auto;
 }
 
 .phone-input {
@@ -4488,14 +4478,23 @@ hr {
 }
 
 /* Responsive Design */
+@media (max-width: 900px) {
+  .donation-form-container {
+    width: min(1400px, 100% - 2rem); /* match .navbar at this breakpoint */
+  }
+}
 @media (max-width: 1000px) {
   .donation-form-container {
-    left: 0;
+    align-items: stretch;
+  }
+  .donation-form-header,
+  .donation-form {
+    max-width: none;
   }
 }
 @media (max-width: 768px) {
   .donation-form-container {
-    padding: 7rem 1rem 4rem;
+    padding: 7rem 0 4rem;
   }
   .donation-form-header {
     margin-bottom: 3rem;
@@ -4512,10 +4511,16 @@ hr {
     grid-template-columns: repeat(3, 1fr);
   }
   .phone-input-group {
-    flex-direction: column;
+    /* keep row layout on mobile — code + number side by side */
+    flex-direction: row;
+    align-items: stretch;
   }
   .country-code-select {
-    width: 100%;
+    width: auto;
+    min-width: 0;
+    flex: 0 0 auto;
+    padding: 1rem 0.4rem;
+    font-size: 0.9rem;
   }
   .donation-amount-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -5290,10 +5295,6 @@ hr {
   padding: 0;
 }
 
-.lnl-signpost__close:hover {
-  background: var(--mm-yellow);
-}
-
 .lnl-signpost.flip .lnl-signpost__close {
   right: auto;
   left: 6px;
@@ -5957,96 +5958,503 @@ a, a:visited, a:active {
     transform: translate(0, 0);
   }
 }
-.learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active), .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active),
-.footer-cta-button:hover:not(:disabled):not(.selected):not(.active),
-.footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active),
-.donate-cta-button:hover:not(:disabled):not(.selected):not(.active),
-.donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active),
-.donate-btn:hover:not(:disabled):not(.selected):not(.active),
-.donate-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.mm-cta:hover:not(:disabled):not(.selected):not(.active),
-.mm-cta:focus-visible:not(:disabled):not(.selected):not(.active),
-.mm-more:hover:not(:disabled):not(.selected):not(.active),
-.mm-more:focus-visible:not(:disabled):not(.selected):not(.active),
-.campus-feature-button:hover:not(:disabled):not(.selected):not(.active),
-.campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active),
-.makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active),
-.makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.mtm-nav-button:hover:not(:disabled):not(.selected):not(.active),
-.mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active),
-.mm-nav-btn:hover:not(:disabled):not(.selected):not(.active),
-.mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.impact-faces-nav:hover:not(:disabled):not(.selected):not(.active),
-.impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active),
-.carousel-btn:hover:not(:disabled):not(.selected):not(.active),
-.carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.back-button:hover:not(:disabled):not(.selected):not(.active),
-.back-button:focus-visible:not(:disabled):not(.selected):not(.active),
-.share-button:hover:not(:disabled):not(.selected):not(.active),
-.share-button:focus-visible:not(:disabled):not(.selected):not(.active),
-.stories-search-btn:hover:not(:disabled):not(.selected):not(.active),
-.stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.stories-filter-btn:hover:not(:disabled):not(.selected):not(.active),
-.stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.amount-option:hover:not(:disabled):not(.selected):not(.active),
-.amount-option:focus-visible:not(:disabled):not(.selected):not(.active),
-.frequency-btn:hover:not(:disabled):not(.selected):not(.active),
-.frequency-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.payment-method-btn:hover:not(:disabled):not(.selected):not(.active),
-.payment-method-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.pdf-report-btn:hover:not(:disabled):not(.selected):not(.active),
-.pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-.lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active),
-.lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active),
-.mobile-menu-toggle:hover:not(:disabled):not(.selected):not(.active),
-.mobile-menu-toggle:focus-visible:not(:disabled):not(.selected):not(.active) {
+/* Black fill + white label/icon on hover (site-wide CTAs) */
+.learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active), .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active) {
   animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
 }
 
+.footer-cta-button:hover:not(:disabled):not(.selected):not(.active), .footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.donate-cta-button:hover:not(:disabled):not(.selected):not(.active), .donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.donate-btn:hover:not(:disabled):not(.selected):not(.active), .donate-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.mm-cta:hover:not(:disabled):not(.selected):not(.active), .mm-cta:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.mm-more:hover:not(:disabled):not(.selected):not(.active), .mm-more:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.campus-feature-button:hover:not(:disabled):not(.selected):not(.active), .campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active), .makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.mtm-nav-button:hover:not(:disabled):not(.selected):not(.active), .mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.mm-nav-btn:hover:not(:disabled):not(.selected):not(.active), .mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.impact-faces-nav:hover:not(:disabled):not(.selected):not(.active), .impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.carousel-btn:hover:not(:disabled):not(.selected):not(.active), .carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.back-button:hover:not(:disabled):not(.selected):not(.active), .back-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.share-button:hover:not(:disabled):not(.selected):not(.active), .share-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.stories-search-btn:hover:not(:disabled):not(.selected):not(.active), .stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.stories-filter-btn:hover:not(:disabled):not(.selected):not(.active), .stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.amount-option:hover:not(:disabled):not(.selected):not(.active), .amount-option:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.frequency-btn:hover:not(:disabled):not(.selected):not(.active), .frequency-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.payment-method-btn:hover:not(:disabled):not(.selected):not(.active), .payment-method-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.pdf-report-btn:hover:not(:disabled):not(.selected):not(.active), .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active), .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.mobile-menu-toggle:hover:not(:disabled):not(.selected):not(.active), .mobile-menu-toggle:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+/* Invert hover — excludes donate form controls and how-it-works flow CTAs */
+.donate-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.donate-btn img,
+.donate-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.donate-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .donate-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.donate-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .donate-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.donate-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .donate-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.footer-cta-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.footer-cta-button img,
+.footer-cta-button svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.footer-cta-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.footer-cta-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.footer-cta-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.donate-cta-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.donate-cta-button img,
+.donate-cta-button svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.donate-cta-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.donate-cta-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.donate-cta-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.learn-lunch-cta {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.learn-lunch-cta img,
+.learn-lunch-cta svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.mm-cta {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mm-cta img,
+.mm-cta svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.mm-cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .mm-cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.mm-cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .mm-cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.mm-cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .mm-cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.mm-more {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mm-more img,
+.mm-more svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.mm-more:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .mm-more:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.mm-more:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .mm-more:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.mm-more:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .mm-more:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.campus-feature-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.campus-feature-button img,
+.campus-feature-button svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.campus-feature-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.campus-feature-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.campus-feature-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.makerere-lunch-cta-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.makerere-lunch-cta-btn img,
+.makerere-lunch-cta-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.mtm-nav-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mtm-nav-button img,
+.mtm-nav-button svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.mtm-nav-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.mtm-nav-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.mtm-nav-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.mm-nav-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mm-nav-btn img,
+.mm-nav-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.mm-nav-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.mm-nav-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.mm-nav-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.impact-faces-nav {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.impact-faces-nav img,
+.impact-faces-nav svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.impact-faces-nav:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.impact-faces-nav:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.impact-faces-nav:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.carousel-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.carousel-btn img,
+.carousel-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.carousel-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.carousel-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.carousel-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.back-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.back-button img,
+.back-button svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.back-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .back-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.back-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .back-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.back-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .back-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.share-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.share-button img,
+.share-button svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.share-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .share-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.share-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .share-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.share-button:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .share-button:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.stories-search-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.stories-search-btn img,
+.stories-search-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.stories-search-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.stories-search-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.stories-search-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.stories-filter-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.stories-filter-btn img,
+.stories-filter-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.stories-filter-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.stories-filter-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.stories-filter-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.pdf-report-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.pdf-report-btn img,
+.pdf-report-btn svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.pdf-report-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.pdf-report-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.pdf-report-btn:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
+.lnl-signpost__close {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.lnl-signpost__close img,
+.lnl-signpost__close svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active), .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active),
-  .footer-cta-button:hover:not(:disabled):not(.selected):not(.active),
-  .footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active),
-  .donate-cta-button:hover:not(:disabled):not(.selected):not(.active),
-  .donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active),
-  .donate-btn:hover:not(:disabled):not(.selected):not(.active),
-  .donate-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .mm-cta:hover:not(:disabled):not(.selected):not(.active),
-  .mm-cta:focus-visible:not(:disabled):not(.selected):not(.active),
-  .mm-more:hover:not(:disabled):not(.selected):not(.active),
-  .mm-more:focus-visible:not(:disabled):not(.selected):not(.active),
-  .campus-feature-button:hover:not(:disabled):not(.selected):not(.active),
-  .campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active),
-  .makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active),
-  .makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .mtm-nav-button:hover:not(:disabled):not(.selected):not(.active),
-  .mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active),
-  .mm-nav-btn:hover:not(:disabled):not(.selected):not(.active),
-  .mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .impact-faces-nav:hover:not(:disabled):not(.selected):not(.active),
-  .impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active),
-  .carousel-btn:hover:not(:disabled):not(.selected):not(.active),
-  .carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .back-button:hover:not(:disabled):not(.selected):not(.active),
-  .back-button:focus-visible:not(:disabled):not(.selected):not(.active),
-  .share-button:hover:not(:disabled):not(.selected):not(.active),
-  .share-button:focus-visible:not(:disabled):not(.selected):not(.active),
-  .stories-search-btn:hover:not(:disabled):not(.selected):not(.active),
-  .stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .stories-filter-btn:hover:not(:disabled):not(.selected):not(.active),
-  .stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .amount-option:hover:not(:disabled):not(.selected):not(.active),
-  .amount-option:focus-visible:not(:disabled):not(.selected):not(.active),
-  .frequency-btn:hover:not(:disabled):not(.selected):not(.active),
-  .frequency-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .payment-method-btn:hover:not(:disabled):not(.selected):not(.active),
-  .payment-method-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .pdf-report-btn:hover:not(:disabled):not(.selected):not(.active),
-  .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active),
-  .lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active),
-  .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active),
-  .mobile-menu-toggle:hover:not(:disabled):not(.selected):not(.active),
-  .mobile-menu-toggle:focus-visible:not(:disabled):not(.selected):not(.active) {
+  .learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active), .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .footer-cta-button:hover:not(:disabled):not(.selected):not(.active), .footer-cta-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .donate-cta-button:hover:not(:disabled):not(.selected):not(.active), .donate-cta-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .donate-btn:hover:not(:disabled):not(.selected):not(.active), .donate-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .mm-cta:hover:not(:disabled):not(.selected):not(.active), .mm-cta:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .mm-more:hover:not(:disabled):not(.selected):not(.active), .mm-more:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .campus-feature-button:hover:not(:disabled):not(.selected):not(.active), .campus-feature-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .makerere-lunch-cta-btn:hover:not(:disabled):not(.selected):not(.active), .makerere-lunch-cta-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .mtm-nav-button:hover:not(:disabled):not(.selected):not(.active), .mtm-nav-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .mm-nav-btn:hover:not(:disabled):not(.selected):not(.active), .mm-nav-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .impact-faces-nav:hover:not(:disabled):not(.selected):not(.active), .impact-faces-nav:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .carousel-btn:hover:not(:disabled):not(.selected):not(.active), .carousel-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .back-button:hover:not(:disabled):not(.selected):not(.active), .back-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .share-button:hover:not(:disabled):not(.selected):not(.active), .share-button:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .stories-search-btn:hover:not(:disabled):not(.selected):not(.active), .stories-search-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .stories-filter-btn:hover:not(:disabled):not(.selected):not(.active), .stories-filter-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .amount-option:hover:not(:disabled):not(.selected):not(.active), .amount-option:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .frequency-btn:hover:not(:disabled):not(.selected):not(.active), .frequency-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .payment-method-btn:hover:not(:disabled):not(.selected):not(.active), .payment-method-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .pdf-report-btn:hover:not(:disabled):not(.selected):not(.active), .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active), .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .mobile-menu-toggle:hover:not(:disabled):not(.selected):not(.active), .mobile-menu-toggle:focus-visible:not(:disabled):not(.selected):not(.active) {
     animation: none !important;
   }
 }

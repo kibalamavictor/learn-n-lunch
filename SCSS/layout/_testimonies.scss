@@ -87,13 +87,8 @@
   justify-content: center;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: background-color 0.2s;
   color: #1a1a1a;
   box-shadow: 2px 2px 0px var(--text-dark);
-}
-
-.mtm-nav-button:hover {
-  background-color: #f0f0f0;
 }
 
 .mtm-nav-button:active {

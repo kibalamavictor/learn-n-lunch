@@ -82,57 +82,97 @@
   }
 }
 
-.learn-lunch-cta,
-.footer-cta-button,
-.donate-cta-button,
-.donate-btn,
-.mm-cta,
-.mm-more,
-.campus-feature-button,
-.makerere-lunch-cta-btn,
-.mtm-nav-button,
-.mm-nav-btn,
-.impact-faces-nav,
-.carousel-btn,
-.back-button,
-.share-button,
-.stories-search-btn,
-.stories-filter-btn,
-.amount-option,
-.frequency-btn,
-.payment-method-btn,
-.pdf-report-btn,
-.lnl-signpost__close,
-.mobile-menu-toggle {
-  @include lnl-pixel-hover;
+/* Black fill + white label/icon on hover (site-wide CTAs) */
+@mixin lnl-invert-hover {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  img,
+  svg {
+    transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+  }
+
+  &:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency),
+  &:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+
+    svg {
+      stroke: #fff;
+    }
+  }
+}
+
+$lnl-jitter-buttons: (
+  '.learn-lunch-cta',
+  '.footer-cta-button',
+  '.donate-cta-button',
+  '.donate-btn',
+  '.mm-cta',
+  '.mm-more',
+  '.campus-feature-button',
+  '.makerere-lunch-cta-btn',
+  '.mtm-nav-button',
+  '.mm-nav-btn',
+  '.impact-faces-nav',
+  '.carousel-btn',
+  '.back-button',
+  '.share-button',
+  '.stories-search-btn',
+  '.stories-filter-btn',
+  '.amount-option',
+  '.frequency-btn',
+  '.payment-method-btn',
+  '.pdf-report-btn',
+  '.lnl-signpost__close',
+  '.mobile-menu-toggle'
+);
+
+@each $btn in $lnl-jitter-buttons {
+  #{$btn} {
+    @include lnl-pixel-hover;
+  }
+}
+
+/* Invert hover — excludes donate form controls and how-it-works flow CTAs */
+$lnl-invert-buttons: (
+  '.donate-btn',
+  '.footer-cta-button',
+  '.donate-cta-button',
+  '.learn-lunch-cta',
+  '.mm-cta',
+  '.mm-more',
+  '.campus-feature-button',
+  '.makerere-lunch-cta-btn',
+  '.mtm-nav-button',
+  '.mm-nav-btn',
+  '.impact-faces-nav',
+  '.carousel-btn',
+  '.back-button',
+  '.share-button',
+  '.stories-search-btn',
+  '.stories-filter-btn',
+  '.pdf-report-btn',
+  '.lnl-signpost__close'
+);
+
+@each $btn in $lnl-invert-buttons {
+  #{$btn} {
+    @include lnl-invert-hover;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .learn-lunch-cta,
-  .footer-cta-button,
-  .donate-cta-button,
-  .donate-btn,
-  .mm-cta,
-  .mm-more,
-  .campus-feature-button,
-  .makerere-lunch-cta-btn,
-  .mtm-nav-button,
-  .mm-nav-btn,
-  .impact-faces-nav,
-  .carousel-btn,
-  .back-button,
-  .share-button,
-  .stories-search-btn,
-  .stories-filter-btn,
-  .amount-option,
-  .frequency-btn,
-  .payment-method-btn,
-  .pdf-report-btn,
-  .lnl-signpost__close,
-  .mobile-menu-toggle {
-    &:hover:not(:disabled):not(.selected):not(.active),
-    &:focus-visible:not(:disabled):not(.selected):not(.active) {
-      animation: none !important;
+  @each $btn in $lnl-jitter-buttons {
+    #{$btn} {
+      &:hover:not(:disabled):not(.selected):not(.active),
+      &:focus-visible:not(:disabled):not(.selected):not(.active) {
+        animation: none !important;
+      }
     }
   }
 }

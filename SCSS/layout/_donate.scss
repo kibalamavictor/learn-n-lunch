@@ -4,12 +4,21 @@
 
 
 .donation-form-container {
-    max-width: 800px;
-    margin: 0 auto 0 0;
-    padding: 8rem 2rem 3rem;
+    max-width: 1400px;
+    width: min(1400px, calc(100% - 4rem)); /* match .navbar 2rem side padding */
+    margin: 0 auto;
+    padding: 8rem 0 3rem;
     font-family: util.$font-n;
     position: relative;
-    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* left edge lines up with nav logo */
+  }
+
+  .donation-form-header,
+  .donation-form {
+    width: 100%;
+    max-width: 800px;
   }
 
   .donation-form-header {
@@ -190,6 +199,10 @@
 //   border-color: #2d9c8f;
 }
 
+.active-frequency .smile-icon {
+  filter: brightness(0) invert(1);
+}
+
 .frequency-note {
   font-size: 0.9rem;
   color: #000;
@@ -198,9 +211,10 @@
 }
 
 .smile-icon {
-  stroke: currentColor;
   height: 18px;
   width: 18px;
+  display: block;
+  transition: filter 0.15s ease;
 }
 
 /* Responsive alignment */
@@ -250,7 +264,7 @@
   }
 
   .country-code-select {
-    padding: 1rem;
+    padding: 1rem 0.65rem;
     border: 2px solid #000;
     background: #444;
     color: #fff;
@@ -259,8 +273,11 @@
     box-shadow: 3px 3px #000;
     cursor: pointer;
     outline: none;
-    min-width: 100px;
+    min-width: 4.75rem;
+    width: auto;
+    max-width: 6.5rem;
     height: 58px;
+    flex: 0 0 auto;
   }
 
   .phone-input {
@@ -343,18 +360,27 @@
   }
 
   /* Responsive Design */
-  @media (max-width: 1000px) {
-
+  @media (max-width: 900px) {
     .donation-form-container {
-    left: 0;
+      width: min(1400px, calc(100% - 2rem)); /* match .navbar at this breakpoint */
+    }
   }
 
+  @media (max-width: 1000px) {
+    .donation-form-container {
+      align-items: stretch;
+    }
+
+    .donation-form-header,
+    .donation-form {
+      max-width: none;
+    }
   }
 
 
   @media (max-width: 768px) {
     .donation-form-container {
-      padding: 7rem 1rem 4rem;
+      padding: 7rem 0 4rem;
     }
 
 
@@ -379,11 +405,17 @@
     }
 
     .phone-input-group {
-      flex-direction: column;
+      /* keep row layout on mobile — code + number side by side */
+      flex-direction: row;
+      align-items: stretch;
     }
 
     .country-code-select {
-      width: 100%;
+      width: auto;
+      min-width: 0;
+      flex: 0 0 auto;
+      padding: 1rem 0.4rem;
+      font-size: 0.9rem;
     }
 
     .donation-amount-grid {

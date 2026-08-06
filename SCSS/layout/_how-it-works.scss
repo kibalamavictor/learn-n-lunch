@@ -336,6 +336,14 @@
         color: #000;
     }
 
+    .flow-cta.donate img {
+        transition: filter 0.15s ease;
+    }
+
+    .flow-cta.donate:hover img {
+        filter: brightness(0);
+    }
+
     /* Decorative elements */
     // .how-it-works-section::before,
     // .how-it-works-section::after {

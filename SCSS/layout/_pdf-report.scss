@@ -34,11 +34,6 @@
   transition: all 0.25s ease;
   text-decoration: none;
   box-shadow: 4px 4px rgba(0, 0, 0, 1);
-
-  &:hover:not(.active),
-  &:focus-visible:not(.active) {
-    background: var(--mm-yellow);
-  }
 }
 
 .pdf-report-viewer {

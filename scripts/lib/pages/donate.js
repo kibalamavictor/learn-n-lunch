@@ -76,12 +76,31 @@ function renderDonate({ site, page }) {
       <div class="form-group">
         <label class="input-label">${escapeHtml(page.fieldLabels.phone)}</label>
         <div class="phone-input-group">
-          <select class="country-code-select">
+          <select class="country-code-select" aria-label="Country code">
             <option value="+256">+256</option>
             <option value="+254">+254</option>
             <option value="+255">+255</option>
+            <option value="+250">+250</option>
+            <option value="+257">+257</option>
+            <option value="+211">+211</option>
+            <option value="+251">+251</option>
+            <option value="+243">+243</option>
+            <option value="+260">+260</option>
+            <option value="+263">+263</option>
+            <option value="+27">+27</option>
+            <option value="+234">+234</option>
+            <option value="+233">+233</option>
             <option value="+1">+1</option>
             <option value="+44">+44</option>
+            <option value="+49">+49</option>
+            <option value="+33">+33</option>
+            <option value="+31">+31</option>
+            <option value="+46">+46</option>
+            <option value="+41">+41</option>
+            <option value="+971">+971</option>
+            <option value="+91">+91</option>
+            <option value="+86">+86</option>
+            <option value="+61">+61</option>
           </select>
           <input type="tel" class="form-input phone-input" />
         </div>
