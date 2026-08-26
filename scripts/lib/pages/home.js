@@ -160,6 +160,60 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     )
     .join("\n");
 
+  const partners = page.partners || {};
+  const partnerItems = Array.isArray(partners.items) ? partners.items : [];
+  const renderPartnerItems = (items, { clone = false } = {}) =>
+    items
+      .map((partner) => {
+        const name = escapeHtml(partner.name || "Partner");
+        const logoSrc = partner.logo ? resolveAsset(depth, partner.logo) : "";
+        const logoAlt = clone
+          ? ""
+          : escapeHtml(partner.logoAlt || partner.name || "Partner logo");
+        const isDarkLogo = /body-and-soil/i.test(String(partner.logo || ""));
+        const logoHtml = logoSrc
+          ? `<img class="partner-logo" src="${logoSrc}" alt="${logoAlt}" loading="lazy" />`
+          : "";
+        const cardClass = [
+          "partner-card",
+          logoSrc ? "" : "partner-card--text-only",
+          isDarkLogo ? "partner-card--dark" : ""
+        ]
+          .filter(Boolean)
+          .join(" ");
+        const nameHtml = logoSrc
+          ? `<p class="partner-name visually-hidden">${name}</p>`
+          : `<p class="partner-name">${name}</p>`;
+        const inner = `${logoHtml}${nameHtml}`;
+        const tabIndex = clone ? ' tabindex="-1"' : "";
+        if (partner.url) {
+          return `<li><a class="${cardClass}" href="${escapeHtml(partner.url)}"${tabIndex} target="_blank" rel="noopener noreferrer">${inner}</a></li>`;
+        }
+        return `<li><div class="${cardClass}">${inner}</div></li>`;
+      })
+      .join("\n          ");
+  const partnersHtml = partnerItems.length
+    ? `
+<section id="partners" class="partners-section" aria-label="Our partners">
+  <div class="partners-container">
+    <div class="partners-header">
+      <h2 class="partners-title">${escapeHtml(partners.heading || "OUR PARTNERS")}</h2>
+      ${partners.intro ? `<p class="partners-intro">${escapeHtml(partners.intro)}</p>` : ""}
+    </div>
+    <div class="partners-marquee">
+      <div class="partners-track-group">
+        <ul class="partners-track">
+          ${renderPartnerItems(partnerItems)}
+        </ul>
+        <ul class="partners-track partners-track--clone" aria-hidden="true">
+          ${renderPartnerItems(partnerItems, { clone: true })}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>`
+    : "";
+
   const body = `
     <section class="hero">
         <div class="hero-content">
@@ -326,7 +380,8 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
  <div id="app">
      <h3 class="mtm-title" >Moments That <br> Matter</h3>
       ${testimonialsHtml}
-    </div>`;
+    </div>
+${partnersHtml}`;
 
   const headExtra = `
     <style>

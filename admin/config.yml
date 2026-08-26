@@ -165,7 +165,25 @@ collections:
               - { label: More Button Label, name: moreLabel, widget: string }
               - { label: More Button URL, name: moreUrl, widget: string, hint: "Usually /stories/" }
 
-          - label: "9 · Footer CTA"
+          - label: "9 · Our Partners"
+            name: partners
+            widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Intro, name: intro, widget: text, required: false }
+              - label: Partners
+                name: items
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - { label: Website URL, name: url, widget: string, required: false, hint: "Optional. Opens in a new tab when set." }
+                  - { label: Logo, name: logo, widget: image, required: false }
+                  - { label: Logo Alt, name: logoAlt, widget: string, required: false }
+
+          - label: "10 · Footer CTA"
             name: footerCta
             widget: object
             collapsed: true

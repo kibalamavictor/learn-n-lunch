@@ -93,7 +93,6 @@ const handleCallback = async (url: URL, env: Env) => {
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const url = new URL(request.url);
-    console.log(`url.pathname is ${url.pathname}`);
 		if (url.pathname === '/auth') {
 			return handleAuth(url, env);
 		}

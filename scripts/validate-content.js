@@ -70,6 +70,7 @@ function validate() {
     { key: "coalitionCta", label: "coalitionCta" },
     { key: "moments", label: "moments" },
     { key: "storiesTeaser", label: "storiesTeaser" },
+    { key: "partners", label: "partners" },
     { key: "footerCta", label: "footerCta" }
   ]);
 

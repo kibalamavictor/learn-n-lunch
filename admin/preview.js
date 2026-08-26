@@ -167,6 +167,8 @@
     const how = data.howItWorks || {};
     const moments = data.moments || {};
     const stories = data.storiesTeaser || {};
+    const partners = data.partners || {};
+    const partnerItems = Array.isArray(partners.items) ? partners.items : [];
     const footer = data.footerCta || {};
     const cards = Array.isArray(data.modelWorkCards) ? data.modelWorkCards : [];
     const carousel = Array.isArray(hero.carouselImages) ? hero.carouselImages : [];
@@ -267,6 +269,23 @@
         h("h3", { className: "preview-subtitle" }, text(stories.heading, "Stories")),
         stories.description ? h("p", null, stories.description) : null,
         stories.moreLabel ? h("span", { className: "preview-btn" }, stories.moreLabel) : null
+      ]),
+      section("Our partners", [
+        h("h3", { className: "preview-subtitle" }, text(partners.heading, "Our Partners")),
+        partners.intro ? h("p", null, partners.intro) : null,
+        partnerItems.length
+          ? h(
+              "div",
+              { className: "preview-cards" },
+              partnerItems.map((p, i) =>
+                h("article", { className: "preview-card", key: i }, [
+                  p.logo ? img(assetUrl(getAsset, p.logo), p.logoAlt || p.name, "preview-thumb") : null,
+                  h("h3", null, text(p.name, "Partner")),
+                  p.url ? h("p", { className: "preview-empty" }, p.url) : null
+                ])
+              )
+            )
+          : empty("Add partners to preview them.")
       ]),
       section("Footer CTA", [
         h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),

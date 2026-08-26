@@ -13,13 +13,15 @@ const { renderBlogPost } = require("./lib/pages/blog-post");
 
 const ROOT = process.cwd();
 
-function writePage(relativeOutputPath, html) {
-  writeFileEnsured(path.join(ROOT, relativeOutputPath), html);
-}
-
 function build() {
   const content = loadAllContent();
   const { site, pages, stats, team, testimonials, publishedBlogPosts } = content;
+  let pagesRendered = 0;
+
+  function writePage(relativeOutputPath, html) {
+    writeFileEnsured(path.join(ROOT, relativeOutputPath), html);
+    pagesRendered += 1;
+  }
 
   writePage(
     "index.html",
@@ -115,7 +117,7 @@ function build() {
   );
 
   console.log("Site build complete.");
-  console.log(`- Pages rendered: 7`);
+  console.log(`- Pages rendered: ${pagesRendered - publishedBlogPosts.length}`);
   console.log(`- Blog posts rendered: ${publishedBlogPosts.length}`);
 }
 

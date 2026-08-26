@@ -99,6 +99,27 @@ storiesTeaser:
     visibility to an issue that has remained invisible.
   moreLabel: Check Out More
   moreUrl: /stories/
+partners:
+  heading: OUR PARTNERS
+  intro: We work with campus communities, student networks, and organisations
+    building practical pathways to end campus hunger.
+  items:
+    - name: BODY & SOIL Africa
+      url: https://www.bodyandsoil.africa/
+      logo: /assets/partners/body-and-soil.png
+      logoAlt: BODY & SOIL Africa logo
+    - name: Makerere University
+      url: https://www.mak.ac.ug/
+      logo: /assets/partners/makerere.png
+      logoAlt: Makerere University logo
+    - name: Kyambogo University
+      url: https://kyu.ac.ug/
+      logo: /assets/partners/kyambogo.png
+      logoAlt: Kyambogo University logo
+    - name: Uganda Christian University
+      url: https://ucu.ac.ug/
+      logo: /assets/partners/ucu.png
+      logoAlt: Uganda Christian University logo
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now

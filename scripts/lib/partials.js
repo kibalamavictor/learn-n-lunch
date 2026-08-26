@@ -166,7 +166,7 @@ function renderPage({
   navbarStyle,
   bodyClass = "",
   body,
-  scripts = ["js/ap.js"],
+  scripts = ["js/app.js"],
   headExtra = "",
   footerCta
 }) {
