@@ -37,7 +37,7 @@ function renderImpactFacesCarousel(depth, posts, faces = {}) {
           <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
           <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
           <div class="mm-box">
-            <p class="mm-head">${escapeHtml(post.title)}</p>
+            <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
             <a href="${postUrl}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;" alt=""/></span></a>
           </div>
         </article>`;
@@ -77,42 +77,60 @@ function renderScrollingBanner(bannerText) {
   </div>`;
 }
 
-function renderImpactMoreNext(moreThanMeals = {}, whatsNext = {}) {
-  const mealsHeading = moreThanMeals.heading || "More Than Meals";
-  const mealsIntro = moreThanMeals.intro || "";
-  const mealsItems = Array.isArray(moreThanMeals.items) ? moreThanMeals.items : [];
-  const nextHeading = whatsNext.heading || "What's Next";
-  const nextItems = Array.isArray(whatsNext.items) ? whatsNext.items : [];
-
-  const mealsList = mealsItems
-    .map((item) => `<li>${escapeHtml(typeof item === "string" ? item : item.point || "")}</li>`)
-    .join("\n          ");
-  const nextList = nextItems
-    .map((item) => `<li>${escapeHtml(typeof item === "string" ? item : item.point || "")}</li>`)
-    .join("\n          ");
+function renderImpactDownloadCard({
+  depth,
+  variant,
+  heading,
+  description,
+  buttonLabel,
+  file,
+  squares
+}) {
+  const fileSrc = file ? resolveAsset(depth, String(file).replace(/^\//, "")) : "";
+  const downloadBtn = fileSrc
+    ? `<a class="lnl-mn-download" href="${escapeHtml(fileSrc)}" download>
+          <span>${escapeHtml(buttonLabel || "Download")}</span>
+        </a>`
+    : "";
 
   return `
-  <section id="lnl-more-next" class="lnl-more-next" aria-label="Learn N' Lunch — more than meals and what's next">
+      <article class="lnl-mn-card lnl-mn-card--${variant}">
+        ${squares}
+
+        <span class="lnl-mn-chip lnl-mn-chip--${variant === "framework" ? "blue" : "green"}" aria-hidden="true"></span>
+        <h2>${escapeHtml(heading)}</h2>
+        ${description ? `<p>${escapeHtml(description)}</p>` : ""}
+        ${downloadBtn}
+      </article>`;
+}
+
+function renderImpactDownloads(depth, strategicFramework = {}, impactReport = {}) {
+  const framework = strategicFramework || {};
+  const report = impactReport || {};
+
+  return `
+  <section id="lnl-more-next" class="lnl-more-next" aria-label="Download strategic framework and impact report">
     <div class="lnl-mn-grid">
-      <article class="lnl-mn-card lnl-mn-card--meals">
-        <span class="lnl-mn-sq lnl-mn-sq--tl" aria-hidden="true"></span>
-        <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>
+      ${renderImpactDownloadCard({
+        depth,
+        variant: "framework",
+        heading: framework.heading || "Strategic Framework 2025",
+        description: framework.description || "",
+        buttonLabel: framework.buttonLabel || "Download Framework",
+        file: framework.file,
+        squares: `<span class="lnl-mn-sq lnl-mn-sq--tl" aria-hidden="true"></span>
+        <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>`
+      })}
 
-        <span class="lnl-mn-chip lnl-mn-chip--blue" aria-hidden="true"></span>
-        <h2>${escapeHtml(mealsHeading)}</h2>
-
-        ${mealsIntro ? `<p>${escapeHtml(mealsIntro)}</p>` : ""}
-        ${mealsList ? `<ul>\n          ${mealsList}\n        </ul>` : ""}
-      </article>
-
-      <article class="lnl-mn-card lnl-mn-card--next">
-        <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>
-
-        <span class="lnl-mn-chip lnl-mn-chip--green" aria-hidden="true"></span>
-        <h2>${escapeHtml(nextHeading)}</h2>
-
-        ${nextList ? `<ul>\n          ${nextList}\n        </ul>` : ""}
-      </article>
+      ${renderImpactDownloadCard({
+        depth,
+        variant: "report",
+        heading: report.heading || "Impact Report 2025",
+        description: report.description || "",
+        buttonLabel: report.buttonLabel || "Download Report",
+        file: report.file,
+        squares: `<span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>`
+      })}
     </div>
   </section>`;
 }
@@ -200,7 +218,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
 
   ${renderScrollingBanner(page.scrollBanner)}
 
-  ${renderImpactMoreNext(page.moreThanMeals, page.whatsNext)}`;
+  ${renderImpactDownloads(depth, page.strategicFramework, page.impactReport)}`;
 
   const footerCta = page.footerCta
     ? {

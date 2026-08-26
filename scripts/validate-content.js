@@ -86,8 +86,8 @@ function validate() {
     { key: "numbersHeading", label: "numbersHeading" },
     { key: "faces", label: "faces" },
     { key: "scrollBanner", label: "scrollBanner" },
-    { key: "moreThanMeals", label: "moreThanMeals" },
-    { key: "whatsNext", label: "whatsNext" },
+    { key: "strategicFramework", label: "strategicFramework" },
+    { key: "impactReport", label: "impactReport" },
     { key: "footerCta", label: "footerCta" }
   ]);
 

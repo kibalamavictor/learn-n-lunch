@@ -278,32 +278,41 @@ collections:
           - label: "4 · Scroll Banner Text"
             name: scrollBanner
             widget: string
-            hint: "Phrase that repeats in the scrolling banner above More Than Meals."
+            hint: "Phrase that repeats in the scrolling banner above the download cards."
 
-          - label: "5 · More Than Meals"
-            name: moreThanMeals
+          - label: "5 · Strategic Framework"
+            name: strategicFramework
             widget: object
             collapsed: true
             summary: "{{fields.heading}}"
             fields:
               - { label: Heading, name: heading, widget: string }
-              - { label: Intro, name: intro, widget: text, required: false }
-              - label: Bullet Points
-                name: items
-                widget: list
-                field: { label: Point, name: point, widget: string }
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Button Label, name: buttonLabel, widget: string, default: "Download Framework" }
+              - label: PDF File
+                name: file
+                widget: file
+                required: false
+                hint: "Upload the Strategic Framework PDF. Visitors can download it from this card."
+                media_folder: assets/uploads
+                public_folder: /assets/uploads
 
-          - label: "6 · What's Next"
-            name: whatsNext
+          - label: "6 · Impact Report"
+            name: impactReport
             widget: object
             collapsed: true
             summary: "{{fields.heading}}"
             fields:
               - { label: Heading, name: heading, widget: string }
-              - label: Bullet Points
-                name: items
-                widget: list
-                field: { label: Point, name: point, widget: string }
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Button Label, name: buttonLabel, widget: string, default: "Download Report" }
+              - label: PDF File
+                name: file
+                widget: file
+                required: false
+                hint: "Upload the Impact Report PDF. Visitors can download it from this card."
+                media_folder: assets/uploads
+                public_folder: /assets/uploads
 
           - label: "7 · Footer CTA"
             name: footerCta

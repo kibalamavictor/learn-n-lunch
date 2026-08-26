@@ -347,8 +347,8 @@
     const data = dataOf(entry);
     const hero = data.hero || {};
     const faces = data.faces || {};
-    const meals = data.moreThanMeals || {};
-    const next = data.whatsNext || {};
+    const framework = data.strategicFramework || {};
+    const report = data.impactReport || {};
     const footer = data.footerCta || {};
 
     return h("div", { className: "preview-frame preview-page" }, [
@@ -368,11 +368,18 @@
       data.scrollBanner
         ? section("Scroll banner", h("p", { className: "preview-banner" }, data.scrollBanner))
         : null,
-      section(text(meals.heading, "More Than Meals"), [
-        meals.intro ? h("p", null, meals.intro) : null,
-        bullets(meals.items)
+      section(text(framework.heading, "Strategic Framework"), [
+        framework.description ? h("p", null, framework.description) : null,
+        framework.file
+          ? h("span", { className: "preview-btn" }, text(framework.buttonLabel, "Download Framework"))
+          : empty("Upload a Strategic Framework PDF to enable download.")
       ]),
-      section(text(next.heading, "What's Next"), bullets(next.items)),
+      section(text(report.heading, "Impact Report"), [
+        report.description ? h("p", null, report.description) : null,
+        report.file
+          ? h("span", { className: "preview-btn" }, text(report.buttonLabel, "Download Report"))
+          : empty("Upload an Impact Report PDF to enable download.")
+      ]),
       section("Footer CTA", [
         h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),
         footer.buttonLabel ? h("span", { className: "preview-btn" }, footer.buttonLabel) : null

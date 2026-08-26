@@ -28,6 +28,8 @@
 
 .lnl-mn-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 3px solid var(--text-dark);
   box-shadow: 8px 8px 0 var(--text-dark);
@@ -50,7 +52,7 @@
     font-size: clamp(22px, 2.77vw, 34px);
     line-height: 1.08;
     letter-spacing: 0.5px;
-    max-width: 11ch;
+    max-width: 14ch;
   }
 
   p {
@@ -59,27 +61,27 @@
     font-size: clamp(14px, 1.4vw, 17px);
     line-height: 1.65;
   }
+}
 
-  ul {
-    margin: 0;
-    padding-left: 22px;
-    display: grid;
-    gap: 12px;
-  }
-
-  li {
-    font-weight: 400;
-    font-size: clamp(14px, 1.4vw, 17px);
-    line-height: 1.55;
-
-    b {
-      font-weight: inherit;
-    }
-
-    &::marker {
-      color: var(--text-dark);
-    }
-  }
+.lnl-mn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 12px 22px;
+  width: fit-content;
+  max-width: 100%;
+  background: var(--white);
+  color: var(--text-dark);
+  border: 2px solid var(--text-dark);
+  box-shadow: 4px 4px 0 var(--text-dark);
+  font-family: util.$font-n;
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 @keyframes lnl-mn-pop {
@@ -111,9 +113,9 @@
 
 .lnl-mn-chip {
   display: inline-block;
-  width: 49px;
-  height: 14px;
-  border: 3px solid var(--text-dark);
+  width: 56px;
+  height: 15px;
+  border: 1px solid var(--text-dark);
   box-shadow: 2px 2px 0 var(--text-dark);
   margin-bottom: clamp(15px, 2.3vw, 28px);
 }
@@ -132,21 +134,21 @@
   z-index: 1;
 }
 
-.lnl-mn-card--meals .lnl-mn-sq--tl {
+.lnl-mn-card--framework .lnl-mn-sq--tl {
   width: clamp(43px, 5.4vw, 74px);
   height: clamp(31px, 3.85vw, 49px);
   top: calc(clamp(31px, 3.85vw, 49px) * -0.55);
   left: calc(clamp(43px, 5.4vw, 74px) * -0.55);
 }
 
-.lnl-mn-card--meals .lnl-mn-sq--br {
+.lnl-mn-card--framework .lnl-mn-sq--br {
   width: clamp(55px, 6.9vw, 98px);
   height: clamp(55px, 6.9vw, 98px);
   bottom: calc(clamp(55px, 6.9vw, 98px) * -0.45);
   right: calc(clamp(55px, 6.9vw, 98px) * -0.65);
 }
 
-.lnl-mn-card--next .lnl-mn-sq--br {
+.lnl-mn-card--report .lnl-mn-sq--br {
   width: clamp(43px, 5.4vw, 74px);
   height: clamp(31px, 3.85vw, 49px);
   bottom: calc(clamp(31px, 3.85vw, 49px) * -0.55);
@@ -214,7 +216,7 @@
     max-width: none;
   }
 
-  .lnl-mn-card--meals .lnl-mn-sq--br {
+  .lnl-mn-card--framework .lnl-mn-sq--br {
     right: auto;
     left: 55%;
     bottom: calc(clamp(55px, 6.9vw, 98px) * -0.5);

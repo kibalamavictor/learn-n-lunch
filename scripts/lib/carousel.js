@@ -20,7 +20,7 @@ function renderStoryCarousel({
               <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
-                <p class="mm-head">${escapeHtml(post.title)}</p>
+                <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
                 <a href="${postUrl}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>`;

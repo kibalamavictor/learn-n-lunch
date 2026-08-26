@@ -1684,27 +1684,28 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 152px;
+  height: 188px;
   box-sizing: border-box;
   background: #fff;
   width: 76%;
   max-width: 360px;
-  padding: 22px;
+  padding: 18px 18px 16px;
   margin: 0 0% 32px 12%;
   border: 1px solid var(--mm-black);
   z-index: 2;
 }
 
 .mm-head {
-  font-size: 1.2rem;
-  line-height: 1.4;
-  margin: 0 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  margin: 0 0 12px;
   font-family: "Nunito", sans-serif;
-  flex: 0 0 3.36rem;
-  min-height: 3.36rem;
-  max-height: 3.36rem;
+  font-weight: 600;
+  flex: 1 1 auto;
+  min-height: 5.13rem;
+  max-height: 5.13rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
@@ -1813,18 +1814,19 @@ a {
     height: 12px;
   }
   .mm-section.mm-touch-carousel .mm-box {
-    height: 117px;
-    padding: 17px;
+    height: 148px;
+    padding: 14px;
     margin: 0 0 25px 12%;
     width: 76%;
     max-width: 360px;
   }
   .mm-section.mm-touch-carousel .mm-head {
-    font-size: 0.92rem;
-    margin: 0 0 12px;
-    flex: 0 0 2.576rem;
-    min-height: 2.576rem;
-    max-height: 2.576rem;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    margin: 0 0 10px;
+    flex: 1 1 auto;
+    min-height: 4.428rem;
+    max-height: 4.428rem;
   }
   .mm-section.mm-touch-carousel .mm-cta {
     padding: 5px 31px;
@@ -1845,7 +1847,7 @@ a {
   .mm-section:not(.mm-touch-carousel) .mm-box {
     width: 88%;
     margin-left: 6%;
-    height: 148px;
+    height: 176px;
   }
   .mm-section {
     padding-left: 18px;
@@ -1856,7 +1858,7 @@ a {
   .mm-section.mm-touch-carousel .mm-box {
     width: 88%;
     margin-left: 6%;
-    height: 114px;
+    height: 142px;
   }
 }
 .footer-cta-section {
@@ -5102,16 +5104,17 @@ a.partner-card--dark:focus-visible {
   height: 12px;
 }
 .impact-faces-card.mm-card .mm-box {
-  height: 117px;
-  padding: 17px;
+  height: 148px;
+  padding: 14px;
   margin: 0 0 25px 12%;
 }
 .impact-faces-card.mm-card .mm-head {
-  font-size: 0.92rem;
-  margin: 0 0 12px;
-  flex: 0 0 2.576rem;
-  min-height: 2.576rem;
-  max-height: 2.576rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin: 0 0 10px;
+  flex: 1 1 auto;
+  min-height: 4.428rem;
+  max-height: 4.428rem;
 }
 .impact-faces-card.mm-card .mm-cta {
   padding: 5px 31px;
@@ -5203,7 +5206,7 @@ a.partner-card--dark:focus-visible {
   .impact-faces-card.mm-card .mm-box {
     width: 88%;
     margin-left: 6%;
-    height: 114px;
+    height: 142px;
   }
 }
 .lnl-impact-map {
@@ -5893,6 +5896,8 @@ a.partner-card--dark:focus-visible {
 
 .lnl-mn-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 3px solid var(--text-dark);
   box-shadow: 8px 8px 0 var(--text-dark);
@@ -5913,7 +5918,7 @@ a.partner-card--dark:focus-visible {
   font-size: clamp(22px, 2.77vw, 34px);
   line-height: 1.08;
   letter-spacing: 0.5px;
-  max-width: 11ch;
+  max-width: 14ch;
 }
 .lnl-mn-card p {
   margin: 0 0 14px;
@@ -5921,22 +5926,26 @@ a.partner-card--dark:focus-visible {
   font-size: clamp(14px, 1.4vw, 17px);
   line-height: 1.65;
 }
-.lnl-mn-card ul {
-  margin: 0;
-  padding-left: 22px;
-  display: grid;
-  gap: 12px;
-}
-.lnl-mn-card li {
-  font-weight: 400;
-  font-size: clamp(14px, 1.4vw, 17px);
-  line-height: 1.55;
-}
-.lnl-mn-card li b {
-  font-weight: inherit;
-}
-.lnl-mn-card li::marker {
+
+.lnl-mn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 12px 22px;
+  width: fit-content;
+  max-width: 100%;
+  background: var(--white);
   color: var(--text-dark);
+  border: 2px solid var(--text-dark);
+  box-shadow: 4px 4px 0 var(--text-dark);
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 @keyframes lnl-mn-pop {
@@ -5963,9 +5972,9 @@ a.partner-card--dark:focus-visible {
 }
 .lnl-mn-chip {
   display: inline-block;
-  width: 49px;
-  height: 14px;
-  border: 3px solid var(--text-dark);
+  width: 56px;
+  height: 15px;
+  border: 1px solid var(--text-dark);
   box-shadow: 2px 2px 0 var(--text-dark);
   margin-bottom: clamp(15px, 2.3vw, 28px);
 }
@@ -5984,21 +5993,21 @@ a.partner-card--dark:focus-visible {
   z-index: 1;
 }
 
-.lnl-mn-card--meals .lnl-mn-sq--tl {
+.lnl-mn-card--framework .lnl-mn-sq--tl {
   width: clamp(43px, 5.4vw, 74px);
   height: clamp(31px, 3.85vw, 49px);
   top: calc(clamp(31px, 3.85vw, 49px) * -0.55);
   left: calc(clamp(43px, 5.4vw, 74px) * -0.55);
 }
 
-.lnl-mn-card--meals .lnl-mn-sq--br {
+.lnl-mn-card--framework .lnl-mn-sq--br {
   width: clamp(55px, 6.9vw, 98px);
   height: clamp(55px, 6.9vw, 98px);
   bottom: calc(clamp(55px, 6.9vw, 98px) * -0.45);
   right: calc(clamp(55px, 6.9vw, 98px) * -0.65);
 }
 
-.lnl-mn-card--next .lnl-mn-sq--br {
+.lnl-mn-card--report .lnl-mn-sq--br {
   width: clamp(43px, 5.4vw, 74px);
   height: clamp(31px, 3.85vw, 49px);
   bottom: calc(clamp(31px, 3.85vw, 49px) * -0.55);
@@ -6053,7 +6062,7 @@ a.partner-card--dark:focus-visible {
   .lnl-mn-card h2 {
     max-width: none;
   }
-  .lnl-mn-card--meals .lnl-mn-sq--br {
+  .lnl-mn-card--framework .lnl-mn-sq--br {
     right: auto;
     left: 55%;
     bottom: calc(clamp(55px, 6.9vw, 98px) * -0.5);
@@ -6088,6 +6097,38 @@ body {
   padding: 0;
   color: var(--text-dark);
   font-family: "Anton", sans-serif;
+}
+
+/* Selection / highlight should apply to text only — not images or chrome */
+img,
+svg,
+video,
+canvas,
+iframe,
+picture,
+button,
+.logo,
+.partner-logo,
+.footer-social-link,
+.carousel-btn,
+.mm-nav-button,
+.mtm-nav-button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img,
+svg,
+picture {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+input,
+textarea,
+[contenteditable=true] {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 h1, h2 {
@@ -6254,6 +6295,10 @@ a, a:visited, a:active {
 }
 
 .pdf-report-btn:hover:not(:disabled):not(.selected):not(.active), .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.lnl-mn-download:hover:not(:disabled):not(.selected):not(.active), .lnl-mn-download:focus-visible:not(:disabled):not(.selected):not(.active) {
   animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
 }
 
@@ -6589,6 +6634,25 @@ a, a:visited, a:active {
   stroke: #fff;
 }
 
+.lnl-mn-download {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.lnl-mn-download img,
+.lnl-mn-download svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.lnl-mn-download:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .lnl-mn-download:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.lnl-mn-download:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .lnl-mn-download:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.lnl-mn-download:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .lnl-mn-download:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
 .lnl-signpost__close {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
@@ -6669,6 +6733,9 @@ a, a:visited, a:active {
   .pdf-report-btn:hover:not(:disabled):not(.selected):not(.active), .pdf-report-btn:focus-visible:not(:disabled):not(.selected):not(.active) {
     animation: none !important;
   }
+  .lnl-mn-download:hover:not(:disabled):not(.selected):not(.active), .lnl-mn-download:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
   .lnl-signpost__close:hover:not(:disabled):not(.selected):not(.active), .lnl-signpost__close:focus-visible:not(:disabled):not(.selected):not(.active) {
     animation: none !important;
   }
@@ -6676,3 +6743,5 @@ a, a:visited, a:active {
     animation: none !important;
   }
 }
+
+/*# sourceMappingURL=style.css.map */

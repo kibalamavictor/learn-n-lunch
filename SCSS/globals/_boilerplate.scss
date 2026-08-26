@@ -26,3 +26,35 @@ body {
     
 }
 
+/* Selection / highlight should apply to text only — not images or chrome */
+img,
+svg,
+video,
+canvas,
+iframe,
+picture,
+button,
+.logo,
+.partner-logo,
+.footer-social-link,
+.carousel-btn,
+.mm-nav-button,
+.mtm-nav-button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img,
+svg,
+picture {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+

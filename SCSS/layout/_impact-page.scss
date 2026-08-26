@@ -397,17 +397,18 @@
     }
 
     .mm-box {
-      height: 117px;
-      padding: 17px;
+      height: 148px;
+      padding: 14px;
       margin: 0 0 25px 12%;
     }
 
     .mm-head {
-      font-size: 0.92rem;
-      margin: 0 0 12px;
-      flex: 0 0 calc(0.92rem * 1.4 * 2);
-      min-height: calc(0.92rem * 1.4 * 2);
-      max-height: calc(0.92rem * 1.4 * 2);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      margin: 0 0 10px;
+      flex: 1 1 auto;
+      min-height: calc(0.82rem * 1.35 * 4);
+      max-height: calc(0.82rem * 1.35 * 4);
     }
 
     .mm-cta {
@@ -508,6 +509,6 @@
     .impact-faces-card.mm-card .mm-box {
       width: 88%;
       margin-left: 6%;
-      height: 114px;
+      height: 142px;
     }
   }

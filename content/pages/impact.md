@@ -13,19 +13,16 @@ faces:
   ctaLabel: See More Student Stories
   ctaUrl: /stories/
 scrollBanner: DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·
-moreThanMeals:
-  heading: More Than Meals
-  intro: "Learn N' Lunch is about more than food:"
-  items:
-    - Campus Lunch Days — bringing hundreds of students together for shared meals.
-    - Ambassador Program — empowering students to lead awareness campaigns.
-    - Nutrition & Wellness Talks — helping students understand healthy eating habits.
-whatsNext:
-  heading: What's Next
-  items:
-    - 20,000 meals by the end of this semester.
-    - Expansion to 2 new universities in 2026.
-    - A digital donation & meal-tracking platform for full transparency.
+strategicFramework:
+  heading: Strategic Framework 2025
+  description: Our roadmap for ending campus hunger — research, student networks, and practical solutions that guide Learn N' Lunch across universities.
+  buttonLabel: Download Framework
+  file: /assets/uploads/strategic-framework.pdf
+impactReport:
+  heading: Impact Report 2025
+  description: Read the latest outcomes, campus reach, and student stories. Download the full report to share with partners and donors.
+  buttonLabel: Download Report
+  file: /assets/uploads/impact-report-2025.pdf
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now
