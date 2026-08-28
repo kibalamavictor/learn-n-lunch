@@ -3,7 +3,9 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const UPLOADS_DIR = path.join(process.cwd(), "assets/uploads");
+const ROOT = process.cwd();
+const UPLOADS_DIR = path.join(ROOT, "assets/uploads");
+const META_PATH = path.join(ROOT, "assets/image-meta.json");
 const MAX_WIDTH = 1600;
 const MAX_BYTES = 300 * 1024;
 const QUALITY_STEPS = [82, 76, 70, 64, 58, 52, 46, 40];
@@ -58,6 +60,18 @@ async function optimizeToWebp(sourcePath) {
   return { skipped: false, destinationPath, bytes: bestBuffer.byteLength };
 }
 
+async function recordUploadDimensions(meta) {
+  const files = gatherFiles(UPLOADS_DIR).filter((filePath) => path.extname(filePath).toLowerCase() === ".webp");
+  for (const filePath of files) {
+    const metadata = await sharp(filePath).metadata();
+    const relativePath = `/${path.relative(ROOT, filePath).replace(/\\/g, "/")}`;
+    meta[relativePath] = {
+      width: metadata.width || 0,
+      height: metadata.height || 0
+    };
+  }
+}
+
 async function run() {
   if (!fs.existsSync(UPLOADS_DIR)) {
     console.log("assets/uploads does not exist. Skipping optimization.");
@@ -104,6 +118,11 @@ async function run() {
     nonCompliant.forEach((issue) => console.error(`- ${issue}`));
     process.exit(1);
   }
+
+  const meta = fs.existsSync(META_PATH) ? JSON.parse(fs.readFileSync(META_PATH, "utf8")) : {};
+  await recordUploadDimensions(meta);
+  fs.mkdirSync(path.dirname(META_PATH), { recursive: true });
+  fs.writeFileSync(META_PATH, `${JSON.stringify(meta, null, 2)}\n`, "utf8");
 
   console.log(`Upload optimization passed. Optimized ${optimizedCount} file(s).`);
 }

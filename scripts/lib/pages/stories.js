@@ -1,6 +1,7 @@
 const { escapeHtml, resolveAsset, getPostCategorySlug, getPostSearchText } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
+const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
 
 function renderFeaturedHero(depth, post) {
   if (!post) return "";
@@ -140,11 +141,32 @@ function renderStories({ site, page, publishedPosts }) {
   ${categorySections}
 </section>`;
 
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/stories/",
+    defaults: {
+      title: `Campus Stories & Updates | ${site.siteName}`,
+      description: page.hero?.description,
+      ogImage: publishedPosts[0]?.coverImage || site.defaultOgImage
+    }
+  });
+
   return renderPage({
     site,
     depth,
-    title: site.defaultSeoTitle,
-    description: site.defaultSeoDescription,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "Stories", path: "/stories/" }
+      ])
+    ],
     activePath: "/stories",
     footerCta: {
       title: "BE PART OF THE MOVEMENT.",

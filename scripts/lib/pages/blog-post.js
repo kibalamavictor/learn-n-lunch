@@ -1,6 +1,13 @@
-const { escapeHtml, resolveAsset, formatPublishDate, markdownToHtml, resolveMarkdownPaths, isReportPost } = require("../utils");
+const { escapeHtml, resolveAsset, formatPublishDate, markdownToHtml, resolveMarkdownPaths, isReportPost, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
+const {
+  buildCanonicalUrl,
+  toAbsoluteAssetUrl,
+  buildOrganizationJsonLd,
+  buildBlogPostingJsonLd,
+  buildBreadcrumbJsonLd
+} = require("../seo");
 
 function renderPdfReportSection({ post, depth }) {
   const pdfUrl = resolveAsset(depth, post.reportPdf);
@@ -112,22 +119,31 @@ ${renderStoryCarousel({
 
 ${relatedSectionHtml}`;
 
+  const canonicalPath = `/stories/${post.slug}/`;
+  const canonicalUrl = buildCanonicalUrl(site, canonicalPath);
+  const ogImage = post.ogImage || post.coverImage;
+  const imageUrl = ogImage ? toAbsoluteAssetUrl(site, ogImage) : "";
+  const description = post.seoDescription || post.excerpt;
+
   return renderPage({
     site,
     depth,
     title,
-    description: post.seoDescription || post.excerpt,
-    ogImage: post.ogImage || post.coverImage,
+    description,
+    canonicalPath,
+    ogImage,
+    ogType: "article",
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBlogPostingJsonLd({ site, post, canonicalUrl, imageUrl }),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "Stories", path: "/stories/" },
+        { name: post.title, path: canonicalPath }
+      ])
+    ],
     activePath: "/stories",
-    footerCta: {
-      title: "BE PART OF THE MOVEMENT.",
-      buttonLabel: "Donate Now",
-      buttonUrl: resolveAsset(depth, "donate/"),
-      backgroundImage: "/students/students/students-footer.png",
-      backgroundImageAlt: "Volunteers packing food",
-      qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
-    },
+    footerCta: defaultFooterCta(depth),
     body
   });
 }

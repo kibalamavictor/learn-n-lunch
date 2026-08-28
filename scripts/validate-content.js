@@ -59,6 +59,7 @@ function validate() {
   const site = readJson(sitePath);
   if (site) {
     validateRequired(site.siteName, "siteName", sitePath);
+    validateRequired(site.siteUrl, "siteUrl", sitePath);
     validateRequired(site.navigation, "navigation", sitePath);
     validateRequired(site.socialLinks, "socialLinks", sitePath);
   }

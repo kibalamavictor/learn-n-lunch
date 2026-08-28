@@ -1,5 +1,6 @@
-const { escapeHtml, resolveAsset } = require("../utils");
+const { escapeHtml, resolveAsset, defaultFooterCta, imageDimensionAttrs } = require("../utils");
 const { renderPage } = require("../partials");
+const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
 
 const TEAM_SECTION = {
   title: "THE PEOPLE BEHIND LEARN <br> N' LUNCH",
@@ -67,7 +68,7 @@ function renderAbout({ site, page, team }) {
       </div>
       
       <div class="lnl-hero-image">
-        <img src="${resolveAsset(depth, page.hero.image)}" alt="${escapeHtml(page.hero.imageAlt)}">
+        <img src="${resolveAsset(depth, page.hero.image)}" alt="${escapeHtml(page.hero.imageAlt)}" fetchpriority="high" decoding="async" ${imageDimensionAttrs(page.hero.image)}>
       </div>
     </div>
 
@@ -146,21 +147,34 @@ function renderAbout({ site, page, team }) {
       </div>
     </section>`;
 
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/about-us/",
+    defaults: {
+      title: `About Us | ${site.siteName}`,
+      description: page.hero?.body,
+      ogImage: page.hero?.image
+    }
+  });
+
   return renderPage({
     site,
     depth,
-    title: site.defaultSeoTitle,
-    description: site.defaultSeoDescription,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "About Us", path: "/about-us/" }
+      ])
+    ],
     activePath: "/about-us",
-    footerCta: {
-      title: "BE PART OF THE MOVEMENT.",
-      buttonLabel: "Donate Now",
-      buttonUrl: resolveAsset(depth, "donate/"),
-      backgroundImage: "/footer-image-h.png",
-      backgroundImageAlt: "Volunteers packing food",
-      qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
-    },
+    footerCta: defaultFooterCta(depth),
     body
   });
 }

@@ -17,11 +17,11 @@ function renderStoryCarousel({
       const postUrl = resolveAsset(depth, `stories/${post.slug}/`);
       return `
             <article class="mm-card stories-item" data-category="${escapeHtml(categorySlug)}" data-search="${escapeHtml(searchText)}">
-              <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
+              <img src="${resolveAsset(depth, post.coverImage, { cloudinaryWidth: 800 })}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy" decoding="async">
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
                 <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
-                <a href="${postUrl}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;"/></span></a>
+                <a href="${postUrl}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>`;
     })
@@ -33,10 +33,10 @@ function renderStoryCarousel({
       <div class="mm-carousel-area">
         <div class="mm-nav">
           <button class="mm-nav-btn mm-prev-btn" data-carousel="${carouselId}" aria-label="Previous stories">
-            <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/>
+            <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" alt="" style="width: 20px;"/>
           </button>
           <button class="mm-nav-btn mm-next-btn" data-carousel="${carouselId}" aria-label="Next stories">
-            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/>
+            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 20px;"/>
           </button>
         </div>
 

@@ -71,11 +71,20 @@
         color: var(--text-dark);
     }
 
+a.donate-cta-button,
+    a.footer-cta-button {
+        color: #fff;
+
+        span {
+            color: #fff;
+        }
+    }
+
     .donate-cta-button {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        background: #0ea5e9;
+        background: #0284c7;
         color: #fff;
         padding: 15px 40px;
         font-size: 18px;
@@ -85,6 +94,10 @@
         cursor: pointer;
         transition: all 0.3s ease;
         text-decoration: none;
+
+        span {
+            color: #fff;
+        }
     }
 
     .donate-cta-qr {

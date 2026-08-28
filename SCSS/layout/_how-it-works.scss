@@ -37,6 +37,11 @@
     }
 
     .flow-label {
+        appearance: none;
+        -webkit-appearance: none;
+        font: inherit;
+        cursor: pointer;
+        color: #fff;
         font-size: 25px;
         font-family: util.$font-a;
         padding: 8px 40px;

@@ -1,5 +1,8 @@
 ---
 title: Donate
+seoTitle: Donate | Learn And Lunch
+seoDescription: Fuel a student's future today. Donate to Learn And Lunch and help ensure no university student in Uganda has to study hungry.
+ogImage: /donate.png
 heading: FUEL A STUDENT'S FUTURE TODAY
 description: Choose the amount you'd like to give. Every contribution helps us ensure no student studies hungry.
 amountPresets:

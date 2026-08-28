@@ -6,12 +6,18 @@
   "scripts": {
     "validate-content": "node scripts/validate-content.js",
     "optimize-uploads": "node scripts/optimize-uploads.js",
-    "prebuild": "npm run validate-content && npm run optimize-uploads",
+    "optimize-site-assets": "node scripts/optimize-site-assets.js",
+    "compile:css": "sass SCSS/style.scss dist/style.css",
+    "minify-assets": "node scripts/minify-assets.js",
+    "prebuild": "npm run validate-content && npm run optimize-uploads && npm run optimize-site-assets && npm run compile:css && npm run minify-assets",
     "build": "node scripts/build-content.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "sass": "^1.83.0"
   }
 }

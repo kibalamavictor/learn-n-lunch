@@ -1,14 +1,28 @@
-const { escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug, normalizeListStrings } = require("../utils");
+const { escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug, normalizeListStrings, imageDimensionAttrs } = require("../utils");
 const { renderPage } = require("../partials");
+const {
+  resolvePageSeo,
+  buildOrganizationJsonLd,
+  buildWebSiteJsonLd
+} = require("../seo");
 
 function renderHome({ site, page, stats, testimonials, publishedPosts }) {
   const depth = 0;
 
+  const firstHeroImage = page.hero.carouselImages[0]?.image;
   const carouselImages = page.hero.carouselImages
-    .map(
-      (item, index) =>
-        `<img src="${resolveAsset(depth, item.image)}" alt="${escapeHtml(item.alt)}" class="hero-image carousel-image${index === 0 ? " active" : ""}">`
-    )
+    .map((item, index) => {
+      const attrs = [
+        `src="${resolveAsset(depth, item.image)}"`,
+        `alt="${escapeHtml(item.alt)}"`,
+        `class="hero-image carousel-image${index === 0 ? " active" : ""}"`,
+        imageDimensionAttrs(item.image),
+        index === 0 ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"'
+      ]
+        .filter(Boolean)
+        .join(" ");
+      return `<img ${attrs}>`;
+    })
     .join("\n                    ");
 
   const missionChunks = normalizeListStrings(page.missionBanner, ["chunk"]);
@@ -44,8 +58,8 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
   function renderFlowSteps(steps, arrowClass, arrowImage) {
     return normalizeListStrings(steps, ["step"])
       .map((step) => {
-        const arrow = `<span class="flow-arrow${arrowClass ? ` ${arrowClass}` : ""}">
-                        <img src="${resolveAsset(depth, arrowImage)}" />
+        const arrow = `<span class="flow-arrow${arrowClass ? ` ${arrowClass}` : ""}" aria-hidden="true">
+                        <img src="${resolveAsset(depth, arrowImage)}" alt="" />
                     </span>`;
         return `${arrow}
                     <span class="flow-step">${escapeHtml(step)}</span>`;
@@ -65,20 +79,20 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       ? flow.ctaUrl
       : resolveAsset(depth, flow.ctaUrl.replace(/^\//, ""));
     const ctaInner = isDonors
-      ? `<span><img src="${resolveAsset(depth, "heart-yellow.svg")}" style="width: 14px;"></span> ${escapeHtml(flow.ctaLabel)}`
+      ? `<span aria-hidden="true"><img src="${resolveAsset(depth, "heart-yellow.svg")}" alt="" style="width: 14px;"></span> ${escapeHtml(flow.ctaLabel)}`
       : escapeHtml(flow.ctaLabel);
 
     return `
             <div class="flow-row">
-                <div class="${labelClass}" role="button" tabindex="0" aria-label="Scroll to ${escapeHtml(flow.ctaLabel)}">
+                <button type="button" class="${labelClass}">
                     ${escapeHtml(flow.label)}
-                    <span class="${cornerTl}"></span>
-                    <span class="${cornerBr}"></span>
-                </div>
+                    <span class="${cornerTl}" aria-hidden="true"></span>
+                    <span class="${cornerBr}" aria-hidden="true"></span>
+                </button>
                 <div class="flow-steps">
                     ${renderFlowSteps(flow.steps, arrowClass, arrowImage)}
-                    <span class="flow-arrow${arrowClass}">
-                        <img src="${resolveAsset(depth, arrowImage)}" />
+                    <span class="flow-arrow${arrowClass}" aria-hidden="true">
+                        <img src="${resolveAsset(depth, arrowImage)}" alt="" />
                     </span>
                     <a href="${escapeHtml(ctaUrl)}" class="${ctaClass}"${isDonors ? "" : ' target="_blank" rel="noopener noreferrer"'}>${ctaInner}</a>
                 </div>
@@ -105,10 +119,10 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
 
   const photoClasses = ["p1", "p2", "p3", "p4", "p5", "p6", "p7"];
   const photos = page.moments.photos
-    .map(
-      (photo, index) =>
-        `<img src="${resolveAsset(depth, photo.image)}" alt="${escapeHtml(photo.alt)}" class="photo ${photoClasses[index] || "p1"}" data-stack-index="${index}">`
-    )
+    .map((photo, index) => {
+      const lazyAttrs = index === 0 ? 'decoding="async"' : 'loading="lazy" decoding="async"';
+      return `<img src="${resolveAsset(depth, photo.image)}" alt="${escapeHtml(photo.alt)}" class="photo ${photoClasses[index] || "p1"}" data-stack-index="${index}" ${imageDimensionAttrs(photo.image)} ${lazyAttrs}>`;
+    })
     .join("\n      ");
   const stackCount = page.moments.photos.length;
 
@@ -122,11 +136,11 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       const categorySlug = getPostCategorySlug(post);
       const tagColor = getPostTagColor(post);
       return `<article class="mm-card" data-category="${escapeHtml(categorySlug)}">
-              <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
+              <img src="${resolveAsset(depth, post.coverImage, { cloudinaryWidth: 800 })}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy" decoding="async">
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
                 <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
-                <a href="${resolveAsset(depth, `stories/${post.slug}/`)}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;"/></span></a>
+                <a href="${resolveAsset(depth, `stories/${post.slug}/`)}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>`;
     })
@@ -138,7 +152,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       <div class="mtm-testimonial-container${index === 0 ? "" : " mtm-hidden"}" data-testimonial="${index}">
         <div class="mtm-right-section">
           <div class="mtm-profile-image-container">
-            <img src="${resolveAsset(depth, item.photo)}" alt="${escapeHtml(item.photoAlt || item.authorName)}" class="mtm-profile-image" />
+            <img src="${resolveAsset(depth, item.photo)}" alt="${escapeHtml(item.photoAlt || item.authorName)}" class="mtm-profile-image" loading="lazy" decoding="async" ${imageDimensionAttrs(item.photo)} />
           </div>
           <div class="mtm-right-body">
             <div class="mtm-testimonial-content">
@@ -149,8 +163,8 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
                   <div class="mtm-affiliation">${escapeHtml(item.affiliation)}</div>
                 </div>
                 <div class="mtm-navigation">
-                  <button class="mtm-nav-button mtm-prev-button" aria-label="Previous testimonial"><img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/></button>
-                  <button class="mtm-nav-button mtm-next-button" aria-label="Next testimonial"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/></button>
+                  <button class="mtm-nav-button mtm-prev-button" aria-label="Previous testimonial"><img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" alt="" style="width: 20px;"/></button>
+                  <button class="mtm-nav-button mtm-next-button" aria-label="Next testimonial"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 20px;"/></button>
                 </div>
               </div>
             </div>
@@ -223,10 +237,10 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
                     ${carouselImages}
                     <div class="carousel-controls">
                         <button class="carousel-btn prev" aria-label="Previous slide">
-                            <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/>
+                            <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" alt="" style="width: 20px;"/>
                         </button>
                         <button class="carousel-btn next" aria-label="Next slide">
-                            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/>
+                            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 20px;"/>
                         </button>
                     </div>
                 </div>
@@ -263,19 +277,19 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       <div class="learn-lunch-container">
           <div class="learn-lunch-content">
               <div class="learn-lunch-image-left">
-                  <img src="${resolveAsset(depth, page.impactIntro.leftImage)}" alt="${escapeHtml(page.impactIntro.leftImageAlt)}">
+                  <img src="${resolveAsset(depth, page.impactIntro.leftImage)}" alt="${escapeHtml(page.impactIntro.leftImageAlt)}" loading="lazy" decoding="async" ${imageDimensionAttrs(page.impactIntro.leftImage)}>
               </div>
 
               <div class="learn-lunch-text">
                   <p>${escapeHtml(page.impactIntro.body)}</p>
                   <a href="${resolveAsset(depth, page.impactIntro.ctaUrl.replace(/^\//, ""))}" class="learn-lunch-cta">
-                      <span><img src="${resolveAsset(depth, "heart-black.svg")}" style="width: 14px;"></span>
-                      <span>${escapeHtml(page.impactIntro.ctaLabel)}</span>
+                      <span aria-hidden="true"><img src="${resolveAsset(depth, "heart-black.svg")}" alt="" style="width: 14px;"></span>
+                      <span>Learn More<span class="visually-hidden"> about Learn N' Lunch</span></span>
                   </a>
               </div>
 
               <div class="learn-lunch-image-right">
-                  <img src="${resolveAsset(depth, page.impactIntro.rightImage)}" alt="${escapeHtml(page.impactIntro.rightImageAlt)}">
+                  <img src="${resolveAsset(depth, page.impactIntro.rightImage)}" alt="${escapeHtml(page.impactIntro.rightImageAlt)}" loading="lazy" decoding="async" ${imageDimensionAttrs(page.impactIntro.rightImage)}>
               </div>
           </div>
 
@@ -299,7 +313,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     <section class="donate-cta-section">
     <div class="donate-cta-container">
         <div class="donate-cta-banner">
-            <img src="${resolveAsset(depth, page.coalitionCta.backgroundImage)}" alt="${escapeHtml(page.coalitionCta.backgroundImageAlt)}" class="donate-cta-bg">
+            <img src="${resolveAsset(depth, page.coalitionCta.backgroundImage)}" alt="${escapeHtml(page.coalitionCta.backgroundImageAlt)}" class="donate-cta-bg" loading="lazy" decoding="async" ${imageDimensionAttrs(page.coalitionCta.backgroundImage)}>
             <div class="donate-cta-overlay"></div>
             
             <div class="donate-cta-card">
@@ -357,10 +371,10 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       <div class="mm-carousel-area">
         <div class="mm-nav">
           <button class="mm-nav-btn mm-prev-btn" data-carousel="home-stories" aria-label="Previous stories">
-            <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" style="width: 20px;"/>
+            <img src="${resolveAsset(depth, "pixelated-arrow-2.svg")}" alt="" style="width: 20px;"/>
           </button>
           <button class="mm-nav-btn mm-next-btn" data-carousel="home-stories" aria-label="Next stories">
-            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 20px;"/>
+            <img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 20px;"/>
           </button>
         </div>
 
@@ -371,7 +385,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
         </div>
 
         <div class="mm-more-wrap">
-          <a href="${resolveAsset(depth, page.storiesTeaser.moreUrl.replace(/^\//, ""))}" class="mm-more">Check Out More <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;"/></span></a>
+          <a href="${resolveAsset(depth, page.storiesTeaser.moreUrl.replace(/^\//, ""))}" class="mm-more">Check Out More<span class="visually-hidden"> Stories</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
         </div>
       </div>
     </div>
@@ -384,6 +398,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
 ${partnersHtml}`;
 
   const headExtra = `
+    ${firstHeroImage ? `<link rel="preload" as="image" href="${resolveAsset(depth, firstHeroImage)}" fetchpriority="high">` : ""}
     <style>
       @media (max-width: 900px) { .nav-menu { background-color: #D3EEFF; }}
       @media (max-width: 1124px) {
@@ -395,11 +410,26 @@ ${partnersHtml}`;
       }
     </style>`;
 
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/",
+    defaults: {
+      title: site.defaultSeoTitle,
+      description: page.hero?.body || site.defaultSeoDescription,
+      ogImage: page.hero?.carouselImages?.[0]?.image || site.defaultOgImage
+    }
+  });
+
   return renderPage({
     site,
     depth,
-    title: site.defaultSeoTitle,
-    description: site.defaultSeoDescription,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [buildOrganizationJsonLd(site), buildWebSiteJsonLd(site)],
     activePath: "/",
     navbarStyle: "background-color: #D3EEFF;",
     bodyClass: "page-home",

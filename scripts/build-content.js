@@ -3,6 +3,7 @@
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
 const { writeFileEnsured, getRelatedPosts } = require("./lib/utils");
+const { buildSitemapEntries, renderSitemapXml, getSiteUrl } = require("./lib/seo");
 const { renderHome } = require("./lib/pages/home");
 const { renderAbout } = require("./lib/pages/about");
 const { renderImpact } = require("./lib/pages/impact");
@@ -107,7 +108,8 @@ function build() {
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="refresh" content="0; url=../stories/how-one-meal-changed-my-exam-week/" />
-    <link rel="canonical" href="https://www.learnandlunch.org/stories/how-one-meal-changed-my-exam-week/" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${getSiteUrl(site)}/stories/how-one-meal-changed-my-exam-week/" />
     <title>Redirecting…</title>
   </head>
   <body>
@@ -115,6 +117,9 @@ function build() {
   </body>
 </html>`
   );
+
+  const sitemapEntries = buildSitemapEntries({ site, publishedBlogPosts });
+  writeFileEnsured(path.join(ROOT, "sitemap.xml"), renderSitemapXml(sitemapEntries));
 
   console.log("Site build complete.");
   console.log(`- Pages rendered: ${pagesRendered - publishedBlogPosts.length}`);

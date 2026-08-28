@@ -69,11 +69,19 @@
         color: var(--text-dark);
     }
 
+    a.footer-cta-button {
+        color: #fff;
+
+        span {
+            color: #fff;
+        }
+    }
+
     .footer-cta-button {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        background: #0ea5e9;
+        background: #0284c7;
         color: #fff;
         padding: 15px 40px;
         font-size: 18px;
@@ -82,6 +90,10 @@
         box-shadow: 4px 4px 0 #000;
         cursor: pointer;
         text-decoration: none;
+
+        span {
+            color: #fff;
+        }
     }
 
     .footer-cta-qr {

@@ -36,6 +36,9 @@ collections:
         description: "Homepage — hero, mission, how it works, moments collage, stories teaser, and footer CTA."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string, hint: "Browser tab / SEO title for the homepage." }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false, hint: "Optional override for search and social title tags." }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false, hint: "Optional meta description for search and social previews." }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false, hint: "Optional image for social sharing previews." }
 
           - label: "1 · Hero"
             name: hero
@@ -203,6 +206,9 @@ collections:
         description: "About page — hero, stand-for statement, mission/vision, values, and challenge section."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - label: "1 · Hero"
             name: hero
             widget: object
@@ -249,6 +255,9 @@ collections:
         description: "Impact page copy. Edit Numbers & Stats for the large counters and campus map."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
 
           - label: "1 · Hero"
             name: hero
@@ -334,6 +343,9 @@ collections:
         description: "Stories page header, category filters, and featured section layout. Individual posts are under Stories."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - label: "1 · Hero"
             name: hero
             widget: object
@@ -368,6 +380,9 @@ collections:
         description: "Donate page copy, amount presets, and form field labels."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - { label: "1 · Heading", name: heading, widget: string }
           - { label: "1 · Description", name: description, widget: text }
           - label: "2 · Donation Amount Presets"
@@ -402,6 +417,9 @@ collections:
         description: "Get Involved page — intro and opportunity cards."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - { label: "1 · Heading", name: heading, widget: string }
           - { label: "1 · Intro", name: intro, widget: text }
           - label: "2 · Opportunities"
@@ -420,6 +438,9 @@ collections:
         description: "Contact page copy and contact details."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - { label: "1 · Heading", name: heading, widget: string }
           - { label: "1 · Intro", name: intro, widget: text }
           - { label: "2 · Email", name: email, widget: string }
@@ -753,8 +774,10 @@ collections:
         format: json
         fields:
           - { label: "1 · Site Name", name: siteName, widget: string }
+          - { label: Site URL, name: siteUrl, widget: string, hint: "Production URL used for canonical links and sitemap, e.g. https://www.learnandlunch.org" }
           - { label: Default SEO Title, name: defaultSeoTitle, widget: string }
           - { label: Default SEO Description, name: defaultSeoDescription, widget: text }
+          - { label: Default Social Share Image, name: defaultOgImage, widget: image, required: false, hint: "Fallback image when a page does not set its own share image." }
           - label: "2 · Navigation"
             name: navigation
             widget: list

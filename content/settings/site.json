@@ -1,7 +1,9 @@
 {
   "siteName": "Learn And Lunch",
+  "siteUrl": "https://www.learnandlunch.org",
   "defaultSeoTitle": "Learn And Lunch - No Student Should Study Hungry",
   "defaultSeoDescription": "Student-led initiative addressing campus hunger through evidence, advocacy, and practical support.",
+  "defaultOgImage": "/assets/uploads/learn_and_lunch_001.webp",
   "navigation": [
     {
       "label": "Home",

@@ -1,5 +1,8 @@
 ---
 title: Impact
+seoTitle: Our Impact | Learn And Lunch
+seoDescription: See how Learn And Lunch is making campus food insecurity visible across Ugandan universities through research, student stories, campus reach, and measurable outcomes.
+ogImage: /impact/impact/impact-hero-image.png
 hero:
   heading: OUR IMPACT
   subtitle: Learn And Lunch’s impact begins by making this hidden crisis visible
@@ -27,7 +30,7 @@ footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now
   buttonUrl: /donate/
-  backgroundImage: /students/students/students-footer.png
+  backgroundImage: https://res.cloudinary.com/pr7r5p6g/image/upload/v1785746712/footer_iwzqaw.jpg
   backgroundImageAlt: Volunteers packing food
   qrImage: /qr-code.png
   qrImageAlt: QR Code

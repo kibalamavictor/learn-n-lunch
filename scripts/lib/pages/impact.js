@@ -1,6 +1,7 @@
-const { escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, sortPostsByDate } = require("../utils");
+const { escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, sortPostsByDate, defaultFooterCta, imageDimensionAttrs } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderImpactMap } = require("../render-impact-map");
+const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
 
 function getFacesCarouselPosts(posts, limit = 5) {
   const sorted = sortPostsByDate(posts);
@@ -179,6 +180,9 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
             src="${resolveAsset(depth, page.hero.image)}" 
             alt="${escapeHtml(page.hero.imageAlt)}" 
             class="impact-hero-image"
+            fetchpriority="high"
+            decoding="async"
+            ${imageDimensionAttrs(page.hero.image)}
           />
         </div>
       </div>
@@ -227,21 +231,34 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
           ? page.footerCta.buttonUrl
           : resolveAsset(depth, String(page.footerCta.buttonUrl || "donate/").replace(/^\//, ""))
       }
-    : {
-        title: "BE PART OF THE MOVEMENT.",
-        buttonLabel: "Donate Now",
-        buttonUrl: resolveAsset(depth, "donate/"),
-        backgroundImage: "/students/students/students-footer.png",
-        backgroundImageAlt: "Volunteers packing food",
-        qrImage: "/qr-code.png",
-        qrImageAlt: "QR Code"
-      };
+    : defaultFooterCta(depth);
+
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/impact/",
+    defaults: {
+      title: `Our Impact | ${site.siteName}`,
+      description: page.hero?.meaningBody || page.hero?.subtitle,
+      ogImage: page.hero?.image
+    }
+  });
 
   return renderPage({
     site,
     depth,
-    title: site.defaultSeoTitle,
-    description: site.defaultSeoDescription,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "Impact", path: "/impact/" }
+      ])
+    ],
     activePath: "/impact",
     scripts: ["js/app.js", "js/impact-map.js"],
     footerCta,

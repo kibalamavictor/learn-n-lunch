@@ -35,10 +35,22 @@ function relPrefix(depth) {
   return depth === 0 ? "." : "../".repeat(depth).slice(0, -1);
 }
 
-function resolveAsset(depth, assetPath) {
+function preferWebpAsset(assetPath) {
+  if (!assetPath || /^https?:\/\//.test(assetPath)) return assetPath;
+  if (/\.webp$/i.test(assetPath)) return assetPath;
+  const normalized = assetPath.startsWith("/") ? assetPath : `/${assetPath}`;
+  const webpPath = normalized.replace(/\.(png|jpe?g)$/i, ".webp");
+  const fullPath = path.join(process.cwd(), webpPath.slice(1));
+  return fs.existsSync(fullPath) ? webpPath : assetPath;
+}
+
+function resolveAsset(depth, assetPath, options = {}) {
   if (!assetPath) return depth === 0 ? "./" : "../".repeat(depth);
-  if (/^https?:\/\//.test(assetPath)) return assetPath;
-  const clean = assetPath.startsWith("/") ? assetPath.slice(1) : assetPath;
+  if (/^https?:\/\//.test(assetPath)) {
+    return optimizeCloudinaryUrl(assetPath, options.cloudinaryWidth);
+  }
+  const optimizedPath = preferWebpAsset(assetPath);
+  const clean = optimizedPath.startsWith("/") ? optimizedPath.slice(1) : optimizedPath;
   const prefix = relPrefix(depth);
   return prefix === "." ? `./${clean}` : `${prefix}/${clean}`;
 }
@@ -191,6 +203,47 @@ function normalizeListStrings(items, preferredKeys = []) {
     .filter(Boolean);
 }
 
+function optimizeCloudinaryUrl(url, width = 1200) {
+  if (!/^https:\/\/res\.cloudinary\.com\//.test(String(url))) return url;
+  if (/\/upload\/[^/]*(?:f_auto|q_auto)/.test(url)) return url;
+  return String(url).replace("/upload/", `/upload/f_auto,q_auto,w_${width}/`);
+}
+
+const FOOTER_CTA_BACKGROUND_IMAGE = optimizeCloudinaryUrl(
+  "https://res.cloudinary.com/pr7r5p6g/image/upload/v1785746712/footer_iwzqaw.jpg",
+  1400
+);
+
+let imageMetaCache = null;
+
+function getImageMeta(assetPath) {
+  if (!assetPath || /^https?:\/\//.test(assetPath)) return null;
+  if (!imageMetaCache) {
+    const metaPath = path.join(process.cwd(), "assets/image-meta.json");
+    imageMetaCache = fs.existsSync(metaPath) ? readJson(metaPath) : {};
+  }
+  const key = assetPath.startsWith("/") ? assetPath : `/${assetPath}`;
+  return imageMetaCache[key] || null;
+}
+
+function imageDimensionAttrs(assetPath) {
+  const meta = getImageMeta(assetPath);
+  if (!meta?.width || !meta?.height) return "";
+  return `width="${meta.width}" height="${meta.height}"`;
+}
+
+function defaultFooterCta(depth) {
+  return {
+    title: "BE PART OF THE MOVEMENT.",
+    buttonLabel: "Donate Now",
+    buttonUrl: resolveAsset(depth, "donate/"),
+    backgroundImage: FOOTER_CTA_BACKGROUND_IMAGE,
+    backgroundImageAlt: "Volunteers packing food",
+    qrImage: "/qr-code.png",
+    qrImageAlt: "QR Code"
+  };
+}
+
 module.exports = {
   escapeHtml,
   relPrefix,
@@ -212,5 +265,11 @@ module.exports = {
   getPostSearchText,
   isReportPost,
   sortPostsByDate,
-  getRelatedPosts
+  getRelatedPosts,
+  FOOTER_CTA_BACKGROUND_IMAGE,
+  defaultFooterCta,
+  preferWebpAsset,
+  optimizeCloudinaryUrl,
+  getImageMeta,
+  imageDimensionAttrs
 };

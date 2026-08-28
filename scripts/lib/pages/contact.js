@@ -1,5 +1,6 @@
-const { escapeHtml, resolveAsset } = require("../utils");
+const { escapeHtml, resolveAsset, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
+const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
 
 const CTA_VARIANTS = [
   "lnl-cta--green",
@@ -97,21 +98,33 @@ ${renderPageHero(page)}
   ${cards}
 </section>`;
 
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/get-involved/",
+    defaults: {
+      title: `${page.title} | ${site.siteName}`,
+      description: page.intro
+    }
+  });
+
   return renderPage({
     site,
     depth,
-    title: `${page.title} | ${site.siteName}`,
-    description: page.intro,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "Get Involved", path: "/get-involved/" }
+      ])
+    ],
     activePath: "/get-involved",
-    footerCta: {
-      title: "BE PART OF THE MOVEMENT.",
-      buttonLabel: "Donate Now",
-      buttonUrl: resolveAsset(depth, "donate/"),
-      backgroundImage: "/footer-image-h.png",
-      backgroundImageAlt: "Volunteers packing food",
-      qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
-    },
+    footerCta: defaultFooterCta(depth),
     body
   });
 }
@@ -127,21 +140,33 @@ ${renderPageHero(page)}
   ${cards}
 </section>`;
 
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/contact-us/",
+    defaults: {
+      title: `${page.title} | ${site.siteName}`,
+      description: page.intro
+    }
+  });
+
   return renderPage({
     site,
     depth,
-    title: `${page.title} | ${site.siteName}`,
-    description: page.intro,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "Contact Us", path: "/contact-us/" }
+      ])
+    ],
     activePath: "/contact-us",
-    footerCta: {
-      title: "BE PART OF THE MOVEMENT.",
-      buttonLabel: "Donate Now",
-      buttonUrl: resolveAsset(depth, "donate/"),
-      backgroundImage: "/footer-image-h.png",
-      backgroundImageAlt: "Volunteers packing food",
-      qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
-    },
+    footerCta: defaultFooterCta(depth),
     body
   });
 }

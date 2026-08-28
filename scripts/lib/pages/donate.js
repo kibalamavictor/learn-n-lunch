@@ -1,5 +1,6 @@
-const { escapeHtml, resolveAsset } = require("../utils");
+const { escapeHtml, resolveAsset, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
+const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
 
 function renderDonate({ site, page }) {
   const depth = 1;
@@ -131,21 +132,34 @@ function renderDonate({ site, page }) {
   </form>
 </div>`;
 
+  const seo = resolvePageSeo({
+    site,
+    page,
+    canonicalPath: "/donate/",
+    defaults: {
+      title: `Donate | ${site.siteName}`,
+      description: page.description,
+      ogImage: site.defaultOgImage
+    }
+  });
+
   return renderPage({
     site,
     depth,
-    title: site.defaultSeoTitle,
-    description: site.defaultSeoDescription,
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogType: seo.ogType,
+    structuredData: [
+      buildOrganizationJsonLd(site),
+      buildBreadcrumbJsonLd(site, [
+        { name: "Home", path: "/" },
+        { name: "Donate", path: "/donate/" }
+      ])
+    ],
     activePath: "/donate",
-    footerCta: {
-      title: "BE PART OF THE MOVEMENT.",
-      buttonLabel: "Donate Now",
-      buttonUrl: resolveAsset(depth, "donate/"),
-      backgroundImage: "/students/students/students-footer.png",
-      backgroundImageAlt: "Volunteers packing food",
-      qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
-    },
+    footerCta: defaultFooterCta(depth),
     body
   });
 }
