@@ -2,6 +2,7 @@ const { escapeHtml, resolveAsset, formatPublishDate, markdownToHtml, resolveMark
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
 const {
+  resolveBlogPostSeo,
   buildCanonicalUrl,
   toAbsoluteAssetUrl,
   buildOrganizationJsonLd,
@@ -42,7 +43,7 @@ function renderPdfReportSection({ post, depth }) {
 function renderBlogPost({ site, post, relatedPosts }) {
   const depth = 2;
   const category = (post.tags && post.tags[0]) || "Story";
-  const title = post.seoTitle || `${post.title} | ${site.siteName}`;
+  const seo = resolveBlogPostSeo({ site, post });
   const isPdfReport = Boolean(post.reportPdf);
   const relatedTitle = isReportPost(post)
     ? "MORE REPORTS<br> &amp; DOCUMENTS"
@@ -119,27 +120,32 @@ ${renderStoryCarousel({
 
 ${relatedSectionHtml}`;
 
-  const canonicalPath = `/stories/${post.slug}/`;
-  const canonicalUrl = buildCanonicalUrl(site, canonicalPath);
-  const ogImage = post.ogImage || post.coverImage;
-  const imageUrl = ogImage ? toAbsoluteAssetUrl(site, ogImage) : "";
-  const description = post.seoDescription || post.excerpt;
+  const imageUrl = seo.ogImage ? toAbsoluteAssetUrl(site, seo.ogImage) : "";
+  const canonicalUrl = buildCanonicalUrl(site, seo.canonicalPath);
 
   return renderPage({
     site,
     depth,
-    title,
-    description,
-    canonicalPath,
-    ogImage,
-    ogType: "article",
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: seo.canonicalPath,
+    ogImage: seo.ogImage,
+    ogImageAlt: seo.ogImageAlt,
+    keywords: seo.keywords,
+    ogType: seo.ogType,
+    articleMeta: seo.articleMeta,
     structuredData: [
       buildOrganizationJsonLd(site),
-      buildBlogPostingJsonLd({ site, post, canonicalUrl, imageUrl }),
+      buildBlogPostingJsonLd({
+        site,
+        post,
+        canonicalUrl,
+        imageUrl
+      }),
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
         { name: "Stories", path: "/stories/" },
-        { name: post.title, path: canonicalPath }
+        { name: post.title, path: seo.canonicalPath }
       ])
     ],
     activePath: "/stories",

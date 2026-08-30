@@ -1,6 +1,14 @@
 const { escapeHtml, resolveAsset, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
-const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
+const {
+  resolvePageSeo,
+  renderFaqSection,
+  buildCanonicalUrl,
+  buildOrganizationJsonLd,
+  buildBreadcrumbJsonLd,
+  buildContactPageJsonLd,
+  buildFAQPageJsonLd
+} = require("../seo");
 
 const CTA_VARIANTS = [
   "lnl-cta--green",
@@ -96,7 +104,9 @@ ${renderPageHero(page)}
 
 <section class="mission-vision-section lnl-page-cards">
   ${cards}
-</section>`;
+</section>
+
+${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions")}`;
 
   const seo = resolvePageSeo({
     site,
@@ -104,7 +114,8 @@ ${renderPageHero(page)}
     canonicalPath: "/get-involved/",
     defaults: {
       title: `${page.title} | ${site.siteName}`,
-      description: page.intro
+      description: page.intro,
+      keywords: "volunteer Uganda, student coalition, campus hunger advocacy"
     }
   });
 
@@ -115,14 +126,17 @@ ${renderPageHero(page)}
     description: seo.description,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
+    ogImageAlt: seo.ogImageAlt,
+    keywords: seo.keywords,
     ogType: seo.ogType,
     structuredData: [
       buildOrganizationJsonLd(site),
+      buildFAQPageJsonLd(page.faq),
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
         { name: "Get Involved", path: "/get-involved/" }
       ])
-    ],
+    ].filter(Boolean),
     activePath: "/get-involved",
     footerCta: defaultFooterCta(depth),
     body
@@ -146,9 +160,11 @@ ${renderPageHero(page)}
     canonicalPath: "/contact-us/",
     defaults: {
       title: `${page.title} | ${site.siteName}`,
-      description: page.intro
+      description: page.intro,
+      keywords: "contact Learn And Lunch, Kampala NGO, campus hunger Uganda"
     }
   });
+  const canonicalUrl = buildCanonicalUrl(site, seo.canonicalPath);
 
   return renderPage({
     site,
@@ -157,9 +173,12 @@ ${renderPageHero(page)}
     description: seo.description,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
+    ogImageAlt: seo.ogImageAlt,
+    keywords: seo.keywords,
     ogType: seo.ogType,
     structuredData: [
       buildOrganizationJsonLd(site),
+      buildContactPageJsonLd({ site, canonicalUrl }),
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
         { name: "Contact Us", path: "/contact-us/" }

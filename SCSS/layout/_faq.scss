@@ -1,0 +1,40 @@
+.lnl-faq {
+  margin-top: 3rem;
+  max-width: 800px;
+}
+
+.lnl-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lnl-faq-item {
+  border: 2px solid #000;
+  box-shadow: 3px 3px #000;
+  background: #fff;
+  padding: 0.75rem 1rem;
+}
+
+.lnl-faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.lnl-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.lnl-faq-item p {
+  margin: 0.75rem 0 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.lnl-page-cards + .lnl-faq,
+.mission-vision-section + .lnl-faq {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5% 5rem;
+}

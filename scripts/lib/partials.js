@@ -21,7 +21,10 @@ function renderHead({
   description,
   canonicalPath = "/",
   ogImage,
+  ogImageAlt,
   ogType = "website",
+  keywords,
+  articleMeta,
   structuredData = [],
   headExtra = ""
 }) {
@@ -33,7 +36,10 @@ function renderHead({
     description,
     canonicalPath,
     ogImage,
+    ogImageAlt,
     ogType,
+    keywords,
+    articleMeta,
     structuredData
   });
 
@@ -176,7 +182,10 @@ function renderPage({
   description,
   canonicalPath = "/",
   ogImage,
+  ogImageAlt,
   ogType = "website",
+  keywords,
+  articleMeta,
   structuredData = [],
   activePath,
   navbarStyle,
@@ -198,7 +207,10 @@ function renderPage({
     description,
     canonicalPath,
     ogImage,
+    ogImageAlt,
     ogType,
+    keywords,
+    articleMeta,
     structuredData,
     headExtra
   })}

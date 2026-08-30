@@ -410,6 +410,16 @@ collections:
               - { label: Email, name: email, widget: string }
               - { label: Phone, name: phone, widget: string }
               - { label: Updates Checkbox, name: updatesCheckbox, widget: string }
+          - { label: FAQ Heading, name: faqHeading, widget: string, required: false, default: "Frequently Asked Questions" }
+          - label: "5 · FAQ"
+            name: faq
+            widget: list
+            required: false
+            summary: "{{fields.question}}"
+            hint: "Visible FAQ content used for FAQ rich results in search."
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: text }
 
       - name: getInvolved
         label: "Get Involved"
@@ -431,6 +441,15 @@ collections:
               - { label: Description, name: description, widget: text }
               - { label: CTA Label, name: ctaLabel, widget: string }
               - { label: CTA URL, name: ctaUrl, widget: string }
+          - { label: FAQ Heading, name: faqHeading, widget: string, required: false, default: "Frequently Asked Questions" }
+          - label: "3 · FAQ"
+            name: faq
+            widget: list
+            required: false
+            summary: "{{fields.question}}"
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: text }
 
       - name: contactUs
         label: "Contact Us"
@@ -778,6 +797,14 @@ collections:
           - { label: Default SEO Title, name: defaultSeoTitle, widget: string }
           - { label: Default SEO Description, name: defaultSeoDescription, widget: text }
           - { label: Default Social Share Image, name: defaultOgImage, widget: image, required: false, hint: "Fallback image when a page does not set its own share image." }
+          - { label: Area Served, name: areaServed, widget: string, required: false, default: "Uganda", hint: "Used in NGO structured data for local SEO." }
+          - label: Topics (Knows About)
+            name: knowsAbout
+            widget: list
+            required: false
+            summary: "{{fields}}"
+            hint: "Topics your organization works on — used in NGO structured data."
+            field: { label: Topic, widget: string }
           - label: "2 · Navigation"
             name: navigation
             widget: list

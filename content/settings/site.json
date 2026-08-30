@@ -4,6 +4,14 @@
   "defaultSeoTitle": "Learn And Lunch - No Student Should Study Hungry",
   "defaultSeoDescription": "Student-led initiative addressing campus hunger through evidence, advocacy, and practical support.",
   "defaultOgImage": "/assets/uploads/learn_and_lunch_001.webp",
+  "areaServed": "Uganda",
+  "knowsAbout": [
+    "Food security",
+    "University student welfare",
+    "Campus hunger",
+    "Student advocacy",
+    "Uganda"
+  ],
   "navigation": [
     {
       "label": "Home",

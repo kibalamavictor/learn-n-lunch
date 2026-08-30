@@ -5,7 +5,16 @@ const ROOT = process.cwd();
 const CONTENT = path.join(ROOT, "content");
 
 function loadSiteSettings() {
-  return readJson(path.join(CONTENT, "settings/site.json"));
+  const site = readJson(path.join(CONTENT, "settings/site.json"));
+  const contactPage = readMarkdown(path.join(CONTENT, "pages/contact-us.md")).data;
+
+  site.contact = {
+    email: contactPage.email || null,
+    phone: contactPage.phone || null,
+    address: contactPage.address || null
+  };
+
+  return site;
 }
 
 function loadPage(slug) {

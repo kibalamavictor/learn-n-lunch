@@ -1,6 +1,13 @@
 const { escapeHtml, resolveAsset, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
-const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
+const {
+  resolvePageSeo,
+  renderFaqSection,
+  buildOrganizationJsonLd,
+  buildBreadcrumbJsonLd,
+  buildFAQPageJsonLd,
+  buildDonateActionJsonLd
+} = require("../seo");
 
 function renderDonate({ site, page }) {
   const depth = 1;
@@ -130,6 +137,8 @@ function renderDonate({ site, page }) {
       </div>
     </section>
   </form>
+
+  ${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions")}
 </div>`;
 
   const seo = resolvePageSeo({
@@ -151,13 +160,16 @@ function renderDonate({ site, page }) {
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogType: seo.ogType,
+    keywords: seo.keywords,
     structuredData: [
       buildOrganizationJsonLd(site),
+      buildDonateActionJsonLd(site),
+      buildFAQPageJsonLd(page.faq),
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
         { name: "Donate", path: "/donate/" }
       ])
-    ],
+    ].filter(Boolean),
     activePath: "/donate",
     footerCta: defaultFooterCta(depth),
     body

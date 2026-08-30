@@ -1,7 +1,14 @@
 const { escapeHtml, resolveAsset, getPostCategorySlug, getPostSearchText } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
-const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
+const {
+  resolvePageSeo,
+  buildCanonicalUrl,
+  buildOrganizationJsonLd,
+  buildBreadcrumbJsonLd,
+  buildCollectionPageJsonLd,
+  buildItemListJsonLd
+} = require("../seo");
 
 function renderFeaturedHero(depth, post) {
   if (!post) return "";
@@ -148,9 +155,11 @@ function renderStories({ site, page, publishedPosts }) {
     defaults: {
       title: `Campus Stories & Updates | ${site.siteName}`,
       description: page.hero?.description,
-      ogImage: publishedPosts[0]?.coverImage || site.defaultOgImage
+      ogImage: publishedPosts[0]?.coverImage || site.defaultOgImage,
+      keywords: "campus hunger stories, student welfare Uganda, Learn And Lunch updates"
     }
   });
+  const canonicalUrl = buildCanonicalUrl(site, seo.canonicalPath);
 
   return renderPage({
     site,
@@ -159,14 +168,24 @@ function renderStories({ site, page, publishedPosts }) {
     description: seo.description,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
+    ogImageAlt: seo.ogImageAlt,
+    keywords: seo.keywords,
     ogType: seo.ogType,
     structuredData: [
       buildOrganizationJsonLd(site),
+      buildCollectionPageJsonLd({
+        site,
+        canonicalUrl,
+        name: seo.title,
+        description: seo.description,
+        items: sortedPosts
+      }),
+      buildItemListJsonLd(site, sortedPosts),
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
         { name: "Stories", path: "/stories/" }
       ])
-    ],
+    ].filter(Boolean),
     activePath: "/stories",
     footerCta: {
       title: "BE PART OF THE MOVEMENT.",

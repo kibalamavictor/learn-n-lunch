@@ -18,4 +18,12 @@ opportunities:
     description: Support events, share stories, and help build awareness that no student should have to study hungry.
     ctaLabel: Volunteer
     ctaUrl: mailto:info@learnandlunch.org
+faqHeading: Frequently Asked Questions
+faq:
+  - question: Who can join the student coalition?
+    answer: Any university student in Uganda who wants to advocate for campus welfare and food security can join. Coalition members mobilize peers, share evidence, and strengthen student-led dialogue on hunger.
+  - question: How do organizations partner with Learn And Lunch?
+    answer: Partners collaborate on research, nutrition programming, institutional dialogue, or event support. Email info@learnandlunch.org with your organization name and proposed collaboration.
+  - question: Can I volunteer if I am not a student?
+    answer: Yes. Supporters can volunteer at events, help amplify stories online, and contribute skills in communications, research, or logistics. Contact us to discuss how you can help.
 ---
