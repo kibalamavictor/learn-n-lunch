@@ -1,7 +1,9 @@
 ---
 title: Home
 seoTitle: Learn And Lunch - No Student Should Study Hungry
-seoDescription: Learn And Lunch is a student-led organisation ending campus hunger in Uganda through research, advocacy, student networks, and practical meal support.
+seoDescription: Learn And Lunch is a student-led organisation ending campus
+  hunger in Uganda through research, advocacy, student networks, and practical
+  meal support.
 ogImage: /assets/uploads/learn_and_lunch_001.webp
 hero:
   heading: Ending Campus Hunger. Unlocking Student Success.
@@ -111,18 +113,18 @@ partners:
       url: https://www.bodyandsoil.africa/
       logo: /assets/partners/body-and-soil.png
       logoAlt: BODY & SOIL Africa logo
-    - name: Makerere University
-      url: https://www.mak.ac.ug/
-      logo: /assets/partners/makerere.png
-      logoAlt: Makerere University logo
+    - name: Nutri-Safe Communities
+      url: https://nutri-safecommunities.unaux.com/
+      logo: /assets/uploads/nutri-safe-communities-logo.webp
+      logoAlt: nutri-safe communities logo
     - name: Kyambogo University
       url: https://kyu.ac.ug/
       logo: /assets/partners/kyambogo.png
       logoAlt: Kyambogo University logo
     - name: Uganda Christian University
-      url: https://ucu.ac.ug/
-      logo: /assets/partners/ucu.png
-      logoAlt: Uganda Christian University logo
+      url: https://www.linkedin.com/in/kyundsa-kyambogo-ba8743230/
+      logo: /assets/uploads/kyundsa-logo.webp
+      logoAlt: KYUNDSA logo
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now
