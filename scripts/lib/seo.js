@@ -90,9 +90,21 @@ function normalizeFaqItems(items) {
     .filter(Boolean);
 }
 
-function renderFaqSection(faqItems, heading = "Frequently Asked Questions") {
+function renderFaqSection(
+  faqItems,
+  heading = "Frequently Asked Questions",
+  options = {}
+) {
   const items = normalizeFaqItems(faqItems);
   if (!items.length) return "";
+
+  const sectionClass = [
+    "form-section",
+    "lnl-faq",
+    options.accordion ? "lnl-faq--accordion" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const markup = items
     .map(
@@ -105,7 +117,7 @@ function renderFaqSection(faqItems, heading = "Frequently Asked Questions") {
     .join("");
 
   return `
-<section class="form-section lnl-faq" aria-labelledby="page-faq-heading">
+<section class="${sectionClass}" aria-labelledby="page-faq-heading">
   <h2 id="page-faq-heading" class="section-label">${escapeHtml(heading)}</h2>
   <div class="lnl-faq-list">${markup}
   </div>

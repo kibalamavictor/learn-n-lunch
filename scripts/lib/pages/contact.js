@@ -106,7 +106,9 @@ ${renderPageHero(page)}
   ${cards}
 </section>
 
-${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions")}`;
+${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions", {
+  accordion: true
+})}`;
 
   const seo = resolvePageSeo({
     site,
