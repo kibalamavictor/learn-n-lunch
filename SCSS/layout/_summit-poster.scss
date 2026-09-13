@@ -52,9 +52,14 @@
 .lnl-poster__lead {
   margin: 0 auto;
   max-width: 46ch;
+  padding: 0.75rem 0.9rem;
+  background: var(--greenish);
+  border: 1px solid #000;
+  box-shadow: 4px 4px 0 #000;
   font-size: 0.95rem;
+  font-weight: 400;
   line-height: 1.4;
-  color: #333;
+  color: #111;
 }
 
 .lnl-poster__studio {
@@ -100,7 +105,7 @@
   margin: 0;
   padding: 0.5rem 0.6rem;
   transform: translate(-50%, -50%) rotate(-8deg);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--greenish);
   border: 1px solid #000;
   box-shadow: 3px 3px 0 #000;
   font-size: 0.75rem;

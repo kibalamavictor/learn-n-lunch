@@ -6247,9 +6247,14 @@ a.partner-card--dark:focus-visible {
 .lnl-poster__lead {
   margin: 0 auto;
   max-width: 46ch;
+  padding: 0.75rem 0.9rem;
+  background: var(--greenish);
+  border: 1px solid #000;
+  box-shadow: 4px 4px 0 #000;
   font-size: 0.95rem;
+  font-weight: 400;
   line-height: 1.4;
-  color: #333;
+  color: #111;
 }
 
 .lnl-poster__studio {
@@ -6295,7 +6300,7 @@ a.partner-card--dark:focus-visible {
   margin: 0;
   padding: 0.5rem 0.6rem;
   transform: translate(-50%, -50%) rotate(-8deg);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--greenish);
   border: 1px solid #000;
   box-shadow: 3px 3px 0 #000;
   font-size: 0.75rem;
@@ -6408,6 +6413,7 @@ a.partner-card--dark:focus-visible {
   margin: 0 auto;
   padding: 6.5rem 0 3rem;
   font-family: "Nunito", sans-serif;
+  font-weight: 400;
 }
 
 .lnl-summit__intro {
@@ -6423,8 +6429,9 @@ a.partner-card--dark:focus-visible {
   background: var(--mm-yellow);
   border: 1px solid #000;
   box-shadow: 3px 3px 0 #000;
+  font-family: "Anton", sans-serif;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -6442,13 +6449,19 @@ a.partner-card--dark:focus-visible {
 .lnl-summit__tagline {
   margin: 0 0 0.45rem;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .lnl-summit__meta {
+  display: inline-block;
   margin: 0 0 1rem;
+  padding: 0.28rem 0.65rem;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 3px 3px 0 #000;
   font-size: 0.92rem;
-  color: #333;
+  font-weight: 400;
+  color: #111;
 }
 
 .lnl-summit__lead,
@@ -6456,24 +6469,32 @@ a.partner-card--dark:focus-visible {
 .lnl-summit__cta-prompt {
   margin: 0 0 1rem;
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.55;
-  color: #333;
+  color: #111;
 }
 
 .lnl-summit__cta-prompt {
   margin-bottom: 0;
-  font-weight: 700;
+}
+
+.lnl-summit__quote,
+.lnl-summit__promise {
+  padding: 0.9rem 1rem;
+  border: 1px solid #000;
+  box-shadow: 4px 4px 0 #000;
 }
 
 .lnl-summit__quote {
   margin: 0 0 1rem;
-  padding: 0.9rem 1rem;
-  background: #fff;
-  border: 1px solid #000;
-  box-shadow: 4px 4px 0 #000;
+  background: var(--mm-yellow);
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.4;
+}
+
+.lnl-summit__promise {
+  background: #7be4d3;
 }
 
 .lnl-summit__form,
@@ -6481,20 +6502,63 @@ a.partner-card--dark:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
-  padding: 1.4rem 1.35rem 1.5rem;
-  background: #fff;
+  padding: 0 1.35rem 1.5rem;
+  background: var(--greenish);
   border: 1px solid #000;
   box-shadow: 6px 6px 0 #000;
 }
 
+.lnl-summit__form::before,
+.lnl-summit__success::before {
+  content: "";
+  display: block;
+  height: 14px;
+  margin: 0 -1.35rem 1.15rem;
+  background: linear-gradient(90deg, #bce2f4 0 33.33%, var(--mm-yellow) 33.33% 66.66%, #7be4d3 66.66% 100%);
+  border-bottom: 1px solid #000;
+}
+
+.lnl-summit__success {
+  background: var(--greenish);
+}
+
+.lnl-summit__success p {
+  font-weight: 400;
+}
+
 .lnl-summit__section {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   margin: 0.35rem 0 0;
-  padding-top: 0.35rem;
+  padding-top: 0.9rem;
   border-top: 2px solid #000;
   font-family: "Anton", sans-serif;
   font-size: 1.15rem;
+  font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+
+.lnl-summit__section::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.lnl-summit__form .lnl-summit__section:nth-of-type(1)::before {
+  background: #bce2f4;
+}
+
+.lnl-summit__form .lnl-summit__section:nth-of-type(2)::before {
+  background: var(--mm-yellow);
+}
+
+.lnl-summit__form .lnl-summit__section:nth-of-type(3)::before {
+  background: #7be4d3;
 }
 
 .lnl-summit__section:first-child {
@@ -6522,7 +6586,7 @@ a.partner-card--dark:focus-visible {
 .lnl-summit__field > span,
 .lnl-summit__field legend {
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 400;
   color: #111;
 }
 
@@ -6535,10 +6599,13 @@ a.partner-card--dark:focus-visible {
   box-sizing: border-box;
   padding: 0.85rem 0.9rem;
   font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  background: #fff;
 }
 
 .lnl-summit .form-input:focus {
   border-color: #000;
+  background: #fff;
   box-shadow: 3px 3px 0 #000, 0 0 0 3px rgba(246, 195, 60, 0.45);
 }
 
@@ -6559,9 +6626,21 @@ a.partner-card--dark:focus-visible {
   border: 1px solid #000;
   box-shadow: 3px 3px 0 #000;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 400;
   cursor: pointer;
   user-select: none;
+}
+
+.lnl-summit__chip:nth-child(3n+1) {
+  background: #fff8dc;
+}
+
+.lnl-summit__chip:nth-child(3n+2) {
+  background: #e7f6fd;
+}
+
+.lnl-summit__chip:nth-child(3n) {
+  background: #e5faf6;
 }
 
 .lnl-summit__chip input {
@@ -6574,6 +6653,18 @@ a.partner-card--dark:focus-visible {
 .lnl-summit__chip.selected,
 .lnl-summit__chip:has(input:checked) {
   background: var(--mm-yellow);
+}
+
+.lnl-summit__chip:nth-child(3n+2).is-selected,
+.lnl-summit__chip:nth-child(3n+2).selected,
+.lnl-summit__chip:nth-child(3n+2):has(input:checked) {
+  background: #bce2f4;
+}
+
+.lnl-summit__chip:nth-child(3n).is-selected,
+.lnl-summit__chip:nth-child(3n).selected,
+.lnl-summit__chip:nth-child(3n):has(input:checked) {
+  background: #7be4d3;
 }
 
 .lnl-summit__chip:has(input:focus-visible) {
@@ -6592,6 +6683,7 @@ a.partner-card--dark:focus-visible {
 
 .lnl-summit__consent .checkbox-label {
   max-width: none;
+  font-weight: 400;
 }
 
 .lnl-summit__submit {
@@ -6607,7 +6699,7 @@ a.partner-card--dark:focus-visible {
   box-shadow: 4px 4px 0 #000;
   font-family: "Nunito", sans-serif;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   text-decoration: none;
@@ -6624,8 +6716,9 @@ a.partner-card--dark:focus-visible {
 .lnl-summit__error {
   margin: 0;
   font-size: 0.88rem;
+  font-weight: 400;
   line-height: 1.5;
-  color: #333;
+  color: #111;
 }
 
 .lnl-summit__error:empty {
@@ -6634,7 +6727,6 @@ a.partner-card--dark:focus-visible {
 
 .lnl-summit__error {
   color: #9b1c1c;
-  font-weight: 700;
 }
 
 .lnl-summit__convened {
@@ -6667,7 +6759,11 @@ a.partner-card--dark:focus-visible {
   }
   .lnl-summit__form,
   .lnl-summit__success {
-    padding: 1.15rem 1rem 1.25rem;
+    padding: 0 1rem 1.25rem;
+  }
+  .lnl-summit__form::before,
+  .lnl-summit__success::before {
+    margin: 0 -1rem 1.05rem;
   }
 }
 @keyframes not-found-rise {
