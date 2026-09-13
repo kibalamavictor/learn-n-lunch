@@ -24,9 +24,7 @@
   const uploadLabel = root.querySelector("[data-upload-label]");
   const shareBtn = root.querySelector("[data-share]");
   const statusEl = root.querySelector("[data-status]");
-  const copyCaptionBtn = root.querySelector("[data-copy-caption]");
   const captionSource = root.querySelector("[data-caption-source]");
-  const captionStatusEl = root.querySelector("[data-caption-status]");
   const overlaySrc = root.getAttribute("data-overlay");
 
   if (!canvas || !fileInput || !overlaySrc) return;
@@ -48,7 +46,6 @@
 
   function setStatus(message) {
     if (statusEl) statusEl.textContent = message || "";
-    if (captionStatusEl) captionStatusEl.textContent = message || "";
   }
 
   function shareCaption() {
@@ -87,19 +84,11 @@
       } else if (!copyWithExecCommand()) {
         throw new Error("copy failed");
       }
-      setStatus(successMessage || "Caption copied. Paste it with your post.");
+      if (successMessage) setStatus(successMessage);
       return true;
     } catch (error) {
-      if (!copyWithExecCommand()) {
-        if (captionSource) {
-          captionSource.hidden = false;
-          captionSource.focus();
-          captionSource.select();
-        }
-        setStatus("Select the caption and copy it, then paste it with your post.");
-        return false;
-      }
-      setStatus(successMessage || "Caption copied. Paste it with your post.");
+      if (!copyWithExecCommand()) return false;
+      if (successMessage) setStatus(successMessage);
       return true;
     }
   }
@@ -263,7 +252,7 @@
       setTimeout(function () {
         URL.revokeObjectURL(url);
       }, 2000);
-      await copyCaption("Poster downloaded. Caption copied — paste it with your post.");
+      await copyCaption("Poster downloaded.");
     } catch (error) {
       setStatus(error.message || "Download failed. Try again.");
     }
@@ -291,7 +280,7 @@
     try {
       const shared = await shareNative();
       if (shared) {
-        await copyCaption("Poster shared. Caption copied in case you need to paste it.");
+        await copyCaption("Poster shared.");
         return;
       }
       await downloadPoster();
@@ -331,12 +320,6 @@
   if (shareBtn) {
     shareBtn.addEventListener("click", function () {
       sharePoster();
-    });
-  }
-
-  if (copyCaptionBtn) {
-    copyCaptionBtn.addEventListener("click", function () {
-      copyCaption();
     });
   }
 

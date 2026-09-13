@@ -10,8 +10,6 @@ eventName: Campus Food Security Summit 2026
 uploadLabel: Upload photo
 changeLabel: Change photo
 shareLabel: Share poster
-captionLabel: Caption for your post
-copyCaptionLabel: Copy caption
 shareCaption: |
   I’ll be at the *Campus Food Security Summit 2026* at *KIU Main Campus on 21st October 2026*, alongside students, universities, organisations and partners coming together to _*build food-secure universities in Uganda.*_
 
