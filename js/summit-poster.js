@@ -135,25 +135,23 @@
     });
   }
 
-  function drawHolePath() {
-    ctx.beginPath();
-    HOLE.corners.forEach(function (corner, index) {
-      if (index === 0) ctx.moveTo(corner[0], corner[1]);
-      else ctx.lineTo(corner[0], corner[1]);
-    });
-    ctx.closePath();
-  }
-
   function draw() {
-    ctx.fillStyle = HOLE_CYAN;
+    ctx.fillStyle = photo ? "#ffffff" : HOLE_CYAN;
     ctx.fillRect(0, 0, SIZE, SIZE);
 
     if (photo) {
       ctx.save();
-      drawHolePath();
-      ctx.clip();
       ctx.translate(HOLE.center[0], HOLE.center[1]);
       ctx.rotate(HOLE.angle);
+      ctx.beginPath();
+      const pad = 16;
+      ctx.rect(
+        -HOLE.width / 2 - pad,
+        -HOLE.height / 2 - pad,
+        HOLE.width + pad * 2,
+        HOLE.height + pad * 2
+      );
+      ctx.clip();
       ctx.translate(panX, panY);
       ctx.scale(currentScale(), currentScale());
       ctx.drawImage(photo, -photo.width / 2, -photo.height / 2);

@@ -15,7 +15,7 @@ shareCaption: |
 
   *I’m joining the movement. Will you?*
 
-  Register now: _*www.learnandlunch.org*_
+  Register now: _*www.learnandlunch.org/summit/*_
 
   _*#EndingCampusHunger*_
   _*#UnlockingStudentSuccess*_

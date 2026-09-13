@@ -10,6 +10,7 @@ const { renderImpact } = require("./lib/pages/impact");
 const { renderStories } = require("./lib/pages/stories");
 const { renderDonate } = require("./lib/pages/donate");
 const { renderContact, renderGetInvolved } = require("./lib/pages/contact");
+const { renderSummit } = require("./lib/pages/summit");
 const { renderSummitPoster } = require("./lib/pages/summit-poster");
 const { renderBlogPost } = require("./lib/pages/blog-post");
 const { renderNotFound } = require("./lib/pages/not-found");
@@ -87,6 +88,14 @@ function build() {
     renderGetInvolved({
       site,
       page: pages.getInvolved
+    })
+  );
+
+  writePage(
+    "summit/index.html",
+    renderSummit({
+      site,
+      page: pages.summit
     })
   );
 

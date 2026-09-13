@@ -117,6 +117,15 @@ function validate() {
     { key: "email", label: "email" }
   ]);
 
+  validatePage("summit.md", [
+    { key: "heading", label: "heading" },
+    { key: "intro", label: "intro" },
+    { key: "submitEmail", label: "submitEmail" },
+    { key: "submitLabel", label: "submitLabel" },
+    { key: "posterCtaLabel", label: "posterCtaLabel" },
+    { key: "consentLabel", label: "consentLabel" }
+  ]);
+
   validatePage("summit-poster.md", [
     { key: "heading", label: "heading" },
     { key: "intro", label: "intro" },
