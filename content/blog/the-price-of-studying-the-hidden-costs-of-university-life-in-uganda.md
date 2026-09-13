@@ -6,7 +6,7 @@ excerpt: Discover how hidden costs affect university students in Uganda and why
 coverImage: https://res.cloudinary.com/pr7r5p6g/image/upload/v1785743360/BODY_SOIL_-8116_rd9hyj.jpg
 coverImageAlt: University students in Uganda navigating the financial challenges
   of higher education and daily campus life
-coverImageCredit: "Photo: Semaganda Joshua Victor | BODY&SOIL"
+coverImageCredit: "Photo: Semaganda Joshua Victor "
 author: Jowel Nionzima
 tags:
   - Student Stories
