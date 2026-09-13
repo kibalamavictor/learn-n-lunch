@@ -6430,6 +6430,205 @@ a.partner-card--dark:focus-visible {
     padding: 0.65rem 0.75rem;
   }
 }
+.page-not-found {
+  background: var(--bg-light-linen-blue);
+}
+
+.not-found {
+  position: relative;
+  background: var(--bg-light-linen-blue);
+  border-bottom: 3px solid #000;
+  padding: 8rem 6vw 4.5rem;
+  overflow: hidden;
+}
+.not-found::after {
+  content: "";
+  position: absolute;
+  top: 7.25rem;
+  right: 6vw;
+  width: 16px;
+  height: 16px;
+  background: #000;
+  pointer-events: none;
+}
+
+.not-found__stack {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 1.15rem;
+}
+
+.not-found__kicker {
+  margin: 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 3px solid #000;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.not-found__miss {
+  margin: 0.6rem 0 0.4rem;
+  max-width: 100%;
+}
+
+.not-found__path {
+  display: inline;
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1.65rem, 4.6vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(#000, #000);
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 0 0.12em;
+  animation: not-found-strike 0.7s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.not-found__headline {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.75rem;
+  margin-top: 0.15rem;
+}
+
+.not-found__title {
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  font-size: clamp(4.4rem, 11vw, 8.4rem);
+  font-weight: 400;
+  line-height: 0.84;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.not-found__code {
+  margin: 0 0 0.35rem;
+  padding: 0.12em 0.22em 0.02em;
+  background: var(--mm-yellow);
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  font-family: "Anton", sans-serif;
+  font-size: clamp(3.4rem, 7vw, 6.2rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  transform: rotate(-3deg);
+  animation: not-found-chip 0.45s 0.05s both;
+}
+
+.not-found__lede {
+  max-width: 36rem;
+  margin: 0.35rem 0 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.85rem;
+}
+
+.not-found__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 10.5rem;
+  padding: 0.9rem 1.7rem;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+}
+.not-found__cta span {
+  color: inherit;
+}
+.not-found__cta--primary {
+  background: var(--mm-yellow);
+}
+.not-found__cta--secondary {
+  background: #fff;
+}
+
+.not-found__marquees {
+  position: relative;
+  background: var(--mm-yellow);
+  border-bottom: 3px solid #000;
+  padding: 2.75rem 0 2.5rem;
+  overflow: hidden;
+}
+.not-found__marquees .scrolling-banner,
+.not-found__marquees .scrolling-banner-2 {
+  top: 0;
+  width: 110%;
+  left: -5%;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+}
+.not-found__marquees .scrolling-banner-2 {
+  margin-bottom: 1.35rem;
+}
+
+@keyframes not-found-strike {
+  to {
+    background-size: 100% 0.12em;
+  }
+}
+@keyframes not-found-chip {
+  from {
+    transform: rotate(-3deg) translate(6px, 6px);
+  }
+  to {
+    transform: rotate(-3deg) translate(0, 0);
+  }
+}
+@media (max-width: 768px) {
+  .not-found {
+    padding: 6.75rem 1.25rem 3rem;
+  }
+  .not-found::after {
+    display: none;
+  }
+  .not-found__code {
+    margin-bottom: 0.15rem;
+  }
+  .not-found__lede {
+    font-size: 1.05rem;
+  }
+  .not-found__marquees {
+    padding: 2.4rem 0 1.6rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .not-found__path {
+    animation: none;
+    background-size: 100% 0.12em;
+  }
+  .not-found__code {
+    animation: none;
+  }
+  .not-found__marquees .banner-text-2 {
+    animation: none;
+  }
+}
 html {
   box-sizing: border-box;
   font-size: 100%;
@@ -6672,6 +6871,10 @@ a, a:visited, a:active {
 }
 
 .lnl-poster__btn:hover:not(:disabled):not(.selected):not(.active), .lnl-poster__btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+  animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
+}
+
+.not-found__cta:hover:not(:disabled):not(.selected):not(.active), .not-found__cta:focus-visible:not(:disabled):not(.selected):not(.active) {
   animation: lnl-pixel-jitter 2.4s steps(1, end) infinite;
 }
 
@@ -7060,6 +7263,25 @@ a, a:visited, a:active {
   stroke: #fff;
 }
 
+.not-found__cta {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.not-found__cta img,
+.not-found__cta svg {
+  transition: filter 0.2s ease, stroke 0.2s ease, color 0.2s ease;
+}
+.not-found__cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency), .not-found__cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+.not-found__cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) img, .not-found__cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) img {
+  filter: brightness(0) invert(1);
+}
+.not-found__cta:hover:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg, .not-found__cta:focus-visible:not(:disabled):not(.selected):not(.active):not(.active-frequency) svg {
+  stroke: #fff;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .learn-lunch-cta:hover:not(:disabled):not(.selected):not(.active), .learn-lunch-cta:focus-visible:not(:disabled):not(.selected):not(.active) {
     animation: none !important;
@@ -7128,6 +7350,9 @@ a, a:visited, a:active {
     animation: none !important;
   }
   .lnl-poster__btn:hover:not(:disabled):not(.selected):not(.active), .lnl-poster__btn:focus-visible:not(:disabled):not(.selected):not(.active) {
+    animation: none !important;
+  }
+  .not-found__cta:hover:not(:disabled):not(.selected):not(.active), .not-found__cta:focus-visible:not(:disabled):not(.selected):not(.active) {
     animation: none !important;
   }
   .mobile-menu-toggle:hover:not(:disabled):not(.selected):not(.active), .mobile-menu-toggle:focus-visible:not(:disabled):not(.selected):not(.active) {

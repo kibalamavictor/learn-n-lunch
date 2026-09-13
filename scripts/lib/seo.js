@@ -343,7 +343,8 @@ function renderSeoHead({
   ogType = "website",
   keywords,
   articleMeta,
-  structuredData = []
+  structuredData = [],
+  robots = "index, follow"
 }) {
   const canonicalUrl = buildCanonicalUrl(site, canonicalPath);
   const metaDescription = collapseMetaText(description);
@@ -403,7 +404,7 @@ function renderSeoHead({
 
   return `
     <meta name="description" content="${escapeHtml(metaDescription)}">${keywordMeta}${authorMeta}
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="${escapeHtml(robots)}">
     <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
     ${openGraph}
 ${renderJsonLd(structuredData)}`;

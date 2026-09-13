@@ -2,79 +2,71 @@ const { resolveAsset, resolveHomeHref, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
 const { buildOrganizationJsonLd } = require("../seo");
 
+const MARQUEE_TEXT =
+  "OFF THE MENU • PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • ";
+
 function renderNotFound({ site }) {
   // GitHub Pages serves 404.html for missing URLs while keeping the broken path
   // in the address bar, so all assets must be root-absolute.
   const depth = "absolute";
   const homeHref = resolveHomeHref(depth);
-  const storiesHref = resolveAsset(depth, "stories/");
-  const heroImage = resolveAsset(depth, "assets/uploads/learn_and_lunch_08.webp", {
-    cloudinaryWidth: 1600
-  });
+  const involvedHref = resolveAsset(depth, "get-involved/");
+  const bannerSpans = Array.from({ length: 8 }, () => `<span class="banner-text-2">${MARQUEE_TEXT}</span>`).join("\n  ");
 
   const body = `
-<section class="not-found" aria-labelledby="not-found-brand">
-  <div class="not-found__media" aria-hidden="true">
-    <img
-      src="${heroImage}"
-      alt=""
-      class="not-found__bg"
-      width="1600"
-      height="1066"
-      decoding="async"
-      fetchpriority="high"
-    >
-    <div class="not-found__shade"></div>
-  </div>
-
-  <div class="not-found__content">
-    <p class="not-found__brand" id="not-found-brand">Learn N' Lunch</p>
-    <p class="not-found__code" aria-hidden="true">404</p>
-    <h1 class="not-found__title">This plate came up empty</h1>
+<section class="not-found" aria-labelledby="not-found-title">
+  <div class="not-found__stack">
+    <p class="not-found__kicker">Today&rsquo;s list</p>
+    <p class="not-found__miss">
+      <span class="visually-hidden">Missing page </span>
+      <span class="not-found__path" id="not-found-path">/that-page</span>
+    </p>
+    <div class="not-found__headline">
+      <h1 class="not-found__title" id="not-found-title">Off the<br>menu</h1>
+      <p class="not-found__code" aria-hidden="true">404</p>
+    </div>
     <p class="not-found__lede">
-      The page you were looking for is not on the menu. Head home, or dig into
-      stories from the campuses where we are ending hunger.
+      We checked the list twice. This page isn&rsquo;t serving today &mdash; but the movement still is.
     </p>
     <div class="not-found__actions">
       <a href="${homeHref}" class="not-found__cta not-found__cta--primary">
-        <span>Back Home</span>
+        <span>Home</span>
       </a>
-      <a href="${storiesHref}" class="not-found__cta not-found__cta--secondary">
-        <span>Read Stories</span>
+      <a href="${involvedHref}" class="not-found__cta not-found__cta--secondary">
+        <span>Get Involved</span>
       </a>
     </div>
   </div>
 </section>
 
-<div class="scrolling-banner-2 not-found-banner">
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
+<div class="not-found__marquees" aria-hidden="true">
+  <div class="scrolling-banner-2">
+  ${bannerSpans}
+  </div>
+  <div class="scrolling-banner">
+  ${bannerSpans}
+  </div>
 </div>
-
-<div class="scrolling-banner not-found-banner">
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-  <span class="banner-text-2">PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • </span>
-</div>`;
+<script>
+(function () {
+  var el = document.getElementById("not-found-path");
+  if (!el) return;
+  var path = window.location.pathname || "";
+  if (!path || path === "/" || path === "/404" || path === "/404.html" || path === "/404/") return;
+  var text = path + (window.location.search || "");
+  text = text.replace(/[\\u0000-\\u001F\\u007F]/g, "");
+  if (text.length > 80) text = text.slice(0, 77) + "\\u2026";
+  el.textContent = text;
+})();
+</script>`;
 
   return renderPage({
     site,
     depth,
     title: "Page Not Found | Learn And Lunch",
     description:
-      "This Learn And Lunch page could not be found. Return home or explore stories from the campus hunger movement in Uganda.",
-    canonicalPath: "/404.html",
+      "This page is off the menu. Head home or get involved with the campus hunger movement in Uganda.",
+    canonicalPath: "/",
     ogImage: "/assets/uploads/learn_and_lunch_08.webp",
     ogImageAlt: "Students gathered outdoors with Learn N' Lunch",
     robots: "noindex, follow",

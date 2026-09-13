@@ -52,6 +52,7 @@ function escapeHtml(value) {
 }
 
 function relPrefix(depth) {
+  if (depth === "absolute") return "";
   return depth === 0 ? "." : "../".repeat(depth).slice(0, -1);
 }
 
@@ -65,7 +66,7 @@ function preferWebpAsset(assetPath) {
 }
 
 function resolveAsset(depth, assetPath, options = {}) {
-  if (!assetPath) return depth === 0 ? "./" : "../".repeat(depth);
+  if (!assetPath) return resolveHomeHref(depth);
   if (/^https?:\/\//.test(assetPath)) {
     return optimizeCloudinaryUrl(assetPath, options.cloudinaryWidth);
   }
@@ -76,6 +77,7 @@ function resolveAsset(depth, assetPath, options = {}) {
 }
 
 function resolveHomeHref(depth) {
+  if (depth === "absolute") return "/";
   return depth === 0 ? "./" : "../".repeat(depth);
 }
 

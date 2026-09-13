@@ -11,6 +11,7 @@ const { renderStories } = require("./lib/pages/stories");
 const { renderDonate } = require("./lib/pages/donate");
 const { renderContact, renderGetInvolved } = require("./lib/pages/contact");
 const { renderSummitPoster } = require("./lib/pages/summit-poster");
+const { renderNotFound } = require("./lib/pages/not-found");
 const { renderBlogPost } = require("./lib/pages/blog-post");
 
 const ROOT = process.cwd();
@@ -109,6 +110,8 @@ function build() {
       })
     );
   });
+
+  writePage("404.html", renderNotFound({ site }));
 
   writePage(
     "students/index.html",
