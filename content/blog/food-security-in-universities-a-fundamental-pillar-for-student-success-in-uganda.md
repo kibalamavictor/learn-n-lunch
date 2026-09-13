@@ -8,12 +8,15 @@ excerpt: Discover why food security in universities is essential for student
 coverImage: /assets/uploads/learn_and_lunch_06.webp
 coverImageAlt: University students participating in a campus food security
   awareness campaign in Uganda.
+coverImageCredit: "Photo: Semaganda Joshua Victor | BODY&SOIL"
 author: Jowel Nionzima
 tags:
   - Student Stories
 status: published
 publishedAt: 2026-08-03T09:22:00.000+03:00
-seoDescription: Discover why food security in universities is essential for student success in Uganda. Learn how Learn And Lunch is tackling campus hunger through research, advocacy, and student-led solutions.
+seoDescription: Discover why food security in universities is essential for
+  student success in Uganda. Learn how Learn And Lunch is tackling campus hunger
+  through research, advocacy, and student-led solutions.
 ogImage: /assets/uploads/learn_and_lunch_06.webp
 ---
 When we think about student success, we often focus on quality education, scholarships, and modern learning environments. Yet one essential factor is frequently overlooked: **food security**.
