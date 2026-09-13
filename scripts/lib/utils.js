@@ -31,7 +31,12 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+function isAbsoluteDepth(depth) {
+  return depth === "absolute";
+}
+
 function relPrefix(depth) {
+  if (isAbsoluteDepth(depth)) return "";
   return depth === 0 ? "." : "../".repeat(depth).slice(0, -1);
 }
 
@@ -45,17 +50,22 @@ function preferWebpAsset(assetPath) {
 }
 
 function resolveAsset(depth, assetPath, options = {}) {
-  if (!assetPath) return depth === 0 ? "./" : "../".repeat(depth);
+  if (!assetPath) {
+    if (isAbsoluteDepth(depth)) return "/";
+    return depth === 0 ? "./" : "../".repeat(depth);
+  }
   if (/^https?:\/\//.test(assetPath)) {
     return optimizeCloudinaryUrl(assetPath, options.cloudinaryWidth);
   }
   const optimizedPath = preferWebpAsset(assetPath);
   const clean = optimizedPath.startsWith("/") ? optimizedPath.slice(1) : optimizedPath;
+  if (isAbsoluteDepth(depth)) return `/${clean}`;
   const prefix = relPrefix(depth);
   return prefix === "." ? `./${clean}` : `${prefix}/${clean}`;
 }
 
 function resolveHomeHref(depth) {
+  if (isAbsoluteDepth(depth)) return "/";
   return depth === 0 ? "./" : "../".repeat(depth);
 }
 

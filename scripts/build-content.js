@@ -12,6 +12,7 @@ const { renderDonate } = require("./lib/pages/donate");
 const { renderContact, renderGetInvolved } = require("./lib/pages/contact");
 const { renderSummitPoster } = require("./lib/pages/summit-poster");
 const { renderBlogPost } = require("./lib/pages/blog-post");
+const { renderNotFound } = require("./lib/pages/not-found");
 
 const ROOT = process.cwd();
 
@@ -96,6 +97,8 @@ function build() {
       page: pages.summitPoster
     })
   );
+
+  writePage("404.html", renderNotFound({ site }));
 
   publishedBlogPosts.forEach((post) => {
     const relatedPosts = getRelatedPosts(post, publishedBlogPosts);

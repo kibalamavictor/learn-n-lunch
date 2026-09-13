@@ -5,12 +5,20 @@ seoDescription: Going to the Campus Food Security Summit at KIU? Put your photo 
 ogImage: /summit-poster/template.jpg
 ogImageAlt: Campus Food Security Summit 2026 I'll Be There poster
 heading: I'LL BE THERE
-intro: Going to the Campus Food Security Summit at KIU? Drop your photo into the poster, download it, and share that you will be in the room.
+intro: Going to the Campus Food Security Summit at KIU? Drop your photo into the poster and share that you will be in the room.
 eventName: Campus Food Security Summit 2026
 uploadLabel: Upload photo
 changeLabel: Change photo
-downloadLabel: Download poster
 shareLabel: Share poster
-resetLabel: Reset position
-privacyNote: Your photo stays on this device. Nothing is uploaded to our servers.
+captionLabel: Caption for your post
+copyCaptionLabel: Copy caption
+shareCaption: |
+  I’ll be at the *Campus Food Security Summit 2026* at *KIU Main Campus on 21st October 2026*, alongside students, universities, organisations and partners coming together to _*build food-secure universities in Uganda.*_
+
+  *I’m joining the movement. Will you?*
+
+  Register now: _*www.learnandlunch.org*_
+
+  _*#EndingCampusHunger*_
+  _*#UnlockingStudentSuccess*_
 ---

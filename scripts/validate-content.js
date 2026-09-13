@@ -121,7 +121,8 @@ function validate() {
     { key: "heading", label: "heading" },
     { key: "intro", label: "intro" },
     { key: "uploadLabel", label: "uploadLabel" },
-    { key: "downloadLabel", label: "downloadLabel" }
+    { key: "shareLabel", label: "shareLabel" },
+    { key: "shareCaption", label: "shareCaption" }
   ]);
 
   const homeStatsPath = path.join(ROOT, "content/stats/home.json");

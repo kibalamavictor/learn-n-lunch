@@ -22,11 +22,11 @@
   const emptyNote = root.querySelector("[data-empty]");
   const fileInput = root.querySelector("#lnl-poster-file");
   const uploadLabel = root.querySelector("[data-upload-label]");
-  const downloadBtn = root.querySelector("[data-download]");
   const shareBtn = root.querySelector("[data-share]");
-  const resetBtn = root.querySelector("[data-reset]");
-  const zoomInput = root.querySelector("[data-zoom]");
   const statusEl = root.querySelector("[data-status]");
+  const copyCaptionBtn = root.querySelector("[data-copy-caption]");
+  const captionSource = root.querySelector("[data-caption-source]");
+  const captionStatusEl = root.querySelector("[data-caption-status]");
   const overlaySrc = root.getAttribute("data-overlay");
 
   if (!canvas || !fileInput || !overlaySrc) return;
@@ -48,6 +48,60 @@
 
   function setStatus(message) {
     if (statusEl) statusEl.textContent = message || "";
+    if (captionStatusEl) captionStatusEl.textContent = message || "";
+  }
+
+  function shareCaption() {
+    return captionSource ? String(captionSource.value || "").trim() : "";
+  }
+
+  async function copyCaption(successMessage) {
+    const text = shareCaption();
+    if (!text) return false;
+
+    function copyWithExecCommand() {
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      temp.setAttribute("readonly", "");
+      temp.style.position = "fixed";
+      temp.style.top = "0";
+      temp.style.left = "0";
+      temp.style.opacity = "0";
+      document.body.appendChild(temp);
+      temp.focus();
+      temp.select();
+      temp.setSelectionRange(0, text.length);
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (error) {
+        ok = false;
+      }
+      temp.remove();
+      return ok;
+    }
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else if (!copyWithExecCommand()) {
+        throw new Error("copy failed");
+      }
+      setStatus(successMessage || "Caption copied. Paste it with your post.");
+      return true;
+    } catch (error) {
+      if (!copyWithExecCommand()) {
+        if (captionSource) {
+          captionSource.hidden = false;
+          captionSource.focus();
+          captionSource.select();
+        }
+        setStatus("Select the caption and copy it, then paste it with your post.");
+        return false;
+      }
+      setStatus(successMessage || "Caption copied. Paste it with your post.");
+      return true;
+    }
   }
 
   function currentScale() {
@@ -124,18 +178,12 @@
 
   function setPhotoLoaded(loaded) {
     root.classList.toggle("is-loaded", loaded);
-    downloadBtn.disabled = !loaded;
-    resetBtn.disabled = !loaded;
-    zoomInput.disabled = !loaded;
+    if (shareBtn) shareBtn.disabled = !loaded;
     if (emptyNote) emptyNote.hidden = loaded;
     if (uploadLabel) {
       uploadLabel.textContent = loaded
         ? uploadLabel.getAttribute("data-change") || "Change photo"
         : uploadLabel.getAttribute("data-upload") || "Upload photo";
-    }
-    if (shareBtn) {
-      const canShare = loaded && typeof navigator.share === "function";
-      shareBtn.hidden = !canShare;
     }
   }
 
@@ -182,10 +230,9 @@
       zoom = 1;
       panX = 0;
       panY = 0;
-      zoomInput.value = "100";
       setPhotoLoaded(true);
       requestDraw();
-      setStatus("Drag the photo to position it, then download.");
+      setStatus("Drag to position, then share.");
     } catch (error) {
       setStatus(error.message || "Could not read that image. Try a JPG or PNG.");
     }
@@ -216,15 +263,17 @@
       setTimeout(function () {
         URL.revokeObjectURL(url);
       }, 2000);
-      setStatus("Poster downloaded. Share it with #EndingCampusHunger.");
+      await copyCaption("Poster downloaded. Caption copied — paste it with your post.");
     } catch (error) {
       setStatus(error.message || "Download failed. Try again.");
     }
   }
 
   async function sharePoster() {
-    if (!photo || typeof navigator.share !== "function") return;
-    try {
+    if (!photo) return;
+
+    async function shareNative() {
+      if (typeof navigator.share !== "function") return false;
       const blob = await posterBlob();
       const file = new File([blob], "learn-n-lunch-i-will-be-there.png", {
         type: "image/png"
@@ -232,17 +281,23 @@
       const payload = {
         files: [file],
         title: "I'll Be There — Campus Food Security Summit",
-        text: "I'll be at the Campus Food Security Summit at KIU. #EndingCampusHunger"
+        text: shareCaption()
       };
-      if (!navigator.canShare || navigator.canShare(payload)) {
-        await navigator.share(payload);
-        setStatus("Poster shared. See you at KIU.");
+      if (navigator.canShare && !navigator.canShare(payload)) return false;
+      await navigator.share(payload);
+      return true;
+    }
+
+    try {
+      const shared = await shareNative();
+      if (shared) {
+        await copyCaption("Poster shared. Caption copied in case you need to paste it.");
         return;
       }
       await downloadPoster();
     } catch (error) {
       if (error && error.name === "AbortError") return;
-      downloadPoster();
+      await downloadPoster();
     }
   }
 
@@ -273,29 +328,17 @@
     fileInput.value = "";
   });
 
-  downloadBtn.addEventListener("click", function () {
-    downloadPoster();
-  });
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function () {
+      sharePoster();
+    });
+  }
 
-  shareBtn.addEventListener("click", function () {
-    sharePoster();
-  });
-
-  resetBtn.addEventListener("click", function () {
-    if (!photo) return;
-    zoom = 1;
-    panX = 0;
-    panY = 0;
-    zoomInput.value = "100";
-    requestDraw();
-  });
-
-  zoomInput.addEventListener("input", function () {
-    if (!photo) return;
-    zoom = Number(zoomInput.value) / 100;
-    clampPan();
-    requestDraw();
-  });
+  if (copyCaptionBtn) {
+    copyCaptionBtn.addEventListener("click", function () {
+      copyCaption();
+    });
+  }
 
   canvas.addEventListener("pointerdown", function (event) {
     if (!photo) return;
@@ -314,7 +357,6 @@
       const dist = pointerDistance();
       if (lastPinchDist > 0) {
         zoom = Math.min(3, Math.max(1, zoom * (dist / lastPinchDist)));
-        zoomInput.value = String(Math.round(zoom * 100));
         clampPan();
         requestDraw();
       }
@@ -349,7 +391,6 @@
       event.preventDefault();
       const delta = event.deltaY > 0 ? 0.94 : 1.06;
       zoom = Math.min(3, Math.max(1, zoom * delta));
-      zoomInput.value = String(Math.round(zoom * 100));
       clampPan();
       requestDraw();
     },
