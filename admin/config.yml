@@ -804,7 +804,7 @@ collections:
             required: false
             summary: "{{fields}}"
             hint: "Topics your organization works on — used in NGO structured data."
-            field: { label: Topic, widget: string }
+            field: { label: Topic, name: topic, widget: string }
           - label: "2 · Navigation"
             name: navigation
             widget: list

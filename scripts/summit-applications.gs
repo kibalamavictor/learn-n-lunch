@@ -24,7 +24,6 @@ var SPREADSHEET_ID = "1D-CmKGii0xvxvkAd5vXLUxcvChgQyezOrWBHwne5YDI";
 var APPLICATIONS_TAB = "Applications";
 var DASHBOARD_TAB = "Dashboard";
 var TIMEZONE = "Africa/Nairobi";
-var NOTIFY_EMAIL = "info@learnandlunch.org";
 var STATUS_VALUES = ["New", "Reviewing", "Selected", "Waitlist", "Not selected", "Follow-up"];
 
 var INTEREST_COLUMNS = [
@@ -114,7 +113,6 @@ function doPost(e) {
     row.push("");
 
     sheet.appendRow(row);
-    notifyTeam(data);
 
     return jsonOutput({ ok: true });
   } catch (error) {
@@ -230,28 +228,6 @@ function interestSelected(interests, label) {
   return interests.split(",").some(function (item) {
     return item.replace(/^\s+|\s+$/g, "") === label;
   });
-}
-
-function notifyTeam(data) {
-  try {
-    var name = data.fullName || "A student";
-    var university = data.university || "an unlisted university";
-    var sheetUrl = getSpreadsheet().getUrl();
-    MailApp.sendEmail({
-      to: NOTIFY_EMAIL,
-      subject: "Summit application: " + name,
-      body:
-        name +
-        " from " +
-        university +
-        " just applied for the Campus Food Security Summit 2026.\n\n" +
-        "Open the applications sheet:\n" +
-        sheetUrl +
-        "\n"
-    });
-  } catch (error) {
-    // Row is already saved; skip email if Gmail permission is missing.
-  }
 }
 
 function jsonOutput(payload) {
