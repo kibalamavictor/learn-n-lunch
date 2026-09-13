@@ -27,14 +27,14 @@ function renderSummitPoster({ site, page }) {
         <img class="lnl-poster__fallback" src="${previewSrc}" alt="${escapeHtml(page.ogImageAlt || "Summit poster template")}" width="1024" height="1024">
         <p class="lnl-poster__empty" data-empty>Upload a photo to place it in the frame. Drag to move. Pinch to zoom.</p>
       </div>
-
-      <div class="lnl-poster__actions">
-        <input id="lnl-poster-file" class="lnl-poster__file" type="file" accept="image/*" hidden>
-        <label class="lnl-poster__btn" for="lnl-poster-file" data-upload-label data-change="${escapeHtml(page.changeLabel)}">${escapeHtml(page.uploadLabel)}</label>
-        <button type="button" class="lnl-poster__btn lnl-poster__btn--primary" data-share disabled>${escapeHtml(page.shareLabel)}</button>
-      </div>
-      <p class="lnl-poster__status" data-status role="status"></p>
     </div>
+
+    <input id="lnl-poster-file" class="lnl-poster__file" type="file" accept="image/*" hidden>
+    <div class="lnl-poster__actions">
+      <label class="lnl-poster__btn" for="lnl-poster-file" data-upload-label data-change="${escapeHtml(page.changeLabel)}">${escapeHtml(page.uploadLabel)}</label>
+      <button type="button" class="lnl-poster__btn lnl-poster__btn--primary" data-share disabled>${escapeHtml(page.shareLabel)}</button>
+    </div>
+    <p class="lnl-poster__status" data-status role="status"></p>
   </div>
   <textarea class="lnl-poster__caption-source" data-caption-source readonly hidden>${escapeHtml(shareCaption)}</textarea>
 </section>`;

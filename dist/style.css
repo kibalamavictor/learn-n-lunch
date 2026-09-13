@@ -6210,7 +6210,7 @@ a.partner-card--dark:focus-visible {
 .lnl-poster__screen {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   min-height: calc(100svh - 5.5rem);
   gap: 0.7rem;
@@ -6218,7 +6218,7 @@ a.partner-card--dark:focus-visible {
 
 .lnl-poster__intro {
   max-width: 42rem;
-  margin: 0;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -6255,15 +6255,16 @@ a.partner-card--dark:focus-visible {
 .lnl-poster__studio {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 0.75rem;
-  width: 100%;
+  width: min(100%, 28rem, 100svh - 15.5rem);
   min-height: 0;
+  align-self: center;
 }
 
 .lnl-poster__stage {
   position: relative;
-  width: min(100%, 28rem, 100svh - 15.5rem);
+  width: 100%;
   background: #fff;
   border: 1px solid #000;
   box-shadow: 5px 5px 0 #000;
@@ -6309,10 +6310,9 @@ a.partner-card--dark:focus-visible {
 }
 
 .lnl-poster__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
   width: 100%;
 }
 
@@ -6320,9 +6320,11 @@ a.partner-card--dark:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 9.5rem;
+  width: 100%;
+  min-width: 0;
   margin: 0;
-  padding: 0.7rem 1.15rem;
+  padding: 0.7rem 1rem;
+  box-sizing: border-box;
   background: #fff;
   color: #1a1a1a;
   border: 1px solid #1a1a1a;
@@ -6339,8 +6341,8 @@ a.partner-card--dark:focus-visible {
 
 .lnl-poster__btn:disabled {
   cursor: not-allowed;
-  opacity: 0.45;
-  box-shadow: 2px 2px #000;
+  opacity: 0.5;
+  box-shadow: 4px 4px #000;
 }
 
 .lnl-poster__status {
@@ -6383,16 +6385,18 @@ a.partner-card--dark:focus-visible {
   .lnl-poster__lead {
     font-size: 0.88rem;
   }
-  .lnl-poster__stage {
+  .lnl-poster__studio {
     width: min(100%, 100svh - 14.25rem);
+  }
+  .lnl-poster__stage {
+    width: 100%;
   }
   .lnl-poster__empty {
     width: min(52%, 10rem);
     font-size: 0.7rem;
   }
   .lnl-poster__btn {
-    min-width: 8.5rem;
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 0.75rem;
   }
 }
 @keyframes not-found-rise {
