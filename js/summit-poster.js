@@ -3,18 +3,18 @@
   if (!root) return;
 
   const SIZE = 1024;
-  const HOLE_CYAN = "#00aeef";
+  const HOLE_CYAN = "#00adef";
   const HOLE = {
     corners: [
-      [367, 204],
-      [765, 303],
-      [655, 759],
-      [256, 662]
+      [368, 204],
+      [765, 301],
+      [654, 759],
+      [257, 660]
     ],
-    center: [510.75, 482],
-    angle: Math.atan2(303 - 204, 765 - 367),
-    width: Math.hypot(765 - 367, 303 - 204),
-    height: Math.hypot(367 - 256, 204 - 662)
+    center: [510.67, 481.5],
+    angle: Math.atan2(301 - 204, 765 - 368),
+    width: Math.hypot(765 - 368, 301 - 204),
+    height: Math.hypot(368 - 257, 204 - 660)
   };
 
   const canvas = root.querySelector(".lnl-poster__canvas");

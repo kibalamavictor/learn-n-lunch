@@ -8,8 +8,8 @@ const {
 
 function renderSummitPoster({ site, page }) {
   const depth = 1;
-  const overlaySrc = resolveAsset(depth, "summit-poster/template-overlay.png");
-  const previewSrc = resolveAsset(depth, "summit-poster/template.png");
+  const overlaySrc = resolveAsset(depth, "summit-poster/template-overlay.png") + "?v=2";
+  const previewSrc = resolveAsset(depth, "summit-poster/template.jpg") + "?v=2";
 
   const body = `
 <section class="lnl-poster" id="summit-poster" data-overlay="${overlaySrc}">
@@ -67,7 +67,7 @@ function renderSummitPoster({ site, page }) {
     defaults: {
       title: `I'll Be There | ${site.siteName}`,
       description: page.intro,
-      ogImage: page.ogImage || "/summit-poster/template.png",
+      ogImage: page.ogImage || "/summit-poster/template.jpg",
       ogImageAlt: page.ogImageAlt,
       keywords: "Campus Food Security Summit, KIU, Ending Campus Hunger, Learn And Lunch"
     }
