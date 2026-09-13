@@ -66,7 +66,8 @@ function loadAllContent() {
       stories: loadPage("stories"),
       donate: loadPage("donate"),
       contact: loadPage("contact-us"),
-      getInvolved: loadPage("get-involved")
+      getInvolved: loadPage("get-involved"),
+      summitPoster: loadPage("summit-poster")
     },
     stats: {
       home: loadStats("home"),

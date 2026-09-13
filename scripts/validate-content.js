@@ -117,6 +117,13 @@ function validate() {
     { key: "email", label: "email" }
   ]);
 
+  validatePage("summit-poster.md", [
+    { key: "heading", label: "heading" },
+    { key: "intro", label: "intro" },
+    { key: "uploadLabel", label: "uploadLabel" },
+    { key: "downloadLabel", label: "downloadLabel" }
+  ]);
+
   const homeStatsPath = path.join(ROOT, "content/stats/home.json");
   const impactStatsPath = path.join(ROOT, "content/stats/impact.json");
   const homeStats = readJson(homeStatsPath);
