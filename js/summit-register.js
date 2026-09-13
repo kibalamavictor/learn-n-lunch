@@ -76,22 +76,13 @@
   }
 
   async function postToSheet(payload) {
-    const response = await fetch(submitEndpoint, {
+    // One request only. Apps Script writes on receive; a CORS retry would duplicate the row.
+    await fetch(submitEndpoint, {
       method: "POST",
+      mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload),
-      redirect: "follow"
+      body: JSON.stringify(payload)
     });
-    const result = await response.text().then(function (text) {
-      try {
-        return JSON.parse(text);
-      } catch (error) {
-        return { ok: response.ok, raw: text };
-      }
-    });
-    if (!response.ok || result.ok === false) {
-      throw new Error("Sheet request failed");
-    }
   }
 
   async function postToEmailFallback(payload) {
@@ -133,8 +124,11 @@
   });
   updateLeaderField();
 
+  let submitting = false;
+
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
+    if (submitting) return;
     setError("");
 
     if (form.querySelector('[name="_gotcha"]') && form.querySelector('[name="_gotcha"]').value) {
@@ -147,6 +141,7 @@
       return;
     }
 
+    submitting = true;
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = "Sending…";
@@ -155,21 +150,13 @@
     try {
       const payload = payloadFromForm();
       if (submitEndpoint) {
-        try {
-          await postToSheet(payload);
-        } catch (sheetError) {
-          await fetch(submitEndpoint, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify(payload)
-          });
-        }
+        await postToSheet(payload);
       } else {
         await postToEmailFallback(payload);
       }
       showSuccess();
     } catch (error) {
+      submitting = false;
       setError("Something went wrong. Please try again or email " + submitEmail + ".");
       if (submitBtn) {
         submitBtn.disabled = false;

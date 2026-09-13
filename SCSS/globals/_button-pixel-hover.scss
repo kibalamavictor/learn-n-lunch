@@ -131,9 +131,6 @@ $lnl-jitter-buttons: (
   '.lnl-mn-download',
   '.lnl-signpost__close',
   '.lnl-poster__btn',
-  '.lnl-summit__chip',
-  '.lnl-summit__submit',
-  '.not-found__cta',
   '.mobile-menu-toggle'
 );
 
@@ -164,9 +161,7 @@ $lnl-invert-buttons: (
   '.pdf-report-btn',
   '.lnl-mn-download',
   '.lnl-signpost__close',
-  '.lnl-poster__btn',
-  '.lnl-summit__submit',
-  '.not-found__cta'
+  '.lnl-poster__btn'
 );
 
 @each $btn in $lnl-invert-buttons {

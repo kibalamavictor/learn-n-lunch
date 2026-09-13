@@ -42,7 +42,7 @@ function renderSummitPoster({ site, page }) {
   const seo = resolvePageSeo({
     site,
     page,
-    canonicalPath: "/summit-poster/",
+    canonicalPath: "/ill-be-there/",
     defaults: {
       title: `I'll Be There | ${site.siteName}`,
       description: page.intro,
@@ -66,10 +66,10 @@ function renderSummitPoster({ site, page }) {
       buildOrganizationJsonLd(site),
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
-        { name: "I'll Be There", path: "/summit-poster/" }
+        { name: "I'll Be There", path: "/ill-be-there/" }
       ])
     ].filter(Boolean),
-    activePath: "/summit-poster",
+    activePath: "/ill-be-there",
     bodyClass: "lnl-poster-page",
     body,
     scripts: ["js/app.js", "js/summit-poster.js"]

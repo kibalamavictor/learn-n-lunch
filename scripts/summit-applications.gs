@@ -73,6 +73,9 @@ function doGet() {
 }
 
 function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(15000);
+
   try {
     setupWorkbook();
 
@@ -86,6 +89,10 @@ function doPost(e) {
     }
 
     var sheet = getSpreadsheet().getSheetByName(APPLICATIONS_TAB);
+    if (isRecentDuplicate(sheet, data)) {
+      return jsonOutput({ ok: true, duplicate: true });
+    }
+
     var interests = String(data.interests || "");
     var row = [
       "New",
@@ -117,7 +124,56 @@ function doPost(e) {
     return jsonOutput({ ok: true });
   } catch (error) {
     return jsonOutput({ ok: false, error: String(error) });
+  } finally {
+    lock.releaseLock();
   }
+}
+
+function normalizeValue(value) {
+  return String(value || "").replace(/^\s+|\s+$/g, "").toLowerCase();
+}
+
+function parseSubmitted(value) {
+  if (value instanceof Date && !isNaN(value.getTime())) return value;
+  var text = String(value || "");
+  var match = text.match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2}))?/);
+  if (!match) return null;
+  return new Date(
+    Number(match[1]),
+    Number(match[2]) - 1,
+    Number(match[3]),
+    Number(match[4] || 0),
+    Number(match[5] || 0),
+    0
+  );
+}
+
+function isRecentDuplicate(sheet, data) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return false;
+
+  var email = normalizeValue(data.email);
+  var name = normalizeValue(data.fullName);
+  var phone = normalizeValue(data.phone).replace(/[^\d+]/g, "");
+  if (!email && !name && !phone) return false;
+
+  var lookback = Math.min(40, lastRow - 1);
+  var values = sheet.getRange(lastRow - lookback + 1, 1, lookback, 9).getValues();
+  var cutoff = new Date().getTime() - 15 * 60 * 1000;
+
+  for (var i = 0; i < values.length; i++) {
+    var submitted = parseSubmitted(values[i][1]);
+    if (!submitted || submitted.getTime() < cutoff) continue;
+
+    var rowName = normalizeValue(values[i][2]);
+    var rowPhone = normalizeValue(values[i][7]).replace(/[^\d+]/g, "");
+    var rowEmail = normalizeValue(values[i][8]);
+    var sameEmail = email && rowEmail === email;
+    var sameNamePhone = name && phone && rowName === name && rowPhone === phone;
+    if (sameEmail || sameNamePhone) return true;
+  }
+
+  return false;
 }
 
 function setupWorkbook() {

@@ -26,7 +26,6 @@ function renderHead({
   keywords,
   articleMeta,
   structuredData = [],
-  robots,
   headExtra = ""
 }) {
   const styleHref = resolveAsset(depth, "dist/style.css");
@@ -41,8 +40,7 @@ function renderHead({
     ogType,
     keywords,
     articleMeta,
-    structuredData,
-    robots
+    structuredData
   });
 
   return `<!DOCTYPE html>
@@ -189,7 +187,6 @@ function renderPage({
   keywords,
   articleMeta,
   structuredData = [],
-  robots,
   activePath,
   navbarStyle,
   bodyClass = "",
@@ -215,7 +212,6 @@ function renderPage({
     keywords,
     articleMeta,
     structuredData,
-    robots,
     headExtra
   })}
 </head>

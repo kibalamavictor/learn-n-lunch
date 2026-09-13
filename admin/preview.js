@@ -136,6 +136,9 @@
         status === "published" ? "Published" : "Draft"
       ),
       cover ? img(cover, data.coverImageAlt || data.title, "preview-cover") : null,
+      data.coverImageCredit
+        ? h("p", { className: "preview-photo-credit" }, data.coverImageCredit)
+        : null,
       h("h1", { className: "preview-title" }, text(data.title, "Untitled story")),
       data.excerpt ? h("p", { className: "preview-lead" }, data.excerpt) : null,
       metaRow([

@@ -343,8 +343,7 @@ function renderSeoHead({
   ogType = "website",
   keywords,
   articleMeta,
-  structuredData = [],
-  robots = "index, follow"
+  structuredData = []
 }) {
   const canonicalUrl = buildCanonicalUrl(site, canonicalPath);
   const metaDescription = collapseMetaText(description);
@@ -404,7 +403,7 @@ function renderSeoHead({
 
   return `
     <meta name="description" content="${escapeHtml(metaDescription)}">${keywordMeta}${authorMeta}
-    <meta name="robots" content="${escapeHtml(robots)}">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
     ${openGraph}
 ${renderJsonLd(structuredData)}`;
@@ -420,7 +419,6 @@ function buildSitemapEntries({ site, publishedBlogPosts }) {
     { path: "/get-involved/", changefreq: "monthly", priority: "0.8" },
     { path: "/donate/", changefreq: "monthly", priority: "0.8" },
     { path: "/contact-us/", changefreq: "monthly", priority: "0.7" },
-    { path: "/summit/", changefreq: "weekly", priority: "0.9" },
     { path: "/summit-poster/", changefreq: "weekly", priority: "0.8" }
   ];
 

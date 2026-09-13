@@ -17,7 +17,7 @@ submitEmail: info@learnandlunch.org
 submitEndpoint: "https://script.google.com/macros/s/AKfycbzutsG--KWAxrofPuoBwiCh9TcO--GzFXDtgMuKDvgoP28EQAm5EdI7AN7TyYhcxgiO/exec"
 submitLabel: Submit registration
 posterCtaLabel: Make my poster
-posterPath: summit-poster/
+posterPath: ill-be-there/
 successTitle: You're registered.
 successBody: Next, put your photo on the mobilization poster and share that you will be in the room.
 disclaimer: Registration does not automatically guarantee attendance. Selected participants will receive confirmation and further event information.

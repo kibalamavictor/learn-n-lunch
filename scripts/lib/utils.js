@@ -23,6 +23,26 @@ md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
   return defaultHeadingOpen(tokens, idx, options, env, self);
 };
 
+const defaultImageRender =
+  md.renderer.rules.image ||
+  function (tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+
+md.renderer.rules.image = function (tokens, idx, options, env, self) {
+  const token = tokens[idx];
+  const title = token.attrGet("title");
+  const imageHtml = defaultImageRender(tokens, idx, options, env, self);
+
+  if (!title || !String(title).trim()) {
+    return imageHtml;
+  }
+
+  return `<figure class="story-figure">${imageHtml}<figcaption class="story-photo-credit">${escapeHtml(
+    String(title).trim()
+  )}</figcaption></figure>`;
+};
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -31,12 +51,7 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function isAbsoluteDepth(depth) {
-  return depth === "absolute";
-}
-
 function relPrefix(depth) {
-  if (isAbsoluteDepth(depth)) return "";
   return depth === 0 ? "." : "../".repeat(depth).slice(0, -1);
 }
 
@@ -50,22 +65,17 @@ function preferWebpAsset(assetPath) {
 }
 
 function resolveAsset(depth, assetPath, options = {}) {
-  if (!assetPath) {
-    if (isAbsoluteDepth(depth)) return "/";
-    return depth === 0 ? "./" : "../".repeat(depth);
-  }
+  if (!assetPath) return depth === 0 ? "./" : "../".repeat(depth);
   if (/^https?:\/\//.test(assetPath)) {
     return optimizeCloudinaryUrl(assetPath, options.cloudinaryWidth);
   }
   const optimizedPath = preferWebpAsset(assetPath);
   const clean = optimizedPath.startsWith("/") ? optimizedPath.slice(1) : optimizedPath;
-  if (isAbsoluteDepth(depth)) return `/${clean}`;
   const prefix = relPrefix(depth);
   return prefix === "." ? `./${clean}` : `${prefix}/${clean}`;
 }
 
 function resolveHomeHref(depth) {
-  if (isAbsoluteDepth(depth)) return "/";
   return depth === 0 ? "./" : "../".repeat(depth);
 }
 

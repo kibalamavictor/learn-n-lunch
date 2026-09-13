@@ -65,16 +65,22 @@ ${renderStoryCarousel({
 })}`
       : "";
 
+  const coverCredit = String(post.coverImageCredit || "").trim();
   const heroImageHtml = isPdfReport
     ? ""
     : `
-    <div class="exam-story-image-wrapper">
+    <figure class="exam-story-image-wrapper">
       <img 
         src="${resolveAsset(depth, post.coverImage)}" 
         alt="${escapeHtml(post.coverImageAlt || post.title)}" 
         class="exam-story-hero-image"
       />
-    </div>`;
+      ${
+        coverCredit
+          ? `<figcaption class="story-photo-credit">${escapeHtml(coverCredit)}</figcaption>`
+          : ""
+      }
+    </figure>`;
 
   const mainContentHtml = isPdfReport
     ? renderPdfReportSection({ post, depth })

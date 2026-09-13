@@ -74,7 +74,7 @@ function renderNotFound({ site }) {
     title: "Page Not Found | Learn And Lunch",
     description:
       "This Learn And Lunch page could not be found. Return home or explore stories from the campus hunger movement in Uganda.",
-    canonicalPath: "/",
+    canonicalPath: "/404.html",
     ogImage: "/assets/uploads/learn_and_lunch_08.webp",
     ogImageAlt: "Students gathered outdoors with Learn N' Lunch",
     robots: "noindex, follow",

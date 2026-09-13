@@ -54,10 +54,13 @@ Only **Published** stories appear on the public Stories page.
 2. Fill in:
    - **Title**, **Slug** (URL becomes `/stories/<slug>/`)
    - **Excerpt**, **Cover image** + alt text
+   - **Cover Photo Credit** (optional) — shown under the cover image
    - **Category Tags** — the **first** tag drives Stories filters
    - **Status**: `published` when ready
    - **Story Body** (markdown)
 3. **Save**, then **Publish**
+
+For images inside the story body, open the image insert dialog and fill **Title** with the photo credit (e.g. `Photo: Mercy Lawino`). That credit appears under the image on the live page.
 
 ### Category tags (use exactly)
 

@@ -10,10 +10,8 @@ const { renderImpact } = require("./lib/pages/impact");
 const { renderStories } = require("./lib/pages/stories");
 const { renderDonate } = require("./lib/pages/donate");
 const { renderContact, renderGetInvolved } = require("./lib/pages/contact");
-const { renderSummit } = require("./lib/pages/summit");
 const { renderSummitPoster } = require("./lib/pages/summit-poster");
 const { renderBlogPost } = require("./lib/pages/blog-post");
-const { renderNotFound } = require("./lib/pages/not-found");
 
 const ROOT = process.cwd();
 
@@ -92,22 +90,12 @@ function build() {
   );
 
   writePage(
-    "summit/index.html",
-    renderSummit({
-      site,
-      page: pages.summit
-    })
-  );
-
-  writePage(
     "summit-poster/index.html",
     renderSummitPoster({
       site,
       page: pages.summitPoster
     })
   );
-
-  writePage("404.html", renderNotFound({ site }));
 
   publishedBlogPosts.forEach((post) => {
     const relatedPosts = getRelatedPosts(post, publishedBlogPosts);

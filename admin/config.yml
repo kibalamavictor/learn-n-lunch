@@ -504,6 +504,7 @@ collections:
       - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards." }
       - { label: Cover Image, name: coverImage, widget: image }
       - { label: Cover Image Alt, name: coverImageAlt, widget: string }
+      - { label: "Cover Photo Credit", name: coverImageCredit, widget: string, required: false, hint: "Optional. Shown under the cover image, e.g. Photo: Mercy Lawino or © Body & Soil Africa." }
       - { label: "Writer / Author", name: author, widget: string, hint: "Shown on the story page under the date, e.g. Mercy Lawino." }
 
       - label: "2 · Category Tags"
@@ -537,7 +538,7 @@ collections:
       - label: "5 · Story Body"
         name: body
         widget: richtext
-        hint: "Use the toolbar for headings, bold, italic, links, lists, quotes, and images."
+        hint: "Use the toolbar for headings, bold, italic, links, lists, quotes, and images. For body images, fill the Title field with the photo credit."
         buttons:
           - bold
           - italic

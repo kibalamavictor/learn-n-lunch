@@ -28,7 +28,7 @@ function renderChoiceChips({ name, legend, options, required = false, multiple =
 
 function renderSummit({ site, page }) {
   const depth = 1;
-  const posterHref = resolveAsset(depth, page.posterPath || "summit-poster/");
+  const posterHref = resolveAsset(depth, page.posterPath || "ill-be-there/");
   const submitEmail = page.submitEmail || site.contact?.email || "info@learnandlunch.org";
   const submitEndpoint = page.submitEndpoint || "";
 
