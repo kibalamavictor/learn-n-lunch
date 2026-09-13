@@ -9,6 +9,7 @@ excerpt: On March 28, 2026, Learn N' Lunch visited Body and Soil Africa in
 coverImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-04.webp
 coverImageAlt: Learn N' Lunch team members meeting with Body and Soil Africa
   staff during a partnership visit in Mityana, Uganda
+coverImageCredit: "Photo: Semaganda Joshua Victor | BODY&SOIL"
 author: Mercy Lawino
 tags:
   - Student Stories
