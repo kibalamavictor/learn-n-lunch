@@ -8,7 +8,7 @@ excerpt: Discover why food security in universities is essential for student
 coverImage: /assets/uploads/learn_and_lunch_06.webp
 coverImageAlt: University students participating in a campus food security
   awareness campaign in Uganda.
-coverImageCredit: "Photo: Semaganda Joshua Victor | BODY&SOIL"
+coverImageCredit: "Photo: Semaganda Joshua Victor"
 author: Jowel Nionzima
 tags:
   - Student Stories
