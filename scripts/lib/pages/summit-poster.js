@@ -17,20 +17,6 @@ function renderSummitPoster({ site, page }) {
     <p class="lnl-poster__eyebrow">${escapeHtml(page.eventName)}</p>
     <h1>${escapeHtml(page.heading)}</h1>
     <p class="lnl-poster__lead">${escapeHtml(page.intro)}</p>
-    <ul class="lnl-poster__meta">
-      <li>
-        <span class="lnl-poster__meta-label">When</span>
-        <span>${escapeHtml(page.eventDate)}</span>
-      </li>
-      <li>
-        <span class="lnl-poster__meta-label">Where</span>
-        <span>${escapeHtml(page.eventVenue)}</span>
-      </li>
-      <li>
-        <span class="lnl-poster__meta-label">Share</span>
-        <span>${escapeHtml(page.hashtag)}</span>
-      </li>
-    </ul>
   </div>
 
   <div class="lnl-poster__studio">

@@ -7,9 +7,6 @@ ogImageAlt: Campus Food Security Summit 2026 I'll Be There poster
 heading: I'LL BE THERE
 intro: Going to the Campus Food Security Summit at KIU? Drop your photo into the poster, download it, and share that you will be in the room.
 eventName: Campus Food Security Summit 2026
-eventDate: 21st Oct 2026
-eventVenue: KIU Main Campus
-hashtag: "#EndingCampusHunger"
 uploadLabel: Upload photo
 changeLabel: Change photo
 downloadLabel: Download poster
