@@ -9,6 +9,7 @@ excerpt: On March 28, 2026, Learn N' Lunch visited Body and Soil Africa in
 coverImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-04.webp
 coverImageAlt: Learn N' Lunch team members meeting with Body and Soil Africa
   staff during a partnership visit in Mityana, Uganda
+coverImageCredit: "Photo: Semaganda Joshua Victor | BODY&SOIL"
 author: Mercy Lawino
 tags:
   - Student Stories
@@ -38,7 +39,7 @@ The partnership also explored practical solutions including student learning spa
 
 What stood out most was the shift from asking "How do we continue feeding hungry students?" to asking **"How do we empower students to become part of the solution?"**
 
-![Enock Jowel presenting to the team at body and soil](/assets/uploads/learn-n-lunch-body-and-soil-partnership-01.webp)
+![Enock Jowel presenting to the team at body and soil](/assets/uploads/learn-n-lunch-body-and-soil-partnership-01.webp "Photo: Semaganda Joshua Victor | BODY&SOIL")
 
 *"There is no revolution without education,"* said Enock Nionzima, the programs lead — education before innovation is our leading motto. True transformation comes when students have the knowledge, skills, and opportunities to build healthier and more sustainable food systems — giving birth to a new pathway: **The Nutrition Seminar Series.**
 
