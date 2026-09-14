@@ -19,9 +19,9 @@ standForStatement: We believe no student should have to choose between food and
   leadership. Our work centers lived experience while protecting consent and
   wellbeing.
 missionVision:
-  mission: Learn And Lunch mobilises students to understand campus food
-    insecurity, develop solutions and influence the systems that shape food
-    access in universities.
+  mission: Learn And Lunch brings students, universities and partners together to
+    understand campus food insecurity, develop practical solutions and build the
+    capacity for food-secure universities.
   vision: Universities where no student goes hungry and every student has access
     to nutritious, diverse food and the opportunity to thrive in education.
 values:
