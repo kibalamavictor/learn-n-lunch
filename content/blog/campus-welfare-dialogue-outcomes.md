@@ -1,16 +1,19 @@
 ---
 title: "Campus Welfare Dialogue: Outcomes & Next Steps"
 slug: campus-welfare-dialogue-outcomes
-excerpt: Student leaders, faculty, and Learn N' Lunch agreed on concrete actions to improve meal access and welfare communication across partner campuses.
+excerpt: Student leaders, faculty, and Learn N' Lunch agreed on concrete actions
+  to improve meal access and welfare communication across partner campuses.
 coverImage: /new/board-room.jpg
 coverImageAlt: Campus welfare dialogue session with student and faculty representatives
+coverImageCredit: ""
 author: Learn N' Lunch Editorial Team
 tags:
   - Impact Reports
 status: published
 publishedAt: 2025-08-15T14:00:00.000Z
 seoTitle: Campus Welfare Dialogue Outcomes | Learn N' Lunch
-seoDescription: Outcomes from the Learn N' Lunch campus welfare dialogue — agreed actions, student priorities, and implementation timeline.
+seoDescription: Outcomes from the Learn N' Lunch campus welfare dialogue —
+  agreed actions, student priorities, and implementation timeline.
 ogImage: /new/board-room.jpg
 ---
 ## Why we convened
@@ -19,10 +22,10 @@ In August 2025, Learn N' Lunch hosted a **Campus Welfare Dialogue** bringing tog
 
 ## Participants
 
-- 22 student leaders (guild, faculty reps, ambassadors)
-- 8 faculty / welfare office contacts
-- 11 Learn N' Lunch staff and volunteers
-- 2 community nutrition advisors
+* 22 student leaders (guild, faculty reps, ambassadors)
+* 8 faculty / welfare office contacts
+* 11 Learn N' Lunch staff and volunteers
+* 2 community nutrition advisors
 
 ## Agreed outcomes
 
@@ -49,17 +52,17 @@ From a live polling exercise at the dialogue:
 3. **Dignity-centered service** — no public labeling of students who receive meals
 4. **Transparent reporting** on how many meals are served and where funding goes
 
-> "We do not need perfection. We need consistency students can plan around."  
+> "We do not need perfection. We need consistency students can plan around."\
 > — Student guild representative, Makerere
 
 ## Implementation timeline
 
-| Action | Owner | Target date |
-| --- | --- | --- |
-| Publish pilot schedules (2 campuses) | Ambassadors | September 2025 |
-| Launch feedback forms | Campus leads | September 2025 |
-| Volunteer playbook v1 | Learn N' Lunch ops | October 2025 |
-| Public monthly summary post | Editorial team | November 2025 |
+| Action                               | Owner              | Target date    |
+| ------------------------------------ | ------------------ | -------------- |
+| Publish pilot schedules (2 campuses) | Ambassadors        | September 2025 |
+| Launch feedback forms                | Campus leads       | September 2025 |
+| Volunteer playbook v1                | Learn N' Lunch ops | October 2025   |
+| Public monthly summary post          | Editorial team     | November 2025  |
 
 ## Stay involved
 
