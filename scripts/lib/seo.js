@@ -420,7 +420,8 @@ function buildSitemapEntries({ site, publishedBlogPosts }) {
     { path: "/get-involved/", changefreq: "monthly", priority: "0.8" },
     { path: "/donate/", changefreq: "monthly", priority: "0.8" },
     { path: "/contact-us/", changefreq: "monthly", priority: "0.7" },
-    { path: "/summit-poster/", changefreq: "weekly", priority: "0.8" }
+    { path: "/summit/", changefreq: "weekly", priority: "0.9" },
+    { path: "/ill-be-there/", changefreq: "weekly", priority: "0.8" }
   ];
 
   const blogEntries = publishedBlogPosts.map((post) => ({

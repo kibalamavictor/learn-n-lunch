@@ -91,6 +91,14 @@ function build() {
   );
 
   writePage(
+    "ill-be-there/index.html",
+    renderSummitPoster({
+      site,
+      page: pages.summitPoster
+    })
+  );
+
+  writePage(
     "summit-poster/index.html",
     renderSummitPoster({
       site,
