@@ -1,7 +1,9 @@
 ---
 title: About Us
 seoTitle: About Us | Learn And Lunch
-seoDescription: Learn about Learn And Lunch — a student-led organisation addressing campus hunger in Uganda through research, advocacy, and practical support for university students.
+seoDescription: Learn about Learn And Lunch — a student-led organisation
+  addressing campus hunger in Uganda through research, advocacy, and practical
+  support for university students.
 ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-10.webp
 hero:
   heading: Who We Are
@@ -17,9 +19,11 @@ standForStatement: We believe no student should have to choose between food and
   leadership. Our work centers lived experience while protecting consent and
   wellbeing.
 missionVision:
-  mission: To fuel students with accessible meals so they can concentrate on
-    learning and building their futures.
-  vision: A Uganda where no student studies hungry.
+  mission: Learn And Lunch brings students, universities and partners together to
+    understand campus food insecurity, develop practical solutions and build the
+    capacity for food-secure universities.
+  vision: Universities where no student goes hungry and every student has access
+    to nutritious, diverse food and the opportunity to thrive in education.
 values:
   - name: COMMUNITY
     description: Together, we grow <br> stronger.
