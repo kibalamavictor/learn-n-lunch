@@ -138,7 +138,9 @@ function renderDonate({ site, page }) {
     </section>
   </form>
 
-  ${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions")}
+  ${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions", {
+    accordion: true
+  })}
 </div>`;
 
   const seo = resolvePageSeo({

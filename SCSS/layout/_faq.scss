@@ -60,19 +60,18 @@
   }
 
   .lnl-faq-item summary {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-sizing: border-box;
     width: max-content;
     max-width: 100%;
-    padding-right: 1.75rem;
-    position: relative;
     font-family: util.$font-n;
     line-height: 1.5;
 
     &::after {
       content: "+";
-      position: absolute;
-      top: 0;
-      right: 0;
+      flex-shrink: 0;
       font-size: 1.1rem;
       font-weight: 700;
       line-height: 1.5;
