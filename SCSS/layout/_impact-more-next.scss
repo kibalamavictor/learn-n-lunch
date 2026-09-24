@@ -82,6 +82,12 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.7;
+  }
 }
 
 @keyframes lnl-mn-pop {

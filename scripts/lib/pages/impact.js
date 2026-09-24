@@ -79,20 +79,15 @@ function renderScrollingBanner(bannerText) {
 }
 
 function renderImpactDownloadCard({
-  depth,
   variant,
   heading,
   description,
   buttonLabel,
-  file,
   squares
 }) {
-  const fileSrc = file ? resolveAsset(depth, String(file).replace(/^\//, "")) : "";
-  const downloadBtn = fileSrc
-    ? `<a class="lnl-mn-download" href="${escapeHtml(fileSrc)}" download data-report-download data-report-title="${escapeHtml(heading)}">
+  const downloadBtn = `<button type="button" class="lnl-mn-download" data-report-download data-report-key="${variant}" data-report-title="${escapeHtml(heading)}">
           <span>${escapeHtml(buttonLabel || "Download")}</span>
-        </a>`
-    : "";
+        </button>`;
 
   return `
       <article class="lnl-mn-card lnl-mn-card--${variant}">
@@ -156,7 +151,7 @@ function renderDownloadModal(site, form = {}) {
   </dialog>`;
 }
 
-function renderImpactDownloads(depth, strategicFramework = {}, impactReport = {}) {
+function renderImpactDownloads(strategicFramework = {}, impactReport = {}) {
   const framework = strategicFramework || {};
   const report = impactReport || {};
 
@@ -164,23 +159,19 @@ function renderImpactDownloads(depth, strategicFramework = {}, impactReport = {}
   <section id="lnl-more-next" class="lnl-more-next" aria-label="Download strategic framework and impact report">
     <div class="lnl-mn-grid">
       ${renderImpactDownloadCard({
-        depth,
         variant: "framework",
         heading: framework.heading || "Strategic Framework 2025",
         description: framework.description || "",
         buttonLabel: framework.buttonLabel || "Download Framework",
-        file: framework.file,
         squares: `<span class="lnl-mn-sq lnl-mn-sq--tl" aria-hidden="true"></span>
         <span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>`
       })}
 
       ${renderImpactDownloadCard({
-        depth,
         variant: "report",
         heading: report.heading || "Impact Report 2025",
         description: report.description || "",
         buttonLabel: report.buttonLabel || "Download Report",
-        file: report.file,
         squares: `<span class="lnl-mn-sq lnl-mn-sq--br" aria-hidden="true"></span>`
       })}
     </div>
@@ -273,7 +264,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
 
   ${renderScrollingBanner(page.scrollBanner)}
 
-  ${renderImpactDownloads(depth, page.strategicFramework, page.impactReport)}
+  ${renderImpactDownloads(page.strategicFramework, page.impactReport)}
 
   ${renderDownloadModal(site, page.downloadForm)}`;
 

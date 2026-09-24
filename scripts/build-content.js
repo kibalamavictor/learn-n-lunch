@@ -138,6 +138,23 @@ function build() {
 </html>`
   );
 
+  writePage(
+    "stories/impact-report-2025/index.html",
+    `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=../../impact/?download=report#lnl-more-next" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${getSiteUrl(site)}/impact/" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>The Impact Report is now on our Impact page. <a href="../../impact/?download=report#lnl-more-next">Download the Impact Report</a>.</p>
+  </body>
+</html>`
+  );
+
   const sitemapEntries = buildSitemapEntries({ site, publishedBlogPosts });
   writeFileEnsured(path.join(ROOT, "sitemap.xml"), renderSitemapXml(sitemapEntries));
 

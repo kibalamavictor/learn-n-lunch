@@ -63,4 +63,4 @@ From a live polling exercise at the dialogue:
 
 ## Stay involved
 
-Questions about the dialogue outcomes? [Contact us](/contact-us/) or read our latest [Impact Report](/stories/impact-report-2025/).
+Questions about the dialogue outcomes? [Contact us](/contact-us/) or read our latest [Impact Report](/impact/?download=report#lnl-more-next).
