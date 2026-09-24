@@ -289,7 +289,7 @@
         <span class="lnl-mn-chip lnl-mn-chip--blue" aria-hidden="true"></span>
         <h2>Strategic Framework 2025</h2>
         <p>Our roadmap for ending campus hunger — research, student networks, and practical solutions that guide Learn N' Lunch across universities.</p>
-        <a class="lnl-mn-download" href="../assets/uploads/strategic-framework.pdf" download>
+        <a class="lnl-mn-download" href="../assets/uploads/strategic-framework.pdf" download data-report-download data-report-title="Strategic Framework 2025">
           <span>Download Framework</span>
         </a>
       </article>
@@ -301,12 +301,57 @@
         <span class="lnl-mn-chip lnl-mn-chip--green" aria-hidden="true"></span>
         <h2>Impact Report 2025</h2>
         <p>Read the latest outcomes, campus reach, and student stories. Download the full report to share with partners and donors.</p>
-        <a class="lnl-mn-download" href="../assets/uploads/impact-report-2025.pdf" download>
+        <a class="lnl-mn-download" href="../assets/uploads/impact-report-2025.pdf" download data-report-download data-report-title="Impact Report 2025">
           <span>Download Report</span>
         </a>
       </article>
     </div>
   </section>
+
+  
+  <dialog class="lnl-dl-modal" id="lnl-report-download" aria-labelledby="lnl-dl-title" data-submit-email="info@learnandlunch.org" data-submit-endpoint="">
+    <button type="button" class="lnl-dl-modal__close" data-dl-close aria-label="Close">&times;</button>
+
+    <form class="lnl-dl-form" data-dl-form novalidate>
+      <h2 id="lnl-dl-title" class="lnl-dl-modal__title">
+        <span class="lnl-dl-modal__mark">Complete</span> the form below to download our <span data-dl-report></span>
+      </h2>
+
+      <div class="lnl-dl-form__grid">
+        <label class="lnl-dl-field">
+          <span>First name<span class="lnl-dl-field__req">*</span></span>
+          <input class="form-input" type="text" name="firstName" autocomplete="given-name" required>
+        </label>
+        <label class="lnl-dl-field">
+          <span>Last name</span>
+          <input class="form-input" type="text" name="lastName" autocomplete="family-name">
+        </label>
+      </div>
+
+      <label class="lnl-dl-field">
+        <span>College or organization name</span>
+        <input class="form-input" type="text" name="organization" autocomplete="organization">
+      </label>
+
+      <label class="lnl-dl-field">
+        <span>Email<span class="lnl-dl-field__req">*</span></span>
+        <input class="form-input" type="email" name="email" autocomplete="email" required>
+      </label>
+
+      <input type="text" name="_gotcha" class="lnl-dl-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="lnl-mn-download lnl-dl-form__submit">Submit</button>
+      <p class="lnl-dl-form__error" data-dl-error role="alert"></p>
+      <p class="lnl-dl-form__note">*By submitting this form, you agree to receive emails about news and updates from Learn And Lunch.</p>
+    </form>
+
+    <div class="lnl-dl-success" data-dl-success hidden>
+      <span class="lnl-mn-chip lnl-mn-chip--green" aria-hidden="true"></span>
+      <h2 class="lnl-dl-modal__title" tabindex="-1" data-dl-success-title>Thank you! Your download is starting.</h2>
+      <p>If the PDF doesn't open automatically, use the button below.</p>
+      <a class="lnl-mn-download" href="#" download data-dl-again>Download again</a>
+    </div>
+  </dialog>
 </main>
 
 <section class="footer-cta-section">
@@ -373,5 +418,6 @@
 </footer>
     <script src="../js/app.js" defer></script>
     <script src="../js/impact-map.js" defer></script>
+    <script src="../js/report-download.js" defer></script>
 </body>
 </html>

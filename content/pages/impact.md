@@ -26,6 +26,15 @@ impactReport:
   description: Read the latest outcomes, campus reach, and student stories. Download the full report to share with partners and donors.
   buttonLabel: Download Report
   file: /assets/uploads/impact-report-2025.pdf
+downloadForm:
+  headingPrefix: Complete the form below to download our
+  submitLabel: Submit
+  consentNote: By submitting this form, you agree to receive emails about news and updates from Learn And Lunch.
+  successTitle: Thank you! Your download is starting.
+  successBody: If the PDF doesn't open automatically, use the button below.
+  againLabel: Download again
+  submitEmail: info@learnandlunch.org
+  submitEndpoint: ""
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now

@@ -89,7 +89,7 @@ function renderImpactDownloadCard({
 }) {
   const fileSrc = file ? resolveAsset(depth, String(file).replace(/^\//, "")) : "";
   const downloadBtn = fileSrc
-    ? `<a class="lnl-mn-download" href="${escapeHtml(fileSrc)}" download>
+    ? `<a class="lnl-mn-download" href="${escapeHtml(fileSrc)}" download data-report-download data-report-title="${escapeHtml(heading)}">
           <span>${escapeHtml(buttonLabel || "Download")}</span>
         </a>`
     : "";
@@ -103,6 +103,57 @@ function renderImpactDownloadCard({
         ${description ? `<p>${escapeHtml(description)}</p>` : ""}
         ${downloadBtn}
       </article>`;
+}
+
+function renderDownloadModal(site, form = {}) {
+  const prefix = form.headingPrefix || "Complete the form below to download our";
+  const [markWord, ...restWords] = prefix.split(" ");
+  const submitEmail = form.submitEmail || site.contact?.email || "info@learnandlunch.org";
+
+  return `
+  <dialog class="lnl-dl-modal" id="lnl-report-download" aria-labelledby="lnl-dl-title" data-submit-email="${escapeHtml(submitEmail)}" data-submit-endpoint="${escapeHtml(form.submitEndpoint || "")}">
+    <button type="button" class="lnl-dl-modal__close" data-dl-close aria-label="Close">&times;</button>
+
+    <form class="lnl-dl-form" data-dl-form novalidate>
+      <h2 id="lnl-dl-title" class="lnl-dl-modal__title">
+        <span class="lnl-dl-modal__mark">${escapeHtml(markWord)}</span> ${escapeHtml(restWords.join(" "))} <span data-dl-report></span>
+      </h2>
+
+      <div class="lnl-dl-form__grid">
+        <label class="lnl-dl-field">
+          <span>First name<span class="lnl-dl-field__req">*</span></span>
+          <input class="form-input" type="text" name="firstName" autocomplete="given-name" required>
+        </label>
+        <label class="lnl-dl-field">
+          <span>Last name</span>
+          <input class="form-input" type="text" name="lastName" autocomplete="family-name">
+        </label>
+      </div>
+
+      <label class="lnl-dl-field">
+        <span>College or organization name</span>
+        <input class="form-input" type="text" name="organization" autocomplete="organization">
+      </label>
+
+      <label class="lnl-dl-field">
+        <span>Email<span class="lnl-dl-field__req">*</span></span>
+        <input class="form-input" type="email" name="email" autocomplete="email" required>
+      </label>
+
+      <input type="text" name="_gotcha" class="lnl-dl-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="lnl-mn-download lnl-dl-form__submit">${escapeHtml(form.submitLabel || "Submit")}</button>
+      <p class="lnl-dl-form__error" data-dl-error role="alert"></p>
+      <p class="lnl-dl-form__note">*${escapeHtml(form.consentNote || "By submitting this form, you agree to receive emails about news and updates from Learn And Lunch.")}</p>
+    </form>
+
+    <div class="lnl-dl-success" data-dl-success hidden>
+      <span class="lnl-mn-chip lnl-mn-chip--green" aria-hidden="true"></span>
+      <h2 class="lnl-dl-modal__title" tabindex="-1" data-dl-success-title>${escapeHtml(form.successTitle || "Thank you! Your download is starting.")}</h2>
+      <p>${escapeHtml(form.successBody || "If the PDF doesn't open automatically, use the button below.")}</p>
+      <a class="lnl-mn-download" href="#" download data-dl-again>${escapeHtml(form.againLabel || "Download again")}</a>
+    </div>
+  </dialog>`;
 }
 
 function renderImpactDownloads(depth, strategicFramework = {}, impactReport = {}) {
@@ -222,7 +273,9 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
 
   ${renderScrollingBanner(page.scrollBanner)}
 
-  ${renderImpactDownloads(depth, page.strategicFramework, page.impactReport)}`;
+  ${renderImpactDownloads(depth, page.strategicFramework, page.impactReport)}
+
+  ${renderDownloadModal(site, page.downloadForm)}`;
 
   const footerCta = page.footerCta
     ? {
@@ -260,7 +313,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
       ])
     ],
     activePath: "/impact",
-    scripts: ["js/app.js", "js/impact-map.js"],
+    scripts: ["js/app.js", "js/impact-map.js", "js/report-download.js"],
     footerCta,
     body
   });

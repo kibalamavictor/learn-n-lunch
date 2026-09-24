@@ -323,6 +323,33 @@ collections:
                 media_folder: assets/uploads
                 public_folder: /assets/uploads
 
+          - label: "6b · Download Form"
+            name: downloadForm
+            widget: object
+            collapsed: true
+            required: false
+            hint: "Pop-up form visitors fill in before downloading the Strategic Framework or Impact Report."
+            fields:
+              - label: Heading
+                name: headingPrefix
+                widget: string
+                default: "Complete the form below to download our"
+                hint: "The report name is added at the end automatically. The first word gets the green highlight."
+              - { label: Submit Button Label, name: submitLabel, widget: string, default: "Submit" }
+              - { label: Consent Note, name: consentNote, widget: text }
+              - { label: Success Title, name: successTitle, widget: string }
+              - { label: Success Message, name: successBody, widget: text }
+              - { label: Download Again Label, name: againLabel, widget: string, default: "Download again" }
+              - label: Fallback Email
+                name: submitEmail
+                widget: string
+                hint: "Used only when the Google Sheet link below is empty: each submission is emailed here instead."
+              - label: Google Sheet Web App URL
+                name: submitEndpoint
+                widget: string
+                required: false
+                hint: "Paste the Apps Script web app URL (ends in /exec). See scripts/report-downloads.gs for setup."
+
           - label: "7 · Footer CTA"
             name: footerCta
             widget: object
