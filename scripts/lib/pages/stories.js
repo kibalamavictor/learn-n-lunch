@@ -1,4 +1,10 @@
-const { escapeHtml, resolveAsset, getPostCategorySlug, getPostSearchText } = require("../utils");
+const {
+  escapeHtml,
+  resolveAsset,
+  getPostCategorySlug,
+  getPostCategorySlugs,
+  getPostSearchText
+} = require("../utils");
 const { renderPage } = require("../partials");
 const { renderStoryCarousel } = require("../carousel");
 const {
@@ -16,7 +22,7 @@ function renderFeaturedHero(depth, post) {
   const searchText = getPostSearchText(post);
 
   return `
-    <div class="st-hero-container stories-item" data-category="${escapeHtml(categorySlug)}" data-search="${escapeHtml(searchText)}">
+    <div class="st-hero-container stories-item" data-category="${escapeHtml(categorySlug)}" data-categories="${escapeHtml(getPostCategorySlugs(post).join(" "))}" data-slug="${escapeHtml(post.slug)}" data-search="${escapeHtml(searchText)}">
         <div class="makerere-lunch-section">
             <div class="makerere-lunch-image-wrapper">
                 <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}">
@@ -35,7 +41,7 @@ function renderFeaturedHero(depth, post) {
 }
 
 function getPostsForCategory(posts, categorySlug) {
-  return posts.filter((post) => getPostCategorySlug(post) === categorySlug);
+  return posts.filter((post) => getPostCategorySlugs(post).includes(categorySlug));
 }
 
 function formatSectionTitle(title) {
@@ -71,7 +77,10 @@ function renderStories({ site, page, publishedPosts }) {
     return db - da;
   });
 
-  const filters = Array.isArray(page.filters) ? page.filters : [{ label: "All", slug: "all" }];
+  const allFilters = Array.isArray(page.filters) ? page.filters : [{ label: "All", slug: "all" }];
+  const filters = allFilters.filter(
+    (filter) => filter.slug === "all" || getPostsForCategory(sortedPosts, filter.slug).length > 0
+  );
   const categoryFilters = filters.filter((filter) => filter.slug !== "all");
 
   const filterButtons = filters

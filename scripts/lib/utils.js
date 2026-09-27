@@ -163,12 +163,19 @@ function getPostCategorySlug(post) {
   return POST_TAG_TO_FILTER[tagSlug] || "all";
 }
 
+function getPostCategorySlugs(post) {
+  const slugs = (post?.tags || [])
+    .map((tag) => POST_TAG_TO_FILTER[normalizeTagSlug(tag)])
+    .filter(Boolean);
+  return slugs.length ? [...new Set(slugs)] : ["all"];
+}
+
 function getPostTagColor(post) {
   return FILTER_TAG_COLORS[getPostCategorySlug(post)] || FILTER_TAG_COLORS.all;
 }
 
 function getPostSearchText(post) {
-  return [post.title, post.excerpt, ...(post.tags || [])].filter(Boolean).join(" ");
+  return [post.title, post.excerpt, post.author, ...(post.tags || [])].filter(Boolean).join(" ");
 }
 
 function isReportPost(post) {
@@ -283,6 +290,7 @@ module.exports = {
   collapseMetaText,
   normalizeListStrings,
   getPostCategorySlug,
+  getPostCategorySlugs,
   getPostTagColor,
   getPostSearchText,
   isReportPost,

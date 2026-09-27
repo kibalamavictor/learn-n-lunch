@@ -438,32 +438,82 @@ document.addEventListener("DOMContentLoaded", () => {
   const storiesEmptyState = document.getElementById("storiesEmptyState");
 
   if (storiesSearchInput && storiesSections.length > 0) {
+    function normalizeSearchText(value) {
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[\u2018\u2019\u201B\u2032]/g, "'")
+        .replace(/[\u201C\u201D\u2033]/g, '"')
+        .replace(/&/g, " and ")
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function getActiveButton() {
+      return document.querySelector(".stories-filter-btn.active");
+    }
+
     function getActiveCategory() {
-      const activeBtn = document.querySelector(".stories-filter-btn.active");
-      return activeBtn?.dataset.category || "all";
+      return getActiveButton()?.dataset.category || "all";
+    }
+
+    function setActiveCategory(category) {
+      const target =
+        Array.from(storiesFilterBtns).find((b) => b.dataset.category === category) ||
+        storiesFilterBtns[0];
+      storiesFilterBtns.forEach((b) => b.classList.toggle("active", b === target));
+    }
+
+    function syncStoriesUrl(term, category) {
+      const url = new URL(window.location.href);
+      if (term) url.searchParams.set("q", term);
+      else url.searchParams.delete("q");
+      if (category && category !== "all") url.searchParams.set("category", category);
+      else url.searchParams.delete("category");
+      window.history.replaceState(null, "", url);
+    }
+
+    function updateEmptyState(rawTerm, category) {
+      if (!storiesEmptyState) return;
+      const label = getActiveButton()?.textContent.trim();
+      if (rawTerm && category !== "all") {
+        storiesEmptyState.textContent = `No stories in ${label} match "${rawTerm}". Try another keyword or filter.`;
+      } else if (rawTerm) {
+        storiesEmptyState.textContent = `No stories match "${rawTerm}". Try another keyword.`;
+      } else {
+        storiesEmptyState.textContent = `No stories in ${label} yet. Try another filter.`;
+      }
     }
 
     function applyStoriesFilter() {
       const category = getActiveCategory();
-      const term = storiesSearchInput.value.trim().toLowerCase();
+      const rawTerm = storiesSearchInput.value.trim();
+      const words = normalizeSearchText(rawTerm).split(" ").filter(Boolean);
+      // Browsing (All, no search) keeps the curated rows; any filter shows each story once.
+      const dedupe = words.length > 0 || category !== "all";
+      const shownSlugs = new Set();
       let visibleCount = 0;
 
       storiesSections.forEach((section) => {
         let visibleInSection = 0;
 
         section.querySelectorAll(".stories-item").forEach((item) => {
-          const itemCategory = item.dataset.category || section.dataset.category || "all";
-          const searchText = (item.dataset.search || item.textContent || "").toLowerCase();
-          const searchMatch = !term || searchText.includes(term);
-          const categoryMatch = category === "all" || itemCategory === category;
-          const visible = categoryMatch && searchMatch;
+          const itemCategories = (item.dataset.categories || item.dataset.category || "all").split(" ");
+          const searchText = normalizeSearchText(item.dataset.search || item.textContent);
+          const searchMatch = words.every((word) => searchText.includes(word));
+          const categoryMatch = category === "all" || itemCategories.includes(category);
+          const slug = item.dataset.slug;
+          const duplicate = dedupe && slug && shownSlugs.has(slug);
+          const visible = categoryMatch && searchMatch && !duplicate;
 
           item.style.display = visible ? "" : "none";
-          if (visible) visibleInSection += 1;
+          if (visible) {
+            visibleInSection += 1;
+            if (slug) shownSlugs.add(slug);
+          }
         });
 
-        // Show a section whenever it still has matching cards (keeps RECENTS
-        // featured hero visible when filtering by Student Stories, etc.)
         const sectionVisible = visibleInSection > 0;
         section.style.display = sectionVisible ? "" : "none";
         if (sectionVisible) visibleCount += visibleInSection;
@@ -471,15 +521,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (storiesEmptyState) {
         storiesEmptyState.hidden = visibleCount > 0;
+        if (visibleCount === 0) updateEmptyState(rawTerm, category);
       }
 
+      syncStoriesUrl(rawTerm, category);
       window.dispatchEvent(new Event("resize"));
     }
 
+    const initialParams = new URLSearchParams(window.location.search);
+    if (initialParams.get("q")) storiesSearchInput.value = initialParams.get("q");
+    if (initialParams.get("category")) setActiveCategory(initialParams.get("category"));
+
     storiesFilterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        storiesFilterBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
+        setActiveCategory(btn.dataset.category);
         applyStoriesFilter();
       });
     });

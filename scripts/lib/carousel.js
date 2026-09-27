@@ -1,4 +1,11 @@
-const { escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, getPostSearchText } = require("./utils");
+const {
+  escapeHtml,
+  resolveAsset,
+  getPostCategorySlug,
+  getPostCategorySlugs,
+  getPostTagColor,
+  getPostSearchText
+} = require("./utils");
 
 function renderStoryCarousel({
   depth,
@@ -16,7 +23,7 @@ function renderStoryCarousel({
       const searchText = getPostSearchText(post);
       const postUrl = resolveAsset(depth, `stories/${post.slug}/`);
       return `
-            <article class="mm-card stories-item" data-category="${escapeHtml(categorySlug)}" data-search="${escapeHtml(searchText)}">
+            <article class="mm-card stories-item" data-category="${escapeHtml(categorySlug)}" data-categories="${escapeHtml(getPostCategorySlugs(post).join(" "))}" data-slug="${escapeHtml(post.slug)}" data-search="${escapeHtml(searchText)}">
               <img src="${resolveAsset(depth, post.coverImage, { cloudinaryWidth: 800 })}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy" decoding="async">
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
