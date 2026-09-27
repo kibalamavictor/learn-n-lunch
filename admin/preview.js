@@ -373,11 +373,15 @@
         : null,
       section(text(framework.heading, "Strategic Framework"), [
         framework.description ? h("p", null, framework.description) : null,
-        h("span", { className: "preview-btn" }, text(framework.buttonLabel, "Download Framework"))
+        framework.file
+          ? h("span", { className: "preview-btn" }, text(framework.buttonLabel, "Download Framework"))
+          : empty("Upload a Strategic Framework PDF to enable download.")
       ]),
       section(text(report.heading, "Impact Report"), [
         report.description ? h("p", null, report.description) : null,
-        h("span", { className: "preview-btn" }, text(report.buttonLabel, "Download Report"))
+        report.file
+          ? h("span", { className: "preview-btn" }, text(report.buttonLabel, "Download Report"))
+          : empty("Upload an Impact Report PDF to enable download.")
       ]),
       section("Footer CTA", [
         h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),

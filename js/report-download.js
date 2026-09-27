@@ -14,7 +14,6 @@
   const submitEmail = modal.getAttribute("data-submit-email") || "info@learnandlunch.org";
   const submitEndpoint = (modal.getAttribute("data-submit-endpoint") || "").trim();
   const STORAGE_KEY = "lnl-report-lead";
-  const fileCache = {};
 
   let activeTrigger = null;
   let submitting = false;
@@ -39,61 +38,63 @@
     errorEl.textContent = message || "";
   }
 
-  function failureMessage() {
-    return "We couldn't prepare the PDF. Please try again or email " + submitEmail + ".";
-  }
-
-  function startDownload(file) {
+  function startDownload(href) {
     const link = document.createElement("a");
-    link.href = file.url;
-    link.download = file.fileName;
+    link.href = href;
+    link.download = "";
+    link.rel = "noopener";
     document.body.appendChild(link);
     link.click();
     link.remove();
   }
 
+  async function postToSheet(payload) {
+    // One request only. Apps Script writes on receive; a CORS retry would duplicate the row.
+    await fetch(submitEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+  }
+
+  async function postToEmailFallback(payload) {
+    const response = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(submitEmail), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(
+        Object.assign(
+          {
+            _subject: "Report download — " + payload.report,
+            _template: "table",
+            _captcha: "false",
+            _replyto: payload.email || ""
+          },
+          payload
+        )
+      )
+    });
+    const result = await response.json().catch(function () {
+      return {};
+    });
+    if (!response.ok || result.success === false || result.success === "false") {
+      throw new Error("Could not send download request.");
+    }
+  }
+
   function buildPayload(lead, trigger, returning) {
     return {
-      reportKey: trigger.getAttribute("data-report-key") || "",
-      report: trigger.getAttribute("data-report-title") || "",
       firstName: lead.firstName || "",
       lastName: lead.lastName || "",
       organization: lead.organization || "",
       email: lead.email || "",
+      report: trigger.getAttribute("data-report-title") || "",
       returning: returning ? "Yes" : "No",
       page: window.location.pathname
     };
   }
 
-  async function fetchReport(lead, trigger, returning) {
-    const key = trigger.getAttribute("data-report-key");
-    if (fileCache[key]) return fileCache[key];
-    if (!submitEndpoint) throw new Error("Download endpoint is not configured.");
-
-    // One request only. Apps Script writes on receive; a retry would duplicate the row.
-    const response = await fetch(submitEndpoint, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(buildPayload(lead, trigger, returning))
-    });
-    const result = await response.json();
-    if (!response.ok || !result.ok || !result.data) {
-      throw new Error(result.error || "Download failed.");
-    }
-
-    const binary = atob(result.data);
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
-    const blob = new Blob([bytes], { type: result.mimeType || "application/pdf" });
-
-    fileCache[key] = {
-      url: URL.createObjectURL(blob),
-      fileName: result.fileName || (trigger.getAttribute("data-report-title") || "report") + ".pdf"
-    };
-    return fileCache[key];
-  }
-
-  function openModal(trigger, lead, message) {
+  function openModal(trigger) {
     activeTrigger = trigger;
     reportLabel.textContent = trigger.getAttribute("data-report-title") || "report";
     form.hidden = false;
@@ -101,47 +102,21 @@
     submitting = false;
     submitBtn.disabled = false;
     submitBtn.textContent = submitLabel;
-    if (lead) {
-      ["firstName", "lastName", "organization", "email"].forEach(function (name) {
-        if (form.elements[name]) form.elements[name].value = lead[name] || "";
-      });
-    }
-    setError(message || "");
+    setError("");
     modal.showModal();
     const first = form.querySelector('input[name="firstName"]');
     if (first) first.focus();
   }
 
-  async function downloadForReturningVisitor(trigger, lead) {
-    const label = trigger.querySelector("span") || trigger;
-    const original = label.textContent;
-    trigger.disabled = true;
-    trigger.setAttribute("aria-busy", "true");
-    label.textContent = "Preparing…";
-
-    try {
-      startDownload(await fetchReport(lead, trigger, true));
-    } catch (error) {
-      openModal(trigger, lead, failureMessage());
-    } finally {
-      trigger.disabled = false;
-      trigger.removeAttribute("aria-busy");
-      label.textContent = original;
-    }
-  }
-
-  function handleTrigger(trigger) {
-    const lead = readLead();
-    if (lead && lead.email) {
-      downloadForReturningVisitor(trigger, lead);
-      return;
-    }
-    openModal(trigger);
-  }
-
   triggers.forEach(function (trigger) {
-    trigger.addEventListener("click", function () {
-      handleTrigger(trigger);
+    trigger.addEventListener("click", function (event) {
+      const lead = readLead();
+      if (lead && lead.email) {
+        if (submitEndpoint) postToSheet(buildPayload(lead, trigger, true)).catch(function () {});
+        return;
+      }
+      event.preventDefault();
+      openModal(trigger);
     });
   });
 
@@ -180,35 +155,30 @@
 
     submitting = true;
     submitBtn.disabled = true;
-    submitBtn.textContent = "Preparing your PDF…";
+    submitBtn.textContent = "Sending…";
 
-    let file;
     try {
-      file = await fetchReport(lead, activeTrigger, false);
+      const payload = buildPayload(lead, activeTrigger, false);
+      if (submitEndpoint) {
+        await postToSheet(payload);
+      } else {
+        await postToEmailFallback(payload);
+      }
     } catch (error) {
       submitting = false;
       submitBtn.disabled = false;
       submitBtn.textContent = submitLabel;
-      setError(failureMessage());
+      setError("Something went wrong. Please try again or email " + submitEmail + ".");
       return;
     }
 
     saveLead(lead);
-    againLink.setAttribute("href", file.url);
-    againLink.setAttribute("download", file.fileName);
+    const href = activeTrigger.getAttribute("href");
+    againLink.setAttribute("href", href);
     form.hidden = true;
     form.reset();
     success.hidden = false;
     successTitle.focus();
-    startDownload(file);
+    startDownload(href);
   });
-
-  const requested = new URLSearchParams(window.location.search).get("download");
-  if (requested) {
-    const trigger = document.querySelector('[data-report-download][data-report-key="' + CSS.escape(requested) + '"]');
-    if (trigger) {
-      trigger.scrollIntoView({ block: "center" });
-      handleTrigger(trigger);
-    }
-  }
 })();

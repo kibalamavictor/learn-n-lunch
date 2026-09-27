@@ -1,10 +1,7 @@
 /**
- * Impact page — report download leads + private PDF delivery
+ * Impact page — report download leads
  *
- * Records everyone who downloads the Strategic Framework or Impact Report, then
- * sends the PDF back from a private Google Drive folder. The PDFs are never
- * published on the website or in the GitHub repo.
- *
+ * Records everyone who downloads the Strategic Framework or Impact Report.
  * Creates two tabs:
  *   Downloads  one row per download (first-time form fills and returning visitors)
  *   Summary    live counts by report and organisation
@@ -13,34 +10,18 @@
  * 1. Create a new Google Sheet, e.g. "Report downloads"
  * 2. Extensions → Apps Script
  * 3. Delete any default code and paste this entire file
- * 4. Upload the PDFs to a Google Drive folder that is NOT shared with anyone.
- *    For each PDF: right-click → Share → Copy link. The file ID is the long
- *    code between /d/ and /view. Paste each ID into REPORT_FILES below
- *    (in the Apps Script editor only — keep the placeholders in the repo copy).
- * 5. Save, then Run → setupWorkbook (Authorize when Google asks; allow Drive access)
- * 6. First deployment: Deploy → New deployment → Type: Web app
+ * 4. Save, then Run → setupWorkbook (Authorize when Google asks)
+ * 5. Deploy → New deployment → Type: Web app
  *      Execute as: Me
  *      Who has access: Anyone
- *    Updating an existing deployment (keeps the same URL):
- *      Deploy → Manage deployments → pencil icon → Version: New version → Deploy
- * 7. Copy the web app URL into content/pages/impact.md as downloadForm.submitEndpoint
+ * 6. Copy the web app URL into content/pages/impact.md as downloadForm.submitEndpoint
  *    (or paste it in the CMS: Impact → Download Form → Google Sheet Web App URL)
- * 8. Rebuild the site
- *
- * Publishing a new edition later: in Drive, right-click the PDF → File information →
- * Manage versions → Upload new version. The file ID stays the same, so nothing
- * else needs to change.
+ * 7. Rebuild the site
  */
 
 var DOWNLOADS_TAB = "Downloads";
 var SUMMARY_TAB = "Summary";
 var TIMEZONE = "Africa/Nairobi";
-
-// Keys match the Impact page cards. Values are Google Drive file IDs.
-var REPORT_FILES = {
-  framework: "PASTE_STRATEGIC_FRAMEWORK_FILE_ID",
-  report: "PASTE_IMPACT_REPORT_FILE_ID"
-};
 
 var HEADERS = [
   "Submitted",
@@ -59,48 +40,25 @@ function doGet() {
 }
 
 function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(15000);
+
   try {
+    setupWorkbook();
+
     if (!e || !e.postData || !e.postData.contents) {
       return jsonOutput({ ok: false, error: "Empty body" });
     }
 
     var data = JSON.parse(e.postData.contents);
     if (data._gotcha) {
-      return jsonOutput({ ok: false, error: "Rejected" });
+      return jsonOutput({ ok: true, ignored: true });
     }
 
-    var fileId = REPORT_FILES[String(data.reportKey || "")];
-    if (!fileId || fileId.indexOf("PASTE_") === 0) {
-      return jsonOutput({ ok: false, error: "Unknown report" });
-    }
-
-    if (!String(data.firstName || "").trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.email || "").trim())) {
-      return jsonOutput({ ok: false, error: "First name and a valid email are required" });
-    }
-
-    recordDownload(data);
-
-    var file = DriveApp.getFileById(fileId);
-    var blob = file.getBlob();
-    return jsonOutput({
-      ok: true,
-      fileName: file.getName(),
-      mimeType: blob.getContentType() || "application/pdf",
-      data: Utilities.base64Encode(blob.getBytes())
-    });
-  } catch (error) {
-    return jsonOutput({ ok: false, error: String(error) });
-  }
-}
-
-function recordDownload(data) {
-  var lock = LockService.getScriptLock();
-  lock.waitLock(15000);
-
-  try {
-    setupWorkbook();
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(DOWNLOADS_TAB);
-    if (isRecentDuplicate(sheet, data)) return;
+    if (isRecentDuplicate(sheet, data)) {
+      return jsonOutput({ ok: true, duplicate: true });
+    }
 
     sheet.appendRow([
       Utilities.formatDate(new Date(), TIMEZONE, "yyyy-MM-dd HH:mm"),
@@ -112,6 +70,10 @@ function recordDownload(data) {
       String(data.returning || "No"),
       String(data.page || "")
     ]);
+
+    return jsonOutput({ ok: true });
+  } catch (error) {
+    return jsonOutput({ ok: false, error: String(error) });
   } finally {
     lock.releaseLock();
   }
