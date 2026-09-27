@@ -45,7 +45,7 @@ downloadForm:
   successBody: If the PDF doesn't open automatically, use the button below.
   againLabel: Download again
   submitEmail: info@learnandlunch.org
-  submitEndpoint: https://script.google.com/macros/s/AKfycbw9THs6ORTRphIPe3Fts4bZ_20EzGA6u0nEEhm2y2lJd0CLSk9vw61yK4yXbOGmJbYF/exec
+  submitEndpoint: https://script.google.com/macros/s/AKfycbw2gX7LQnBztXSgfu6q_5w0de-eNLDTxHCSBoErjvzfL0LNC_puW91dA50rVxI9Ps50/exec
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now
