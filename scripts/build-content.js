@@ -11,6 +11,7 @@ const { renderStories } = require("./lib/pages/stories");
 const { renderDonate } = require("./lib/pages/donate");
 const { renderContact, renderGetInvolved } = require("./lib/pages/contact");
 const { renderSummitPoster } = require("./lib/pages/summit-poster");
+const { renderBirthdayCard } = require("./lib/pages/birthday-card");
 const { renderNotFound } = require("./lib/pages/not-found");
 const { renderBlogPost } = require("./lib/pages/blog-post");
 
@@ -99,6 +100,14 @@ function build() {
   );
 
   writePage(
+    "birthday-card/index.html",
+    renderBirthdayCard({
+      site,
+      page: pages.birthdayCard
+    })
+  );
+
+  writePage(
     "summit-poster/index.html",
     renderSummitPoster({
       site,
@@ -127,13 +136,13 @@ function build() {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=../stories/how-one-meal-changed-my-exam-week/" />
+    <meta http-equiv="refresh" content="0; url=../stories/" />
     <meta name="robots" content="noindex, follow" />
-    <link rel="canonical" href="${getSiteUrl(site)}/stories/how-one-meal-changed-my-exam-week/" />
+    <link rel="canonical" href="${getSiteUrl(site)}/stories/" />
     <title>Redirecting…</title>
   </head>
   <body>
-    <p>This story has moved. <a href="../stories/how-one-meal-changed-my-exam-week/">Continue to the story</a>.</p>
+    <p>This page has moved. <a href="../stories/">Continue to our stories</a>.</p>
   </body>
 </html>`
   );

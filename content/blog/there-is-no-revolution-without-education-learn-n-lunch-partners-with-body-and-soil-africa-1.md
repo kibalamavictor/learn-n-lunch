@@ -1,13 +1,13 @@
 ---
-title: "There Is No Revolution Without Education: Learn N' Lunch Partners with
+title: "There Is No Revolution Without Education: Learn And Lunch Partners with
   Body and Soil"
 slug: no-revolution-without-education-body-and-soil-partnership
-excerpt: On March 28, 2026, Learn N' Lunch visited Body and Soil Africa in
+excerpt: On March 28, 2026, Learn And Lunch visited Body and Soil Africa in
   Mityana to explore a partnership tackling campus hunger — not through
   temporary food relief, but by empowering students with the knowledge and
   skills to become active participants in sustainable food systems
 coverImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-04.webp
-coverImageAlt: Learn N' Lunch team members meeting with Body and Soil Africa
+coverImageAlt: Learn And Lunch team members meeting with Body and Soil Africa
   staff during a partnership visit in Mityana, Uganda
 coverImageCredit: "Photo: Semaganda Joshua Victor"
 author: Mercy Lawino
@@ -16,7 +16,7 @@ tags:
   - Donor Highlights
 status: published
 publishedAt: 2026-04-06T12:00:00.000+03:00
-seoDescription: Learn N' Lunch and Body and Soil Africa explore a partnership to
+seoDescription: Learn And Lunch and Body and Soil Africa explore a partnership to
   move beyond food relief — empowering university students through nutrition
   education, sustainable agriculture, and hands-on food systems learning.
 ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-11.webp
@@ -27,7 +27,7 @@ On 28th March 2026, Learn And Lunch visited [BODY & SOIL](https://www.bodyandsoi
 
 Campus hunger remains a challenge affecting many university students, influencing their health, concentration, and academic performance. *The discussion highlighted that hunger should not only be viewed as an individual struggle but as a reflection of gaps in food accessibility, nutrition knowledge, and sustainable support systems.*
 
-Learn and Lunch shared its vision of changing the narrative around campus hunger by moving beyond temporary relief approaches. The goal is to empower students with knowledge, skills, and opportunities that allow them to become active contributors to sustainable food solutions.
+Learn And Lunch shared its vision of changing the narrative around campus hunger by moving beyond temporary relief approaches. The goal is to empower students with knowledge, skills, and opportunities that allow them to become active contributors to sustainable food solutions.
 
 **A key lesson** from the engagement was *that lasting solutions require empowerment through food systems*. Students should not only receive food support but should understand how to maximize available resources, make affordable nutritious choices, engage in food production, and develop skills that improve their livelihoods.
 

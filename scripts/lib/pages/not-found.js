@@ -3,7 +3,7 @@ const { renderPage } = require("../partials");
 const { buildOrganizationJsonLd } = require("../seo");
 
 const MARQUEE_TEXT =
-  "OFF THE MENU • PAGE NOT FOUND • LEARN N' LUNCH • NO STUDENT SHOULD STUDY HUNGRY • ";
+  "OFF THE MENU • PAGE NOT FOUND • LEARN AND LUNCH • NO STUDENT SHOULD STUDY HUNGRY • ";
 
 function renderNotFound({ site }) {
   // GitHub Pages serves 404.html for missing URLs while keeping the broken path
@@ -68,7 +68,7 @@ function renderNotFound({ site }) {
       "This page is off the menu. Head home or get involved with the campus hunger movement in Uganda.",
     canonicalPath: "/",
     ogImage: "/assets/uploads/learn_and_lunch_08.webp",
-    ogImageAlt: "Students gathered outdoors with Learn N' Lunch",
+    ogImageAlt: "Students gathered outdoors with Learn And Lunch",
     robots: "noindex, follow",
     bodyClass: "page-not-found",
     navbarStyle: "background-color: #D3EEFF;",

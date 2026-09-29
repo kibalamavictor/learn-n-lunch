@@ -1,37 +1,37 @@
 ---
 title: "Campus Welfare Dialogue: Outcomes & Next Steps"
 slug: campus-welfare-dialogue-outcomes
-excerpt: Student leaders, faculty, and Learn N' Lunch agreed on concrete actions
+excerpt: Student leaders, faculty, and Learn And Lunch agreed on concrete actions
   to improve meal access and welfare communication across partner campuses.
 coverImage: /new/board-room.jpg
 coverImageAlt: Campus welfare dialogue session with student and faculty representatives
 coverImageCredit: ""
-author: Learn N' Lunch Editorial Team
+author: Learn And Lunch Editorial Team
 tags:
   - Impact Reports
-status: published
+status: draft
 publishedAt: 2025-08-15T14:00:00.000Z
-seoTitle: Campus Welfare Dialogue Outcomes | Learn N' Lunch
-seoDescription: Outcomes from the Learn N' Lunch campus welfare dialogue —
+seoTitle: Campus Welfare Dialogue Outcomes | Learn And Lunch
+seoDescription: Outcomes from the Learn And Lunch campus welfare dialogue —
   agreed actions, student priorities, and implementation timeline.
 ogImage: /new/board-room.jpg
 ---
 ## Why we convened
 
-In August 2025, Learn N' Lunch hosted a **Campus Welfare Dialogue** bringing together student guild representatives, faculty welfare contacts, and program volunteers from four universities. The goal was not another abstract discussion about "student challenges" — it was a working session to agree on **specific, testable improvements** to meal access and welfare communication.
+In August 2025, Learn And Lunch hosted a **Campus Welfare Dialogue** bringing together student guild representatives, faculty welfare contacts, and program volunteers from four universities. The goal was not another abstract discussion about "student challenges" — it was a working session to agree on **specific, testable improvements** to meal access and welfare communication.
 
 ## Participants
 
 * 22 student leaders (guild, faculty reps, ambassadors)
 * 8 faculty / welfare office contacts
-* 11 Learn N' Lunch staff and volunteers
+* 11 Learn And Lunch staff and volunteers
 * 2 community nutrition advisors
 
 ## Agreed outcomes
 
 ### 1. Publish a shared "where/when" schedule
 
-Students repeatedly said confusion about distribution timing was the biggest barrier — not lack of interest. Campuses will pilot a standardized weekly schedule posted in three places: guild notice boards, a pinned WhatsApp message, and the Learn N' Lunch Stories page.
+Students repeatedly said confusion about distribution timing was the biggest barrier — not lack of interest. Campuses will pilot a standardized weekly schedule posted in three places: guild notice boards, a pinned WhatsApp message, and the Learn And Lunch Stories page.
 
 ### 2. Create a student feedback channel
 
@@ -61,7 +61,7 @@ From a live polling exercise at the dialogue:
 | ------------------------------------ | ------------------ | -------------- |
 | Publish pilot schedules (2 campuses) | Ambassadors        | September 2025 |
 | Launch feedback forms                | Campus leads       | September 2025 |
-| Volunteer playbook v1                | Learn N' Lunch ops | October 2025   |
+| Volunteer playbook v1                | Learn And Lunch ops | October 2025   |
 | Public monthly summary post          | Editorial team     | November 2025  |
 
 ## Stay involved

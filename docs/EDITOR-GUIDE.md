@@ -1,6 +1,6 @@
 # Editor Guide (Decap CMS)
 
-This guide is for **non-technical editors** who want to update the Learn N’ Lunch website without using Git directly.
+This guide is for **non-technical editors** who want to update the Learn And Lunch website without using Git directly.
 
 ## Where you edit
 
@@ -61,6 +61,33 @@ Only **Published** stories appear on the public Stories page.
 3. **Save**, then **Publish**
 
 For images inside the story body, open the image insert dialog and fill **Title** with the photo credit (e.g. `Photo: Mercy Lawino`). That credit appears under the image on the live page.
+
+### Quotes
+
+Use the **quote** button in the body toolbar. There are two styles, and the site picks one automatically:
+
+**1. Quote from a person** — a blue box with the speaker underneath. Put the quote first, then the speaker on its **own last line starting with a hyphen (`-`)**:
+
+```markdown
+> We do not need perfection. We need consistency students can plan around.
+>
+> - Student guild representative, Makerere
+```
+
+**2. Pull quote** — a large headline-style line between two rules, used to highlight a key sentence from the story itself. Just leave out the `-` line:
+
+```markdown
+> Ending campus hunger is not about charity. It is about equal opportunity.
+```
+
+Tips:
+
+- No need to type quotation marks — the design adds a large opening quote mark. If you paste a quote that already has them, they're removed automatically.
+- Quotes can be as long as you need, and can span several paragraphs (leave a blank `>` line between them).
+- Always credit people you quote. If a student prefers not to be named, use their role and campus (e.g. `— Second-year student, Kyambogo`).
+- If the editor turns your `- Name` line into a bullet point, that's fine — a single bullet at the end of a quote is still shown as the speaker.
+- `--`, `–` and `—` also work in place of `-`.
+- Only use pull quotes for sentences from your own story, never for words someone else said.
 
 ### Category tags (use exactly)
 

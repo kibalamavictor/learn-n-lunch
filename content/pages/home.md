@@ -82,7 +82,7 @@ moments:
   heading: MOMENTS THAT MATTER
   photos:
     - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-05.webp
-      alt: learn and lunch team serving themselves a food at body & soil
+      alt: Learn And Lunch team serving themselves a food at body & soil
     - image: /img2.png
       alt: Packing fresh produce
     - image: /img3.png

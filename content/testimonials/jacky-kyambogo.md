@@ -1,5 +1,5 @@
 ---
-quote: Before Learn N' Lunch, I used to skip meals during exam week. Now I have
+quote: Before Learn And Lunch, I used to skip meals during exam week. Now I have
   the energy to focus and perform better.
 authorName: Jacky
 affiliation: Kyambogo University

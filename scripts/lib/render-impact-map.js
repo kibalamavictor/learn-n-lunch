@@ -10,7 +10,7 @@ function renderImpactMap(depth, mapData) {
   }).replace(/</g, "\\u003c");
 
   return `
-  <section id="lnl-impact-map" class="lnl-impact-map" aria-label="Where Learn N' Lunch works across Uganda">
+  <section id="lnl-impact-map" class="lnl-impact-map" aria-label="Where Learn And Lunch works across Uganda">
     <div class="lnl-map-head">
       <h2 class="lnl-map-title">${escapeHtml(header.title || `${header.titleBefore || "Where We're"} ${header.titleAccent || "Making Impact"}`.trim())}</h2>
       <p class="lnl-map-desc">${escapeHtml(header.description || "")}</p>
@@ -24,7 +24,7 @@ function renderImpactMap(depth, mapData) {
               class="lnl-map__img"
               id="lnlMapImg"
               src="${resolveAsset(depth, mapData.mapImage)}"
-              alt="${escapeHtml(mapData.mapAlt || "Learn N' Lunch campus map")}"
+              alt="${escapeHtml(mapData.mapAlt || "Learn And Lunch campus map")}"
             />
             <div class="lnl-map-marker-block">
               <p class="lnl-map-tagline">AND WE'RE JUST<br>GETTING STARTED</p>

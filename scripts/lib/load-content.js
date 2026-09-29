@@ -68,7 +68,8 @@ function loadAllContent() {
       contact: loadPage("contact-us"),
       getInvolved: loadPage("get-involved"),
       summit: loadPage("summit"),
-      summitPoster: loadPage("summit-poster")
+      summitPoster: loadPage("summit-poster"),
+      birthdayCard: loadPage("birthday-card")
     },
     stats: {
       home: loadStats("home"),

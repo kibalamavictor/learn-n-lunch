@@ -43,6 +43,128 @@ md.renderer.rules.image = function (tokens, idx, options, env, self) {
   )}</figcaption></figure>`;
 };
 
+const QUOTE_ATTRIBUTION = /^\s*\\?(?:—|–|-{1,2})\s*(\S[\s\S]*)$/;
+const OPENING_QUOTE = /^["“„«']/;
+const CLOSING_QUOTE = /["”»']$/;
+
+function findBlockquoteClose(tokens, openIdx) {
+  const level = tokens[openIdx].level;
+  for (let i = openIdx + 1; i < tokens.length; i++) {
+    if (tokens[i].type === "blockquote_close" && tokens[i].level === level) return i;
+  }
+  return -1;
+}
+
+// "- Name" on the last line parses as a one-item bullet list, not a paragraph.
+function extractListAttribution(tokens, openIdx, closeIdx) {
+  const listClose = tokens[closeIdx - 1];
+  if (listClose?.type !== "bullet_list_close" || listClose.markup !== "-") return null;
+  const listOpenIdx = closeIdx - 7;
+  const item = tokens.slice(listOpenIdx, closeIdx);
+  const expected = [
+    "bullet_list_open",
+    "list_item_open",
+    "paragraph_open",
+    "inline",
+    "paragraph_close",
+    "list_item_close",
+    "bullet_list_close"
+  ];
+  if (listOpenIdx <= openIdx + 1 || item.some((token, i) => token.type !== expected[i])) return null;
+
+  const attribution = item[3].content.trim();
+  if (!attribution) return null;
+  tokens.splice(listOpenIdx, 7);
+  return attribution;
+}
+
+function extractQuoteAttribution(tokens, openIdx, closeIdx) {
+  const fromList = extractListAttribution(tokens, openIdx, closeIdx);
+  if (fromList) return fromList;
+
+  const pClose = tokens[closeIdx - 1];
+  const inline = tokens[closeIdx - 2];
+  const pOpen = tokens[closeIdx - 3];
+  if (pClose?.type !== "paragraph_close" || inline?.type !== "inline" || pOpen?.type !== "paragraph_open") {
+    return "";
+  }
+
+  const ownParagraph = inline.content.match(QUOTE_ATTRIBUTION);
+  if (ownParagraph) {
+    if (closeIdx - 3 === openIdx + 1) return "";
+    tokens.splice(closeIdx - 3, 3);
+    return ownParagraph[1].trim();
+  }
+
+  const lastBreak = inline.content.lastIndexOf("\n");
+  if (lastBreak === -1) return "";
+  const trailingLine = inline.content.slice(lastBreak + 1).match(QUOTE_ATTRIBUTION);
+  if (!trailingLine) return "";
+
+  const children = inline.children || [];
+  let breakIdx = children.length - 1;
+  while (breakIdx >= 0 && children[breakIdx].type !== "softbreak" && children[breakIdx].type !== "hardbreak") {
+    breakIdx--;
+  }
+  if (breakIdx < 0) return "";
+  inline.children = children.slice(0, breakIdx);
+  inline.content = inline.content.slice(0, lastBreak);
+  return trailingLine[1].trim();
+}
+
+function stripWrappingQuoteMarks(tokens, openIdx, closeIdx) {
+  const inlines = tokens.slice(openIdx + 1, closeIdx).filter((token) => token.type === "inline");
+  if (!inlines.length) return;
+  const firstText = (inlines[0].children || []).find((child) => child.type === "text");
+  const lastChildren = inlines[inlines.length - 1].children || [];
+  const lastText = [...lastChildren].reverse().find((child) => child.type === "text");
+  if (!firstText || !lastText) return;
+  if (!OPENING_QUOTE.test(firstText.content) || !CLOSING_QUOTE.test(lastText.content)) return;
+  if (firstText === lastText && firstText.content.length < 2) return;
+
+  firstText.content = firstText.content.replace(OPENING_QUOTE, "");
+  lastText.content = lastText.content.replace(CLOSING_QUOTE, "");
+}
+
+md.core.ruler.push("story_quotes", (state) => {
+  const tokens = state.tokens;
+  for (let i = 0; i < tokens.length; i++) {
+    if (tokens[i].type !== "blockquote_open") continue;
+    let closeIdx = findBlockquoteClose(tokens, i);
+    if (closeIdx === -1) continue;
+
+    const before = tokens.length;
+    const attribution = extractQuoteAttribution(tokens, i, closeIdx);
+    closeIdx -= before - tokens.length;
+    stripWrappingQuoteMarks(tokens, i, closeIdx);
+    tokens[i].meta = { ...(tokens[i].meta || {}), attribution };
+  }
+});
+
+md.renderer.rules.blockquote_open = function (tokens, idx) {
+  const attribution = tokens[idx].meta?.attribution;
+  const variant = attribution ? "story-quote" : "story-quote story-quote--pull";
+  return `<figure class="${variant}">\n<blockquote>\n`;
+};
+
+md.renderer.rules.blockquote_close = function (tokens, idx) {
+  let depth = 0;
+  for (let i = idx - 1; i >= 0; i--) {
+    if (tokens[i].type === "blockquote_close") depth++;
+    if (tokens[i].type === "blockquote_open") {
+      if (depth === 0) {
+        const attribution = tokens[i].meta?.attribution;
+        const caption = attribution
+          ? `<figcaption class="story-quote__source">${md.renderInline(attribution)}</figcaption>\n`
+          : "";
+        return `</blockquote>\n${caption}</figure>\n`;
+      }
+      depth--;
+    }
+  }
+  return "</blockquote>\n";
+};
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")

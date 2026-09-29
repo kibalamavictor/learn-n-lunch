@@ -1,4 +1,4 @@
-# Learn N' Lunch — Design System
+# Learn And Lunch — Design System
 
 > **Binding reference** for all current and future work on this project, including the CMS admin panel.  
 > Extracted from `SCSS/` and `dist/style.css` — do not invent tokens outside this document without approval.
@@ -7,7 +7,7 @@
 
 ## 1. Brand & Visual Identity
 
-Learn N' Lunch uses a **bold, editorial, student-movement aesthetic**: heavy black borders, offset box-shadows (neo-brutalist), uppercase Anton headlines, rotated photo collages, and scrolling marquee banners. Color is used in large accent blocks (yellow, cyan, light blue) rather than subtle UI chrome.
+Learn And Lunch uses a **bold, editorial, student-movement aesthetic**: heavy black borders, offset box-shadows (neo-brutalist), uppercase Anton headlines, rotated photo collages, and scrolling marquee banners. Color is used in large accent blocks (yellow, cyan, light blue) rather than subtle UI chrome.
 
 ---
 
@@ -352,7 +352,7 @@ Inline SVG in footer (TikTok, Instagram, X, LinkedIn). `width="32" height="32"`,
 
 | Prefix | Domain |
 |--------|--------|
-| `lnl-` | Learn N' Lunch about page (hero, community, challenge) |
+| `lnl-` | Learn And Lunch about page (hero, community, challenge) |
 | `mm-` | "Moments/media" story carousel components |
 | `mtm-` | "Moments that matter" testimonials |
 | `st-` / `stories-` | Stories listing page |

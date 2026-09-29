@@ -1,4 +1,4 @@
-/* Learn N' Lunch — Decap CMS admin chrome
+/* Learn And Lunch — Decap CMS admin chrome
    Flat single-color UI: hard 2px borders, no shadows, no gradients. */
 
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap");
@@ -359,7 +359,7 @@ button[class*="primary"]:hover {
 
 /* Brand strip */
 body::before {
-  content: "LEARN N' LUNCH · CMS";
+  content: "LEARN AND LUNCH · CMS";
   display: flex;
   align-items: center;
   position: relative;
@@ -897,7 +897,7 @@ body:has([class*="EntryEditor"]) #nc-root,
 
 @media (max-width: 480px) {
   body::before {
-    content: "LEARN N' LUNCH · CMS";
+    content: "LEARN AND LUNCH · CMS";
     font-size: 0.72rem;
   }
 

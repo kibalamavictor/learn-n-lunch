@@ -129,7 +129,10 @@
         }
 
         .learn-lunch-stats {
-            gap: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: center;
+            gap: 32px 56px;
         }
 
         .learn-lunch-stat-number {

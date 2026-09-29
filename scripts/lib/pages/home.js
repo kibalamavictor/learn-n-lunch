@@ -26,7 +26,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     .join("\n                    ");
 
   const missionChunks = normalizeListStrings(page.missionBanner, ["chunk"]);
-  const missionBannerText = `${missionChunks[0] || "NO STUDENT SHOULD STUDY HUNGRY"} • LEARN N' LUNCH •  • `;
+  const missionBannerText = `${missionChunks[0] || "NO STUDENT SHOULD STUDY HUNGRY"} • LEARN AND LUNCH •  • `;
   const bannerRepeats = Array.from({ length: 8 })
     .map(() => `<span class="banner-text-2">${escapeHtml(missionBannerText)}</span>`)
     .join("\n            ");
@@ -284,7 +284,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
                   <p>${escapeHtml(page.impactIntro.body)}</p>
                   <a href="${resolveAsset(depth, page.impactIntro.ctaUrl.replace(/^\//, ""))}" class="learn-lunch-cta">
                       <span aria-hidden="true"><img src="${resolveAsset(depth, "heart-black.svg")}" alt="" style="width: 14px;"></span>
-                      <span>Learn More<span class="visually-hidden"> about Learn N' Lunch</span></span>
+                      <span>Learn More<span class="visually-hidden"> about Learn And Lunch</span></span>
                   </a>
               </div>
 

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     shareButtons.forEach((btn) => {
       btn.addEventListener("click", async () => {
         const url = window.location.href;
-        const title = document.title || "Learn N' Lunch";
+        const title = document.title || "Learn And Lunch";
 
         try {
           if (navigator.share) {
@@ -892,6 +892,7 @@ freqButtons.forEach((btn) => {
 function animateCounter(element, target, duration = 2000, isMoney = false) {
   const start = 0;
   const increment = target / (duration / 16);
+  const suffix = element.dataset.suffix ?? '+';
   let current = start;
 
   const timer = setInterval(() => {
@@ -900,11 +901,11 @@ function animateCounter(element, target, duration = 2000, isMoney = false) {
       clearInterval(timer);
       element.textContent = isMoney
         ? '$' + target.toLocaleString()
-        : target.toLocaleString() + '+';
+        : target.toLocaleString() + suffix;
     } else {
       element.textContent = isMoney
         ? '$' + Math.floor(current).toLocaleString()
-        : Math.floor(current).toLocaleString() + '+';
+        : Math.floor(current).toLocaleString() + suffix;
     }
   }, 16);
 }

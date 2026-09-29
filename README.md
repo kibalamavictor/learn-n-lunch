@@ -1,6 +1,6 @@
-# Learn N' Lunch Website
+# Learn And Lunch Website
 
-This repository contains the Learn N' Lunch static website and its Decap CMS configuration.
+This repository contains the Learn And Lunch static website and its Decap CMS configuration.
 
 ## Editing content (non-technical editors)
 

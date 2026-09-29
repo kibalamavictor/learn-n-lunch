@@ -23,11 +23,11 @@ faces:
   heading: Faces Behind the Numbers
   ctaLabel: See More Student Stories
   ctaUrl: /stories/
-scrollBanner: DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·
+scrollBanner: DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN AND LUNCH ·
 strategicFramework:
   heading: Strategic Framework 2025
   description: Our roadmap for ending campus hunger — research, student networks,
-    and practical solutions that guide Learn N' Lunch across universities.
+    and practical solutions that guide Learn And Lunch across universities.
   buttonLabel: Download Framework
   file: /assets/uploads/strategic-framework.pdf
 impactReport:

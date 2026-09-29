@@ -1,5 +1,5 @@
 /**
- * Learn N' Lunch — Decap CMS live previews
+ * Learn And Lunch — Decap CMS live previews
  * File collections register by FILE name (home, impact, …), not collection name.
  */
 (function () {

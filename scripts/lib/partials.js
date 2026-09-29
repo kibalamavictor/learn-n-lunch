@@ -85,7 +85,7 @@ function renderNav({ depth, site, activePath, navbarStyle = "" }) {
     <nav class="navbar"${navbarStyle ? ` style="${navbarStyle}"` : ""}>
       <div class="nav-container">
         <a href="${logoHref}" class="logo">
-           <img src="${logoSrc}" alt="Learn N' Lunch Logo" class="logo">
+           <img src="${logoSrc}" alt="Learn And Lunch Logo" class="logo">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -166,7 +166,7 @@ function renderFooter({ depth, site }) {
 
         <div class="footer-logo">
             <a href="${logoHref}" >
-              <img src="${logoSrc}" alt="Learn n' Lunch Logo">
+              <img src="${logoSrc}" alt="Learn And Lunch Logo">
             </a>
         </div>
 

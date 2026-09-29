@@ -20,27 +20,9 @@ filters:
 featuredSections:
   - sectionLabel: RECENTS
     categorySlug: all
-    leadPostSlug: how-one-meal-changed-my-exam-week
+    leadPostSlug: hidden-costs-university-life-uganda
     postSlugs:
-      - campus-lunch-day-makerere-university-recap
-      - why-donors-believe-in-learn-n-lunch
-      - student-success-stories-from-our-program
-  - sectionLabel: EVENTS & CAMPUS LIFE
-    categorySlug: events
-    leadPostSlug: campus-lunch-day-makerere-university-recap
-    postSlugs:
-      - campus-lunch-day-at-makerere-university
-      - campus-lunch-day-at-kyambogo-university
-  - sectionLabel: IMPACT REPORT
-    categorySlug: reports
-    leadPostSlug: impact-report-2025
-    postSlugs:
-      - student-ambassadors-update
-      - campus-welfare-dialogue-outcomes
-  - sectionLabel: DONOR HIGHLIGHTS
-    categorySlug: donors
-    leadPostSlug: why-donors-believe-in-learn-n-lunch
-    postSlugs:
-      - donor-spotlight-community-partners
-      - sustainable-campus-support
+      - food-security-gender-equality-universities-uganda
+      - food-security-universities-uganda
+      - no-revolution-without-education-body-and-soil-partnership
 ---

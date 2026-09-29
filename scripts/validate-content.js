@@ -134,6 +134,15 @@ function validate() {
     { key: "shareCaption", label: "shareCaption" }
   ]);
 
+  validatePage("birthday-card.md", [
+    { key: "heading", label: "heading" },
+    { key: "intro", label: "intro" },
+    { key: "uploadLabel", label: "uploadLabel" },
+    { key: "shareLabel", label: "shareLabel" },
+    { key: "defaultTitle", label: "defaultTitle" },
+    { key: "defaultMessage", label: "defaultMessage" }
+  ]);
+
   const homeStatsPath = path.join(ROOT, "content/stats/home.json");
   const impactStatsPath = path.join(ROOT, "content/stats/impact.json");
   const homeStats = readJson(homeStatsPath);

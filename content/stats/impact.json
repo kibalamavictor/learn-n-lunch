@@ -2,7 +2,7 @@
   "items": [
     {
       "prefix": "",
-      "target": 266,
+      "target": 20,
       "primaryLabel": "STUDENT",
       "secondaryLabel": "AMBASSADORS",
       "description": "Students actively leading research, peer engagement, mobilisation, and advocacy across campuses.",
@@ -10,18 +10,20 @@
     },
     {
       "prefix": "",
-      "target": 4,
+      "target": 6,
+      "exact": true,
       "primaryLabel": "ACTIVE",
-      "secondaryLabel": "PROJECTS",
-      "description": "Ongoing initiatives across research, education, advocacy, and student led food security solutions.",
+      "secondaryLabel": "PROGRAMMES",
+      "description": "Ongoing work across research, nutrition, student leadership, meal access, campus gardens, and advocacy.",
       "order": 2
     },
     {
       "prefix": "",
-      "target": 19,
-      "primaryLabel": "TRAINED TEAM",
-      "secondaryLabel": "MENTORS",
-      "description": "Team members guiding student leaders and ensuring ethical consistent programme delivery.",
+      "target": 33,
+      "exact": true,
+      "primaryLabel": "ACTIVE",
+      "secondaryLabel": "VOLUNTEERS",
+      "description": "Volunteers supporting events, sessions, and programme delivery across our partner campuses.",
       "order": 3
     },
     {

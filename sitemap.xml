@@ -46,6 +46,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.learnandlunch.org/birthday-card/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.learnandlunch.org/stories/hidden-costs-university-life-uganda/</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -66,12 +71,6 @@
   <url>
     <loc>https://www.learnandlunch.org/stories/no-revolution-without-education-body-and-soil-partnership/</loc>
     <lastmod>2026-04-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.learnandlunch.org/stories/campus-welfare-dialogue-outcomes/</loc>
-    <lastmod>2025-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

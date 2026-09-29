@@ -538,7 +538,7 @@ collections:
       - label: "5 · Story Body"
         name: body
         widget: richtext
-        hint: "Use the toolbar for headings, bold, italic, links, lists, quotes, and images. For body images, fill the Title field with the photo credit."
+        hint: "Use the toolbar for headings, bold, italic, links, lists, quotes, and images. For body images, fill the Title field with the photo credit. For quotes, end with a line starting with - and the speaker's name; leave it out for a pull quote."
         buttons:
           - bold
           - italic
@@ -581,7 +581,7 @@ collections:
       - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards and above the PDF viewer." }
       - { label: Cover Image, name: coverImage, widget: image, hint: "Thumbnail for Stories listings." }
       - { label: Cover Image Alt, name: coverImageAlt, widget: string }
-      - { label: "Writer / Author", name: author, widget: string, default: "Learn N' Lunch Editorial Team", hint: "Shown on the report page under the date." }
+      - { label: "Writer / Author", name: author, widget: string, default: "Learn And Lunch Editorial Team", hint: "Shown on the report page under the date." }
       - label: "2 · Report PDF"
         name: reportPdf
         widget: file
@@ -703,6 +703,7 @@ collections:
             fields:
               - { label: Prefix, name: prefix, widget: string, required: false, hint: "Optional text before the number, e.g. +" }
               - { label: Numeric Target, name: target, widget: number, value_type: int, min: 0 }
+              - { label: Exact Figure, name: exact, widget: boolean, required: false, default: false, hint: "Turn on to show the number as-is (e.g. 33). Off shows a + after it (e.g. 2,300+)." }
               - { label: Primary Label, name: primaryLabel, widget: string }
               - { label: Secondary Label, name: secondaryLabel, widget: string }
               - { label: Description, name: description, widget: text }

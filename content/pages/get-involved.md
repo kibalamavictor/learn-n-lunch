@@ -10,7 +10,7 @@ opportunities:
     description: Become part of a campus-based network that mobilizes peers, shares evidence, and strengthens welfare advocacy.
     ctaLabel: Join Coalition
     ctaUrl: https://forms.gle/NyLAiZgKy5mq6qLh8
-  - title: Partner with Learn N' Lunch
+  - title: Partner with Learn And Lunch
     description: Collaborate with us on research, nutrition programming, or institutional dialogue to improve student welfare systems.
     ctaLabel: Partner With Us
     ctaUrl: mailto:info@learnandlunch.org

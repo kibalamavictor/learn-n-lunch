@@ -4,7 +4,7 @@ const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = requi
 
 const TEAM_SECTION = {
   title: "THE PEOPLE BEHIND LEARN <br> N' LUNCH",
-  bannerText: "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·  ",
+  bannerText: "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN AND LUNCH ·  ",
   description:
     "Learn And Lunch is powered by students and young leaders building ethical, evidence based systems to ensure hunger never limits learning. Through research, student leadership, advocacy, and practical solutions, we work to make campus hunger visible, understood, and addressed with dignity across Ugandan universities."
 };

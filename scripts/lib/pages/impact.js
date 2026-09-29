@@ -65,7 +65,7 @@ function renderImpactFacesCarousel(depth, posts, faces = {}) {
 }
 
 function renderScrollingBanner(bannerText) {
-  const text = `${bannerText || "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN N' LUNCH ·"}  `;
+  const text = `${bannerText || "DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN AND LUNCH ·"}  `;
   const bannerRepeats = Array.from({ length: 8 })
     .map(() => `<span class="banner-text-2">${escapeHtml(text)}</span>`)
     .join("\n      ");
@@ -201,7 +201,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
     <div class="stats-showcase-section">
     <div class="stats-showcase-container">
       <div class="stats-main-headline">
-        <span class="stats-number-box" data-target="${stat.target}">0</span>
+        <span class="stats-number-box" data-target="${stat.target}" data-suffix="${stat.exact ? "" : "+"}">0</span>
         <span class="stats-text-primary">${escapeHtml(stat.primaryLabel)}</span>
       </div>
       
