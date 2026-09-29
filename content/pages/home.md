@@ -121,7 +121,7 @@ partners:
       url: https://kyu.ac.ug/
       logo: /assets/partners/kyambogo.png
       logoAlt: Kyambogo University logo
-    - name: Uganda Christian University
+    - name: Kyambogo University Nutrition & Dietetics Students Association
       url: https://www.linkedin.com/in/kyundsa-kyambogo-ba8743230/
       logo: /assets/uploads/kyundsa-logo.webp
       logoAlt: KYUNDSA logo
