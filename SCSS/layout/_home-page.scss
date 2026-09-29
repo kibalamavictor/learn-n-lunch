@@ -12,6 +12,42 @@
     .mission-vision-section .card h3 {
         font-size: 2rem;
     }
+
+    .home-focus-areas {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 48px;
+
+        .card {
+            grid-column: span 2;
+        }
+
+        .card:nth-child(n + 4) {
+            grid-column: span 3;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .page-home .home-focus-areas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+
+        .card,
+        .card:nth-child(n + 4) {
+            grid-column: auto;
+        }
+
+        .card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .page-home .home-focus-areas {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -42,10 +78,6 @@
 
         .mission-vision-section {
             padding-top: 0.75rem;
-
-            .model-work {
-                display: none;
-            }
         }
     }
 }

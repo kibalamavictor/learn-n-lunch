@@ -67,6 +67,7 @@ function loadAllContent() {
       donate: loadPage("donate"),
       contact: loadPage("contact-us"),
       getInvolved: loadPage("get-involved"),
+      programmes: loadPage("programmes"),
       summit: loadPage("summit"),
       summitPoster: loadPage("summit-poster"),
       birthdayCard: loadPage("birthday-card")
@@ -76,6 +77,10 @@ function loadAllContent() {
       impact: loadStats("impact"),
       impactMap: loadStats("impact-map")
     },
+    programmes: loadCollection("programmes").map((programme) => ({
+      ...programme,
+      slug: normalizePostSlug(programme.slug)
+    })),
     team: loadCollection("team").filter((member) => member.isActive !== false),
     testimonials: loadCollection("testimonials").filter((item) => item.isActive !== false),
     blogPosts: loadBlogPosts(),

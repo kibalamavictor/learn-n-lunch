@@ -36,21 +36,27 @@ impactIntro:
   rightImage: /assets/uploads/learn_and_lunch_08.webp
   rightImageAlt: Happy students outdoors
 modelWorkCards:
-  - heading: Research and Evidence
-    body: We generate evidence on student food insecurity across universities to
-      understand the realities students face, identify systemic gaps, and guide
-      effective solutions, policies, and institutional action
+  - heading: Evidence & Understanding
+    body: We research student food insecurity and document lived experiences,
+      building the evidence needed to understand campus hunger.
     accentColor: "#d3eeff"
-  - heading: Student Networks & Collective Action
-    body: We connect students, associations, and campus leaders to build a national
-      movement that amplifies student voices, strengthens advocacy, and advances
-      food security as a priority within higher education.
+  - heading: Student Leadership
+    body: We equip students to learn, organise and lead, positioning them as
+      participants and leaders in solving the problem.
     accentColor: "#fdc039"
-  - heading: Innovation & Practical Solutions
-    body: We design, test, and improve practical interventions that address campus
-      hunger, from food access models and nutrition initiatives to student-led
-      solutions that can be adapted and scaled.
+  - heading: Food Access & Innovation
+    body: We develop and test practical, dignified and scalable approaches to
+      student food security, from meal access and campus gardens to hands-on
+      nutrition sessions.
     accentColor: "#7be4d3"
+  - heading: Institutional Change
+    body: We work with universities, researchers and partners to integrate food
+      security into the wider student success agenda.
+    accentColor: "#d3eeff"
+  - heading: Collective Action
+    body: We bring students, universities and stakeholders together to build a
+      national movement for food-secure higher education.
+    accentColor: "#fdc039"
 howItWorks:
   titleLine1: NO STUDENT SHOULD
   titleLine2: STUDY HUNGRY.

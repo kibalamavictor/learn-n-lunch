@@ -410,11 +410,12 @@ function renderSeoHead({
 ${renderJsonLd(structuredData)}`;
 }
 
-function buildSitemapEntries({ site, publishedBlogPosts }) {
+function buildSitemapEntries({ site, publishedBlogPosts, programmesWithPages = [] }) {
   const siteUrl = getSiteUrl(site);
   const staticPages = [
     { path: "/", changefreq: "weekly", priority: "1.0" },
     { path: "/about-us/", changefreq: "monthly", priority: "0.9" },
+    { path: "/programmes/", changefreq: "monthly", priority: "0.9" },
     { path: "/impact/", changefreq: "monthly", priority: "0.9" },
     { path: "/stories/", changefreq: "weekly", priority: "0.9" },
     { path: "/get-involved/", changefreq: "monthly", priority: "0.8" },
@@ -432,7 +433,13 @@ function buildSitemapEntries({ site, publishedBlogPosts }) {
     lastmod: post.updatedAt || post.publishedAt || null
   }));
 
-  return [...staticPages, ...blogEntries].map((entry) => ({
+  const programmeEntries = programmesWithPages.map((programme) => ({
+    path: `/programmes/${programme.slug}/`,
+    changefreq: "monthly",
+    priority: "0.8"
+  }));
+
+  return [...staticPages, ...programmeEntries, ...blogEntries].map((entry) => ({
     loc: `${siteUrl}${normalizeCanonicalPath(entry.path)}`,
     changefreq: entry.changefreq,
     priority: entry.priority,

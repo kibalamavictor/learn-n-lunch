@@ -98,6 +98,28 @@ function validate() {
     { key: "featuredSections", label: "featuredSections" }
   ]);
 
+  validatePage("programmes.md", [
+    { key: "heading", label: "heading" },
+    { key: "intro", label: "intro" },
+    { key: "theoryOfChange", label: "theoryOfChange" }
+  ]);
+
+  const programmeFiles = listFiles(path.join(ROOT, "content/programmes"), ".md");
+  const programmeSlugs = new Set();
+  for (const filePath of programmeFiles) {
+    const data = readMarkdownData(filePath);
+    validateRequired(data.title, "title", filePath);
+    validateRequired(data.slug, "slug", filePath);
+    validateRequired(data.activity, "activity", filePath);
+    validateRequired(data.summary, "summary", filePath);
+    assert(
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(data.slug || "")),
+      `[invalid] ${filePath}: slug must use lowercase letters, numbers and hyphens. Got "${data.slug}"`
+    );
+    assert(!programmeSlugs.has(data.slug), `[duplicate] ${filePath}: slug "${data.slug}" is already used`);
+    programmeSlugs.add(data.slug);
+  }
+
   validatePage("donate.md", [
     { key: "heading", label: "heading" },
     { key: "amountPresets", label: "amountPresets" },
@@ -215,6 +237,12 @@ function validate() {
     validateRequired(data.status, "status", filePath);
     if (data.status === "published") {
       validateRequired(data.publishedAt, "publishedAt", filePath);
+    }
+    if (data.programme) {
+      assert(
+        programmeSlugs.has(data.programme),
+        `[invalid] ${filePath}: programme "${data.programme}" does not match any programme slug`
+      );
     }
   }
 

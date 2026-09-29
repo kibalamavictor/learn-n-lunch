@@ -78,7 +78,7 @@ collections:
               - { label: Right Image, name: rightImage, widget: image }
               - { label: Right Image Alt, name: rightImageAlt, widget: string }
 
-          - label: "4 · Model Work Cards"
+          - label: "4 · Focus Areas (from the Theory of Change)"
             name: modelWorkCards
             widget: list
             summary: "{{fields.heading}}"
@@ -248,6 +248,64 @@ collections:
               - { label: Body, name: body, widget: text }
               - { label: Image, name: image, widget: image }
               - { label: Image Alt, name: imageAlt, widget: string }
+
+      - name: programmes
+        label: "Programmes"
+        file: content/pages/programmes.md
+        description: "Programmes overview — why we exist, the Theory of Change, and the programme cards. Edit each programme under the Programmes collection."
+        fields:
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false }
+          - { label: "1 · Hero Heading", name: heading, widget: string }
+          - { label: "1 · Hero Intro", name: intro, widget: text }
+          - label: "2 · Why We Exist"
+            name: problem
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Statement, name: statement, widget: string, hint: "One bold line." }
+              - { label: Body, name: body, widget: text }
+          - label: "3 · Theory of Change"
+            name: theoryOfChange
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string, required: false }
+              - { label: "If / Then Statement", name: statement, widget: text, required: false }
+              - label: Strategic Goal
+                name: strategicGoal
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Body, name: body, widget: text }
+              - label: Pathways (rows)
+                name: pathways
+                widget: list
+                summary: "{{fields.activity}} → {{fields.goal}}"
+                collapsed: true
+                hint: "Each row reads across: Activity → Output → Outcome → Goal. Programmes are linked to a row by their Activity."
+                fields:
+                  - label: Key
+                    name: key
+                    widget: select
+                    options: ["understand", "mobilise", "build", "partner", "convene"]
+                  - { label: Activity, name: activity, widget: string }
+                  - { label: Activity Detail, name: activityBody, widget: text }
+                  - { label: Output, name: output, widget: string }
+                  - { label: Output Detail, name: outputBody, widget: text }
+                  - { label: Outcome, name: outcome, widget: string }
+                  - { label: Outcome Detail, name: outcomeBody, widget: text }
+                  - { label: Goal, name: goal, widget: string }
+                  - { label: Goal Detail, name: goalBody, widget: text }
+                  - { label: "Note when no programme is linked", name: chipsNote, widget: string, required: false, hint: "e.g. Runs across every programme" }
+              - { label: "Downloadable Graphic (optional)", name: file, widget: file, required: false, hint: "PDF or image of the Theory of Change. Adds a download button." }
+              - { label: Download Button Label, name: fileLabel, widget: string, required: false }
+          - { label: "4 · Programmes Heading", name: programmesHeading, widget: string }
+          - { label: "4 · Programmes Intro", name: programmesIntro, widget: text, required: false }
 
       - name: impact
         label: "Impact"
@@ -526,6 +584,15 @@ collections:
         default: "draft"
         hint: "Only published stories appear on the live Stories page."
       - { label: Published At, name: publishedAt, widget: datetime, required: true, hint: "Required when status is Published. Used for sorting Stories." }
+      - label: Programme
+        name: programme
+        widget: relation
+        collection: programmes
+        value_field: slug
+        search_fields: [title]
+        display_fields: [title]
+        required: false
+        hint: "Optional. Shows this story on that programme's page."
 
       - label: "4 · SEO (optional)"
         name: seoTitle
@@ -557,6 +624,112 @@ collections:
         modes:
           - rich_text
           - raw
+
+  # ─────────────────────────────────────────────
+  # PROGRAMMES
+  # ─────────────────────────────────────────────
+  - name: programmes
+    label: Programmes
+    label_singular: Programme
+    description: "Programmes shown on /programmes/. Turn on 'Has its own page' to publish a full page at /programmes/<slug>/."
+    folder: content/programmes
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    summary: "{{order}} · {{title}}"
+    sortable_fields: ["order", "title"]
+    fields:
+      - { label: "1 · Title", name: title, widget: string }
+      - label: "Slug (URL)"
+        name: slug
+        widget: string
+        hint: "URL path only — e.g. campus-nutrition-series."
+        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Use lowercase letters, numbers, and hyphens only."]
+      - { label: Display Order, name: order, widget: number, value_type: int, min: 1 }
+      - label: Theory of Change Activity
+        name: activity
+        widget: select
+        options:
+          - { label: Understand, value: understand }
+          - { label: Mobilise, value: mobilise }
+          - { label: Build, value: build }
+          - { label: Partner, value: partner }
+          - { label: Convene, value: convene }
+        hint: "Links this programme to a row of the Theory of Change."
+      - { label: Card Summary, name: summary, widget: text, hint: "One or two sentences for the programme card." }
+      - { label: Status Line, name: status, widget: string, required: false, hint: "e.g. Piloted at Kyambogo University" }
+      - { label: "Has its own page", name: hasPage, widget: boolean, default: false }
+      - { label: "Card Link Label (no own page)", name: linkLabel, widget: string, required: false }
+      - { label: "Card Link URL (no own page)", name: linkUrl, widget: string, required: false, hint: "e.g. /summit/" }
+      - label: "2 · Programme Page"
+        name: tagline
+        widget: text
+        required: false
+        hint: "Intro line under the page title."
+      - { label: Cover Image, name: coverImage, widget: image, required: false }
+      - { label: Cover Image Alt, name: coverImageAlt, widget: string, required: false }
+      - { label: Cover Photo Credit, name: coverImageCredit, widget: string, required: false }
+      - label: Key Facts
+        name: facts
+        widget: list
+        required: false
+        summary: "{{fields.value}} {{fields.label}}"
+        fields:
+          - { label: Value, name: value, widget: string }
+          - { label: Label, name: label, widget: string }
+      - { label: Steps Heading, name: stepsHeading, widget: string, required: false }
+      - label: Steps
+        name: steps
+        widget: list
+        required: false
+        summary: "{{fields.title}}"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: text }
+      - label: Partners
+        name: partners
+        widget: list
+        required: false
+        summary: "{{fields.name}}"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Website, name: url, widget: string, required: false }
+          - { label: Logo, name: logo, widget: image, required: false }
+      - label: "3 · Page Body"
+        name: body
+        widget: richtext
+        required: false
+        hint: "Same rules as Stories: quotes end with a line starting with - and the speaker's name."
+        buttons:
+          - bold
+          - italic
+          - link
+          - heading-two
+          - heading-three
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+        modes:
+          - rich_text
+          - raw
+      - label: "4 · Call to Action"
+        name: cta
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Heading, name: heading, widget: string, required: false }
+          - { label: Body, name: body, widget: text, required: false }
+          - { label: Primary Button Label, name: primaryLabel, widget: string, required: false }
+          - { label: Primary Button URL, name: primaryUrl, widget: string, required: false }
+          - { label: Secondary Button Label, name: secondaryLabel, widget: string, required: false }
+          - { label: Secondary Button URL, name: secondaryUrl, widget: string, required: false }
+      - { label: "5 · SEO Title", name: seoTitle, widget: string, required: false }
+      - { label: SEO Description, name: seoDescription, widget: text, required: false }
+      - { label: Social Share Image, name: ogImage, widget: image, required: false }
 
   # ─────────────────────────────────────────────
   # REPORTS (PDF stories)

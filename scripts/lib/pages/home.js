@@ -300,11 +300,10 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     </section>
 
     <div class="mm-container">
-      <h2 class="home-model-heading">HOW OUR MODEL WORKS</h2>
+      <h2 class="home-model-heading">OUR FOCUS AREAS</h2>
     </div>
     
-    <section class="mission-vision-section" style="gap: 70px;">
-      <div class="model-work"></div>
+    <section class="mission-vision-section home-focus-areas">
       ${modelCards}
     </section>
 

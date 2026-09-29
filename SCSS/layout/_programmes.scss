@@ -1,0 +1,621 @@
+@use '../util';
+
+$prog-understand: #d3eeff;
+$prog-mobilise: #fdc039;
+$prog-build: #7be4d3;
+$prog-partner: #bce2f4;
+$prog-convene: #61cdbb;
+
+.prog-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.prog-eyebrow {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding: 0.35rem 0.9rem;
+  background: #000;
+  color: #fff;
+  font-family: util.$font-n;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.prog-section-title,
+.prog-toc__title {
+  margin: 0;
+  font-family: util.$font-a;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.prog-section-intro {
+  max-width: 720px;
+  margin: 1rem 0 0;
+  font-family: util.$font-n;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+/* ── Why we exist ── */
+.prog-problem {
+  padding: 5rem 0 4rem;
+  font-family: util.$font-n;
+
+  &__statement {
+    max-width: 900px;
+    margin: 0;
+    font-family: util.$font-a;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    max-width: 760px;
+    margin: 1.5rem 0 0;
+    font-size: 1.2rem;
+    line-height: 1.65;
+  }
+}
+
+/* ── Theory of change ── */
+.prog-toc {
+  padding: 4.5rem 0;
+  background: #f4fbff;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  font-family: util.$font-n;
+
+  &__header {
+    max-width: 900px;
+    margin-bottom: 2.5rem;
+  }
+
+  &__subtitle {
+    margin: 0.5rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  &__statement {
+    margin: 1.25rem 0 0;
+    padding-left: 1rem;
+    border-left: 4px solid $prog-mobilise;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  &__heads,
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  &__head {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #fff;
+
+    span {
+      display: block;
+      font-family: util.$font-a;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    small {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  }
+
+  &__cell {
+    position: relative;
+    padding: 1rem 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0 0 #000;
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      width: 12px;
+      border-top: 2px solid #000;
+    }
+  }
+
+  &__label {
+    display: none;
+  }
+
+  &__cell-title {
+    margin: 0 0 0.4rem;
+    font-family: util.$font-a;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  &__row--understand &__cell--activity { background: $prog-understand; }
+  &__row--mobilise &__cell--activity { background: $prog-mobilise; }
+  &__row--build &__cell--activity { background: $prog-build; }
+  &__row--partner &__cell--activity { background: $prog-partner; }
+  &__row--convene &__cell--activity { background: $prog-convene; }
+
+  &__cell--goal {
+    background: #fffbea;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__chip {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: #000;
+      color: #fff;
+    }
+
+    &--static {
+      margin-top: 0.75rem !important;
+      font-style: italic;
+      font-weight: 600;
+
+      &:hover {
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+
+  &__goal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 1.25rem;
+    background: $prog-mobilise;
+    border: 1px solid #000;
+    box-shadow: 5px 5px 0 0 #000;
+    text-align: center;
+
+    h3 {
+      margin: 0.5rem 0;
+      font-family: util.$font-a;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  &__goal-label {
+    font-size: 0.8rem !important;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  &__impact-link {
+    color: #000;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+/* ── Programme cards ── */
+.prog-list {
+  padding: 5rem 0;
+  font-family: util.$font-n;
+}
+
+.prog-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 2.5rem;
+}
+
+.prog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem 1.5rem 1.75rem;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 5px 5px 0 0 #000;
+  scroll-margin-top: 120px;
+
+  &:target {
+    outline: 3px solid $prog-mobilise;
+    outline-offset: 4px;
+  }
+
+  &__activity {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid #000;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 1rem 0 0.5rem;
+    font-family: util.$font-a;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__summary {
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  &__status {
+    margin: 1rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #333;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      background: #1faa6b;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+  }
+
+  &__link {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    color: #000;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+/* ── Programme detail page ── */
+.prog-detail {
+  .exam-story-title {
+    margin-bottom: 1.25rem;
+  }
+
+  .prog-detail__badge {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.prog-hero {
+  max-width: 900px;
+  margin-bottom: 2.5rem;
+
+  &__tagline {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+}
+
+.prog-cover {
+  margin-bottom: 2.5rem;
+}
+
+.prog-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin: 0 0 4rem;
+}
+
+.prog-fact {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  padding: 1.25rem 1.5rem;
+  background: #d3eeff;
+  border: 1px solid #000;
+  box-shadow: 5px 5px 0 0 #000;
+
+  &:nth-child(2) { background: $prog-mobilise; }
+  &:nth-child(3) { background: $prog-build; }
+
+  dd {
+    margin: 0;
+    font-family: util.$font-a;
+    font-size: 3.5rem;
+    line-height: 1;
+  }
+
+  dt {
+    margin-top: 0.4rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+}
+
+.prog-steps {
+  margin-bottom: 4rem;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.prog-step {
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 5px 5px 0 0 #000;
+
+  &__num {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    background: #000;
+    color: #fff;
+    font-family: util.$font-a;
+    font-size: 1rem;
+  }
+
+  h3 {
+    margin: 0.75rem 0 0.5rem;
+    font-family: util.$font-a;
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.55;
+  }
+}
+
+.prog-body {
+  margin-bottom: 4rem;
+}
+
+.prog-partners {
+  margin-bottom: 4rem;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.prog-partner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 5px 5px 0 0 #000;
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  img {
+    max-width: 160px;
+    max-height: 80px;
+    object-fit: contain;
+  }
+
+  &:is(a):hover,
+  &:is(a):focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 0 #000;
+  }
+}
+
+.prog-cta {
+  margin-bottom: 4rem;
+  padding: 2.5rem;
+  background: #d3eeff;
+  border: 1px solid #000;
+  box-shadow: 5px 5px 0 0 #000;
+
+  h2 {
+    margin: 0;
+    font-family: util.$font-a;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  p {
+    max-width: 680px;
+    margin: 1rem 0 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .lnl-cta--yellow {
+    background: $prog-mobilise;
+  }
+}
+
+.prog-toc__download.lnl-cta--yellow {
+  background: $prog-mobilise;
+}
+
+@media (max-width: 1024px) {
+  .prog-toc__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .prog-toc__goal {
+    order: -1;
+  }
+
+  .prog-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .prog-steps__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .prog-problem {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .prog-toc {
+    padding: 3rem 0;
+
+    &__heads {
+      display: none;
+    }
+
+    &__grid {
+      gap: 20px;
+    }
+
+    &__row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      border: 1px solid #000;
+      box-shadow: 5px 5px 0 0 #000;
+    }
+
+    &__cell {
+      border: 0;
+      border-bottom: 1px solid #000;
+      box-shadow: none;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:not(:last-child)::after {
+        display: none;
+      }
+    }
+
+    &__label {
+      display: block;
+      margin-bottom: 0.25rem !important;
+      font-size: 0.75rem !important;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+  }
+
+  .prog-list {
+    padding: 3rem 0;
+  }
+
+  .prog-cards,
+  .prog-steps__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .prog-hero__tagline {
+    font-size: 1.1rem;
+  }
+
+  .prog-fact dd {
+    font-size: 2.8rem;
+  }
+
+  .prog-cta {
+    padding: 1.75rem 1.25rem;
+  }
+}

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Render CMS content in content/ to static HTML; synced to main after deploy.
+const fs = require("fs");
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
 const { writeFileEnsured, getRelatedPosts } = require("./lib/utils");
@@ -14,12 +15,14 @@ const { renderSummitPoster } = require("./lib/pages/summit-poster");
 const { renderBirthdayCard } = require("./lib/pages/birthday-card");
 const { renderNotFound } = require("./lib/pages/not-found");
 const { renderBlogPost } = require("./lib/pages/blog-post");
+const { renderProgrammes, renderProgramme } = require("./lib/pages/programmes");
 
 const ROOT = process.cwd();
 
 function build() {
   const content = loadAllContent();
-  const { site, pages, stats, team, testimonials, publishedBlogPosts } = content;
+  const { site, pages, stats, team, testimonials, programmes, publishedBlogPosts } = content;
+  const programmesWithPages = programmes.filter((programme) => programme.hasPage);
   let pagesRendered = 0;
 
   function writePage(relativeOutputPath, html) {
@@ -57,6 +60,35 @@ function build() {
       publishedPosts: publishedBlogPosts
     })
   );
+
+  writePage(
+    "programmes/index.html",
+    renderProgrammes({
+      site,
+      page: pages.programmes,
+      programmes
+    })
+  );
+
+  const programmesDir = path.join(ROOT, "programmes");
+  const liveProgrammeSlugs = new Set(programmesWithPages.map((programme) => programme.slug));
+  if (fs.existsSync(programmesDir)) {
+    fs.readdirSync(programmesDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && !liveProgrammeSlugs.has(entry.name))
+      .forEach((entry) => fs.rmSync(path.join(programmesDir, entry.name), { recursive: true, force: true }));
+  }
+
+  programmesWithPages.forEach((programme) => {
+    writePage(
+      `programmes/${programme.slug}/index.html`,
+      renderProgramme({
+        site,
+        page: pages.programmes,
+        programme,
+        relatedPosts: publishedBlogPosts.filter((post) => post.programme === programme.slug)
+      })
+    );
+  });
 
   writePage(
     "stories/index.html",
@@ -147,7 +179,7 @@ function build() {
 </html>`
   );
 
-  const sitemapEntries = buildSitemapEntries({ site, publishedBlogPosts });
+  const sitemapEntries = buildSitemapEntries({ site, publishedBlogPosts, programmesWithPages });
   writeFileEnsured(path.join(ROOT, "sitemap.xml"), renderSitemapXml(sitemapEntries));
 
   console.log("Site build complete.");

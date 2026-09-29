@@ -14,6 +14,7 @@ author: Mercy Lawino
 tags:
   - Student Stories
   - Donor Highlights
+programme: campus-nutrition-series
 status: published
 publishedAt: 2026-04-06T12:00:00.000+03:00
 seoDescription: Learn And Lunch and Body and Soil Africa explore a partnership to
@@ -41,6 +42,6 @@ What stood out most was the shift from asking "How do we continue feeding hungry
 
 ![Enock Jowel presenting to the team at body and soil](/assets/uploads/learn-n-lunch-body-and-soil-partnership-01.webp "Photo: Semaganda Joshua Victor")
 
-*"There is no revolution without education,"* said Enock Nionzima, the programs lead — education before innovation is our leading motto. True transformation comes when students have the knowledge, skills, and opportunities to build healthier and more sustainable food systems — giving birth to a new pathway: **The Nutrition Seminar Series.**
+*"There is no revolution without education,"* said Enock Nionzima, the programs lead — education before innovation is our leading motto. True transformation comes when students have the knowledge, skills, and opportunities to build healthier and more sustainable food systems — giving birth to a new pathway: **[The Campus Nutrition Series](/programmes/campus-nutrition-series/).**
 
 — By Mercy Lawino
