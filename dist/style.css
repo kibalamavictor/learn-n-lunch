@@ -7725,7 +7725,8 @@ html:has(.lnl-dl-modal[open]) {
   line-height: 1.6;
 }
 
-.prog-cover {
+.prog-detail .prog-cover {
+  max-width: 100%;
   margin-bottom: 2.5rem;
 }
 

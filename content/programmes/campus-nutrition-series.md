@@ -5,11 +5,15 @@ order: 2
 activity: build
 summary: Hands-on nutrition sessions where students learn to eat well on a
   student budget.
-status: Piloted at Kyambogo University
+status: Piloted at Kyambogo University · 25 April 2026
 hasPage: true
 tagline: Practical nutrition classes on campus. Students learn how food fuels
   learning, cook affordable alternatives with expert chefs, and leave with
   skills they can use the same day.
+coverImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
+coverImageAlt: Students, Learn And Lunch and BODY & SOIL team members in front of
+  the Campus Nutrition Series banner at Kyambogo University
+coverImageCredit: "Photo: BODY & SOIL"
 facts:
   - value: "31"
     label: Students at the first session
@@ -53,6 +57,9 @@ cta:
   primaryUrl: mailto:info@learnandlunch.org?subject=Campus%20Nutrition%20Series%20session
   secondaryLabel: Partner with us
   secondaryUrl: mailto:info@learnandlunch.org?subject=Campus%20Nutrition%20Series%20partnership
+ogImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
+ogImageAlt: Students at the first Campus Nutrition Series session at Kyambogo
+  University
 seoTitle: Campus Nutrition Series | Learn And Lunch
 seoDescription: Hands-on nutrition classes for university students in Uganda.
   Learn And Lunch, BODY & SOIL and Nutri-Safe Communities teach practical
@@ -60,9 +67,17 @@ seoDescription: Hands-on nutrition classes for university students in Uganda.
 ---
 ## The first session: Kyambogo University
 
-We launched the Campus Nutrition Series at Kyambogo University in partnership with [BODY & SOIL](https://www.bodyandsoil.africa/) and Nutri-Safe Communities, in collaboration with the Kyambogo University Nutrition & Dietetics Students Association (KYUNDSA).
+On 25 April 2026, we launched the Campus Nutrition Series at Kyambogo University in partnership with [BODY & SOIL](https://www.bodyandsoil.africa/) and Nutri-Safe Communities, in collaboration with the Kyambogo University Nutrition & Dietetics Students Association (KYUNDSA).
 
 31 students took part, including 25 student leaders from diverse student societies. Some study agriculture, nutrition and science; others lead cultural associations. The class paired a baseline nutrition lesson with a hands-on cooking session, and it was also a pilot: a chance to understand what students truly need.
+
+![Students listening during the nutrition class at Kyambogo University](/assets/uploads/campus-nutrition-series-kyambogo-class.webp "Photo: BODY & SOIL")
+
+After the lesson, BODY & SOIL chefs moved the class into the kitchen. Students made and cooked with bean flour, and tasted dishes that go beyond a single staple food.
+
+![A BODY & SOIL chef shares a dish with students during the cooking session](/assets/uploads/campus-nutrition-series-cooking-session.webp "Photo: BODY & SOIL")
+
+![Dough, flatbreads and vegetable dishes prepared during the cooking session](/assets/uploads/campus-nutrition-series-dishes.webp "Photo: BODY & SOIL")
 
 > Yes, people need to understand nutrition to make informed decisions about what's on their plates, but they also need solutions they can actually afford — beyond relying on just one staple food.
 >
