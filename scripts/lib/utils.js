@@ -332,6 +332,10 @@ function markdownToHtml(markdown) {
   return md.render(markdown || "");
 }
 
+function markdownInline(markdown) {
+  return md.renderInline(String(markdown || ""));
+}
+
 function resolveMarkdownPaths(html, depth) {
   return String(html || "").replace(/\b(src|href)="(\/[^"]*)"/g, (match, attr, assetPath) => {
     if (assetPath.startsWith("//")) return match;
@@ -406,6 +410,7 @@ module.exports = {
   writeFileEnsured,
   formatPublishDate,
   markdownToHtml,
+  markdownInline,
   resolveMarkdownPaths,
   normalizeTagSlug,
   normalizePostSlug,

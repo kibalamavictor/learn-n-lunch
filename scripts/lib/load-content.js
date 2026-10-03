@@ -77,6 +77,7 @@ function loadAllContent() {
       impact: loadStats("impact"),
       impactMap: loadStats("impact-map")
     },
+    universities: readJson(path.join(CONTENT, "settings/universities.json")).universities || [],
     programmes: loadCollection("programmes").map((programme) => ({
       ...programme,
       slug: normalizePostSlug(programme.slug)
