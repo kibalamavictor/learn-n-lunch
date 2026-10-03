@@ -297,12 +297,22 @@
 
   async function postToSheet(payload) {
     // One request only. Apps Script writes on receive; a CORS retry would duplicate the row.
-    await fetch(submitEndpoint, {
+    // Apps Script cold starts can take 30s+, and a no-cors response is opaque anyway, so only
+    // wait long enough to catch an immediate network failure. keepalive lets the write finish
+    // even if the student closes the tab.
+    const request = fetch(submitEndpoint, {
       method: "POST",
       mode: "no-cors",
+      keepalive: true,
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
+    await Promise.race([
+      request,
+      new Promise(function (resolve) {
+        window.setTimeout(resolve, 1500);
+      })
+    ]);
   }
 
   async function postToEmailFallback(payload) {
