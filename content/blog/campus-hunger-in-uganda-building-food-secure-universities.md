@@ -9,7 +9,7 @@ coverImageAlt: Campus Food Security Summit 2026 in Uganda
 author: Jowel Nionzima
 tags:
   - Events & Campus Life
-status: draft
+visibility: published
 publishedAt: 2026-10-05T16:13:00.000+03:00
 programme: advocacy-and-dialogue
 seoTitle: ""

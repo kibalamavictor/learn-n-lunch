@@ -543,14 +543,14 @@ collections:
     slug: "{{slug}}"
     format: frontmatter
     extension: md
-    sortable_fields: ["title", "publishedAt", "status"]
-    summary: "{{title}} — {{status}}"
+    sortable_fields: ["title", "publishedAt", "visibility"]
+    summary: "{{title}} — {{visibility}}"
     view_filters:
       - label: Published
-        field: status
+        field: visibility
         pattern: published
       - label: Draft
-        field: status
+        field: visibility
         pattern: draft
     fields:
       - { label: "1 · Title", name: title, widget: string, hint: "Story headline shown on cards and the post page." }
@@ -577,13 +577,14 @@ collections:
           - Donor Highlights
         default: []
 
-      - label: "3 · Publishing"
-        name: status
+      # Not named "status": Decap's editorial workflow reserves that key and drops edits to it.
+      - label: "3 · Show on website"
+        name: visibility
         widget: select
         options: ["draft", "published"]
         default: "draft"
-        hint: "Only published stories appear on the live Stories page."
-      - { label: Published At, name: publishedAt, widget: datetime, required: true, hint: "Required when status is Published. Used for sorting Stories." }
+        hint: "Set to published, then Save and Publish. Only published stories appear on the live Stories page."
+      - { label: Published At, name: publishedAt, widget: datetime, required: true, hint: "Required when Show on website is published. Used for sorting Stories." }
       - label: Programme
         name: programme
         widget: relation
@@ -737,13 +738,13 @@ collections:
   - name: reports
     label: Reports & PDFs
     label_singular: Report
-    description: "Impact reports and PDF documents shown in Stories. Upload the PDF and set status to published when ready."
+    description: "Impact reports and PDF documents shown in Stories. Upload the PDF and set Show on website to published when ready."
     folder: content/reports
     create: true
     slug: "{{slug}}"
     format: frontmatter
     extension: md
-    summary: "{{title}} — {{status}}"
+    summary: "{{title}} — {{visibility}}"
     fields:
       - { label: "1 · Title", name: title, widget: string }
       - label: "Slug (URL)"
@@ -778,7 +779,7 @@ collections:
         modes:
           - rich_text
           - raw
-      - { label: "4 · Status", name: status, widget: select, options: ["draft", "published"], default: "draft" }
+      - { label: "4 · Show on website", name: visibility, widget: select, options: ["draft", "published"], default: "draft" }
       - { label: Published At, name: publishedAt, widget: datetime, required: false }
       - { label: SEO Title, name: seoTitle, widget: string, required: false }
       - { label: SEO Description, name: seoDescription, widget: text, required: false }
