@@ -302,18 +302,6 @@
   background: var(--mm-yellow);
 }
 
-.lnl-summit__chip:nth-child(3n + 2).is-selected,
-.lnl-summit__chip:nth-child(3n + 2).selected,
-.lnl-summit__chip:nth-child(3n + 2):has(input:checked) {
-  background: #bce2f4;
-}
-
-.lnl-summit__chip:nth-child(3n).is-selected,
-.lnl-summit__chip:nth-child(3n).selected,
-.lnl-summit__chip:nth-child(3n):has(input:checked) {
-  background: #7be4d3;
-}
-
 .lnl-summit__chip:has(input:disabled) {
   opacity: 0.45;
   box-shadow: 1px 1px 0 #000;

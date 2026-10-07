@@ -70,6 +70,7 @@ function loadAllContent() {
       programmes: loadPage("programmes"),
       summit: loadPage("summit"),
       summitPoster: loadPage("summit-poster"),
+      kiuFoodStudy: loadPage("kiu-food-study"),
       birthdayCard: loadPage("birthday-card")
     },
     stats: {

@@ -531,6 +531,34 @@ collections:
               - { label: Label, name: label, widget: string }
               - { label: URL, name: url, widget: string }
 
+      - name: kiuFoodStudy
+        label: "KIU Food Insecurity Questionnaire"
+        file: content/pages/kiu-food-study.md
+        description: "Page text around the research questionnaire at /kiu-food-study/. The questions themselves are fixed in scripts/lib/research/kiu-food-study.js so the research instrument cannot drift."
+        fields:
+          - { label: "Page Title (SEO)", name: title, widget: string }
+          - { label: SEO Title, name: seoTitle, widget: string, required: false }
+          - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: "1 · Kicker", name: kicker, widget: string }
+          - { label: "1 · Heading", name: heading, widget: string }
+          - { label: "1 · Tagline", name: tagline, widget: text }
+          - { label: "1 · Who can take part", name: audience, widget: string, required: false }
+          - { label: "1 · Time needed", name: duration, widget: string, required: false }
+          - { label: "1 · Privacy pill", name: privacyNote, widget: string, required: false }
+          - { label: "1 · Instructions", name: intro, widget: markdown, buttons: [bold, italic, link] }
+          - { label: "1 · Repeat-device notice", name: repeatNotice, widget: string, required: false }
+          - { label: "2 · Google Sheet web app URL", name: submitEndpoint, widget: string, required: false, hint: "The /exec URL from Deploy → Manage deployments in the study's Apps Script." }
+          - { label: "2 · Submit button label", name: submitLabel, widget: string }
+          - { label: "2 · Before-you-submit heading", name: beforeSubmitHeading, widget: string, required: false }
+          - { label: "2 · Before-you-submit text", name: beforeSubmit, widget: markdown, buttons: [bold, italic, link], required: false }
+          - { label: "3 · Thank-you heading", name: successTitle, widget: string }
+          - { label: "3 · Thank-you text", name: successBody, widget: string, required: false }
+          - { label: "3 · Declined consent heading", name: declinedTitle, widget: string }
+          - { label: "3 · Declined consent text", name: declinedBody, widget: string }
+          - { label: "3 · Under 18 heading", name: ineligibleTitle, widget: string }
+          - { label: "3 · Under 18 text", name: ineligibleBody, widget: string }
+          - { label: "4 · Conducted by (footer line)", name: conductedBy, widget: string, required: false }
+
   # ─────────────────────────────────────────────
   # STORIES (blog posts)
   # ─────────────────────────────────────────────

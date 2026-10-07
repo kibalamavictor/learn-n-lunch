@@ -148,6 +148,15 @@ function validate() {
     { key: "consentLabel", label: "consentLabel" }
   ]);
 
+  validatePage("kiu-food-study.md", [
+    { key: "heading", label: "heading" },
+    { key: "intro", label: "intro" },
+    { key: "submitLabel", label: "submitLabel" },
+    { key: "successTitle", label: "successTitle" },
+    { key: "declinedBody", label: "declinedBody" },
+    { key: "ineligibleBody", label: "ineligibleBody" }
+  ]);
+
   validatePage("summit-poster.md", [
     { key: "heading", label: "heading" },
     { key: "intro", label: "intro" },

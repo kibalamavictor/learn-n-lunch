@@ -17,6 +17,10 @@ const { renderBirthdayCard } = require("./lib/pages/birthday-card");
 const { renderNotFound } = require("./lib/pages/not-found");
 const { renderBlogPost } = require("./lib/pages/blog-post");
 const { renderProgrammes, renderProgramme } = require("./lib/pages/programmes");
+const { renderResearchStudy } = require("./lib/pages/research-study");
+const { renderResearchDashboard } = require("./lib/pages/research-dashboard");
+const { renderStudyAppsScript } = require("./lib/research/apps-script");
+const { study: kiuFoodStudy } = require("./lib/research/kiu-food-study");
 
 const ROOT = process.cwd();
 
@@ -140,6 +144,27 @@ function build() {
       page: pages.summitPoster
     })
   );
+
+  writePage(
+    "kiu-food-study/index.html",
+    renderResearchStudy({
+      site,
+      page: pages.kiuFoodStudy,
+      study: kiuFoodStudy,
+      canonicalPath: "/kiu-food-study/"
+    })
+  );
+  writePage(
+    "kiu-food-study/dashboard/index.html",
+    renderResearchDashboard({
+      site,
+      page: pages.kiuFoodStudy,
+      study: kiuFoodStudy,
+      canonicalPath: "/kiu-food-study/dashboard/",
+      formPath: "/kiu-food-study/"
+    })
+  );
+  writeFileEnsured(path.join(ROOT, "scripts/kiu-food-study.gs"), renderStudyAppsScript(kiuFoodStudy));
 
   writePage(
     "birthday-card/index.html",

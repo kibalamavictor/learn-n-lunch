@@ -1,0 +1,438 @@
+@use '../util';
+
+// Research questionnaire (/kiu-food-study/). Builds on the .lnl-summit form styles.
+
+$study-blue: #bce2f4;
+$study-teal: #7be4d3;
+$study-red: #c1121f;
+$cell-width: 76px;
+
+.lnl-study {
+  .lnl-summit__meta-list .lnl-study__meta--1 {
+    background: $study-blue;
+  }
+
+  .lnl-summit__meta-list .lnl-study__meta--2 {
+    background: var(--mm-yellow);
+  }
+
+  .lnl-summit__meta-list .lnl-study__meta--3 {
+    background: $study-teal;
+  }
+
+  .lnl-summit__section::before {
+    display: none;
+  }
+
+  .lnl-summit__field legend,
+  .lnl-summit__field > span {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+}
+
+.lnl-study__notice {
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--mm-yellow);
+  border: 1px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.lnl-study__step {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.lnl-study__step[hidden],
+.lnl-study__nav [hidden],
+.lnl-study__progress[hidden] {
+  display: none !important;
+}
+
+.lnl-study__letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  background: $study-blue;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  font-size: 1rem;
+}
+
+.lnl-study__step:is([data-step="B"], [data-step="E"], [data-step="H"]) .lnl-study__letter {
+  background: var(--mm-yellow);
+}
+
+.lnl-study__step:is([data-step="C"], [data-step="F"], [data-step="I"]) .lnl-study__letter {
+  background: $study-teal;
+}
+
+.lnl-study__section-intro {
+  margin: -0.35rem 0 0;
+  padding: 0.75rem 0.9rem;
+  background: #fff;
+  border: 1px solid #000;
+  border-left-width: 5px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.lnl-study__code {
+  display: inline-block;
+  margin-right: 0.3rem;
+  padding: 0.05rem 0.35rem;
+  background: #fff;
+  border: 1px solid #000;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  vertical-align: 0.12em;
+  white-space: nowrap;
+}
+
+.lnl-study__number {
+  max-width: 10rem;
+}
+
+.lnl-study__followup {
+  margin-top: -0.55rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid #000;
+}
+
+.lnl-study__q--list .lnl-summit__chips {
+  flex-direction: column;
+  align-items: stretch;
+
+  .lnl-summit__chip {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+// Floated so the legend sits inside the fieldset box (and its invalid background).
+.lnl-study__q > legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+}
+
+.lnl-study__q > legend + * {
+  clear: both;
+}
+
+// Selected answers must be unmistakable, not just a deeper tint.
+.lnl-study .lnl-summit__chip {
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.lnl-study .lnl-summit__chip.is-selected,
+.lnl-study .lnl-summit__chip:has(input:checked) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000, inset 0 0 0 1px #000;
+
+  &::before {
+    content: "✓";
+    margin-right: 0.4rem;
+    font-weight: 700;
+  }
+}
+
+.lnl-study .lnl-summit__chip:has(input:focus-visible) {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+// Validation state
+.lnl-study__q.is-invalid,
+.lnl-summit__field.is-invalid {
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
+  padding: 0.6rem 0.6rem 0.75rem 0.9rem;
+  background: #fff1f1;
+  box-shadow: inset 5px 0 0 $study-red;
+}
+
+.lnl-study__row.is-invalid {
+  box-shadow: inset 5px 0 0 $study-red;
+}
+
+.lnl-study .lnl-summit__error {
+  padding: 0.6rem 0.8rem;
+  background: #fff;
+  border: 1px solid #000;
+  border-left: 5px solid $study-red;
+  color: $study-red;
+}
+
+.lnl-study .lnl-summit__error:empty {
+  display: none;
+}
+
+.lnl-study__q.is-invalid legend,
+.lnl-study__q.is-invalid > span,
+.lnl-study__row.is-invalid .lnl-study__row-label {
+  color: $study-red;
+}
+
+// Progress
+.lnl-study__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lnl-study__progress-label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  [data-progress-title] {
+    color: #333;
+  }
+}
+
+.lnl-study__bar {
+  height: 12px;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 #000;
+
+  span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, $study-blue, var(--mm-yellow), $study-teal);
+    border-right: 1px solid #000;
+    transition: width 0.3s ease;
+  }
+}
+
+// Navigation
+.lnl-study__nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+
+  .lnl-summit__submit {
+    flex: 1;
+    margin: 0;
+  }
+}
+
+.lnl-study__back {
+  padding: 0.95rem 1.25rem;
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  font-family: util.$font-n;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: wait;
+  }
+}
+
+.lnl-summit__submit:focus-visible,
+.lnl-study__back:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+.lnl-study__end .lnl-study__back {
+  align-self: flex-start;
+}
+
+// Grid questions (FIES, Likert scales, Yes/No/Don't know)
+.lnl-study__matrix {
+  gap: 0;
+}
+
+.lnl-study__matrix-title {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.lnl-study__matrix-prompt {
+  margin: 0.2rem 0 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #333;
+}
+
+.lnl-study__matrix-head,
+.lnl-study__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) calc(var(--cols) * #{$cell-width});
+  align-items: center;
+}
+
+.lnl-study__matrix-head {
+  grid-template-columns: minmax(0, 1fr) repeat(var(--cols), #{$cell-width});
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.6rem;
+  background: #000;
+  color: #fff;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  text-align: center;
+
+  > span {
+    padding: 0 0.15rem;
+  }
+}
+
+.lnl-study__row {
+  padding: 0.7rem 0.6rem;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: 0;
+
+  &:nth-of-type(even) {
+    background: #f6fbfd;
+  }
+}
+
+.lnl-study__row-label {
+  margin: 0;
+  padding-right: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.lnl-study__cells {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), #{$cell-width});
+}
+
+.lnl-study__cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  &::before {
+    content: "";
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+    box-shadow: 2px 2px 0 #000;
+    transition: background 0.12s ease;
+  }
+
+  &:hover::before {
+    background: #fff8dc;
+  }
+
+  &.is-selected::before,
+  &:has(input:checked)::before {
+    background: radial-gradient(circle, #000 0 4px, var(--mm-yellow) 5px);
+  }
+
+  &:has(input:focus-visible)::before {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 700px) {
+  .lnl-study__nav {
+    flex-direction: column-reverse;
+  }
+
+  .lnl-study__matrix-head {
+    display: none;
+  }
+
+  .lnl-study__row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+    padding: 0.8rem;
+    border-top: 1px solid #000;
+    box-shadow: 3px 3px 0 #000;
+
+    &:nth-of-type(even) {
+      background: #fff;
+    }
+  }
+
+  .lnl-study__cells {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .lnl-study__cell {
+    min-height: 0;
+    padding: 0.45rem 0.7rem;
+    background: #fff;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 0 #000;
+    font-size: 0.86rem;
+
+    &::before {
+      display: none;
+    }
+
+    span {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+    }
+
+    &.is-selected,
+    &:has(input:checked) {
+      background: var(--mm-yellow);
+      box-shadow: 2px 2px 0 #000, inset 0 0 0 2px #000;
+
+      &::after {
+        content: "✓";
+        order: -1;
+        margin-right: 0.4rem;
+        font-weight: 700;
+      }
+    }
+  }
+}
