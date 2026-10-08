@@ -28,6 +28,7 @@
   const screenOuts = Array.from(root.querySelectorAll("[data-screen-out]"));
   const conditionals = Array.from(form.querySelectorAll("[data-show-when]"));
   const choiceGroups = Array.from(form.querySelectorAll("[data-choice-group]"));
+  const dependentOptions = Array.from(form.querySelectorAll("[data-option-for]"));
 
   let current = 0;
   let submitting = false;
@@ -104,6 +105,25 @@
         return accepted.indexOf(value) !== -1;
       });
       if (container.hidden === show) setConditional(container, show);
+    });
+  }
+
+  /** Options that belong to an earlier answer (e.g. schools of the chosen campus); others are hidden and cleared. */
+  function updateDependentOptions() {
+    dependentOptions.forEach(function (label) {
+      const rule = splitRule(label.getAttribute("data-option-for"));
+      const show = selectedValues(rule.name).indexOf(rule.value) !== -1;
+      const input = label.querySelector("input");
+      label.hidden = !show;
+      input.disabled = !show;
+      if (!show && input.checked) {
+        input.checked = false;
+        syncChoice(input);
+      }
+    });
+    form.querySelectorAll("[data-depends-hint]").forEach(function (hintEl) {
+      const fieldset = hintEl.closest("fieldset");
+      hintEl.hidden = Boolean(fieldset && fieldset.querySelector("[data-option-for]:not([hidden])"));
     });
   }
 
@@ -295,6 +315,7 @@
       });
     });
     updateConditionals();
+    updateDependentOptions();
     form.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(syncChoice);
     return Math.max(0, Math.min(steps.length - 1, Number(draft.step) || 0));
   }
@@ -326,6 +347,7 @@
       if (group) applyExclusive(group, field);
       syncChoice(field);
       updateConditionals();
+      updateDependentOptions();
     }
     clearInvalid(field.closest(".is-invalid"));
     saveDraft();
@@ -420,5 +442,6 @@
   conditionals.forEach(function (container) {
     setConditional(container, false);
   });
+  updateDependentOptions();
   goTo(restoreDraft(), false);
 })();

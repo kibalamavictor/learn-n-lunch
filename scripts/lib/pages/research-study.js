@@ -12,12 +12,23 @@ function hint(text) {
   return text ? `<p class="lnl-summit__hint">${escapeHtml(text)}</p>` : "";
 }
 
-function chip(type, name, value, required) {
+function chip(type, name, value, required, optionFor = "") {
   return `
-        <label class="lnl-summit__chip">
+        <label class="lnl-summit__chip"${optionFor ? ` data-option-for="${escapeHtml(optionFor)}"` : ""}>
           <input type="${type}" name="${escapeHtml(name)}" value="${escapeHtml(value)}"${required ? " required" : ""}>
           <span>${escapeHtml(value)}</span>
         </label>`;
+}
+
+function chips(question, type, required) {
+  if (!question.optionsBy) {
+    return question.options.map((option) => chip(type, question.id, option, required)).join("");
+  }
+  return Object.entries(question.optionsBy)
+    .map(([parent, options]) =>
+      options.map((option) => chip(type, question.id, option, required, `${question.dependsOn}=${parent}`)).join("")
+    )
+    .join("");
 }
 
 function conditionalText({ name, label, when, required, placeholder = "" }) {
@@ -42,9 +53,10 @@ function renderChoice(question) {
     .filter(Boolean)
     .join(" ");
 
-  const chips = question.options
-    .map((option) => chip(type, question.id, option, question.required && !multiple))
-    .join("");
+  const list = multiple || question.optionsBy;
+  const dependsHint = question.optionsBy
+    ? `<p class="lnl-summit__hint lnl-study__depends-hint" data-depends-hint>${escapeHtml(question.dependsHint || "")}</p>`
+    : "";
 
   const extras = [
     question.other
@@ -66,10 +78,10 @@ function renderChoice(question) {
   ].join("");
 
   return `
-    <fieldset class="lnl-summit__field lnl-study__q${multiple ? " lnl-study__q--list" : ""}" ${attrs}>
+    <fieldset class="lnl-summit__field lnl-study__q${list ? " lnl-study__q--list" : ""}" ${attrs}>
       <legend>${code(question)} ${escapeHtml(question.text)}${question.required ? REQ : ""}</legend>
-      ${hint(question.hint)}
-      <div class="lnl-summit__chips">${chips}
+      ${hint(question.hint)}${dependsHint}
+      <div class="lnl-summit__chips">${chips(question, type, question.required && !multiple)}
       </div>
     </fieldset>${extras}`;
 }

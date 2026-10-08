@@ -332,8 +332,8 @@ var STUDY = {
           "short": "Campus",
           "text": "Campus",
           "options": [
-            "Main Campus (Kansanga)",
-            "Western Campus (Ishaka)"
+            "Main Campus (Kansanga, Kampala)",
+            "Western Campus (Ishaka, Bushenyi)"
           ],
           "required": true
         },
@@ -376,17 +376,45 @@ var STUDY = {
           "type": "radio",
           "short": "College / school",
           "text": "Which College or School do you belong to?",
+          "dependsOn": "CAMPUS",
+          "dependsHint": "Select your campus above to see its colleges and schools.",
+          "optionsBy": {
+            "Main Campus (Kansanga, Kampala)": [
+              "College of Economics and Management",
+              "College of Humanities and Social Sciences",
+              "College of Education, Open and Distance Learning",
+              "School of Law",
+              "School of Public Health",
+              "School of Mathematics and Computing",
+              "School of Natural and Applied Sciences",
+              "School of Digital, Distance and E-Learning"
+            ],
+            "Western Campus (Ishaka, Bushenyi)": [
+              "Faculty of Clinical Medicine and Dentistry",
+              "Faculty of Biomedical Sciences",
+              "School of Allied Health Sciences",
+              "School of Nursing Sciences",
+              "School of Pharmacy",
+              "School of Engineering and Applied Sciences",
+              "School of Agriculture Sciences"
+            ]
+          },
           "options": [
-            "College of Humanities and Social Sciences (CHUSS)",
-            "School of Digital, Distance and e-Learning (CODeL)",
-            "School of Law (SOL)",
-            "School of Natural and Applied Sciences (SNAS)",
-            "College of Economics and Management (CEM)",
-            "School of Engineering and Applied Sciences (SEAS)",
-            "School of Agricultural Sciences (SAS)",
-            "College of Education (CE)",
-            "School of Mathematics and Computing (SOMAC)",
-            "School of Public Health (SPH)"
+            "College of Economics and Management",
+            "College of Humanities and Social Sciences",
+            "College of Education, Open and Distance Learning",
+            "School of Law",
+            "School of Public Health",
+            "School of Mathematics and Computing",
+            "School of Natural and Applied Sciences",
+            "School of Digital, Distance and E-Learning",
+            "Faculty of Clinical Medicine and Dentistry",
+            "Faculty of Biomedical Sciences",
+            "School of Allied Health Sciences",
+            "School of Nursing Sciences",
+            "School of Pharmacy",
+            "School of Engineering and Applied Sciences",
+            "School of Agriculture Sciences"
           ],
           "required": true
         },
@@ -1090,7 +1118,17 @@ function columns() {
     cols.push({
       header: code === q.short ? code : code + " · " + q.short,
       text: q.text,
-      coding: q.options ? q.options.join(" / ") : q.type === "number" ? "Number" : "Free text",
+      coding: q.optionsBy
+        ? Object.keys(q.optionsBy)
+            .map(function (parent) {
+              return parent + ": " + q.optionsBy[parent].join(" / ");
+            })
+            .join("; ")
+        : q.options
+        ? q.options.join(" / ")
+        : q.type === "number"
+        ? "Number"
+        : "Free text",
       key: q.id,
       numeric: q.type === "number"
     });

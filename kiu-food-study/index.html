@@ -133,12 +133,12 @@
       
       <div class="lnl-summit__chips">
         <label class="lnl-summit__chip">
-          <input type="radio" name="CAMPUS" value="Main Campus (Kansanga)" required>
-          <span>Main Campus (Kansanga)</span>
+          <input type="radio" name="CAMPUS" value="Main Campus (Kansanga, Kampala)" required>
+          <span>Main Campus (Kansanga, Kampala)</span>
         </label>
         <label class="lnl-summit__chip">
-          <input type="radio" name="CAMPUS" value="Western Campus (Ishaka)" required>
-          <span>Western Campus (Ishaka)</span>
+          <input type="radio" name="CAMPUS" value="Western Campus (Ishaka, Bushenyi)" required>
+          <span>Western Campus (Ishaka, Bushenyi)</span>
         </label>
       </div>
     </fieldset>
@@ -187,49 +187,69 @@
         </label>
       </div>
     </fieldset>
-    <fieldset class="lnl-summit__field lnl-study__q" data-question="B4">
+    <fieldset class="lnl-summit__field lnl-study__q lnl-study__q--list" data-question="B4">
       <legend><span class="lnl-study__code">B4</span> Which College or School do you belong to? <span class="lnl-summit__req">*</span></legend>
-      
+      <p class="lnl-summit__hint lnl-study__depends-hint" data-depends-hint>Select your campus above to see its colleges and schools.</p>
       <div class="lnl-summit__chips">
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="College of Humanities and Social Sciences (CHUSS)" required>
-          <span>College of Humanities and Social Sciences (CHUSS)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="College of Economics and Management" required>
+          <span>College of Economics and Management</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Digital, Distance and e-Learning (CODeL)" required>
-          <span>School of Digital, Distance and e-Learning (CODeL)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="College of Humanities and Social Sciences" required>
+          <span>College of Humanities and Social Sciences</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Law (SOL)" required>
-          <span>School of Law (SOL)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="College of Education, Open and Distance Learning" required>
+          <span>College of Education, Open and Distance Learning</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Natural and Applied Sciences (SNAS)" required>
-          <span>School of Natural and Applied Sciences (SNAS)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="School of Law" required>
+          <span>School of Law</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="College of Economics and Management (CEM)" required>
-          <span>College of Economics and Management (CEM)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="School of Public Health" required>
+          <span>School of Public Health</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Engineering and Applied Sciences (SEAS)" required>
-          <span>School of Engineering and Applied Sciences (SEAS)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="School of Mathematics and Computing" required>
+          <span>School of Mathematics and Computing</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Agricultural Sciences (SAS)" required>
-          <span>School of Agricultural Sciences (SAS)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="School of Natural and Applied Sciences" required>
+          <span>School of Natural and Applied Sciences</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="College of Education (CE)" required>
-          <span>College of Education (CE)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Main Campus (Kansanga, Kampala)">
+          <input type="radio" name="B4" value="School of Digital, Distance and E-Learning" required>
+          <span>School of Digital, Distance and E-Learning</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Mathematics and Computing (SOMAC)" required>
-          <span>School of Mathematics and Computing (SOMAC)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="Faculty of Clinical Medicine and Dentistry" required>
+          <span>Faculty of Clinical Medicine and Dentistry</span>
         </label>
-        <label class="lnl-summit__chip">
-          <input type="radio" name="B4" value="School of Public Health (SPH)" required>
-          <span>School of Public Health (SPH)</span>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="Faculty of Biomedical Sciences" required>
+          <span>Faculty of Biomedical Sciences</span>
+        </label>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="School of Allied Health Sciences" required>
+          <span>School of Allied Health Sciences</span>
+        </label>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="School of Nursing Sciences" required>
+          <span>School of Nursing Sciences</span>
+        </label>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="School of Pharmacy" required>
+          <span>School of Pharmacy</span>
+        </label>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="School of Engineering and Applied Sciences" required>
+          <span>School of Engineering and Applied Sciences</span>
+        </label>
+        <label class="lnl-summit__chip" data-option-for="CAMPUS=Western Campus (Ishaka, Bushenyi)">
+          <input type="radio" name="B4" value="School of Agriculture Sciences" required>
+          <span>School of Agriculture Sciences</span>
         </label>
       </div>
     </fieldset>

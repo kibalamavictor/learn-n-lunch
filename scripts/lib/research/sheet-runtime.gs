@@ -94,7 +94,17 @@ function columns() {
     cols.push({
       header: code === q.short ? code : code + " · " + q.short,
       text: q.text,
-      coding: q.options ? q.options.join(" / ") : q.type === "number" ? "Number" : "Free text",
+      coding: q.optionsBy
+        ? Object.keys(q.optionsBy)
+            .map(function (parent) {
+              return parent + ": " + q.optionsBy[parent].join(" / ");
+            })
+            .join("; ")
+        : q.options
+        ? q.options.join(" / ")
+        : q.type === "number"
+        ? "Number"
+        : "Free text",
       key: q.id,
       numeric: q.type === "number"
     });

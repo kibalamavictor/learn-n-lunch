@@ -7404,6 +7404,18 @@ html:has(.lnl-dl-modal[open]) {
   white-space: nowrap;
 }
 
+.lnl-study .lnl-summit__chip[hidden],
+.lnl-study__depends-hint[hidden] {
+  display: none;
+}
+
+.lnl-study__depends-hint {
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  background: #fff;
+  border: 1px dashed #000;
+}
+
 .lnl-study__number {
   max-width: 10rem;
 }

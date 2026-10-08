@@ -1639,7 +1639,8 @@
       r.B1 = 18 + Math.floor(Math.pow(rand(), 1.7) * 12);
       r.B2 = pick("B2");
       r.B3 = pick("B3", [30, 26, 22, 17, 5]);
-      r.B4 = pick("B4", [14, 6, 8, 12, 15, 13, 5, 12, 7, 8]);
+      var schools = questions.B4.optionsBy[r.CAMPUS];
+      r.B4 = schools[Math.floor(rand() * schools.length)];
       r.B5 = pick("B5", [15, 85]);
       r.B6 = pick("B6", [38, 62]);
       r.B7 = pick("B7", [92, 6, 2]);
