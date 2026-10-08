@@ -53,7 +53,7 @@ function loadBlogPosts() {
 }
 
 function loadPublishedBlogPosts() {
-  return loadBlogPosts().filter((post) => post.status === "published");
+  return loadBlogPosts().filter((post) => (post.visibility || post.status) === "published");
 }
 
 function loadAllContent() {

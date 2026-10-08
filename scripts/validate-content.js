@@ -243,8 +243,8 @@ function validate() {
     validateRequired(data.excerpt, "excerpt", filePath);
     validateRequired(data.coverImage, "coverImage", filePath);
     validateRequired(data.tags, "tags", filePath);
-    validateRequired(data.status, "status", filePath);
-    if (data.status === "published") {
+    validateRequired(data.visibility || data.status, "visibility", filePath);
+    if ((data.visibility || data.status) === "published") {
       validateRequired(data.publishedAt, "publishedAt", filePath);
     }
     if (data.programme) {
@@ -269,8 +269,8 @@ function validate() {
     validateRequired(data.excerpt, "excerpt", filePath);
     validateRequired(data.coverImage, "coverImage", filePath);
     validateRequired(data.reportPdf, "reportPdf", filePath);
-    validateRequired(data.status, "status", filePath);
-    if (data.status === "published") {
+    validateRequired(data.visibility || data.status, "visibility", filePath);
+    if ((data.visibility || data.status) === "published") {
       validateRequired(data.publishedAt, "publishedAt", filePath);
     }
   }

@@ -15,7 +15,7 @@ tags:
   - Student Stories
   - Donor Highlights
 programme: campus-nutrition-series
-status: published
+visibility: published
 publishedAt: 2026-04-06T12:00:00.000+03:00
 seoDescription: Learn And Lunch and Body and Soil Africa explore a partnership to
   move beyond food relief — empowering university students through nutrition

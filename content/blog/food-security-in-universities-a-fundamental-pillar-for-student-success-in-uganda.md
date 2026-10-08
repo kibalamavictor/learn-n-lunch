@@ -12,7 +12,7 @@ coverImageCredit: "Photo: Semaganda Joshua Victor"
 author: Jowel Nionzima
 tags:
   - Student Stories
-status: published
+visibility: published
 publishedAt: 2026-08-03T09:22:00.000+03:00
 seoDescription: Discover why food security in universities is essential for
   student success in Uganda. Learn how Learn And Lunch is tackling campus hunger
