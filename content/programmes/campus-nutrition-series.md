@@ -94,6 +94,6 @@ A class helps students make healthier choices, but it cannot change the food aro
 
 Together with BODY & SOIL and Nutri-Safe Communities, we plan to bring the Campus Nutrition Series to more universities across Uganda.
 
-> When students are nourished, they are able to think, study, and lead. And that is where real systemic change begins.
+> When students are nourished, they are able to think, study, and lead. And that is where real systemic change begins. 
 >
-> * BODY & SOIL
+> \- BODY & SOIL
