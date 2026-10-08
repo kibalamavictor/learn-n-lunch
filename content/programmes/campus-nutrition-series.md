@@ -3,42 +3,15 @@ title: Campus Nutrition Series
 slug: campus-nutrition-series
 order: 2
 activity: build
-summary: Hands-on nutrition sessions where students learn to eat well on a
-  student budget.
 status: Piloted at Kyambogo University · 25 April 2026
-hasPage: true
 tagline: Practical nutrition classes on campus. Students learn how food fuels
   learning, cook affordable alternatives with expert chefs, and leave with
   skills they can use the same day.
 coverImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
-coverImageAlt: Students, Learn And Lunch and BODY & SOIL team members in front of
-  the Campus Nutrition Series banner at Kyambogo University
+coverImageAlt: Students, Learn And Lunch and BODY & SOIL team members in front
+  of the Campus Nutrition Series banner at Kyambogo University
 coverImageCredit: "Photo: BODY & SOIL"
-facts:
-  - value: "31"
-    label: Students at the first session
-  - value: "25"
-    label: Student leaders from campus societies
-  - value: "3"
-    label: Partner organisations
 stepsHeading: What happens in a session
-steps:
-  - title: Learn
-    body: A practical nutrition class on how food fuels the body, like the role of
-      carbohydrates, and which affordable foods keep students full, energised and
-      able to focus. Led by agro-nutritionist Eva Maria Schiffer, Director of
-      BODY & SOIL.
-  - title: Cook
-    body: BODY & SOIL chefs lead a hands-on cooking session. At the first class,
-      students learned to make and cook with bean flour, an affordable way to eat
-      beyond a single staple food.
-  - title: Share
-    body: Students talk openly about what eating well really looks like on their
-      budgets and around their campus, so the next steps start from lived
-      experience.
-  - title: Lead
-    body: Participants are leaders of student societies, so what they learn
-      travels back to their members and into campus life.
 partners:
   - name: BODY & SOIL Africa
     url: https://www.bodyandsoil.africa/
@@ -57,13 +30,39 @@ cta:
   primaryUrl: mailto:info@learnandlunch.org?subject=Campus%20Nutrition%20Series%20session
   secondaryLabel: Partner with us
   secondaryUrl: mailto:info@learnandlunch.org?subject=Campus%20Nutrition%20Series%20partnership
-ogImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
-ogImageAlt: Students at the first Campus Nutrition Series session at Kyambogo
-  University
 seoTitle: Campus Nutrition Series | Learn And Lunch
 seoDescription: Hands-on nutrition classes for university students in Uganda.
   Learn And Lunch, BODY & SOIL and Nutri-Safe Communities teach practical
   nutrition and affordable cooking on campus, starting at Kyambogo University.
+ogImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
+ogImageAlt: Students at the first Campus Nutrition Series session at Kyambogo University
+summary: Hands-on nutrition sessions where students learn to eat well on a
+  student budget.
+hasPage: true
+facts:
+  - value: "31"
+    label: Students at the first session
+  - value: "25"
+    label: Student leaders from campus societies
+  - value: "3"
+    label: Partner organisations
+steps:
+  - title: Learn
+    body: A practical nutrition class on how food fuels the body, like the role of
+      carbohydrates, and which affordable foods keep students full, energised
+      and able to focus. Led by agro-nutritionist Eva Maria Schiffer, Director
+      of BODY & SOIL.
+  - title: Cook
+    body: BODY & SOIL chefs lead a hands-on cooking session. At the first class,
+      students learned to make and cook with bean flour, an affordable way to
+      eat beyond a single staple food.
+  - title: Share
+    body: Students talk openly about what eating well really looks like on their
+      budgets and around their campus, so the next steps start from lived
+      experience.
+  - title: Lead
+    body: Participants are leaders of student societies, so what they learn travels
+      back to their members and into campus life.
 ---
 ## The first session: Kyambogo University
 
@@ -71,7 +70,7 @@ On 25 April 2026, we launched the Campus Nutrition Series at Kyambogo University
 
 31 students took part, including 25 student leaders from diverse student societies. Some study agriculture, nutrition and science; others lead cultural associations. The class paired a baseline nutrition lesson with a hands-on cooking session, and it was also a pilot: a chance to understand what students truly need.
 
-![Students listening during the nutrition class at Kyambogo University](/assets/uploads/campus-nutrition-series-kyambogo-class.webp "Photo: BODY & SOIL")
+![Students listening during the nutrition class at Kyambogo University](https://res.cloudinary.com/pr7r5p6g/image/upload/v1785743361/BODY_SOIL_-8149_gzfssw.jpg "Photo: BODY & SOIL")
 
 After the lesson, BODY & SOIL chefs moved the class into the kitchen. Students made and cooked with bean flour, and tasted dishes that go beyond a single staple food.
 
@@ -81,7 +80,7 @@ After the lesson, BODY & SOIL chefs moved the class into the kitchen. Students m
 
 > Yes, people need to understand nutrition to make informed decisions about what's on their plates, but they also need solutions they can actually afford — beyond relying on just one staple food.
 >
-> - Eva Maria Schiffer, Director, BODY & SOIL
+> * Eva Maria Schiffer, Director, BODY & SOIL
 
 ## What students told us
 
@@ -97,4 +96,4 @@ Together with BODY & SOIL and Nutri-Safe Communities, we plan to bring the Campu
 
 > When students are nourished, they are able to think, study, and lead. And that is where real systemic change begins.
 >
-> - BODY & SOIL
+> * BODY & SOIL
