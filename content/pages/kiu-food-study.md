@@ -2,6 +2,8 @@
 title: KIU Student Food Insecurity Study
 seoTitle: Student Food Insecurity Questionnaire | Kampala International University
 seoDescription: A confidential questionnaire on the prevalence, determinants and consequences of food insecurity among undergraduate students at Kampala International University.
+ogImage: /assets/uploads/kiu-food-study-share.jpg
+ogImageAlt: "KIU Food Study: What does campus hunger really look like? A student-led study exploring food insecurity, student wellbeing and what needs to change."
 kicker: Research questionnaire
 heading: Food insecurity among students at KIU
 tagline: Prevalence, determinants and consequences of food insecurity among undergraduate students at Kampala International University.

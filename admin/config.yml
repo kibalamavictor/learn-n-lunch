@@ -539,6 +539,8 @@ collections:
           - { label: "Page Title (SEO)", name: title, widget: string }
           - { label: SEO Title, name: seoTitle, widget: string, required: false }
           - { label: SEO Description, name: seoDescription, widget: text, required: false }
+          - { label: Social Share Image, name: ogImage, widget: image, required: false, hint: "Shown when the study link is shared on WhatsApp, X, Facebook or LinkedIn. Best at 1200×630." }
+          - { label: Social Share Image Alt Text, name: ogImageAlt, widget: string, required: false }
           - { label: "1 · Kicker", name: kicker, widget: string }
           - { label: "1 · Heading", name: heading, widget: string }
           - { label: "1 · Tagline", name: tagline, widget: text }
