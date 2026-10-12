@@ -9,7 +9,7 @@ coverImageCredit: ""
 author: Learn And Lunch Editorial Team
 tags:
   - Impact Reports
-status: draft
+visibility: draft
 publishedAt: 2025-08-15T14:00:00.000Z
 seoTitle: Campus Welfare Dialogue Outcomes | Learn And Lunch
 seoDescription: Outcomes from the Learn And Lunch campus welfare dialogue —

@@ -126,7 +126,7 @@
     const data = dataOf(entry);
     const tags = (data.tags || []).map(normalizeTag).filter(Boolean);
     const cover = assetUrl(getAsset, data.coverImage);
-    const status = text(data.status, "draft");
+    const status = text(data.visibility || data.status, "draft");
 
     return h("div", { className: "preview-frame preview-blog" }, [
       kicker(data.reportPdf ? "Report preview · live" : "Story preview · live"),

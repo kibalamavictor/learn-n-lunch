@@ -10,7 +10,7 @@ coverImageCredit: "Photo: Semaganda Joshua Victor "
 author: Jowel Nionzima
 tags:
   - Student Stories
-status: published
+visibility: published
 publishedAt: 2026-08-03T10:56:00.000+03:00
 seoDescription: Discover how hidden costs affect university students in Uganda
   and why student support systems are essential for education success.
