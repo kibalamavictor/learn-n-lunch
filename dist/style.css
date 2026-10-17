@@ -6588,6 +6588,7 @@ html:has(.lnl-dl-modal[open]) {
   background: #fff;
   border: 1px solid #000;
   box-shadow: 5px 5px 0 #000;
+  touch-action: none;
 }
 
 .lnl-poster__canvas,

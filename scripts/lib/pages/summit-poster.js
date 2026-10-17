@@ -25,7 +25,7 @@ function renderSummitPoster({ site, page }) {
       <div class="lnl-poster__stage">
         <canvas class="lnl-poster__canvas" width="1024" height="1024" aria-label="Summit poster preview"></canvas>
         <img class="lnl-poster__fallback" src="${previewSrc}" alt="${escapeHtml(page.ogImageAlt || "Summit poster template")}" width="1024" height="1024">
-        <p class="lnl-poster__empty" data-empty>Upload a photo to place it in the frame. Drag to move. Pinch to zoom and rotate.</p>
+        <p class="lnl-poster__empty" data-empty>Upload a photo to place it in the frame. Drag to move. Pinch with two fingers to zoom and rotate.</p>
       </div>
     </div>
 
@@ -72,7 +72,7 @@ function renderSummitPoster({ site, page }) {
     activePath: "/ill-be-there",
     bodyClass: "lnl-poster-page",
     body,
-    scripts: ["js/app.js", "js/summit-poster.js"]
+    scripts: ["js/app.js", "js/summit-poster.js?v=11"]
   });
 }
 

@@ -140,6 +140,61 @@
     return Math.atan2(pts[1].y - pts[0].y, pts[1].x - pts[0].x);
   }
 
+  function shortestAngleDelta(from, to) {
+    let delta = to - from;
+    while (delta > Math.PI) delta -= Math.PI * 2;
+    while (delta < -Math.PI) delta += Math.PI * 2;
+    return delta;
+  }
+
+  function resetPinchState() {
+    lastPinchDist = 0;
+    lastPinchAngle = 0;
+  }
+
+  function applyPinchGesture(points) {
+    const dist = Math.hypot(points[1].x - points[0].x, points[1].y - points[0].y);
+    const angle = Math.atan2(points[1].y - points[0].y, points[1].x - points[0].x);
+    if (lastPinchDist > 0) {
+      zoom = Math.min(3, Math.max(1, zoom * (dist / lastPinchDist)));
+      rotation += shortestAngleDelta(lastPinchAngle, angle);
+      clampPan();
+      requestDraw();
+    }
+    lastPinchDist = dist;
+    lastPinchAngle = angle;
+  }
+
+  function applyPanClientDelta(dx, dy) {
+    const rect = canvas.getBoundingClientRect();
+    const scale = SIZE / rect.width;
+    const local = toLocalDelta(dx * scale, dy * scale);
+    panX += local.x;
+    panY += local.y;
+    clampPan();
+    requestDraw();
+  }
+
+  function holeCenterOnScreen(rect) {
+    return {
+      x: rect.left + (HOLE.center[0] / SIZE) * rect.width,
+      y: rect.top + (HOLE.center[1] / SIZE) * rect.height
+    };
+  }
+
+  function applyRotateClient(prevX, prevY, x, y) {
+    const rect = canvas.getBoundingClientRect();
+    const center = holeCenterOnScreen(rect);
+    const a0 = Math.atan2(prevY - center.y, prevX - center.x);
+    const a1 = Math.atan2(y - center.y, x - center.x);
+    rotation += shortestAngleDelta(a0, a1);
+    clampPan();
+    requestDraw();
+  }
+
+  let singleTouchId = null;
+  let lastTouchPan = null;
+
   function requestDraw() {
     if (drawing) return;
     drawing = true;
@@ -244,7 +299,7 @@
       rotation = 0;
       setPhotoLoaded(true);
       requestDraw();
-      setStatus("Drag to move. Pinch to zoom and rotate.");
+      setStatus("Drag to move. Pinch with two fingers to zoom and rotate.");
     } catch (error) {
       setStatus(error.message || "Could not read that image. Try a JPG or PNG.");
     }
@@ -346,10 +401,83 @@
     });
   }
 
+  canvas.addEventListener(
+    "touchstart",
+    function (event) {
+      if (!photo) return;
+      event.preventDefault();
+      if (event.touches.length >= 2) {
+        singleTouchId = null;
+        lastTouchPan = null;
+        const t0 = event.touches[0];
+        const t1 = event.touches[1];
+        lastPinchDist = Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
+        lastPinchAngle = Math.atan2(t1.clientY - t0.clientY, t1.clientX - t0.clientX);
+      } else if (event.touches.length === 1) {
+        resetPinchState();
+        singleTouchId = event.touches[0].identifier;
+        lastTouchPan = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+      }
+    },
+    { passive: false }
+  );
+
+  canvas.addEventListener(
+    "touchmove",
+    function (event) {
+      if (!photo) return;
+      event.preventDefault();
+      if (event.touches.length >= 2) {
+        singleTouchId = null;
+        lastTouchPan = null;
+        const t0 = event.touches[0];
+        const t1 = event.touches[1];
+        applyPinchGesture([
+          { x: t0.clientX, y: t0.clientY },
+          { x: t1.clientX, y: t1.clientY }
+        ]);
+        return;
+      }
+      if (
+        event.touches.length === 1 &&
+        singleTouchId === event.touches[0].identifier &&
+        lastTouchPan
+      ) {
+        const t = event.touches[0];
+        applyPanClientDelta(t.clientX - lastTouchPan.x, t.clientY - lastTouchPan.y);
+        lastTouchPan = { x: t.clientX, y: t.clientY };
+      }
+    },
+    { passive: false }
+  );
+
+  function endTouch(event) {
+    if (event.touches.length < 2) resetPinchState();
+    if (event.touches.length === 1) {
+      singleTouchId = event.touches[0].identifier;
+      lastTouchPan = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+    } else {
+      singleTouchId = null;
+      lastTouchPan = null;
+    }
+  }
+
+  canvas.addEventListener("touchend", endTouch, { passive: false });
+  canvas.addEventListener("touchcancel", function (event) {
+    resetPinchState();
+    singleTouchId = null;
+    lastTouchPan = null;
+    endTouch(event);
+  });
+
   canvas.addEventListener("pointerdown", function (event) {
-    if (!photo) return;
+    if (!photo || event.pointerType === "touch") return;
     canvas.setPointerCapture(event.pointerId);
-    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY,
+      rotate: event.shiftKey
+    });
     if (pointers.size === 2) {
       lastPinchDist = pointerDistance();
       lastPinchAngle = pointerAngle();
@@ -358,44 +486,32 @@
   });
 
   canvas.addEventListener("pointermove", function (event) {
-    if (!photo || !pointers.has(event.pointerId)) return;
+    if (!photo || event.pointerType === "touch" || !pointers.has(event.pointerId)) return;
     const previous = pointers.get(event.pointerId);
-    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    const rotateDrag = previous.rotate || event.shiftKey;
+    pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY,
+      rotate: rotateDrag
+    });
 
     if (pointers.size >= 2) {
-      const dist = pointerDistance();
-      const angle = pointerAngle();
-      if (lastPinchDist > 0) {
-        zoom = Math.min(3, Math.max(1, zoom * (dist / lastPinchDist)));
-      }
-      if (lastPinchDist > 0) {
-        rotation += angle - lastPinchAngle;
-      }
-      lastPinchDist = dist;
-      lastPinchAngle = angle;
-      clampPan();
-      requestDraw();
+      applyPinchGesture(Array.from(pointers.values()));
       return;
     }
 
-    const rect = canvas.getBoundingClientRect();
-    const scale = SIZE / rect.width;
-    const local = toLocalDelta(
-      (event.clientX - previous.x) * scale,
-      (event.clientY - previous.y) * scale
-    );
-    panX += local.x;
-    panY += local.y;
-    clampPan();
-    requestDraw();
+    if (rotateDrag) {
+      applyRotateClient(previous.x, previous.y, event.clientX, event.clientY);
+      return;
+    }
+
+    applyPanClientDelta(event.clientX - previous.x, event.clientY - previous.y);
   });
 
   function endPointer(event) {
+    if (event.pointerType === "touch") return;
     pointers.delete(event.pointerId);
-    if (pointers.size < 2) {
-      lastPinchDist = 0;
-      lastPinchAngle = 0;
-    }
+    if (pointers.size < 2) resetPinchState();
   }
 
   canvas.addEventListener("pointerup", endPointer);
@@ -406,6 +522,12 @@
     function (event) {
       if (!photo) return;
       event.preventDefault();
+      if (event.shiftKey) {
+        rotation += event.deltaY * -0.004;
+        clampPan();
+        requestDraw();
+        return;
+      }
       const delta = event.deltaY > 0 ? 0.94 : 1.06;
       zoom = Math.min(3, Math.max(1, zoom * delta));
       clampPan();
