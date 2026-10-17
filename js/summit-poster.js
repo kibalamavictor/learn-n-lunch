@@ -141,6 +141,8 @@
 
     if (photo) {
       ctx.save();
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       ctx.translate(HOLE.center[0], HOLE.center[1]);
       ctx.rotate(HOLE.angle);
       ctx.beginPath();
@@ -159,7 +161,14 @@
     }
 
     if (overlayReady) {
-      ctx.drawImage(overlay, 0, 0, SIZE, SIZE);
+      ctx.save();
+      ctx.imageSmoothingEnabled = false;
+      if (overlay.naturalWidth === SIZE && overlay.naturalHeight === SIZE) {
+        ctx.drawImage(overlay, 0, 0);
+      } else {
+        ctx.drawImage(overlay, 0, 0, SIZE, SIZE);
+      }
+      ctx.restore();
     }
   }
 
