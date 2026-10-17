@@ -20,6 +20,51 @@ function isHole(r, g, b) {
   return r < 20 && g > 160 && g < 185 && b > 225 && b - r > 200;
 }
 
+function keepLargestComponent(mask, W, H) {
+  const out = new Uint8Array(mask.length);
+  const seen = new Uint8Array(mask.length);
+  const stack = [];
+  let best = null;
+
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const start = y * W + x;
+      if (!mask[start] || seen[start]) continue;
+
+      const pixels = [];
+      stack.push(start);
+      seen[start] = 1;
+      while (stack.length) {
+        const idx = stack.pop();
+        pixels.push(idx);
+        const cx = idx % W;
+        const cy = (idx / W) | 0;
+        for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          const nx = cx + dx;
+          const ny = cy + dy;
+          if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+          const ni = ny * W + nx;
+          if (mask[ni] && !seen[ni]) {
+            seen[ni] = 1;
+            stack.push(ni);
+          }
+        }
+      }
+
+      if (!best || pixels.length > best.length) {
+        best = pixels;
+      }
+    }
+  }
+
+  if (best) {
+    best.forEach(function (idx) {
+      out[idx] = 1;
+    });
+  }
+  return out;
+}
+
 function dilateMask(mask, W, H, radius) {
   const out = new Uint8Array(mask.length);
   for (let y = 0; y < H; y++) {
@@ -123,15 +168,20 @@ async function main() {
   const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const W = info.width;
   const H = info.height;
-  const mask = new Uint8Array(W * H);
-  const pts = [];
+  const rawMask = new Uint8Array(W * H);
   for (let y = 0; y < H; y++) {
     for (let x = 0; x < W; x++) {
       const i = (y * W + x) * 4;
       if (isHole(data[i], data[i + 1], data[i + 2])) {
-        mask[y * W + x] = 1;
-        pts.push([x, y]);
+        rawMask[y * W + x] = 1;
       }
+    }
+  }
+  const mask = keepLargestComponent(rawMask, W, H);
+  const pts = [];
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      if (mask[y * W + x]) pts.push([x, y]);
     }
   }
   if (pts.length < 1000) {

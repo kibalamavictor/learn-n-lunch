@@ -6,15 +6,15 @@
   const HOLE_CYAN = "#00adef";
   const HOLE = {
     corners: [
-      [380, 203],
-      [767, 311],
-      [642, 758],
-      [255, 650]
+      [370, 210],
+      [759, 304],
+      [651, 753],
+      [262, 659]
     ],
-    center: [511.35, 480.37],
-    angle: Math.atan2(311 - 203, 767 - 380),
-    width: Math.hypot(767 - 380, 311 - 203),
-    height: Math.hypot(380 - 255, 203 - 650)
+    center: [510.67, 481.54],
+    angle: Math.atan2(304 - 210, 759 - 370),
+    width: Math.hypot(759 - 370, 304 - 210),
+    height: Math.hypot(370 - 262, 210 - 659)
   };
 
   const canvas = root.querySelector(".lnl-poster__canvas");
