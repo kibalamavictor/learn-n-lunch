@@ -8,8 +8,8 @@ const {
 
 function renderSummitPoster({ site, page }) {
   const depth = 1;
-  const overlaySrc = resolveAsset(depth, "summit-poster/template-overlay.png") + "?v=6";
-  const previewSrc = resolveAsset(depth, "summit-poster/template.jpg") + "?v=5";
+  const overlaySrc = resolveAsset(depth, "summit-poster/template-overlay.png") + "?v=8";
+  const previewSrc = resolveAsset(depth, "summit-poster/template.jpg") + "?v=8";
   const shareCaption = String(page.shareCaption || "").trim();
 
   const body = `
