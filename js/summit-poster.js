@@ -40,8 +40,10 @@
   let zoom = 1;
   let panX = 0;
   let panY = 0;
+  let rotation = 0;
   let pointers = new Map();
   let lastPinchDist = 0;
+  let lastPinchAngle = 0;
   let drawing = false;
 
   function setStatus(message) {
@@ -105,8 +107,14 @@
   function clampPan() {
     if (!photo) return;
     const scale = currentScale();
-    const maxX = Math.max(0, (photo.width * scale) / 2 - HOLE.width / 2);
-    const maxY = Math.max(0, (photo.height * scale) / 2 - HOLE.height / 2);
+    const w = photo.width * scale;
+    const h = photo.height * scale;
+    const cos = Math.abs(Math.cos(rotation));
+    const sin = Math.abs(Math.sin(rotation));
+    const boundW = w * cos + h * sin;
+    const boundH = w * sin + h * cos;
+    const maxX = Math.max(0, boundW / 2 - HOLE.width / 2);
+    const maxY = Math.max(0, boundH / 2 - HOLE.height / 2);
     panX = Math.min(maxX, Math.max(-maxX, panX));
     panY = Math.min(maxY, Math.max(-maxY, panY));
   }
@@ -124,6 +132,12 @@
     const pts = Array.from(pointers.values());
     if (pts.length < 2) return 0;
     return Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+  }
+
+  function pointerAngle() {
+    const pts = Array.from(pointers.values());
+    if (pts.length < 2) return 0;
+    return Math.atan2(pts[1].y - pts[0].y, pts[1].x - pts[0].x);
   }
 
   function requestDraw() {
@@ -155,6 +169,7 @@
       );
       ctx.clip();
       ctx.translate(panX, panY);
+      ctx.rotate(rotation);
       ctx.scale(currentScale(), currentScale());
       ctx.drawImage(photo, -photo.width / 2, -photo.height / 2);
       ctx.restore();
@@ -226,9 +241,10 @@
       zoom = 1;
       panX = 0;
       panY = 0;
+      rotation = 0;
       setPhotoLoaded(true);
       requestDraw();
-      setStatus("Drag to position, then share.");
+      setStatus("Drag to move. Pinch to zoom and rotate.");
     } catch (error) {
       setStatus(error.message || "Could not read that image. Try a JPG or PNG.");
     }
@@ -334,7 +350,10 @@
     if (!photo) return;
     canvas.setPointerCapture(event.pointerId);
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-    if (pointers.size === 2) lastPinchDist = pointerDistance();
+    if (pointers.size === 2) {
+      lastPinchDist = pointerDistance();
+      lastPinchAngle = pointerAngle();
+    }
     event.preventDefault();
   });
 
@@ -345,12 +364,17 @@
 
     if (pointers.size >= 2) {
       const dist = pointerDistance();
+      const angle = pointerAngle();
       if (lastPinchDist > 0) {
         zoom = Math.min(3, Math.max(1, zoom * (dist / lastPinchDist)));
-        clampPan();
-        requestDraw();
+      }
+      if (lastPinchDist > 0) {
+        rotation += angle - lastPinchAngle;
       }
       lastPinchDist = dist;
+      lastPinchAngle = angle;
+      clampPan();
+      requestDraw();
       return;
     }
 
@@ -368,7 +392,10 @@
 
   function endPointer(event) {
     pointers.delete(event.pointerId);
-    if (pointers.size < 2) lastPinchDist = 0;
+    if (pointers.size < 2) {
+      lastPinchDist = 0;
+      lastPinchAngle = 0;
+    }
   }
 
   canvas.addEventListener("pointerup", endPointer);
