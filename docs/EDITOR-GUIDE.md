@@ -30,15 +30,13 @@ If login fails, tell a maintainer. Auth is handled by a Cloudflare Worker at `ht
 
 Tip: On long pages (especially **Home**), sections are numbered (`1 · Hero`, `2 · Mission Banner`, …) and many blocks start **collapsed** — open only the section you need.
 
-## Draft vs Published
+## Publish in one step
 
-Decap uses an **Editorial Workflow**:
+When your edits are ready, click **Publish** in the editor toolbar. This saves your changes and starts the website update in one action. There is no separate Save, review, or approval step.
 
-- **Draft** — saved, not live
-- **In Review** — ready for someone else to check
-- **Published** — live after the build finishes
+Stories and reports are marked as published automatically. Existing draft stories stay off the website until you open and publish them. If their publication date is blank, publishing fills it in automatically.
 
-Only **Published** stories appear on the public Stories page.
+Wait a few minutes for the website to rebuild after publishing. To leave unfinished work unpublished, keep editing without clicking Publish.
 
 ## Editing a page
 
@@ -46,7 +44,7 @@ Only **Published** stories appear on the public Stories page.
 2. Choose a page (e.g. **Home** or **Impact**)
 3. Expand the section you want (e.g. `1 · Hero`)
 4. Edit text/images
-5. **Save**, then **Publish** when ready
+5. Click **Publish** once when ready
 
 ## Writing a Story
 
@@ -56,9 +54,8 @@ Only **Published** stories appear on the public Stories page.
    - **Excerpt**, **Cover image** + alt text
    - **Cover Photo Credit** (optional) — shown under the cover image
    - **Category Tags** — the **first** tag drives Stories filters
-   - **Status**: `published` when ready
    - **Story Body** (markdown)
-3. **Save**, then **Publish**
+3. Click **Publish** once
 
 For images inside the story body, open the image insert dialog and fill **Title** with the photo credit (e.g. `Photo: Mercy Lawino`). That credit appears under the image on the live page.
 
@@ -103,11 +100,11 @@ Image fields use the Cloudinary media library connected to the Learn And Lunch a
 1. Click the image field's media picker.
 2. If prompted, log in to the Cloudinary account with access to this library. This is separate from your GitHub CMS login.
 3. Upload a photo or choose an existing asset, then insert it into the field.
-4. Add descriptive alt text, then **Save** and **Publish** the content as usual.
+4. Add descriptive alt text, then click **Publish** once.
 
 The CMS saves the full HTTPS Cloudinary URL in the content. Existing images stored on the website continue to work; they have not been moved to Cloudinary. You can organize new assets into folders for stories, programmes, people, and website pages.
 
-Uploading an image does not publish a page. Avoid deleting or renaming assets used by published pages, as their saved URLs can stop working. Draft uploads are stored in Cloudinary even if you later discard the CMS draft.
+Uploading an image does not publish a page. Avoid deleting or renaming assets used by published pages, as their saved URLs can stop working. Uploads are stored in Cloudinary even if you later discard your unsaved edits.
 
 If the media library cannot open, check that you are signed into the correct Cloudinary account and allow its login popup if your browser blocks it. Ask a maintainer if access is still denied. Never enter an API secret into the CMS configuration.
 
@@ -115,7 +112,7 @@ If the media library cannot open, check that you are signed into the correct Clo
 
 1. Open **Reports & PDFs**
 2. Upload the PDF, set cover image + excerpt
-3. Set **Status** to `published` when ready
+3. Click **Publish** once when ready
 
 ## Publishing to the live site
 
@@ -124,5 +121,5 @@ When you publish, GitHub Actions rebuilds the site from `content/` and deploys i
 ## If you don’t see your change live
 
 - Wait a few minutes for the build
-- Confirm the entry is **Published** (not Draft)
+- Confirm the CMS reported that publishing succeeded
 - If it’s still missing, ask a maintainer to check GitHub Actions logs

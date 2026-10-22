@@ -23,7 +23,8 @@ media_library:
     cloud_name: jxgiku8t
     api_key: "619627451948128"
 
-publish_mode: editorial_workflow
+# Saving commits directly to main and triggers the automatic site build.
+publish_mode: simple
 
 # Keep the live preview pane available in the editor
 editor:
@@ -39,7 +40,7 @@ collections:
   - name: pages
     label: Website Pages
     label_singular: Page
-    description: "Edit the main pages of the live site. Open a page, update a section, Save, then Publish when ready."
+    description: "Edit the main pages of the live site. Open a page, update a section, then click Publish to save and publish in one step."
     files:
       - name: home
         label: "Home"
@@ -578,7 +579,7 @@ collections:
   - name: blog
     label: Stories
     label_singular: Story
-    description: "Write and publish Stories that appear on /stories/. Use Draft → In Review → Published workflow."
+    description: "Write Stories for /stories/. Click Publish once when ready; the website updates automatically."
     folder: content/blog
     create: true
     slug: "{{slug}}"
@@ -618,13 +619,8 @@ collections:
           - Donor Highlights
         default: []
 
-      - label: "3 · Publishing"
-        name: status
-        widget: select
-        options: ["draft", "published"]
-        default: "draft"
-        hint: "Only published stories appear on the live Stories page."
-      - { label: Published At, name: publishedAt, widget: datetime, required: true, hint: "Required when status is Published. Used for sorting Stories." }
+      - { name: status, widget: hidden, default: "published" }
+      - { label: Published At, name: publishedAt, widget: datetime, required: false, hint: "Optional publication date. Automatically filled when you publish if left blank." }
       - label: Programme
         name: programme
         widget: relation
@@ -778,7 +774,7 @@ collections:
   - name: reports
     label: Reports & PDFs
     label_singular: Report
-    description: "Impact reports and PDF documents shown in Stories. Upload the PDF and set status to published when ready."
+    description: "Impact reports and PDF documents shown in Stories. Upload the PDF, then click Publish once when ready."
     folder: content/reports
     create: true
     slug: "{{slug}}"
@@ -819,7 +815,7 @@ collections:
         modes:
           - rich_text
           - raw
-      - { label: "4 · Status", name: status, widget: select, options: ["draft", "published"], default: "draft" }
+      - { name: status, widget: hidden, default: "published" }
       - { label: Published At, name: publishedAt, widget: datetime, required: false }
       - { label: SEO Title, name: seoTitle, widget: string, required: false }
       - { label: SEO Description, name: seoDescription, widget: text, required: false }
