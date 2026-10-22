@@ -4,7 +4,17 @@ seoTitle: Our Impact | Learn And Lunch
 seoDescription: See how Learn And Lunch is making campus food insecurity visible
   across Ugandan universities through research, student stories, campus reach,
   and measurable outcomes.
-ogImage: /impact/impact/impact-hero-image.png
+ogImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1792673952/learn-and-lunch-food-security-summit-2026_-96.jpg
+downloadForm:
+  headingPrefix: Complete the form below to download our
+  submitLabel: Submit
+  consentNote: By submitting this form, you agree to receive emails about news and
+    updates from Learn And Lunch.
+  successTitle: Thank you! Your download is starting.
+  successBody: If the PDF doesn't open automatically, use the button below.
+  againLabel: Download again
+  submitEmail: info@learnandlunch.org
+  submitEndpoint: https://script.google.com/macros/s/AKfycbw2gX7LQnBztXSgfu6q_5w0de-eNLDTxHCSBoErjvzfL0LNC_puW91dA50rVxI9Ps50/exec
 hero:
   heading: OUR IMPACT
   subtitle: Learn And Lunch’s impact begins by making this hidden crisis visible
@@ -36,16 +46,6 @@ impactReport:
     Download the full report to share with partners and donors.
   buttonLabel: Download Report
   file: /assets/uploads/impact-report-2025.pdf
-downloadForm:
-  headingPrefix: Complete the form below to download our
-  submitLabel: Submit
-  consentNote: By submitting this form, you agree to receive emails about news and
-    updates from Learn And Lunch.
-  successTitle: Thank you! Your download is starting.
-  successBody: If the PDF doesn't open automatically, use the button below.
-  againLabel: Download again
-  submitEmail: info@learnandlunch.org
-  submitEndpoint: https://script.google.com/macros/s/AKfycbw2gX7LQnBztXSgfu6q_5w0de-eNLDTxHCSBoErjvzfL0LNC_puW91dA50rVxI9Ps50/exec
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now
