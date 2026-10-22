@@ -9,7 +9,7 @@ coverImageAlt: group photo of stakeholders from learn and lunch, unicef, body &
 author: Kibalama Victor
 tags:
   - Events & Campus Life
-status: draft
+status: published
 publishedAt: 2026-10-22T19:02:00.000+03:00
 programme: advocacy-and-dialogue
 seoDescription: Learn And Lunch hosted the first Campus Food Security Summit at
