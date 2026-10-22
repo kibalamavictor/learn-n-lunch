@@ -3,7 +3,7 @@ title: "337 Students. 25 Universities. One Mission: Ending Campus Hunger."
 slug: first-campus-food-security-summit-2026
 excerpt: Uganda’s first Campus Food Security Summit united students,
   universities and partners to advance practical solutions to campus hunger.
-coverImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1792684746/learn-and-lunch-food-security-summit-2026_-94.jpg
+coverImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1792694946/learn-and-lunch-food-security-summit-2026_-58.jpg
 coverImageAlt: group photo of stakeholders from learn and lunch, unicef, body &
   soil, nutrisafe, and others
 author: Kibalama Victor
@@ -99,7 +99,7 @@ The discussions reinforced the importance of university leadership, government e
 
 ## The Work Continues
 
-![students from different universities at the first campus food security summit](https://res.cloudinary.com/jxgiku8t/image/upload/v1792694002/learn-and-lunch-food-security-summit-2026_-21.jpg)
+![students from different universities at the first campus food security summit](https://res.cloudinary.com/jxgiku8t/image/upload/v1792695012/learn-and-lunch-food-security-summit-2026_-57.jpg)
 
 The participation of **337 students from 25 universities** demonstrated the importance of creating spaces where students can contribute to conversations about the challenges affecting their education.
 
