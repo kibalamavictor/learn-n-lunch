@@ -12,6 +12,17 @@ logo_url: /logo.png
 media_folder: assets/uploads
 public_folder: /assets/uploads
 
+# Cloudinary hosts new media; existing local asset URLs remain valid.
+# The cloud name and API key are public identifiers. Never add the API secret here.
+media_library:
+  name: cloudinary
+  output_filename_only: false
+  use_secure_url: true
+  use_transformations: true
+  config:
+    cloud_name: jxgiku8t
+    api_key: "619627451948128"
+
 publish_mode: editorial_workflow
 
 # Keep the live preview pane available in the editor

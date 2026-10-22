@@ -96,6 +96,21 @@ Tips:
 - `Impact Reports`
 - `Donor Highlights`
 
+## Uploading and choosing images
+
+Image fields use the Cloudinary media library connected to the Learn And Lunch account (`jxgiku8t`).
+
+1. Click the image field's media picker.
+2. If prompted, log in to the Cloudinary account with access to this library. This is separate from your GitHub CMS login.
+3. Upload a photo or choose an existing asset, then insert it into the field.
+4. Add descriptive alt text, then **Save** and **Publish** the content as usual.
+
+The CMS saves the full HTTPS Cloudinary URL in the content. Existing images stored on the website continue to work; they have not been moved to Cloudinary. You can organize new assets into folders for stories, programmes, people, and website pages.
+
+Uploading an image does not publish a page. Avoid deleting or renaming assets used by published pages, as their saved URLs can stop working. Draft uploads are stored in Cloudinary even if you later discard the CMS draft.
+
+If the media library cannot open, check that you are signed into the correct Cloudinary account and allow its login popup if your browser blocks it. Ask a maintainer if access is still denied. Never enter an API secret into the CMS configuration.
+
 ## Reports / PDFs
 
 1. Open **Reports & PDFs**
