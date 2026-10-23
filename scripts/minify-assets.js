@@ -4,13 +4,46 @@ const path = require("path");
 
 const ROOT = process.cwd();
 
+function shieldCalcs(source) {
+  const calcs = [];
+  let out = "";
+  let i = 0;
+
+  while (i < source.length) {
+    if (source.startsWith("calc(", i)) {
+      let depth = 0;
+      let j = i;
+      for (; j < source.length; j++) {
+        if (source[j] === "(") depth++;
+        else if (source[j] === ")") {
+          depth--;
+          if (depth === 0) {
+            j++;
+            break;
+          }
+        }
+      }
+      const id = calcs.length;
+      calcs.push(source.slice(i, j).replace(/\s+/g, " ").trim());
+      out += `__CALC_${id}__`;
+      i = j;
+    } else {
+      out += source[i];
+      i++;
+    }
+  }
+
+  return { out, calcs };
+}
+
 function minifyCss(source) {
-  return source
-    .replace(/\/\*[\s\S]*?\*\//g, "")
+  const { out, calcs } = shieldCalcs(source.replace(/\/\*[\s\S]*?\*\//g, ""));
+  return out
     .replace(/\s+/g, " ")
     .replace(/\s*([{}:;,>+~])\s*/g, "$1")
     .replace(/;}/g, "}")
-    .trim();
+    .trim()
+    .replace(/__CALC_(\d+)__/g, (_, id) => calcs[Number(id)]);
 }
 
 function minifyFile(relativePath) {
