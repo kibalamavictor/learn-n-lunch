@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
-const { writeFileEnsured, getRelatedPosts } = require("./lib/utils");
+const { writeFileEnsured, getRelatedPosts, getPostSourceUrl } = require("./lib/utils");
 const { buildSitemapEntries, renderSitemapXml, getSiteUrl } = require("./lib/seo");
 const { renderHome } = require("./lib/pages/home");
 const { renderAbout } = require("./lib/pages/about");
@@ -24,9 +24,10 @@ const { study: kiuFoodStudy } = require("./lib/research/kiu-food-study");
 
 const ROOT = process.cwd();
 
-function build() {
+async function build() {
   const content = loadAllContent();
   const { site, pages, stats, team, testimonials, programmes, publishedBlogPosts } = content;
+  await require("./lib/news-preview").populateNewsImages(publishedBlogPosts);
   const programmesWithPages = programmes.filter((programme) => programme.hasPage);
   let pagesRendered = 0;
 
@@ -182,7 +183,7 @@ function build() {
     })
   );
 
-  publishedBlogPosts.forEach((post) => {
+  publishedBlogPosts.filter((post) => !getPostSourceUrl(post)).forEach((post) => {
     const relatedPosts = getRelatedPosts(post, publishedBlogPosts);
 
     writePage(
@@ -222,4 +223,4 @@ function build() {
   console.log(`- Blog posts rendered: ${publishedBlogPosts.length}`);
 }
 
-build();
+build().catch((error) => { console.error(error); process.exitCode = 1; });

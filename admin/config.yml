@@ -576,6 +576,29 @@ collections:
   # ─────────────────────────────────────────────
   # STORIES (blog posts)
   # ─────────────────────────────────────────────
+  - name: news
+    label: In the News
+    label_singular: External Article
+    description: "Link to articles published about Learn And Lunch. No story body needed."
+    folder: content/news
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Article Title, name: title, widget: string }
+      - label: Original Article Link
+        name: sourceUrl
+        widget: string
+        pattern: ['^https?://[^\s/]+[^\s]*$', 'Paste a full http:// or https:// link.']
+        hint: "Readers open this link directly on the publisher's website."
+      - { label: Publisher, name: author, widget: string, required: false }
+      - { label: Published At, name: publishedAt, widget: datetime, required: false }
+      - { label: Short Summary, name: excerpt, widget: text, required: false }
+      - { label: Cover Image, name: coverImage, widget: image, required: false, hint: "Leave blank to use the original article’s preview image automatically. Upload an image to override it." }
+      - { label: Cover Image Alt, name: coverImageAlt, widget: string, required: false }
+      - { name: status, widget: hidden, default: published }
+
   - name: blog
     label: Stories
     label_singular: Story
@@ -602,6 +625,12 @@ collections:
         hint: "URL path only — e.g. food-security-universities-uganda (no leading slash, no /stories/)."
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Use lowercase letters, numbers, and hyphens only. Example: food-security-universities-uganda"]
       - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards." }
+      - label: Original Article Link
+        name: sourceUrl
+        widget: string
+        required: false
+        pattern: ['^https?://[^\s/]+[^\s]*$', 'Paste a full link starting with https:// or http://.']
+        hint: "For external coverage, paste the link where the article was published. Readers will open that website, and the article will appear under In the News automatically. Leave blank for our own stories."
       - { label: Cover Image, name: coverImage, widget: image }
       - { label: Cover Image Alt, name: coverImageAlt, widget: string }
       - { label: "Cover Photo Credit", name: coverImageCredit, widget: string, required: false, hint: "Optional. Shown under the cover image, e.g. Photo: Mercy Lawino or © Body & Soil Africa." }
@@ -611,12 +640,13 @@ collections:
         name: tags
         widget: select
         multiple: true
-        hint: "The FIRST tag drives Stories page filters. Prefer one of the listed categories."
+        hint: "All selected tags appear in Stories page filters. The first tag sets the card color. Use In the News for news or articles published by external sources about Learn And Lunch."
         options:
           - Student Stories
           - Events & Campus Life
           - Impact Reports
           - Donor Highlights
+          - In the News
         default: []
 
       - { name: status, widget: hidden, default: "published" }
@@ -642,6 +672,7 @@ collections:
       - label: "5 · Story Body"
         name: body
         widget: richtext
+        required: false
         hint: "Use the toolbar for headings, bold, italic, links, lists, quotes, and images. For body images, fill the Title field with the photo credit. For quotes, end with a line starting with - and the speaker's name; leave it out for a pull quote."
         buttons:
           - bold

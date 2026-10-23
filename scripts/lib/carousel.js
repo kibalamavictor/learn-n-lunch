@@ -1,4 +1,5 @@
 const {
+  getPostUrl,
   escapeHtml,
   resolveAsset,
   getPostCategorySlug,
@@ -21,7 +22,7 @@ function renderStoryCarousel({
       const categorySlug = getPostCategorySlug(post);
       const tagColor = getPostTagColor(post);
       const searchText = getPostSearchText(post);
-      const postUrl = resolveAsset(depth, `stories/${post.slug}/`);
+      const postUrl = getPostUrl(depth, post);
       return `
             <article class="mm-card stories-item" data-category="${escapeHtml(categorySlug)}" data-categories="${escapeHtml(getPostCategorySlugs(post).join(" "))}" data-slug="${escapeHtml(post.slug)}" data-search="${escapeHtml(searchText)}">
               <img src="${resolveAsset(depth, post.coverImage, { cloudinaryWidth: 800 })}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy" decoding="async">

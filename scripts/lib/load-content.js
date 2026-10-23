@@ -45,7 +45,16 @@ function loadBlogPosts() {
     tags: post.tags?.length ? post.tags : ["Impact Reports"]
   }));
 
-  return [...blog, ...reports].sort((a, b) => {
+  const news = loadCollection("news").map((post) => ({
+    ...post,
+    slug: `news-${path.basename(post.filePath, ".md")}`,
+    tags: ["In the News"],
+    excerpt: post.excerpt || post.title,
+    coverImage: post.coverImage || "",
+    coverImageAlt: post.coverImageAlt || post.title
+  }));
+
+  return [...blog, ...reports, ...news].sort((a, b) => {
     const aDate = new Date(a.publishedAt || 0).getTime();
     const bDate = new Date(b.publishedAt || 0).getTime();
     return bDate - aDate;
