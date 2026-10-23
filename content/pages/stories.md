@@ -17,6 +17,8 @@ filters:
     slug: reports
   - label: Donor Highlights
     slug: donors
+  - label: In the News
+    slug: news
 featuredSections:
   - sectionLabel: RECENTS
     categorySlug: all

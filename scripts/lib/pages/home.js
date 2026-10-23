@@ -1,4 +1,4 @@
-const { escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug, normalizeListStrings, imageDimensionAttrs } = require("../utils");
+const { getPostUrl, escapeHtml, resolveAsset, getPostTagColor, getPostCategorySlug, normalizeListStrings, imageDimensionAttrs } = require("../utils");
 const { renderPage } = require("../partials");
 const {
   resolvePageSeo,
@@ -140,7 +140,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
                 <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
-                <a href="${resolveAsset(depth, `stories/${post.slug}/`)}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
+                <a href="${getPostUrl(depth, post)}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>`;
     })

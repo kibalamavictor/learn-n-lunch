@@ -1,4 +1,5 @@
 const {
+  getPostUrl,
   escapeHtml,
   resolveAsset,
   getPostCategorySlug,
@@ -31,7 +32,7 @@ function renderFeaturedHero(depth, post) {
             <div class="makerere-lunch-content">
                 <h2 class="makerere-lunch-title">${escapeHtml(post.title)}</h2>
                 <p class="makerere-lunch-description">${escapeHtml(post.excerpt)}</p>
-                <a href="${resolveAsset(depth, `stories/${post.slug}/`)}" class="makerere-lunch-cta-btn">
+                <a href="${getPostUrl(depth, post)}" class="makerere-lunch-cta-btn">
                 Read more
                 <span class="makerere-lunch-arrow"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" class="arrow-move" style="width: 20px; "/></span>
                 </a>
@@ -79,7 +80,7 @@ function renderStories({ site, page, publishedPosts }) {
 
   const allFilters = Array.isArray(page.filters) ? page.filters : [{ label: "All", slug: "all" }];
   const filters = allFilters.filter(
-    (filter) => filter.slug === "all" || getPostsForCategory(sortedPosts, filter.slug).length > 0
+    (filter) => filter.slug === "all" || filter.slug === "news" || getPostsForCategory(sortedPosts, filter.slug).length > 0
   );
   const categoryFilters = filters.filter((filter) => filter.slug !== "all");
 
@@ -90,7 +91,8 @@ function renderStories({ site, page, publishedPosts }) {
         students: "blue",
         events: "yellow",
         reports: "mint",
-        donors: "dark"
+        donors: "dark",
+        news: "blue"
       };
       const className = classMap[filter.slug] || "white";
       return `<button class="stories-filter-btn ${className}${index === 0 ? " active" : ""}" data-category="${escapeHtml(filter.slug)}">${escapeHtml(filter.label)}</button>`;

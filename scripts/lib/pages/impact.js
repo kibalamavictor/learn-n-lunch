@@ -1,4 +1,4 @@
-const { escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, sortPostsByDate, defaultFooterCta, imageDimensionAttrs } = require("../utils");
+const { getPostUrl, escapeHtml, resolveAsset, getPostCategorySlug, getPostTagColor, sortPostsByDate, defaultFooterCta, imageDimensionAttrs } = require("../utils");
 const { renderPage } = require("../partials");
 const { renderImpactMap } = require("../render-impact-map");
 const { resolvePageSeo, buildOrganizationJsonLd, buildBreadcrumbJsonLd } = require("../seo");
@@ -31,7 +31,7 @@ function renderImpactFacesCarousel(depth, posts, faces = {}) {
     .map((post, index) => {
       const categorySlug = getPostCategorySlug(post);
       const tagColor = getPostTagColor(post);
-      const postUrl = resolveAsset(depth, `stories/${post.slug}/`);
+      const postUrl = getPostUrl(depth, post);
 
       return `
         <article class="impact-faces-card mm-card" data-index="${index}">

@@ -229,6 +229,14 @@ function validate() {
     validateRequired(data.photo, "photo", filePath);
   }
 
+  for (const filePath of listFiles(path.join(ROOT, "content/news"), ".md")) {
+    const data = readMarkdownData(filePath);
+    validateRequired(data.title, "title", filePath);
+    validateRequired(data.status, "status", filePath);
+    assert(Boolean(require("./lib/utils").getPostSourceUrl(data)),
+      `[invalid] ${filePath}: sourceUrl must be a full HTTP or HTTPS article link`);
+  }
+
   const blogFiles = listFiles(path.join(ROOT, "content/blog"), ".md");
   for (const filePath of blogFiles) {
     const data = readMarkdownData(filePath);

@@ -268,7 +268,8 @@ const POST_TAG_TO_FILTER = {
   "student-stories": "students",
   "events-and-campus-life": "events",
   "impact-reports": "reports",
-  "donor-highlights": "donors"
+  "donor-highlights": "donors",
+  "in-the-news": "news"
 };
 
 const FILTER_TAG_COLORS = {
@@ -276,6 +277,7 @@ const FILTER_TAG_COLORS = {
   events: "#f6b931",
   reports: "#61cdbb",
   donors: "#222222",
+  news: "#bce2f4",
   all: "#ffffff"
 };
 
@@ -289,7 +291,21 @@ function getPostCategorySlugs(post) {
   const slugs = (post?.tags || [])
     .map((tag) => POST_TAG_TO_FILTER[normalizeTagSlug(tag)])
     .filter(Boolean);
+  if (getPostSourceUrl(post)) slugs.push("news");
   return slugs.length ? [...new Set(slugs)] : ["all"];
+}
+
+function getPostSourceUrl(post) {
+  try {
+    const url = new URL(String(post?.sourceUrl || "").trim());
+    return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+  } catch {
+    return "";
+  }
+}
+
+function getPostUrl(depth, post) {
+  return escapeHtml(getPostSourceUrl(post) || resolveAsset(depth, `stories/${post.slug}/`));
 }
 
 function getPostTagColor(post) {
@@ -418,6 +434,8 @@ module.exports = {
   normalizeListStrings,
   getPostCategorySlug,
   getPostCategorySlugs,
+  getPostSourceUrl,
+  getPostUrl,
   getPostTagColor,
   getPostSearchText,
   isReportPost,

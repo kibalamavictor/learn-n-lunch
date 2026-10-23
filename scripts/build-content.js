@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { loadAllContent } = require("./lib/load-content");
-const { writeFileEnsured, getRelatedPosts } = require("./lib/utils");
+const { writeFileEnsured, getRelatedPosts, getPostSourceUrl } = require("./lib/utils");
 const { buildSitemapEntries, renderSitemapXml, getSiteUrl } = require("./lib/seo");
 const { renderHome } = require("./lib/pages/home");
 const { renderAbout } = require("./lib/pages/about");
@@ -182,7 +182,7 @@ function build() {
     })
   );
 
-  publishedBlogPosts.forEach((post) => {
+  publishedBlogPosts.filter((post) => !getPostSourceUrl(post)).forEach((post) => {
     const relatedPosts = getRelatedPosts(post, publishedBlogPosts);
 
     writePage(

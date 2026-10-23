@@ -1,4 +1,4 @@
-const { escapeHtml, collapseMetaText, optimizeCloudinaryUrl } = require("./utils");
+const { getPostSourceUrl, escapeHtml, collapseMetaText, optimizeCloudinaryUrl } = require("./utils");
 
 const DEFAULT_SITE_URL = "https://www.learnandlunch.org";
 
@@ -313,7 +313,7 @@ function buildCollectionPageJsonLd({ site, canonicalUrl, name, description, item
     hasPart: items.slice(0, 12).map((item) => ({
       "@type": "BlogPosting",
       headline: item.title,
-      url: buildCanonicalUrl(site, `/stories/${item.slug}/`)
+      url: getPostSourceUrl(item) || buildCanonicalUrl(site, `/stories/${item.slug}/`)
     }))
   };
 }
@@ -328,7 +328,7 @@ function buildItemListJsonLd(site, posts) {
       "@type": "ListItem",
       position: index + 1,
       name: post.title,
-      url: buildCanonicalUrl(site, `/stories/${post.slug}/`)
+      url: getPostSourceUrl(post) || buildCanonicalUrl(site, `/stories/${post.slug}/`)
     }))
   };
 }
@@ -426,7 +426,7 @@ function buildSitemapEntries({ site, publishedBlogPosts, programmesWithPages = [
     { path: "/birthday-card/", changefreq: "monthly", priority: "0.5" }
   ];
 
-  const blogEntries = publishedBlogPosts.map((post) => ({
+  const blogEntries = publishedBlogPosts.filter((post) => !getPostSourceUrl(post)).map((post) => ({
     path: `/stories/${post.slug}/`,
     changefreq: "monthly",
     priority: "0.7",
