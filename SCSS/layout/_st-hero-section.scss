@@ -39,7 +39,7 @@
 
   .stories-hero-desc {
     margin-top: 1.5rem;
-    max-width: 500px;
+    max-width: 300px;
   }
 
   .stories-search-bar {
@@ -268,22 +268,34 @@
   .makerere-lunch-cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: .5rem 2.2rem;
+    gap: 10px;
+    padding: 6px 40px;
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     color: #1a1a1a;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: normal;
     text-decoration: none;
-    border: 2px solid #1a1a1a;
+    border: 1px solid #1a1a1a;
     box-shadow: 4px 4px 0 #000000;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     position: relative;
+    white-space: nowrap;
+
+    &:hover:not(:disabled):not(.active),
+    &:focus-visible:not(:disabled):not(.active) {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
   }
 
-
-
   .makerere-lunch-arrow {
-    font-size: 1.5rem;
+    display: inline-block;
     transition: transform 0.3s ease;
   }
 
@@ -397,3 +409,49 @@
   }
 
   }
+// Category feature stories: desktop composition, mobile uses the existing carousel.
+.stories-feature-grid { display: none; }
+@media (min-width: 1024px) {
+  .stories-feature-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    max-width: 1100px; margin: 20px auto 40px; padding: 0 20px;
+    align-items: stretch;
+  }
+  .stories-feature-card {
+    position: relative; min-height: 290px; display: flex; align-items: flex-end;
+    padding: 24px; isolation: isolate;
+  }
+  .stories-feature-lead { grid-row: span 2; min-height: 620px; }
+  .stories-feature-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+  .stories-feature-tag { position: absolute; top: 24px; left: 24px; width: 56px; height: 15px; border: 1px solid #000; box-shadow: 2px 2px #000; }
+  .stories-feature-copy { background: white; padding: 24px; width: 100%; box-sizing: border-box; }
+  .stories-feature-copy h2 { font-size: 22px; line-height: 1.3; margin: 0 0 20px; }
+  .stories-feature-card:not(.stories-feature-lead) h2,
+  .stories-feature-copy p,
+  .stories-feature-copy a { font-family: util.$font-n; font-weight: 400; }
+  .stories-feature-lead h2 { font-family: util.$font-a; font-size: 34px; text-transform: uppercase; }
+  .stories-feature-copy p { margin: 0 0 24px; line-height: 1.5; }
+  .stories-feature-copy a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #f6b931;
+    color: #000;
+    padding: 6px 40px;
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  .stories-feature-grid:not(:has(.stories-feature-card:not([style*="display: none"]))) { display: none; }
+  .stories-category-section .stories-results-carousel:not(:has(.stories-item:not([style*="display: none"]))) { display: none; }
+}
+@media (min-width: 1024px) {
+  .stories-feature-grid:has(> :last-child:nth-child(2)) .stories-feature-lead { grid-row: auto; min-height: 520px; }
+  .stories-feature-grid:has(> :only-child) { grid-template-columns: 1fr; }
+  .stories-feature-grid:has(> :only-child) .stories-feature-lead { min-height: 480px; }
+  .stories-feature-grid:has(> :only-child) .stories-feature-copy { max-width: 560px; }
+}
