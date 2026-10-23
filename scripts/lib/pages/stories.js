@@ -92,7 +92,7 @@ function renderStories({ site, page, publishedPosts }) {
         events: "yellow",
         reports: "mint",
         donors: "dark",
-        news: "blue"
+        news: "lavender"
       };
       const className = classMap[filter.slug] || "white";
       return `<button class="stories-filter-btn ${className}${index === 0 ? " active" : ""}" data-category="${escapeHtml(filter.slug)}">${escapeHtml(filter.label)}</button>`;
