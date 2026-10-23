@@ -24,9 +24,10 @@ const { study: kiuFoodStudy } = require("./lib/research/kiu-food-study");
 
 const ROOT = process.cwd();
 
-function build() {
+async function build() {
   const content = loadAllContent();
   const { site, pages, stats, team, testimonials, programmes, publishedBlogPosts } = content;
+  await require("./lib/news-preview").populateNewsImages(publishedBlogPosts);
   const programmesWithPages = programmes.filter((programme) => programme.hasPage);
   let pagesRendered = 0;
 
@@ -222,4 +223,4 @@ function build() {
   console.log(`- Blog posts rendered: ${publishedBlogPosts.length}`);
 }
 
-build();
+build().catch((error) => { console.error(error); process.exitCode = 1; });

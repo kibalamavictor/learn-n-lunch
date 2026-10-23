@@ -50,7 +50,7 @@ function loadBlogPosts() {
     slug: `news-${path.basename(post.filePath, ".md")}`,
     tags: ["In the News"],
     excerpt: post.excerpt || post.title,
-    coverImage: post.coverImage || "/assets/uploads/learn_and_lunch_004.webp",
+    coverImage: post.coverImage || "",
     coverImageAlt: post.coverImageAlt || post.title
   }));
 

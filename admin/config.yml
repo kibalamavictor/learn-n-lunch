@@ -595,7 +595,7 @@ collections:
       - { label: Publisher, name: author, widget: string, required: false }
       - { label: Published At, name: publishedAt, widget: datetime, required: false }
       - { label: Short Summary, name: excerpt, widget: text, required: false }
-      - { label: Cover Image, name: coverImage, widget: image, required: false }
+      - { label: Cover Image, name: coverImage, widget: image, required: false, hint: "Leave blank to use the original article’s preview image automatically. Upload an image to override it." }
       - { label: Cover Image Alt, name: coverImageAlt, widget: string, required: false }
       - { name: status, widget: hidden, default: published }
 
