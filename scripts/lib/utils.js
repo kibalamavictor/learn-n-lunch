@@ -277,7 +277,7 @@ const FILTER_TAG_COLORS = {
   events: "#f6b931",
   reports: "#61cdbb",
   donors: "#222222",
-  news: "#bce2f4",
+  news: "#d8c4f1",
   all: "#ffffff"
 };
 
