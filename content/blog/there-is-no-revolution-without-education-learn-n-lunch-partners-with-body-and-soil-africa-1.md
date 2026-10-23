@@ -12,13 +12,12 @@ coverImageAlt: Learn And Lunch team members meeting with Body and Soil Africa
 coverImageCredit: "Photo: Semaganda Joshua Victor"
 author: Mercy Lawino
 tags:
-  - Student Stories
   - Donor Highlights
-programme: campus-nutrition-series
 status: published
 publishedAt: 2026-04-06T12:00:00.000+03:00
-seoDescription: Learn And Lunch and Body and Soil Africa explore a partnership to
-  move beyond food relief — empowering university students through nutrition
+programme: campus-nutrition-series
+seoDescription: Learn And Lunch and Body and Soil Africa explore a partnership
+  to move beyond food relief — empowering university students through nutrition
   education, sustainable agriculture, and hands-on food systems learning.
 ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-11.webp
 ---
