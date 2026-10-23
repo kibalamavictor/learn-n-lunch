@@ -495,8 +495,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const shownSlugs = new Set();
       let visibleCount = 0;
 
+      const desktopFeatures = window.matchMedia("(min-width: 1024px)").matches;
       storiesSections.forEach((section) => {
         let visibleInSection = 0;
+        const sectionMatch = category === "all" || section.dataset.category === category;
+        const featuredSlugs = new Set(Array.from(section.querySelectorAll(".stories-feature-card")).map((card) => card.dataset.slug));
 
         section.querySelectorAll(".stories-item").forEach((item) => {
           const itemCategories = (item.dataset.categories || item.dataset.category || "all").split(" ");
@@ -505,7 +508,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const categoryMatch = category === "all" || itemCategories.includes(category);
           const slug = item.dataset.slug;
           const duplicate = dedupe && slug && shownSlugs.has(slug);
-          const visible = categoryMatch && searchMatch && !duplicate;
+          const isFeature = item.classList.contains("stories-feature-card");
+          const layoutMatch = isFeature ? desktopFeatures : !(desktopFeatures && featuredSlugs.has(slug));
+          const visible = sectionMatch && layoutMatch && categoryMatch && searchMatch && !duplicate;
 
           item.style.display = visible ? "" : "none";
           if (visible) {
@@ -528,6 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.dispatchEvent(new Event("resize"));
     }
 
+    window.matchMedia("(min-width: 1024px)").addEventListener("change", applyStoriesFilter);
     const initialParams = new URLSearchParams(window.location.search);
     if (initialParams.get("q")) storiesSearchInput.value = initialParams.get("q");
     if (initialParams.get("category")) setActiveCategory(initialParams.get("category"));

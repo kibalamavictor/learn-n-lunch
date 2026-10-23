@@ -1,5 +1,6 @@
 const {
   getPostUrl,
+  getPostTagColor,
   escapeHtml,
   resolveAsset,
   getPostCategorySlug,
@@ -51,6 +52,19 @@ function formatSectionTitle(title) {
   return `${escapeHtml(parts[0])} <br> ${escapeHtml(parts.slice(1).join(" & "))}`;
 }
 
+function renderCategoryFeatures(depth, posts) {
+  return `<div class="stories-feature-grid">${posts.slice(0, 3).map((post, index) => `
+    <article class="stories-feature-card stories-item${index === 0 ? ' stories-feature-lead' : ''}" data-slug="${escapeHtml(post.slug)}" data-categories="${escapeHtml(getPostCategorySlugs(post).join(' '))}" data-search="${escapeHtml(getPostSearchText(post))}">
+      <img class="stories-feature-image" src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" loading="lazy">
+      <span class="stories-feature-tag" style="background:${getPostTagColor(post)}" aria-hidden="true"></span>
+      <div class="stories-feature-copy">
+        <h2>${escapeHtml(post.title)}</h2>
+        ${index === 0 && post.excerpt && post.excerpt !== post.title ? `<p>${escapeHtml(post.excerpt)}</p>` : ''}
+        <a class="makerere-lunch-cta-btn" href="${getPostUrl(depth, post)}">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span><span aria-hidden="true"> →</span></a>
+      </div>
+    </article>`).join('')}</div>`;
+}
+
 function renderCategorySection(depth, { categorySlug, title, posts, carouselId }) {
   if (!posts.length) return "";
 
@@ -60,6 +74,7 @@ function renderCategorySection(depth, { categorySlug, title, posts, carouselId }
       <p class="stories-recents-title">${formatSectionTitle(title)}</p>
     </div>
 
+    ${renderCategoryFeatures(depth, posts)}
     ${renderStoryCarousel({
       depth,
       posts,
