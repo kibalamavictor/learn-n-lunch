@@ -426,7 +426,13 @@
   .stories-feature-tag { position: absolute; top: 24px; left: 24px; width: 56px; height: 15px; border: 1px solid #000; box-shadow: 2px 2px #000; }
   .stories-feature-copy { background: white; padding: 24px; width: 100%; box-sizing: border-box; }
   .stories-feature-copy h2 { font-size: 22px; line-height: 1.3; margin: 0 0 20px; }
-  .stories-feature-card:not(.stories-feature-lead) h2,
+  .stories-feature-card:not(.stories-feature-lead) h2 {
+    font-family: util.$font-n;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
   .stories-feature-copy p,
   .stories-feature-copy a { font-family: util.$font-n; font-weight: 400; }
   .stories-feature-lead h2 { font-family: util.$font-a; font-size: 34px; text-transform: uppercase; }

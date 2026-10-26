@@ -3724,7 +3724,7 @@ a.partner-card--dark:focus-visible {
 
 .stories-hero-desc {
   margin-top: 1.5rem;
-  max-width: 500px;
+  max-width: 300px;
 }
 
 .stories-search-bar {
@@ -4102,7 +4102,13 @@ a.partner-card--dark:focus-visible {
     line-height: 1.3;
     margin: 0 0 20px;
   }
-  .stories-feature-card:not(.stories-feature-lead) h2,
+  .stories-feature-card:not(.stories-feature-lead) h2 {
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
   .stories-feature-copy p,
   .stories-feature-copy a {
     font-family: "Nunito", sans-serif;
