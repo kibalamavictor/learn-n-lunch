@@ -7,10 +7,7 @@ seoDescription: Learn And Lunch is a student-led organisation ending campus
 ogImage: /assets/uploads/learn_and_lunch_001.webp
 hero:
   heading: Ending Campus Hunger. Unlocking Student Success.
-  body: Food security is a foundation for learning, wellbeing, and opportunity.
-    Learn And Lunch advocates for a future without campus hunger and builds
-    practical solutions through research, student networks, and partnerships to
-    ensure every university student has the opportunity to succeed.
+  body: "Food security is a foundation for learning, wellbeing, and opportunity. "
   carouselImages:
     - image: /assets/uploads/learn_and_lunch_001.webp
       alt: Learn and lunch photo frame photo
