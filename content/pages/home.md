@@ -20,7 +20,7 @@ hero:
 missionBanner:
   - NO STUDENT SHOULD STUDY HUNGRY
 impactIntro:
-  body: Learn And Lunch is a student-led organization advancing food security as a
+  body: Learn And Lunch is a student-led initiative advancing food security as a
     foundation for student success in Ugandan universities. Through research,
     advocacy, student networks, and practical solutions, we work with
     universities, student leaders, and partners to understand campus food
