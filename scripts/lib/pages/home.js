@@ -191,7 +191,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
         const cardClass = [
           "partner-card",
           logoSrc ? "" : "partner-card--text-only",
-          isDarkLogo ? "partner-card--dark" : ""
+          isDarkLogo ? "partner-card--monochrome" : ""
         ]
           .filter(Boolean)
           .join(" ");

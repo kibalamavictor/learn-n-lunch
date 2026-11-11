@@ -620,3 +620,7 @@ $prog-convene: #61cdbb;
     padding: 1.75rem 1.25rem;
   }
 }
+
+.prog-partner-logo--monochrome {
+  filter: invert(1);
+}

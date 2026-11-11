@@ -112,10 +112,10 @@ partners:
   intro: We work with campus communities, student networks, and organisations
     building practical pathways to end campus hunger.
   items:
-    - name: BODY & SOIL Africa
+    - name: BODY & SOIL
       url: https://www.bodyandsoil.africa/
       logo: /assets/partners/body-and-soil.png
-      logoAlt: BODY & SOIL Africa logo
+      logoAlt: BODY & SOIL logo
     - name: Nutri-Safe Communities
       url: https://nutri-safecommunities.unaux.com/
       logo: /assets/uploads/nutri-safe-communities-logo.webp

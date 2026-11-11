@@ -13,7 +13,7 @@ coverImageAlt: Students, Learn And Lunch and BODY & SOIL team members in front
 coverImageCredit: "Photo: BODY & SOIL"
 stepsHeading: What happens in a session
 partners:
-  - name: BODY & SOIL Africa
+  - name: BODY & SOIL
     url: https://www.bodyandsoil.africa/
     logo: /assets/partners/body-and-soil.png
   - name: Nutri-Safe Communities

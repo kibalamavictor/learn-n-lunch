@@ -286,7 +286,7 @@ function renderProgramme({ site, page, programme, relatedPosts = [] }) {
       <ul class="prog-partners__list">${programme.partners
         .map((partner) => {
           const inner = partner.logo
-            ? `<img src="${resolveAsset(depth, partner.logo)}" alt="${escapeHtml(partner.name)} logo" loading="lazy" /><span>${escapeHtml(
+            ? `<img${/body-and-soil/i.test(String(partner.logo)) ? ' class="prog-partner-logo--monochrome"' : ''} src="${resolveAsset(depth, partner.logo)}" alt="${escapeHtml(partner.name)} logo" loading="lazy" /><span>${escapeHtml(
                 partner.name
               )}</span>`
             : `<span>${escapeHtml(partner.name)}</span>`;
