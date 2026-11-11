@@ -122,9 +122,9 @@ function validate() {
 
   validatePage("donate.md", [
     { key: "heading", label: "heading" },
-    { key: "amountPresets", label: "amountPresets" },
-    { key: "frequencyOptions", label: "frequencyOptions" },
-    { key: "fieldLabels", label: "fieldLabels" }
+    { key: "supportOptions", label: "supportOptions" },
+    { key: "partnershipEmail", label: "partnershipEmail" },
+    { key: "description", label: "description" }
   ]);
 
   validatePage("get-involved.md", [

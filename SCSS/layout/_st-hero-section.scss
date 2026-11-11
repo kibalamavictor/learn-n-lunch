@@ -125,7 +125,7 @@
   .stories-filter-btn.yellow { background: #f6b931; color: var(--text-dark); }
   .stories-filter-btn.lavender { background: #d8c4f1; color: var(--text-dark); }
   .stories-filter-btn.mint { background: #61cdbb; color: var(--text-dark); }
-  .stories-filter-btn.dark { background: #222; color: #f6b931; }
+  .stories-filter-btn.dark { background: #4B4A4A; color: #f6b931; }
 
   .stories-empty-state {
     max-width: 1140px;
@@ -460,4 +460,68 @@
   .stories-feature-grid:has(> :only-child) { grid-template-columns: 1fr; }
   .stories-feature-grid:has(> :only-child) .stories-feature-lead { min-height: 480px; }
   .stories-feature-grid:has(> :only-child) .stories-feature-copy { max-width: 560px; }
+}
+
+// Wide teal title block matching the Stories reference.
+.stories-hero-heading {
+  position: relative;
+  isolation: isolate;
+}
+.stories-hero-heading::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 81%;
+  transform: translateY(-50%);
+  width: 85%;
+  height: 55%;
+  background: #2f9c87;
+  z-index: -1;
+}
+
+// Section accents share the filter palette.
+.stories-category-section {
+  --section-highlight: #fff;
+}
+.stories-category-section[data-category="students"] { --section-highlight: #bce2f4; }
+.stories-category-section[data-category="events"] { --section-highlight: #f6b931; }
+.stories-category-section[data-category="reports"] { --section-highlight: #61cdbb; }
+.stories-category-section[data-category="donors"] { --section-highlight: #4B4A4A; }
+.stories-category-section[data-category="news"] { --section-highlight: #d8c4f1; }
+.stories-section-title-text {
+  display: inline-block;
+}
+.stories-title-last-line {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding: 0 .35em .15em 0;
+}
+.stories-title-last-line::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -.2em;
+  bottom: 0;
+  width: 52%;
+  background: var(--section-highlight);
+  z-index: -1;
+}
+.stories-category-section[data-category="donors"] .stories-title-last-line::before {
+  content: none;
+}
+.stories-category-section[data-category="donors"] .stories-title-first-line {
+  display: inline-flex;
+  align-items: center;
+  gap: .2em;
+}
+.stories-category-section[data-category="donors"] .stories-title-first-line::after {
+  content: '';
+  display: block;
+  width: 1.4em;
+  height: 1em;
+  background: #4B4A4A;
+}
+.stories-category-section[data-category="all"] .stories-title-last-line::before {
+  content: none;
 }

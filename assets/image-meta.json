@@ -126,5 +126,33 @@
   "/about-us/about/photos/team.webp": {
     "width": 1200,
     "height": 900
+  },
+  "/assets/uploads/campus-nutrition-series-cooking-session.webp": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/assets/uploads/campus-nutrition-series-dishes.webp": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/assets/uploads/campus-nutrition-series-kyambogo-class.webp": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/assets/uploads/campus-nutrition-series-kyambogo-group.webp": {
+    "width": 1600,
+    "height": 1066
+  },
+  "/assets/uploads/kiu-food-study-share.webp": {
+    "width": 1024,
+    "height": 535
+  },
+  "/assets/uploads/kyundsa-logo.webp": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/assets/uploads/nutri-safe-communities-logo.webp": {
+    "width": 718,
+    "height": 949
   }
 }

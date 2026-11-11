@@ -47,7 +47,7 @@ function renderBlogPost({ site, post, relatedPosts }) {
   const isPdfReport = Boolean(post.reportPdf);
   const relatedTitle = isReportPost(post)
     ? "MORE REPORTS<br> &amp; DOCUMENTS"
-    : "PEOPLE<br> ALSO READ";
+    : 'PEOPLE<br><span class="related-title-highlight">ALSO READ</span>';
 
   const relatedSectionHtml =
     relatedPosts.length > 0

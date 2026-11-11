@@ -447,7 +447,7 @@ collections:
       - name: donate
         label: "Donate"
         file: content/pages/donate.md
-        description: "Donate page copy, amount presets, and form field labels."
+        description: "Support page introduction, contribution options, and partnership contact."
         fields:
           - { label: "Page Title (SEO)", name: title, widget: string }
           - { label: SEO Title, name: seoTitle, widget: string, required: false }
@@ -455,41 +455,14 @@ collections:
           - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - { label: "1 · Heading", name: heading, widget: string }
           - { label: "1 · Description", name: description, widget: text }
-          - label: "2 · Donation Amount Presets"
-            name: amountPresets
+          - { label: Partnership Email, name: partnershipEmail, widget: string }
+          - label: Support Options
+            name: supportOptions
             widget: list
-            summary: "{{fields.label}} — {{fields.value}}"
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Value, name: value, widget: number }
-              - { label: Description, name: description, widget: string }
-          - label: "3 · Frequency Options"
-            name: frequencyOptions
-            widget: list
-            summary: "{{fields.label}}"
-            fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Default Active, name: isDefault, widget: boolean, default: false }
-              - { label: Note, name: note, widget: string, required: false }
-          - label: "4 · Form Field Labels"
-            name: fieldLabels
-            widget: object
-            collapsed: true
-            fields:
-              - { label: Full Name, name: fullName, widget: string }
-              - { label: Email, name: email, widget: string }
-              - { label: Phone, name: phone, widget: string }
-              - { label: Updates Checkbox, name: updatesCheckbox, widget: string }
-          - { label: FAQ Heading, name: faqHeading, widget: string, required: false, default: "Frequently Asked Questions" }
-          - label: "5 · FAQ"
-            name: faq
-            widget: list
-            required: false
-            summary: "{{fields.question}}"
-            hint: "Visible FAQ content used for FAQ rich results in search."
-            fields:
-              - { label: Question, name: question, widget: string }
-              - { label: Answer, name: answer, widget: text }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Link Label, name: cta, widget: string }
 
       - name: getInvolved
         label: "Get Involved"

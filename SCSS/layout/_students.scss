@@ -294,11 +294,36 @@
 
     .exam-story-header {
       margin-bottom: 2rem;
-      flex-wrap: wrap;
-      row-gap: 0.75rem;
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      gap: .5rem;
+      align-items: center;
+
+      > a { display: flex; }
+
+      .category-badge {
+        justify-self: start;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: anywhere;
+        padding: .5rem;
+      }
 
       .share-button {
-        margin-left: auto;
+        margin-left: 0;
+        justify-self: end;
+        justify-content: center;
+        min-height: 40px;
+        padding: .5rem .65rem;
+        white-space: nowrap;
+
+        img {
+          display: block;
+          width: 20px;
+          height: 22px;
+          flex-shrink: 0;
+        }
       }
     }
 
@@ -373,3 +398,20 @@
       }
     }
   }
+
+.related-title-highlight {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding: 0 .35em .15em 0;
+}
+.related-title-highlight::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -.2em;
+  bottom: 0;
+  width: 52%;
+  background: #bce2f4;
+  z-index: -1;
+}

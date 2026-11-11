@@ -113,6 +113,8 @@ async function build() {
     })
   );
 
+  writePage("donations/index.html", renderDonate({ site, page: pages.donate }));
+
   writePage(
     "contact-us/index.html",
     renderContact({

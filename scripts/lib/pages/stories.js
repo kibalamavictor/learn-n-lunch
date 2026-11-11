@@ -48,8 +48,18 @@ function getPostsForCategory(posts, categorySlug) {
 
 function formatSectionTitle(title) {
   const parts = title.split(" & ");
-  if (parts.length < 2) return escapeHtml(title);
-  return `${escapeHtml(parts[0])} <br> ${escapeHtml(parts.slice(1).join(" & "))}`;
+  let firstLine;
+  let lastLine;
+  if (parts.length > 1) {
+    firstLine = `${escapeHtml(parts[0])} &amp;`;
+    lastLine = escapeHtml(parts.slice(1).join(" & "));
+  } else {
+    const words = title.trim().split(/\s+/);
+    if (words.length === 1) return `<span class="stories-title-last-line">${escapeHtml(title)}</span>`;
+    lastLine = escapeHtml(words.pop());
+    firstLine = escapeHtml(words.join(" "));
+  }
+  return `<span class="stories-title-first-line">${firstLine}</span><br><span class="stories-title-last-line">${lastLine}</span>`;
 }
 
 function renderCategoryFeatures(depth, posts) {
@@ -71,7 +81,7 @@ function renderCategorySection(depth, { categorySlug, title, posts, carouselId }
   return `
   <div class="stories-category-section" data-category="${escapeHtml(categorySlug)}">
     <div class="donor-highlight-container stories-section-heading">
-      <p class="stories-recents-title">${formatSectionTitle(title)}</p>
+      <h2 class="stories-recents-title"><span class="stories-section-title-text">${formatSectionTitle(title)}</span></h2>
     </div>
 
     ${renderCategoryFeatures(depth, posts)}
@@ -118,7 +128,7 @@ function renderStories({ site, page, publishedPosts }) {
   const recentsSection = `
   <div class="stories-category-section" data-category="all">
     <div class="donor-highlight-container stories-section-heading">
-      <p class="stories-recents-title">RECENTS</p>
+      <h2 class="stories-recents-title"><span class="stories-section-title-text"><span class="stories-title-last-line">RECENTS</span></span></h2>
     </div>
 
     ${renderFeaturedHero(depth, lead)}
@@ -147,7 +157,7 @@ function renderStories({ site, page, publishedPosts }) {
 <section class="stories-section">
   <div class="stories-container">
     <div class="stories-text-area">
-      <h1 class="stories-hero-heading">${escapeHtml(page.hero.heading).replace(" & ", " <br> ")}</h1>
+      <h1 class="stories-hero-heading">${escapeHtml(page.hero.heading).replace(" &amp; ", "<br>&amp; ")}</h1>
       <div class="stories-hero-desc">
         <p>${escapeHtml(page.hero.description)}</p>
       </div>
