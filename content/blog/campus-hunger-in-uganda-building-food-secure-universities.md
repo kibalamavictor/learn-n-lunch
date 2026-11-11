@@ -175,22 +175,10 @@ And we want the commitments and partnerships emerging from the Summit to lead so
 
 **The bigger goal is to move campus hunger from an invisible student experience to an issue that institutions recognise, understand and act upon.**
 
-## Join the Campus Food Security Conversation
+## The Campus Food Security Summit
 
-If you are a university student who has experienced challenges accessing food, **your experience matters.**
+The Campus Food Security Summit 2026 took place on **21 October 2026** at Kampala International University, Main Campus, Kansanga, Kampala. Registration is now closed.
 
-If you are a student leader, your voice can help bring other students into the conversation.
-
-If you represent a university, government institution, civil society organisation, research institution, development partner or private-sector organisation, there is an opportunity to contribute to building solutions.
-
-The Campus Food Security Summit 2026 is an invitation to begin that work together.
-
-**21 October 2026**\
-**Kampala International University, Main Campus, Kansanga, Kampala**\
-**9:00 AM – 5:00 PM**
-
-Breakfast and lunch will be provided to confirmed student participants.
-
-### [Register for the Campus Food Security Summit 2026](https://www.learnandlunch.org/summit/)
+### [Read how the Campus Food Security Summit 2026 went](/stories/first-campus-food-security-summit-2026/)
 
 **A student should not have to choose between food and education.**

@@ -11,13 +11,11 @@ const { renderImpact } = require("./lib/pages/impact");
 const { renderStories } = require("./lib/pages/stories");
 const { renderDonate } = require("./lib/pages/donate");
 const { renderContact, renderGetInvolved } = require("./lib/pages/contact");
-const { renderSummit } = require("./lib/pages/summit");
-const { renderSummitPoster } = require("./lib/pages/summit-poster");
+const { renderClosedPage } = require("./lib/pages/closed");
 const { renderBirthdayCard } = require("./lib/pages/birthday-card");
 const { renderNotFound } = require("./lib/pages/not-found");
 const { renderBlogPost } = require("./lib/pages/blog-post");
 const { renderProgrammes, renderProgramme } = require("./lib/pages/programmes");
-const { renderResearchStudy } = require("./lib/pages/research-study");
 const { renderResearchDashboard } = require("./lib/pages/research-dashboard");
 const { renderStudyAppsScript } = require("./lib/research/apps-script");
 const { study: kiuFoodStudy } = require("./lib/research/kiu-food-study");
@@ -133,28 +131,50 @@ async function build() {
 
   writePage(
     "summit/index.html",
-    renderSummit({
+    renderClosedPage({
       site,
-      page: pages.summit,
-      universities: content.universities
+      depth: 1,
+      canonicalPath: "/summit/",
+      kicker: "Campus Food Security Summit 2026",
+      title: `Summit closed | ${site.siteName}`,
+      heading: "Registration is closed",
+      description: "The Campus Food Security Summit 2026 has taken place. Registration and the mobilisation poster are closed.",
+      body: "<p>The Campus Food Security Summit 2026 has taken place. Thank you to the students, universities and partners who were in the room.</p>",
+      action: {
+        label: "Read the summit story",
+        href: "stories/first-campus-food-security-summit-2026/"
+      }
     })
   );
 
-  writePage(
-    "ill-be-there/index.html",
-    renderSummitPoster({
-      site,
-      page: pages.summitPoster
-    })
-  );
+  const summitRedirect = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=../summit/" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${getSiteUrl(site)}/summit/" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>Registration is closed. <a href="../summit/">Continue</a>.</p>
+  </body>
+</html>`;
+
+  writePage("ill-be-there/index.html", summitRedirect);
+  writePage("summit-poster/index.html", summitRedirect);
 
   writePage(
     "kiu-food-study/index.html",
-    renderResearchStudy({
+    renderClosedPage({
       site,
-      page: pages.kiuFoodStudy,
-      study: kiuFoodStudy,
-      canonicalPath: "/kiu-food-study/"
+      depth: 1,
+      canonicalPath: "/kiu-food-study/",
+      kicker: "Research questionnaire",
+      title: `Questionnaire closed | ${site.siteName}`,
+      heading: "This questionnaire is closed",
+      description: "The KIU student food insecurity questionnaire is no longer accepting responses.",
+      body: "<p>The student food insecurity questionnaire at Kampala International University is no longer accepting responses. Thank you to every student who took part.</p>"
     })
   );
   writePage(
@@ -174,14 +194,6 @@ async function build() {
     renderBirthdayCard({
       site,
       page: pages.birthdayCard
-    })
-  );
-
-  writePage(
-    "summit-poster/index.html",
-    renderSummitPoster({
-      site,
-      page: pages.summitPoster
     })
   );
 
