@@ -73,12 +73,12 @@
 
     .learn-lunch-image-right {
         flex: 0 0 320px;
-        transform: rotate(8deg);
+        transform: translateY(45px) rotate(12deg);
         transition: transform 0.3s ease;
     }
 
     .learn-lunch-image-right:hover {
-        transform: rotate(5deg) scale(1.05);
+        transform: translateY(45px) rotate(9deg) scale(1.05);
     }
 
     .learn-lunch-image-right img {
@@ -147,3 +147,10 @@
             font-size: 16px;
         }
     }
+.learn-lunch-image-left img,
+.learn-lunch-image-right img {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
