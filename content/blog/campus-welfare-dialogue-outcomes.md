@@ -1,15 +1,16 @@
 ---
 title: "Campus Welfare Dialogue: Outcomes & Next Steps"
 slug: campus-welfare-dialogue-outcomes
-excerpt: Student leaders, faculty, and Learn And Lunch agreed on concrete actions
-  to improve meal access and welfare communication across partner campuses.
+excerpt: Student leaders, faculty, and Learn And Lunch agreed on concrete
+  actions to improve meal access and welfare communication across partner
+  campuses.
 coverImage: /new/board-room.jpg
 coverImageAlt: Campus welfare dialogue session with student and faculty representatives
 coverImageCredit: ""
 author: Learn And Lunch Editorial Team
 tags:
   - Impact Reports
-status: draft
+status: published
 publishedAt: 2025-08-15T14:00:00.000Z
 seoTitle: Campus Welfare Dialogue Outcomes | Learn And Lunch
 seoDescription: Outcomes from the Learn And Lunch campus welfare dialogue —
@@ -57,12 +58,12 @@ From a live polling exercise at the dialogue:
 
 ## Implementation timeline
 
-| Action                               | Owner              | Target date    |
-| ------------------------------------ | ------------------ | -------------- |
-| Publish pilot schedules (2 campuses) | Ambassadors        | September 2025 |
-| Launch feedback forms                | Campus leads       | September 2025 |
+| Action                               | Owner               | Target date    |
+| ------------------------------------ | ------------------- | -------------- |
+| Publish pilot schedules (2 campuses) | Ambassadors         | September 2025 |
+| Launch feedback forms                | Campus leads        | September 2025 |
 | Volunteer playbook v1                | Learn And Lunch ops | October 2025   |
-| Public monthly summary post          | Editorial team     | November 2025  |
+| Public monthly summary post          | Editorial team      | November 2025  |
 
 ## Stay involved
 
