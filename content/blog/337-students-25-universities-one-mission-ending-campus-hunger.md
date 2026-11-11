@@ -12,6 +12,7 @@ tags:
 status: published
 publishedAt: 2026-10-22T19:02:00.000+03:00
 programme: advocacy-and-dialogue
+seoTitle: Campus Food Security Summit 2026 | Learn And Lunch
 seoDescription: Learn And Lunch hosted the first Campus Food Security Summit at
   KIU, bringing together 337 students from 25 universities to advance action on
   campus hunger.
