@@ -6,6 +6,8 @@ excerpt: MUBS students washed cars, raised over a million shillings, and fed two
 coverImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1794770244/IMG_2036.jpg
 coverImageAlt: MUBS students wash a donor’s car during the Njala campaign car
   wash, 13 November 2026. Each coupon helped buy food packs for students.
+coverImageCredit: MUBS students wash a donor’s car during the Njala campaign car
+  wash, 13 November 2026. Each coupon helped buy food packs for students.
 author: Photos and words by Victor Kibalama
 tags:
   - Student Stories
