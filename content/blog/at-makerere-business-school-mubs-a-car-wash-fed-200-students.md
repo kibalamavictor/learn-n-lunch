@@ -22,7 +22,7 @@ I stood at the main gate of MUBS and watched students stop cars and sell coupons
 
 The campaign is called **Njala Campaign: No Student Should Sleep Hungry**. It is led by Twesigye Denison, a Year Two Bachelor of Commerce student and Minister of Internal Affairs and Welfare. The students had spent the whole week telling people about it before the car wash began.
 
-![Twesigye Denson leads the Njala team as they set out to deliver food packs to students in hostels, 14 November 2026.](https://res.cloudinary.com/jxgiku8t/image/upload/v1794770197/IMG_2645.jpg "Twesigye Denson leads the Njala campaign team on the walk to the hostels, 14 November 2026. The car wash funds became food packs for about two hundred students.")
+![Twesigye Denison leads the Njala team as they set out to deliver food packs to students in hostels, 14 November 2026.](https://res.cloudinary.com/jxgiku8t/image/upload/v1794770197/IMG_2645.jpg "Twesigye Denison leads the Njala campaign team on the walk to the hostels, 14 November 2026. The car wash funds became food packs for about two hundred students.")
 
 The coupons were printed in a book, each with the campaign name, the donor’s name and their car’s number plate. Students went from office to office, and when someone paid, they washed that car. “It depends how much you’re willing to give,” Denison told me.      
 
