@@ -8,7 +8,6 @@ coverImageAlt: MUBS students wash a donor’s car during the Njala campaign car
   wash, 13 November 2026. Each coupon helped buy food packs for students.
 author: Photos and words by Victor Kibalama
 tags:
-  - Events & Campus Life
   - Student Stories
 status: published
 publishedAt: 2026-11-15T22:49:00.000+03:00
