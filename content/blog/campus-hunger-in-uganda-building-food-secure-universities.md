@@ -2,7 +2,7 @@
 title: "Campus Hunger in Uganda: Building Food-Secure Universities"
 slug: campus-hunger-uganda
 excerpt: Campus hunger is an overlooked challenge facing university students in
-  Uganda. Learn And Lunch is bringing students and institutions together to
+  Uganda. Learn and Lunch is bringing students and institutions together to
   build food-secure universities.
 coverImage: https://res.cloudinary.com/pr7r5p6g/image/upload/v1791205857/copy_of_food_security_summit_iv6huv.png
 coverImageAlt: Campus Food Security Summit 2026 in Uganda
@@ -28,7 +28,7 @@ These experiences raise an important question for Uganda's higher education syst
 
 > **What does a food-secure university look like, and what will it take to build one?**
 
-On **21 October 2026**, Learn And Lunch, together with the Kampala International University Guild Union, will convene the **Campus Food Security Summit 2026** at Kampala International University in Kampala, Uganda.
+On **21 October 2026**, Learn and Lunch, together with the Kampala International University Guild Union, will convene the **Campus Food Security Summit 2026** at Kampala International University in Kampala, Uganda.
 
 Under the theme **“Building Food-Secure Universities in Uganda,”** the Summit will bring students into conversation with universities, government, researchers, nutrition and food-system professionals, civil society, development partners and the private sector.
 
@@ -54,7 +54,7 @@ This can include:
 
 These experiences can easily remain invisible because students often manage them privately.
 
-That is one reason **Learn And Lunch is working to bring campus hunger into Uganda's wider conversation about student wellbeing and success.**
+That is one reason **Learn and Lunch is working to bring campus hunger into Uganda's wider conversation about student wellbeing and success.**
 
 ## Why Campus Hunger in Uganda Deserves Attention
 
@@ -70,7 +70,7 @@ A student struggling to consistently access food is not experiencing a problem s
 
 **Food security is part of the environment that makes education possible.**
 
-That is why Learn And Lunch believes campus hunger should be understood not only as a food issue, but as an issue connected to **student wellbeing, health, dignity, equality and educational success.**
+That is why Learn and Lunch believes campus hunger should be understood not only as a food issue, but as an issue connected to **student wellbeing, health, dignity, equality and educational success.**
 
 ## What Is a Food-Secure University?
 
@@ -102,7 +102,7 @@ These questions are at the centre of the Campus Food Security Summit 2026.
 
 ## Campus Food Security Summit 2026
 
-The **Campus Food Security Summit 2026** is a student-centred national conversation convened by **Learn And Lunch together with the Kampala International University Guild Union**.
+The **Campus Food Security Summit 2026** is a student-centred national conversation convened by **Learn and Lunch together with the Kampala International University Guild Union**.
 
 **Theme:** Building Food-Secure Universities in Uganda\
 **Date:** Wednesday, 21 October 2026\
@@ -155,7 +155,7 @@ Responses could require attention to affordability, nutrition, university food e
 
 That is precisely why a multi-sector conversation matters.
 
-Learn And Lunch does not believe one organisation can solve campus hunger alone.
+Learn and Lunch does not believe one organisation can solve campus hunger alone.
 
 Our role is to help **make the issue visible, strengthen student voice, build evidence, bring responsible institutions into the conversation and support movement towards practical action.**
 
@@ -163,7 +163,7 @@ Our role is to help **make the issue visible, strengthen student voice, build ev
 
 The Summit is a starting point, not the end.
 
-Beyond 21 October, Learn And Lunch intends to continue working with students, Guilds, student clubs and associations, universities, researchers, government and other partners to deepen understanding of campus food insecurity and advocate for practical responses.
+Beyond 21 October, Learn and Lunch intends to continue working with students, Guilds, student clubs and associations, universities, researchers, government and other partners to deepen understanding of campus food insecurity and advocate for practical responses.
 
 We want to see stronger student participation in decisions affecting campus food environments.
 

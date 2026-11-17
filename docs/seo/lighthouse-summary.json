@@ -1,0 +1,239 @@
+[
+  {
+    "run": "before",
+    "time": "2026-11-17T20:41:17.974Z",
+    "lighthouseVersion": "13.6.0",
+    "url": "http://localhost:8000/",
+    "scores": {
+      "performance": 63,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "3.9 s",
+      "total-blocking-time": "1,310 ms",
+      "cumulative-layout-shift": "0.028"
+    },
+    "findings": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "3.9 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "value": "1,310 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "value": "1,460 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "value": "4.0 s"
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "value": "2.7 s"
+      },
+      {
+        "id": "unsized-images",
+        "title": "Image elements do not have explicit `width` and `height`"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names."
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "value": "Est savings of 10 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "value": "Est savings of 136 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "value": "Est savings of 674 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "value": "Est savings of 25 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 167 KiB"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "value": "Est savings of 800 ms"
+      }
+    ]
+  },
+  {
+    "run": "after",
+    "time": "2026-11-17T20:42:19.583Z",
+    "lighthouseVersion": "13.6.0",
+    "url": "http://localhost:8000/",
+    "scores": {
+      "performance": 87,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "4.1 s",
+      "total-blocking-time": "90 ms",
+      "cumulative-layout-shift": "0.034"
+    },
+    "findings": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "4.1 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "value": "140 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "value": "4.2 s"
+      },
+      {
+        "id": "unsized-images",
+        "title": "Image elements do not have explicit `width` and `height`"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names."
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "value": "Est savings of 10 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "value": "Est savings of 136 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "value": "Est savings of 674 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "value": "Est savings of 25 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 167 KiB"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "value": "Est savings of 710 ms"
+      }
+    ]
+  },
+  {
+    "run": "final",
+    "time": "2026-11-17T20:43:25.419Z",
+    "lighthouseVersion": "13.6.0",
+    "url": "http://localhost:8000/",
+    "scores": {
+      "performance": 88,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": "3.9 s",
+      "total-blocking-time": "40 ms",
+      "cumulative-layout-shift": "0.034"
+    },
+    "findings": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "3.9 s"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "value": "4.0 s"
+      },
+      {
+        "id": "unsized-images",
+        "title": "Image elements do not have explicit `width` and `height`"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "value": "Est savings of 10 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "value": "Est savings of 136 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "value": "Est savings of 674 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "value": "Est savings of 25 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "value": "Est savings of 167 KiB"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "value": "Est savings of 810 ms"
+      }
+    ]
+  }
+]

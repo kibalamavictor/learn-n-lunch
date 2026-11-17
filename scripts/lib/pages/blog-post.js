@@ -92,7 +92,7 @@ ${renderStoryCarousel({
   const body = `
 <div class="exam-story-container${isPdfReport ? " exam-story-container--pdf-report" : ""}">
   <div class="exam-story-header">
-   <a href="${resolveAsset(depth, "stories/")}">  <button class="back-button">
+   <a href="${resolveAsset(depth, "stories/")}">  <button class="back-button" aria-label="Back to stories">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>

@@ -222,7 +222,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
       <p class="impact-hero-subtitle">${escapeHtml(page.hero.subtitle).replace("this hidden crisis visible", "this hidden crisis visible<br>")}</p>
     </div>
 
-    <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image"/>
+    <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image" alt="" aria-hidden="true"/>
 
     <div class="impact-hero-content">
       <div class="impact-hero-image-container">
@@ -251,11 +251,11 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
   </div>
 
   <div class="artwork-container">
-    <img src="${resolveAsset(depth, "impact/impact/impact-artwork-1.png")}" class="hide-artwork"/>
+    <img src="${resolveAsset(depth, "impact/impact/impact-artwork-1.png")}" class="hide-artwork" alt="" aria-hidden="true"/>
   </div>
 
   <div class="impact-hero-top bottom">
-    <img src="${resolveAsset(depth, "impact/impact/Doodle.png")}" class="bottom-image"/>
+    <img src="${resolveAsset(depth, "impact/impact/Doodle.png")}" class="bottom-image" alt="" aria-hidden="true"/>
     <p class="impact-hero-title">${escapeHtml(page.numbersHeading).replace("Tell the Story", "Tell the Story<br>")}</p>
   </div>
 
@@ -307,6 +307,16 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
     ogType: seo.ogType,
     structuredData: [
       buildOrganizationJsonLd(site),
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${site.siteUrl}/impact/#webpage`,
+        url: `${site.siteUrl}/impact/`,
+        name: seo.title,
+        description: seo.description,
+        about: { "@id": `${site.siteUrl}/#organization` },
+        isPartOf: { "@id": `${site.siteUrl}/#website` }
+      },
       buildBreadcrumbJsonLd(site, [
         { name: "Home", path: "/" },
         { name: "Impact", path: "/impact/" }

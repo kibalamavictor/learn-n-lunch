@@ -40,14 +40,14 @@ Institutions, policymakers, and partners must look at student experiences holist
 
 Supporting students means investing in the conditions that make learning possible.
 
-## **Learn And Lunch: Supporting Student Success**
+## **Learn and Lunch: Supporting Student Success**
 
-At Learn And Lunch, we believe that student success is shaped by more than academic opportunities. It depends on whether students have the support systems needed to reach their potential.
+At Learn and Lunch, we believe that student success is shaped by more than academic opportunities. It depends on whether students have the support systems needed to reach their potential.
 
 Through research, advocacy, and innovative solutions, we are working to address challenges affecting university students in Uganda.
 
 Creating better universities requires collective action.
 
-***Support Learn And Lunch in expanding solutions that improve student wellbeing and success. Partner with us, amplify our work, and help us reach more students across Uganda.***
+***Support Learn and Lunch in expanding solutions that improve student wellbeing and success. Partner with us, amplify our work, and help us reach more students across Uganda.***
 
 **Ending Campus Hunger. Unlocking Student Success.**

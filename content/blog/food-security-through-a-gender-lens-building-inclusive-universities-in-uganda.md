@@ -46,7 +46,7 @@ This means:
 
 Understanding how different students experience food insecurity, Creating inclusive nutrition and food access programmes, Strengthening partnerships that improve campus food systems, and Integrating food security into student support strategies
 
-At Learn And Lunch, we believe that every student deserves the opportunity to pursue education without food insecurity becoming a barrier.
+At Learn and Lunch, we believe that every student deserves the opportunity to pursue education without food insecurity becoming a barrier.
 
 Through research, advocacy, nutrition education, and partnerships, we are working to advance food-secure universities in Uganda.
 

@@ -12,21 +12,21 @@ tags:
 status: published
 publishedAt: 2026-10-22T19:02:00.000+03:00
 programme: advocacy-and-dialogue
-seoTitle: Campus Food Security Summit 2026 | Learn And Lunch
-seoDescription: Learn And Lunch hosted the first Campus Food Security Summit at
+seoTitle: Campus Food Security Summit 2026 | Learn and Lunch
+seoDescription: Learn and Lunch hosted the first Campus Food Security Summit at
   KIU, bringing together 337 students from 25 universities to advance action on
   campus hunger.
 ogImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1792685734/learn-and-lunch-food-security-summit.jpg
 ---
-**Learn And Lunch hosts the first Campus Food Security Summit, bringing students, universities and partners together to advance practical solutions to food insecurity in higher education.**
+**Learn and Lunch hosts the first Campus Food Security Summit, bringing students, universities and partners together to advance practical solutions to food insecurity in higher education.**
 
 **22 October 2026 | Kampala, Uganda**
 
-On 21 October 2026, **Learn And Lunch**, in partnership with the Kampala International University (KIU) Guild Union, hosted the **first Campus Food Security Summit**, bringing together **337 students from 25 universities** to address one of the most overlooked challenges in higher education: campus hunger.
+On 21 October 2026, **Learn and Lunch**, in partnership with the Kampala International University (KIU) Guild Union, hosted the **first Campus Food Security Summit**, bringing together **337 students from 25 universities** to address one of the most overlooked challenges in higher education: campus hunger.
 
 Held at KIU Main Campus in Kansanga under the theme **“Building Food-Secure Universities in Uganda,”** the Summit brought together students, university leaders, government representatives, development partners and civil society organisations to examine how access to food shapes student wellbeing and academic success.
 
-For Learn And Lunch, the Summit marked an important step in our mission to end campus hunger and build university environments where students can learn and thrive without worrying about their next meal.
+For Learn and Lunch, the Summit marked an important step in our mission to end campus hunger and build university environments where students can learn and thrive without worrying about their next meal.
 
 ## Putting Student Voices at the Centre
 
@@ -36,11 +36,11 @@ Their experiences revealed that campus food insecurity extends beyond the availa
 
 Students challenged universities and other stakeholders to recognise food security as an important part of student welfare and to consider practical responses to these challenges.
 
-**At Learn And Lunch, we believe that students should not have to navigate hunger in silence. Their experiences must inform the solutions we develop.**
+**At Learn and Lunch, we believe that students should not have to navigate hunger in silence. Their experiences must inform the solutions we develop.**
 
 ## Millu: Rethinking How Students Access Campus Meals
 
-![Mr. Kibalama Victor Presnting the Millu app](https://res.cloudinary.com/jxgiku8t/image/upload/v1792687508/learn-and-lunch-food-security-summit-2026_-86.jpg "Kibalama Victor, ED Learn And Lunch")
+![Mr. Kibalama Victor Presnting the Millu app](https://res.cloudinary.com/jxgiku8t/image/upload/v1792687508/learn-and-lunch-food-security-summit-2026_-86.jpg "Kibalama Victor, ED Learn and Lunch")
 
 Moving beyond conversations, the Summit also spotlighted **Millu**, a campus meal access application presented by **Kibalama Victor and Lawino Mercy**.
 
@@ -56,7 +56,7 @@ For participating restaurants, the platform provides tools to manage meal availa
 
 **Millu brings together restaurant discovery, prepaid meal access and meal tracking in one system**, exploring how technology can make campus feeding more organised, predictable and accessible.
 
-For Learn And Lunch, the presentation reflected the kind of student-centred innovation we want to encourage: practical ideas that respond to the everyday realities of campus life.
+For Learn and Lunch, the presentation reflected the kind of student-centred innovation we want to encourage: practical ideas that respond to the everyday realities of campus life.
 
 ## UNICEF Uganda: Nutrition and Educational Success
 
@@ -74,7 +74,7 @@ Universities have an opportunity to strengthen student welfare by recognising fo
 
 ![Ms. Maria Schiffer giving her keynote speech at the food security summit](https://res.cloudinary.com/jxgiku8t/image/upload/v1792685800/learn-and-lunch-food-security-summit-2026_-91.jpg "Ms. Maria Schiffer, ED BODY&SOIL")
 
-A significant highlight of the Summit was **Ms. Maria Schiffer's commitment, through Body and Soil, to work with Learn And Lunch and university partners towards piloting Campus Food Innovation Labs**.
+A significant highlight of the Summit was **Ms. Maria Schiffer's commitment, through Body and Soil, to work with Learn and Lunch and university partners towards piloting Campus Food Innovation Labs**.
 
 The proposed labs aim to improve food environments within and around universities by bringing together students, food vendors, farmers, nutrition experts and university institutions.
 
@@ -82,7 +82,7 @@ They will explore practical approaches such as affordable and nutritious meal de
 
 Ms. Schiffer also expressed her willingness to support collaborative planning and connect potential partners to help advance the initiative.
 
-For Learn And Lunch, the proposed labs offer an opportunity to move beyond identifying challenges towards testing solutions developed with university communities.
+For Learn and Lunch, the proposed labs offer an opportunity to move beyond identifying challenges towards testing solutions developed with university communities.
 
 ## Bringing Campus Hunger into Policy Conversations
 
@@ -104,7 +104,7 @@ The discussions reinforced the importance of university leadership, government e
 
 The participation of **337 students from 25 universities** demonstrated the importance of creating spaces where students can contribute to conversations about the challenges affecting their education.
 
-But for Learn And Lunch, the success of the Summit will ultimately be measured by what follows.
+But for Learn and Lunch, the success of the Summit will ultimately be measured by what follows.
 
 We are committed to continuing our engagement with universities, strengthening student participation, generating evidence and working with partners to explore practical interventions, including the proposed Campus Food Innovation Labs.
 

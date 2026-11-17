@@ -1,0 +1,583 @@
+[
+  {
+    "file": "index.html",
+    "title": [
+      "Learn and Lunch | Campus Hunger &amp; Student Food Security in Uganda"
+    ],
+    "description": [
+      "Learn and Lunch is a student-led organisation ending campus hunger in Uganda through research, advocacy, student networks, and practical meal support."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 62,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "WebSite",
+      "NGO"
+    ]
+  },
+  {
+    "file": "404.html",
+    "title": [
+      "Page Not Found | Learn And Lunch"
+    ],
+    "description": [
+      "This page is off the menu. Head home or get involved with the campus hunger movement in Uganda."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/"
+    ],
+    "h1": 1,
+    "noindex": true,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress"
+    ]
+  },
+  {
+    "file": "donations/index.html",
+    "title": [
+      "Support Us | Learn and Lunch"
+    ],
+    "description": [
+      "Partner with Learn and Lunch through funding, practical supplies, expertise or connections to address student hunger in Uganda."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/donate/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress"
+    ]
+  },
+  {
+    "file": "donate/index.html",
+    "title": [
+      "Support Us | Learn and Lunch"
+    ],
+    "description": [
+      "Partner with Learn and Lunch through funding, practical supplies, expertise or connections to address student hunger in Uganda."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/donate/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress"
+    ]
+  },
+  {
+    "file": "about-us/index.html",
+    "title": [
+      "About Us | Learn and Lunch"
+    ],
+    "description": [
+      "Learn about Learn and Lunch \u2014 a student-led organisation addressing campus hunger in Uganda through research, advocacy, and practical support for university students."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/about-us/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 18,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "get-involved/index.html",
+    "title": [
+      "Get Involved | Learn and Lunch"
+    ],
+    "description": [
+      "Join the movement to end campus hunger. Partner with Learn and Lunch, join the student coalition, or volunteer to support university students in Uganda."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/get-involved/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "FAQPage",
+      "Question",
+      "Answer",
+      "Question",
+      "Answer",
+      "Question",
+      "Answer",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "summit/index.html",
+    "title": [
+      "Summit closed | Learn and Lunch"
+    ],
+    "description": [
+      "The Campus Food Security Summit 2026 has taken place. Registration and the mobilisation poster are closed."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/summit/"
+    ],
+    "h1": 1,
+    "noindex": true,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress"
+    ]
+  },
+  {
+    "file": "students/index.html",
+    "title": [
+      "Redirecting\u2026"
+    ],
+    "description": [],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/"
+    ],
+    "h1": 0,
+    "noindex": true,
+    "images": 0,
+    "missingAlt": 0,
+    "schemas": []
+  },
+  {
+    "file": "stories/index.html",
+    "title": [
+      "Campus Stories &amp; Updates | Learn and Lunch"
+    ],
+    "description": [
+      "Read the latest student stories, campus events, impact reports, and donor highlights from Learn and Lunch across Ugandan universities."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 61,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "CollectionPage",
+      "WebSite",
+      "BlogPosting",
+      "BlogPosting",
+      "BlogPosting",
+      "BlogPosting",
+      "BlogPosting",
+      "BlogPosting",
+      "BlogPosting",
+      "ItemList",
+      "ListItem",
+      "ListItem",
+      "ListItem",
+      "ListItem",
+      "ListItem",
+      "ListItem",
+      "ListItem",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "stories/food-security-gender-equality-universities-uganda/index.html",
+    "title": [
+      "Food Security Through a Gender Lens: Building Inclusive Universities in Uganda | Learn and Lunch"
+    ],
+    "description": [
+      "Explore how gender influences food insecurity among university students in Uganda and why inclusive solutions are essential for student success."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/food-security-gender-equality-universities-uganda/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 15,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BlogPosting",
+      "Person",
+      "Organization",
+      "ImageObject",
+      "WebPage",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "stories/no-revolution-without-education-body-and-soil-partnership/index.html",
+    "title": [
+      "There Is No Revolution Without Education: Learn and Lunch Partners with Body and Soil | Learn and Lunch"
+    ],
+    "description": [
+      "Learn and Lunch and Body and Soil Africa explore a partnership to move beyond food relief \u2014 empowering university students through nutrition education, sustainable agriculture, and hands-on food systems learning."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/no-revolution-without-education-body-and-soil-partnership/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 20,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BlogPosting",
+      "Person",
+      "Organization",
+      "ImageObject",
+      "WebPage",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "stories/campus-welfare-dialogue-outcomes/index.html",
+    "title": [
+      "Story archive | Learn and Lunch"
+    ],
+    "description": [],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/"
+    ],
+    "h1": 0,
+    "noindex": true,
+    "images": 0,
+    "missingAlt": 0,
+    "schemas": []
+  },
+  {
+    "file": "stories/food-security-universities-uganda/index.html",
+    "title": [
+      "Food Security in Universities: A Fundamental Pillar for Student Success in Uganda | Learn and Lunch"
+    ],
+    "description": [
+      "Discover why food security in universities is essential for student success in Uganda. Learn how Learn and Lunch is tackling campus hunger through research, advocacy, and student-led solutions."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/food-security-universities-uganda/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 15,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BlogPosting",
+      "Person",
+      "Organization",
+      "ImageObject",
+      "WebPage",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "stories/hidden-costs-university-life-uganda/index.html",
+    "title": [
+      "THE PRICE OF STUDYING: THE HIDDEN COSTS OF UNIVERSITY LIFE IN UGANDA | Learn and Lunch"
+    ],
+    "description": [
+      "Discover how hidden costs affect university students in Uganda and why student support systems are essential for education success."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/hidden-costs-university-life-uganda/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 15,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BlogPosting",
+      "Person",
+      "Organization",
+      "ImageObject",
+      "WebPage",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "stories/first-campus-food-security-summit-2026/index.html",
+    "title": [
+      "Campus Food Security Summit 2026 | Learn and Lunch"
+    ],
+    "description": [
+      "Learn and Lunch hosted the first Campus Food Security Summit at KIU, bringing together 337 students from 25 universities to advance action on campus hunger."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/stories/first-campus-food-security-summit-2026/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 24,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BlogPosting",
+      "Person",
+      "Organization",
+      "ImageObject",
+      "WebPage",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "summit-poster/index.html",
+    "title": [
+      "Redirecting\u2026"
+    ],
+    "description": [],
+    "canonical": [
+      "https://www.learnandlunch.org/summit/"
+    ],
+    "h1": 0,
+    "noindex": true,
+    "images": 0,
+    "missingAlt": 0,
+    "schemas": []
+  },
+  {
+    "file": "contact-us/index.html",
+    "title": [
+      "Contact Us | Learn and Lunch"
+    ],
+    "description": [
+      "Reach out to Learn and Lunch for partnerships, media inquiries, volunteer opportunities, and student coalition engagement in Uganda."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/contact-us/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "ContactPage",
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "ill-be-there/index.html",
+    "title": [
+      "Redirecting\u2026"
+    ],
+    "description": [],
+    "canonical": [
+      "https://www.learnandlunch.org/summit/"
+    ],
+    "h1": 0,
+    "noindex": true,
+    "images": 0,
+    "missingAlt": 0,
+    "schemas": []
+  },
+  {
+    "file": "programmes/index.html",
+    "title": [
+      "Our Programmes &amp; Theory of Change | Learn and Lunch"
+    ],
+    "description": [
+      "How Learn and Lunch works to end campus hunger in Uganda \u2014 our theory of change and the programmes turning student experiences into lasting change, from research and student leadership to hands-on nutrition sessions."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/programmes/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "programmes/campus-nutrition-series/index.html",
+    "title": [
+      "Campus Nutrition Series | Learn and Lunch"
+    ],
+    "description": [
+      "Hands-on nutrition classes for university students in Uganda. Learn and Lunch, BODY &amp; SOIL and Nutri-Safe Communities teach practical nutrition and affordable cooking on campus, starting at Kyambogo University."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/programmes/campus-nutrition-series/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 18,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "impact/index.html",
+    "title": [
+      "Our Impact | Learn and Lunch"
+    ],
+    "description": [
+      "See how Learn and Lunch is making campus food insecurity visible across Ugandan universities through research, student stories, campus reach, and measurable outcomes."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/impact/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 26,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "WebPage",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  },
+  {
+    "file": "kiu-food-study/index.html",
+    "title": [
+      "Questionnaire closed | Learn and Lunch"
+    ],
+    "description": [
+      "The KIU student food insecurity questionnaire is no longer accepting responses."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/kiu-food-study/"
+    ],
+    "h1": 1,
+    "noindex": true,
+    "images": 7,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress"
+    ]
+  },
+  {
+    "file": "kiu-food-study/dashboard/index.html",
+    "title": [
+      "Live dashboard \u00b7 Food insecurity among students at KIU | Learn and Lunch"
+    ],
+    "description": [
+      "A confidential questionnaire on the prevalence, determinants and consequences of food insecurity among undergraduate students at Kampala International University."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/kiu-food-study/dashboard/"
+    ],
+    "h1": 1,
+    "noindex": true,
+    "images": 5,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress"
+    ]
+  },
+  {
+    "file": "birthday-card/index.html",
+    "title": [
+      "Birthday Card Maker | Learn and Lunch"
+    ],
+    "description": [
+      "Celebrate a Learn and Lunch teammate. Add their photo, edit the message, pick a colour, and share the birthday card."
+    ],
+    "canonical": [
+      "https://www.learnandlunch.org/birthday-card/"
+    ],
+    "h1": 1,
+    "noindex": false,
+    "images": 4,
+    "missingAlt": 0,
+    "schemas": [
+      "NGO",
+      "ContactPoint",
+      "PostalAddress",
+      "BreadcrumbList",
+      "ListItem",
+      "ListItem"
+    ]
+  }
+]

@@ -232,6 +232,8 @@ async function build() {
   const sitemapEntries = buildSitemapEntries({ site, publishedBlogPosts, programmesWithPages });
   writeFileEnsured(path.join(ROOT, "sitemap.xml"), renderSitemapXml(sitemapEntries));
 
+  writeFileEnsured(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${getSiteUrl(site)}/sitemap.xml\n`);
+
   console.log("Site build complete.");
   console.log(`- Pages rendered: ${pagesRendered - publishedBlogPosts.length}`);
   console.log(`- Blog posts rendered: ${publishedBlogPosts.length}`);

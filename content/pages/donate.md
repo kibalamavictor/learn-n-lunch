@@ -1,10 +1,10 @@
 ---
 title: Support Us
-seoTitle: Support Us | Learn And Lunch
-seoDescription: Partner with Learn And Lunch through funding, practical supplies, expertise or connections to address student hunger in Uganda.
+seoTitle: Support Us | Learn and Lunch
+seoDescription: Partner with Learn and Lunch through funding, practical supplies, expertise or connections to address student hunger in Uganda.
 ogImage: /donate.png
 heading: LET’S HELP STUDENTS THRIVE, TOGETHER.
-description: Food insecurity should never stand between a student and their education. Partner with Learn And Lunch to help university students in Uganda learn without hunger.
+description: Food insecurity should never stand between a student and their education. Partner with Learn and Lunch to help university students in Uganda learn without hunger.
 partnershipEmail: info@learnandlunch.org
 supportOptions:
   - title: Funding and sponsorship

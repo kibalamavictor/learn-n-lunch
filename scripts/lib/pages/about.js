@@ -126,7 +126,7 @@ function renderAbout({ site, page, team }) {
 
     <section class="team-section">
       <div class="team-container">
-        <h1 class="team-title">${TEAM_SECTION.title}</h1>
+        <h2 class="team-title">${TEAM_SECTION.title}</h2>
 
         <div class="team-banner-2">
             ${bannerRepeats}

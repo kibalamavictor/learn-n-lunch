@@ -8,7 +8,7 @@ tagline: Practical nutrition classes on campus. Students learn how food fuels
   learning, cook affordable alternatives with expert chefs, and leave with
   skills they can use the same day.
 coverImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
-coverImageAlt: Students, Learn And Lunch and BODY & SOIL team members in front
+coverImageAlt: Students, Learn and Lunch and BODY & SOIL team members in front
   of the Campus Nutrition Series banner at Kyambogo University
 coverImageCredit: "Photo: BODY & SOIL"
 stepsHeading: What happens in a session
@@ -30,9 +30,9 @@ cta:
   primaryUrl: mailto:info@learnandlunch.org?subject=Campus%20Nutrition%20Series%20session
   secondaryLabel: Partner with us
   secondaryUrl: mailto:info@learnandlunch.org?subject=Campus%20Nutrition%20Series%20partnership
-seoTitle: Campus Nutrition Series | Learn And Lunch
+seoTitle: Campus Nutrition Series | Learn and Lunch
 seoDescription: Hands-on nutrition classes for university students in Uganda.
-  Learn And Lunch, BODY & SOIL and Nutri-Safe Communities teach practical
+  Learn and Lunch, BODY & SOIL and Nutri-Safe Communities teach practical
   nutrition and affordable cooking on campus, starting at Kyambogo University.
 ogImage: /assets/uploads/campus-nutrition-series-kyambogo-group.webp
 ogImageAlt: Students at the first Campus Nutrition Series session at Kyambogo University

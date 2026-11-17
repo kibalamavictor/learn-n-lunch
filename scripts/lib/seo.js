@@ -147,7 +147,9 @@ function buildOrganizationJsonLd(site) {
   const org = {
     "@context": "https://schema.org",
     "@type": "NGO",
+    "@id": `${siteUrl}/#organization`,
     name: site.siteName,
+    alternateName: site.alternateNames || ["Learn N' Lunch"],
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     description: site.defaultSeoDescription,
@@ -186,7 +188,9 @@ function buildWebSiteJsonLd(site) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
     name: site.siteName,
+    alternateName: site.alternateNames || ["Learn N' Lunch"],
     url: siteUrl,
     description: site.defaultSeoDescription,
     publisher: {

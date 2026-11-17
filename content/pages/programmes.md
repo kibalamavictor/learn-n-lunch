@@ -1,7 +1,7 @@
 ---
 title: Programmes
-seoTitle: Our Programmes & Theory of Change | Learn And Lunch
-seoDescription: How Learn And Lunch works to end campus hunger in Uganda — our
+seoTitle: Our Programmes & Theory of Change | Learn and Lunch
+seoDescription: How Learn and Lunch works to end campus hunger in Uganda — our
   theory of change and the programmes turning student experiences into lasting
   change, from research and student leadership to hands-on nutrition sessions.
 ogImage: /assets/uploads/learn_and_lunch_06.webp

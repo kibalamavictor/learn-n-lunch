@@ -1,4 +1,4 @@
-const { escapeHtml, resolveAsset, resolveHomeHref } = require("./utils");
+const { escapeHtml, resolveAsset, resolveHomeHref, imageDimensionAttrs } = require("./utils");
 const { renderSeoHead } = require("./seo");
 
 const SOCIAL_ICONS = {
@@ -85,7 +85,7 @@ function renderNav({ depth, site, activePath, navbarStyle = "" }) {
     <nav class="navbar"${navbarStyle ? ` style="${navbarStyle}"` : ""}>
       <div class="nav-container">
         <a href="${logoHref}" class="logo">
-           <img src="${logoSrc}" alt="Learn And Lunch Logo" class="logo">
+           <img src="${logoSrc}" ${imageDimensionAttrs("logo.png")} alt="Learn and Lunch Logo" class="logo">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -166,7 +166,7 @@ function renderFooter({ depth, site }) {
 
         <div class="footer-logo">
             <a href="${logoHref}" >
-              <img src="${logoSrc}" alt="Learn And Lunch Logo">
+              <img src="${logoSrc}" ${imageDimensionAttrs("logo.png")} alt="Learn and Lunch Logo">
             </a>
         </div>
 

@@ -595,7 +595,8 @@ collections:
       - label: "Slug (URL)"
         name: slug
         widget: string
-        hint: "URL path only — e.g. food-security-universities-uganda (no leading slash, no /stories/)."
+        required: false
+        hint: "Leave blank to generate the URL from the title when publishing. Enter a custom slug to override it. Existing slugs stay unchanged when you edit a title."
         pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Use lowercase letters, numbers, and hyphens only. Example: food-security-universities-uganda"]
       - { label: Excerpt, name: excerpt, widget: text, hint: "Short summary for Stories cards." }
       - label: Original Article Link

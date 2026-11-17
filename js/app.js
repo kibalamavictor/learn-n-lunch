@@ -570,7 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     label.setAttribute("role", "button");
     label.setAttribute("tabindex", "0");
-    label.setAttribute("aria-label", `Scroll to ${cta.textContent.trim()}`);
+    label.setAttribute("aria-label", `${label.textContent.trim()}: scroll to ${cta.textContent.trim()}`);
 
     function scrollRowToCta() {
       if (window.innerWidth > FLOW_MOBILE_BREAKPOINT) return;

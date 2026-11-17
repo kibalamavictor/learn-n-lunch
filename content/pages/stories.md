@@ -1,7 +1,7 @@
 ---
 title: Stories
-seoTitle: Campus Stories & Updates | Learn And Lunch
-seoDescription: Read the latest student stories, campus events, impact reports, and donor highlights from Learn And Lunch across Ugandan universities.
+seoTitle: Campus Stories & Updates | Learn and Lunch
+seoDescription: Read the latest student stories, campus events, impact reports, and donor highlights from Learn and Lunch across Ugandan universities.
 ogImage: /assets/uploads/learn_and_lunch_004.webp
 hero:
   heading: CAMPUS STORIES & UPDATES

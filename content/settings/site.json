@@ -1,5 +1,5 @@
 {
-  "defaultSeoDescription": "Student-led initiative addressing campus hunger through evidence, advocacy, and practical support.",
+  "defaultSeoDescription": "Learn and Lunch is a student-led initiative advancing food security in Ugandan universities through research, advocacy, student networks and practical support.",
   "defaultOgImage": "/assets/uploads/learn_and_lunch_001.webp",
   "areaServed": "Uganda",
   "knowsAbout": [
@@ -28,8 +28,8 @@
       "url": "https://www.linkedin.com/company/learn-n-lunch/"
     }
   ],
-  "footerCopyright": " © 2025 LearnN'Lunch · All Rights Reserved",
-  "siteName": "Learn And Lunch",
+  "footerCopyright": "\u00a9 2026 Learn And Lunch \u00b7 All Rights Reserved",
+  "siteName": "Learn and Lunch",
   "navigation": [
     {
       "label": "Home",
@@ -60,24 +60,9 @@
       "href": "/contact-us/"
     }
   ],
-  "defaultSeoTitle": "Learn And Lunch - No Student Should Study Hungry",
-  "socialLinks": [
-    {
-      "platform": "TikTok",
-      "url": "https://www.tiktok.com/@learn.n.lunch?_t=ZM-90jhXJNULK0&_r=1"
-    },
-    {
-      "platform": "Instagram",
-      "url": "https://www.instagram.com/learnnlunch?utm_source=ig_web_button_share_sheet&igsh=MWZwd21zaXBycXViOQ=="
-    },
-    {
-      "platform": "X",
-      "url": "https://x.com/learn_N_lunch"
-    },
-    {
-      "platform": "LinkedIn",
-      "url": "https://www.linkedin.com/company/learn-n-lunch/"
-    }
-  ],
-  "footerCopyright": "© 2026 Learn And Lunch · All Rights Reserved"
+  "defaultSeoTitle": "Learn and Lunch | Campus Hunger & Student Food Security in Uganda",
+  "alternateNames": [
+    "Learn N' Lunch",
+    "Learn N\u2019 Lunch"
+  ]
 }

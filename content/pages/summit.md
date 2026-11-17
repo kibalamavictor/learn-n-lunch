@@ -26,12 +26,12 @@ posterPath: ill-be-there/
 successTitle: You're registered.
 successBody: Next, put your photo on the mobilization poster and share that you will be in the room.
 successNote: Registration does not automatically guarantee attendance. Confirmed participants will receive confirmation and further event information from the Summit organising team.
-consentLabel: I agree to receive information about my Summit registration and related Campus Food Security Summit updates from Learn And Lunch.
+consentLabel: I agree to receive information about my Summit registration and related Campus Food Security Summit updates from Learn and Lunch.
 beforeSubmitHeading: Before you submit
 disclaimer: |-
   Registration does not automatically guarantee attendance. Due to venue capacity and programme requirements, **confirmed participants will receive confirmation and further event information from the Summit organising team.**
 
   Information provided through this form will be used for **Summit registration and planning**. Personal experiences shared through the form will not be publicly attributed to you without your permission.
-convenedBy: Convened by Learn And Lunch together with the Kampala International University Guild Union.
+convenedBy: Convened by Learn and Lunch together with the Kampala International University Guild Union.
 closingLine: ENDING CAMPUS HUNGER. UNLOCKING STUDENT SUCCESS.
 ---

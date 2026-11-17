@@ -1,7 +1,7 @@
 ---
 title: Home
-seoTitle: Learn And Lunch - No Student Should Study Hungry
-seoDescription: Learn And Lunch is a student-led organisation ending campus
+seoTitle: Learn and Lunch | Campus Hunger & Student Food Security in Uganda
+seoDescription: Learn and Lunch is a student-led organisation ending campus
   hunger in Uganda through research, advocacy, student networks, and practical
   meal support.
 ogImage: /assets/uploads/learn_and_lunch_001.webp
@@ -20,7 +20,7 @@ hero:
 missionBanner:
   - NO STUDENT SHOULD STUDY HUNGRY
 impactIntro:
-  body: Learn And Lunch is a student-led initiative advancing food security as a
+  body: Learn and Lunch is a student-led initiative advancing food security as a
     foundation for student success in Ugandan universities. Through research,
     advocacy, student networks, and practical solutions, we work with
     universities, student leaders, and partners to understand campus food
@@ -85,7 +85,7 @@ moments:
   heading: MOMENTS THAT MATTER
   photos:
     - image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-05.webp
-      alt: Learn And Lunch team serving themselves a food at body & soil
+      alt: Learn and Lunch team serving themselves a food at body & soil
     - image: /img2.png
       alt: Packing fresh produce
     - image: /img3.png
