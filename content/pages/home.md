@@ -117,7 +117,7 @@ partners:
       logo: /assets/partners/body-and-soil.png
       logoAlt: BODY & SOIL logo
     - name: Nutri-Safe Communities
-      url: https://nutri-safecommunities.unaux.com/
+      url: https://nutrisafecommunities.org/
       logo: /assets/uploads/nutri-safe-communities-logo.webp
       logoAlt: nutri-safe communities logo
     - name: Kyambogo University
