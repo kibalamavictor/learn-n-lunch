@@ -460,19 +460,10 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .card-decoration > span,
-  .card-decoration::before,
-  .card-decoration::after {
-    animation: team-decoration-jitter var(--jitter-duration, 2.4s) steps(1, end) var(--jitter-delay, 0s) infinite;
-  }
-
-  .card-decoration::before {
-    animation-duration: var(--jitter-before-duration, 2.4s);
-    animation-delay: var(--jitter-before-delay, -.8s);
-  }
-  .card-decoration::after {
-    animation-duration: var(--jitter-after-duration, 2.4s);
-    animation-delay: var(--jitter-after-delay, -1.6s);
+  .card-decoration[data-jitter-part="front"] > span,
+  .card-decoration[data-jitter-part="before"]::before,
+  .card-decoration[data-jitter-part="after"]::after {
+    animation: team-decoration-jitter 2.4s steps(1, end) 1;
   }
 
   .team-member:hover .card-decoration::before,
@@ -498,4 +489,22 @@ button.card-decoration {
 .card-decoration:focus-visible {
   outline: 2px solid #000;
   outline-offset: 4px;
+}
+
+// Released squares are positioned independently by the falling simulation.
+.card-decoration.is-fallen {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.fallen-decoration-square {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  background: #000;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform;
 }

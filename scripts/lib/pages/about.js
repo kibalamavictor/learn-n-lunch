@@ -19,7 +19,7 @@ function renderTeamMember(depth, member) {
                 <img src="${resolveAsset(depth, member.photo)}" alt="${escapeHtml(member.photoAlt || member.name)}" loading="lazy">
               </div>
               <div class="member-card ${member.cardVariant}"${cardStyle}>
-                <button type="button" class="card-decoration" aria-label="Stop decoration motion" aria-pressed="false"><span aria-hidden="true"></span></button>
+                <button type="button" class="card-decoration" aria-label="Drop decoration squares" aria-pressed="false"><span aria-hidden="true"></span></button>
                 <h3 class="member-name">${escapeHtml(member.name)}</h3>
                 <p class="member-role">${escapeHtml(member.role)}</p>
                 <p class="member-bio">${escapeHtml(member.bio)}</p>

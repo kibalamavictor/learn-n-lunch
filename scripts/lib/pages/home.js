@@ -152,6 +152,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
       <div class="mtm-testimonial-container${index === 0 ? "" : " mtm-hidden"}" data-testimonial="${index}">
         <div class="mtm-right-section">
           <div class="mtm-profile-image-container">
+            <span class="mtm-image-block" aria-hidden="true"></span>
             <img src="${resolveAsset(depth, item.photo)}" alt="${escapeHtml(item.photoAlt || item.authorName)}" class="mtm-profile-image" loading="lazy" decoding="async" ${imageDimensionAttrs(item.photo)} />
           </div>
           <div class="mtm-right-body">

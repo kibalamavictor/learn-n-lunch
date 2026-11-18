@@ -230,7 +230,7 @@ function renderStories({ site, page, publishedPosts }) {
       backgroundImage: "/stories/stories/stories-footer.png",
       backgroundImageAlt: "Volunteers packing food",
       qrImage: "/qr-code.png",
-      qrImageAlt: "QR Code"
+      qrImageAlt: "Scan to email info@learnandlunch.org"
     },
     body
   });

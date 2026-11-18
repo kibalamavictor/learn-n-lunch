@@ -1103,15 +1103,202 @@ if (document.readyState === 'loading') {
 })();
 
 
-// Randomize each decorative square's pixel-jitter timing independently.
-document.querySelectorAll('.card-decoration').forEach((decoration) => {
-  decoration.addEventListener('click', () => {
-    decoration.classList.add('is-stopped');
-    decoration.setAttribute('aria-pressed', 'true');
-    decoration.setAttribute('aria-label', 'Decoration motion stopped');
+// Animate the three individual squares separately, with a pause between them.
+(() => {
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const jitterDuration = 2400;
+  const pauseBeforeNextSquare = 1800;
+
+  function dropSquares(decoration) {
+    const card = decoration.closest('.member-card');
+    const size = 25;
+    const half = size / 2;
+    const startX = decoration.offsetLeft + half;
+    const startY = decoration.offsetTop + half;
+    const pieces = [[0, 0], [-20, 20], [-48, 35]].map(([dx, dy]) => {
+      const element = document.createElement('span');
+      element.className = 'fallen-decoration-square';
+      element.setAttribute('aria-hidden', 'true');
+      card.appendChild(element);
+      return {
+        element, x: startX + dx, y: startY + dy,
+        vx: (Math.random() - .65) * 240,
+        vy: -30 - Math.random() * 70,
+        angle: (Math.random() - .5) * .5,
+        spin: (Math.random() - .5) * 9
+      };
+    });
+    let previousTime;
+    let quietFrames = 0;
+    let frame;
+    let running = false;
+
+    function extent(piece) {
+      return half * (Math.abs(Math.cos(piece.angle)) + Math.abs(Math.sin(piece.angle)));
+    }
+    function paint() {
+      pieces.forEach((p) => {
+        p.element.style.transform = `translate(${p.x - half}px, ${p.y - half}px) rotate(${p.angle}rad)`;
+      });
+    }
+    function settle() {
+      // Keep separate landing positions when the card changes size or motion is reduced.
+      const width = card.clientWidth;
+      const height = card.clientHeight;
+      let previousX = half - size;
+      pieces.sort((a, b) => a.x - b.x).forEach((p, i) => {
+        p.x = Math.max(previousX + size, Math.min(width - half - (2 - i) * size, p.x));
+        previousX = p.x;
+        p.y = height - half;
+        p.angle = p.vx = p.vy = p.spin = 0;
+      });
+      paint();
+    }
+    function step(dt) {
+      const width = card.clientWidth;
+      const height = card.clientHeight;
+      pieces.forEach((p) => {
+        p.vy += 1250 * dt;
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.spin *= Math.exp(-dt * .8);
+        p.angle += p.spin * dt;
+        let radius = extent(p);
+        if (p.x < radius || p.x > width - radius) {
+          p.x = Math.max(radius, Math.min(width - radius, p.x));
+          p.vx *= -.5;
+          p.spin *= -.5;
+        }
+        if (p.y + radius >= height) {
+          p.y = height - radius;
+          p.vy = Math.abs(p.vy) < 65 ? 0 : -Math.abs(p.vy) * .38;
+          p.vx *= .84;
+          p.spin *= .55;
+          // A square tips onto its flat edge as its final bounce loses energy.
+          if (Math.abs(p.vy) < 45) {
+            // Square faces repeat every quarter turn. Settle toward the nearest
+            // flat face rather than unwinding all accumulated revolutions.
+            p.angle = Math.atan2(Math.sin(p.angle * 4), Math.cos(p.angle * 4)) / 4;
+            p.angle *= Math.max(0, 1 - dt * 10);
+            if (Math.abs(p.angle) < .005) {
+              p.angle = 0;
+              p.spin = 0;
+            }
+            p.y = height - extent(p);
+          }
+          if (Math.abs(p.vx) < 3) p.vx = 0;
+        }
+      });
+      for (let a = 0; a < pieces.length; a++) {
+        for (let b = a + 1; b < pieces.length; b++) {
+          const p = pieces[a], q = pieces[b];
+          const dx = q.x - p.x, dy = q.y - p.y;
+          const reach = extent(p) + extent(q);
+          const overlapX = reach - Math.abs(dx), overlapY = reach - Math.abs(dy);
+          if (overlapX <= 0 || overlapY <= 0) continue;
+          const floorPair = p.y + extent(p) >= height - 2 && q.y + extent(q) >= height - 2;
+          const horizontal = floorPair || overlapX < overlapY;
+          const direction = (horizontal ? dx : dy) >= 0 ? 1 : -1;
+          const penetration = horizontal ? overlapX : overlapY;
+          const axis = horizontal ? 'x' : 'y';
+          const velocity = horizontal ? 'vx' : 'vy';
+          p[axis] -= direction * penetration / 2;
+          q[axis] += direction * penetration / 2;
+          const closingSpeed = (q[velocity] - p[velocity]) * direction;
+          if (closingSpeed < 0) {
+            const impulse = -closingSpeed * .65;
+            p[velocity] -= impulse * direction;
+            q[velocity] += impulse * direction;
+            if (Math.abs(closingSpeed) > 20 && !floorPair) {
+              p.spin = Math.max(-3.5, Math.min(3.5, p.spin + closingSpeed * .006));
+              q.spin = Math.max(-3.5, Math.min(3.5, q.spin - closingSpeed * .006));
+            }
+          }
+        }
+      }
+      pieces.forEach((p) => {
+        const radius = extent(p);
+        p.x = Math.max(radius, Math.min(width - radius, p.x));
+        p.y = Math.min(height - radius, p.y);
+      });
+    }
+    function tick(time) {
+      if (motionPreference.matches) {
+        running = false;
+        settle();
+        return;
+      }
+      const dt = previousTime ? Math.min((time - previousTime) / 1000, .04) : 1 / 60;
+      previousTime = time;
+      // Small time steps keep fast-moving squares from passing through each other.
+      for (let i = 0; i < 3; i++) step(dt / 3);
+      paint();
+      const quiet = pieces.every((p) => Math.abs(p.vx) < 3 && Math.abs(p.vy) < 3 && Math.abs(p.spin) < .05 && Math.abs(p.angle) < .01);
+      quietFrames = quiet ? quietFrames + 1 : 0;
+      if (quietFrames > 20) {
+        settle();
+        running = false;
+        return;
+      }
+      frame = window.requestAnimationFrame(tick);
+    }
+    function start() {
+      if (running) return;
+      running = true;
+      previousTime = undefined;
+      quietFrames = 0;
+      frame = window.requestAnimationFrame(tick);
+    }
+    if (motionPreference.matches) {
+      pieces.forEach((p) => { p.x = half + Math.random() * (card.clientWidth - size); });
+      settle();
+    } else start();
+    // Hover expands the card, so its floor must remain the collision boundary.
+    const resize = new ResizeObserver(() => {
+      if (!running) settle();
+    });
+    resize.observe(card);
+    motionPreference.addEventListener('change', () => {
+      if (motionPreference.matches) {
+        window.cancelAnimationFrame(frame);
+        running = false;
+        settle();
+      }
+    });
+  }
+
+
+  document.querySelectorAll('.card-decoration').forEach((decoration, index) => {
+    const parts = ['front', 'before', 'after'];
+    let nextPart = 0;
+    let timer;
+
+    function clearMotion() {
+      window.clearTimeout(timer);
+      decoration.removeAttribute('data-jitter-part');
+    }
+    function playNext() {
+      if (motionPreference.matches || decoration.classList.contains('is-stopped')) return;
+      decoration.setAttribute('data-jitter-part', parts[nextPart]);
+      nextPart = (nextPart + 1) % parts.length;
+      timer = window.setTimeout(() => {
+        decoration.removeAttribute('data-jitter-part');
+        timer = window.setTimeout(playNext, pauseBeforeNextSquare);
+      }, jitterDuration);
+    }
+
+    decoration.addEventListener('click', () => {
+      if (decoration.classList.contains('is-fallen')) return;
+      dropSquares(decoration);
+      decoration.classList.add('is-stopped', 'is-fallen');
+      clearMotion();
+      decoration.setAttribute('aria-pressed', 'true');
+      decoration.setAttribute('aria-label', 'Decoration squares dropped');
+    });
+    motionPreference.addEventListener('change', () => {
+      clearMotion();
+      if (!motionPreference.matches) playNext();
+    });
+    if (!motionPreference.matches) timer = window.setTimeout(playNext, index * 600);
   });
-  ['', '-before', '-after'].forEach((part) => {
-    decoration.style.setProperty(`--jitter${part}-duration`, `${2 + Math.random() * 2}s`);
-    decoration.style.setProperty(`--jitter${part}-delay`, `${-Math.random() * 4}s`);
-  });
-});
+})();

@@ -7,7 +7,10 @@ on:
       - ".github/workflows/build-site.yml"
       - "content/**"
       - "scripts/**"
-      - "admin/config.yml"
+      - "admin/**"
+      - "package.json"
+      - "package-lock.json"
+      - "lnl-favicon.svg"
       - "assets/uploads/**"
   workflow_dispatch:
 
@@ -77,6 +80,9 @@ jobs:
           mkdir -p assets/uploads
           git add \
             index.html \
+            admin/qr-preview.js \
+            qr-code.png \
+            coalition-qr-code.png \
             about-us/index.html \
             impact/index.html \
             stories \

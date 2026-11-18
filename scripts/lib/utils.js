@@ -411,7 +411,7 @@ function defaultFooterCta(depth) {
     backgroundImage: FOOTER_CTA_BACKGROUND_IMAGE,
     backgroundImageAlt: "Volunteers packing food",
     qrImage: "/qr-code.png",
-    qrImageAlt: "QR Code"
+    qrImageAlt: "Scan to email info@learnandlunch.org"
   };
 }
 

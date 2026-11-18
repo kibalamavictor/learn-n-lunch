@@ -23,7 +23,9 @@ const { study: kiuFoodStudy } = require("./lib/research/kiu-food-study");
 const ROOT = process.cwd();
 
 async function build() {
+  require("./build-cms-preview");
   const content = loadAllContent();
+  await require("./lib/qr-codes").generateSiteQrCodes(content);
   const { site, pages, stats, team, testimonials, programmes, publishedBlogPosts } = content;
   await require("./lib/news-preview").populateNewsImages(publishedBlogPosts);
   const programmesWithPages = programmes.filter((programme) => programme.hasPage);

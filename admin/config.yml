@@ -146,10 +146,10 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Button Label, name: buttonLabel, widget: string }
-              - { label: Button URL, name: buttonUrl, widget: string, hint: "Usually a Google Form link." }
+              - { label: Button URL, name: buttonUrl, widget: string, hint: "Usually a short Google Form link. Also used to automatically generate this section’s QR code when you publish." }
               - { label: Background Image, name: backgroundImage, widget: image }
               - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
-              - { label: QR Image, name: qrImage, widget: image }
+              - { label: Custom QR Image (optional), name: qrImageOverride, widget: image, required: false, hint: "Leave empty to automatically generate a branded QR code from the Button URL above. Publish changes to update the code." }
               - { label: QR Image Alt, name: qrImageAlt, widget: string }
 
           - label: "7 · Moments That Matter"
@@ -209,8 +209,6 @@ collections:
               - { label: Button URL, name: buttonUrl, widget: string }
               - { label: Background Image, name: backgroundImage, widget: image }
               - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
-              - { label: QR Image, name: qrImage, widget: image }
-              - { label: QR Image Alt, name: qrImageAlt, widget: string }
 
       - name: about
         label: "About Us"
@@ -266,7 +264,7 @@ collections:
         file: content/pages/programmes.md
         description: "Programmes overview — why we exist, the Theory of Change, and the programme cards. Edit each programme under the Programmes collection."
         fields:
-      - { label: "Active", name: isActive, widget: boolean, default: true, required: false, hint: "Turn off to hide this item from website listings without deleting its content." }
+          - { label: "Active", name: isActive, widget: boolean, default: true, required: false, hint: "Turn off to hide this item from website listings without deleting its content." }
           - { label: "Page Title (SEO)", name: title, widget: string }
           - { label: SEO Title, name: seoTitle, widget: string, required: false }
           - { label: SEO Description, name: seoDescription, widget: text, required: false }
@@ -405,8 +403,6 @@ collections:
               - { label: Button URL, name: buttonUrl, widget: string, hint: "Example: /donate/" }
               - { label: Background Image, name: backgroundImage, widget: image }
               - { label: Background Image Alt, name: backgroundImageAlt, widget: string }
-              - { label: QR Image, name: qrImage, widget: image }
-              - { label: QR Image Alt, name: qrImageAlt, widget: string }
 
       - name: storiesPage
         label: "Stories Listing"
@@ -1046,3 +1042,6 @@ collections:
               - { label: Platform, name: platform, widget: string, hint: "e.g. Instagram, TikTok" }
               - { label: URL, name: url, widget: string }
           - { label: "4 · Footer Copyright", name: footerCopyright, widget: string }
+
+          - { label: "5 · Footer QR Email or Link", name: footerQrDestination, widget: string, required: false, hint: "Email address or full https:// link for every footer QR code. Leave empty to use the Contact Us email. Publish changes to regenerate the code with our logo." }
+          - { label: Footer Custom QR Image (optional), name: footerQrImageOverride, widget: image, required: false, hint: "Leave empty to generate automatically. Upload an image only to override the generated footer QR on every page." }

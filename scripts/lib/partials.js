@@ -224,7 +224,7 @@ ${renderNav({ depth, site, activePath, navbarStyle })}
 <main id="main-content">
 ${body}
 </main>
-${renderFooterCta({ depth, cta: footerCta })}
+${renderFooterCta({ depth, cta: footerCta ? { ...footerCta, qrImage: site.footerQrImageOverride || "/qr-code.png", qrImageAlt: site.footerQrAlt || footerCta.qrImageAlt } : footerCta })}
 ${renderFooter({ depth, site })}
     ${scriptTags}
 </body>

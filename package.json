@@ -16,9 +16,11 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "markdown-it": "^14.1.0",
+    "qrcode": "^1.5.4",
     "sharp": "^0.34.3"
   },
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "sass": "^1.83.0"
   }
 }

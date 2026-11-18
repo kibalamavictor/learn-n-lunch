@@ -162,6 +162,45 @@
     ]);
   };
 
+  /* Shared QR artwork uses the same generator as the published site. */
+  const qrDefaults = window.LnlQrPreview ? window.LnlQrPreview.defaults : {};
+  const qrCtaPreview = ({ title, cta, destination, override, getAsset }) => {
+    let qrImage = "";
+    let error = "";
+    try {
+      qrImage = override
+        ? assetUrl(getAsset, override)
+        : window.LnlQrPreview.image(destination);
+    } catch (e) {
+      error = "Enter a valid email address or full web link to preview the QR code. Use a short link if it is too long.";
+    }
+    return section(title, [
+      h("div", { className: "preview-qr-banner" }, [
+        img(assetUrl(getAsset, cta.backgroundImage), cta.backgroundImageAlt, "preview-qr-background"),
+        h("div", { className: "preview-qr-card" }, [
+          h("div", { className: "preview-qr-content" }, [
+            h("h3", { className: "preview-qr-title" }, text(cta.title, "BE PART OF THE MOVEMENT.")),
+            h("span", { className: "preview-btn" }, text(cta.buttonLabel, "Donate Now"))
+          ]),
+          qrImage ? img(qrImage, "QR code preview", "preview-qr-image") : null
+        ])
+      ]),
+      error ? h("p", { className: "preview-qr-error", role: "alert" }, error) : null,
+      h("p", { className: "preview-qr-destination" }, override
+        ? "Custom QR image — its destination is set in the uploaded image."
+        : `QR destination: ${destination || "Not set"}`)
+    ]);
+  };
+  const footerPreview = (cta, getAsset, settings) => qrCtaPreview({
+    title: "Footer · QR preview",
+    cta,
+    getAsset,
+    destination: settings
+      ? (settings.footerQrDestination || qrDefaults.contactEmail)
+      : qrDefaults.footerDestination,
+    override: settings ? settings.footerQrImageOverride : qrDefaults.footerOverride
+  });
+
   /* ——— Home ——— */
   const HomePreview = ({ entry, getAsset }) => {
     const data = dataOf(entry);
@@ -253,6 +292,13 @@
             ])
           : null
       ]),
+      qrCtaPreview({
+        title: "Student Coalition · QR preview",
+        cta: data.coalitionCta || {},
+        destination: (data.coalitionCta || {}).buttonUrl,
+        override: (data.coalitionCta || {}).qrImageOverride,
+        getAsset
+      }),
       section("Moments", [
         h("h3", { className: "preview-subtitle" }, text(moments.heading, "Moments")),
         moments.statementQuote
@@ -290,11 +336,7 @@
             )
           : empty("Add partners to preview them.")
       ]),
-      section("Footer CTA", [
-        h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),
-        footer.buttonLabel ? h("span", { className: "preview-btn" }, footer.buttonLabel) : null,
-        img(assetUrl(getAsset, footer.backgroundImage), footer.backgroundImageAlt, "preview-cover")
-      ])
+      footerPreview(footer, getAsset)
     ]);
   };
 
@@ -383,10 +425,7 @@
           ? h("span", { className: "preview-btn" }, text(report.buttonLabel, "Download Report"))
           : empty("Upload an Impact Report PDF to enable download.")
       ]),
-      section("Footer CTA", [
-        h("h3", { className: "preview-subtitle" }, text(footer.title, "Footer CTA")),
-        footer.buttonLabel ? h("span", { className: "preview-btn" }, footer.buttonLabel) : null
-      ])
+      footerPreview(footer, getAsset)
     ]);
   };
 
@@ -766,7 +805,8 @@
       metaRow([
         { label: "SEO title", value: data.defaultSeoTitle },
         { label: "SEO description", value: data.defaultSeoDescription }
-      ])
+      ]),
+      footerPreview(qrDefaults.footerCta || {}, getAsset, data)
     ]);
   };
 

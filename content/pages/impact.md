@@ -53,5 +53,5 @@ footerCta:
   backgroundImage: https://res.cloudinary.com/pr7r5p6g/image/upload/v1785746712/footer_iwzqaw.jpg
   backgroundImageAlt: Volunteers packing food
   qrImage: /qr-code.png
-  qrImageAlt: QR Code
+  qrImageAlt: Scan to email info@learnandlunch.org
 ---
