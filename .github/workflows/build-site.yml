@@ -83,7 +83,11 @@ jobs:
             sitemap.xml \
             robots.txt
           git add assets/uploads/* 2>/dev/null || true
-          git add content/news content/blog content/reports
+          for collection in content/news content/blog content/reports; do
+            if [ -d "$collection" ]; then
+              git add -A -- "$collection"
+            fi
+          done
 
           if git diff --staged --quiet; then
             echo "No HTML changes to commit."
@@ -106,12 +110,11 @@ jobs:
           git commit -m "chore: rebuild site from CMS content [skip ci]"
           git push -u origin "${SYNC_BRANCH}"
 
-          PR_NUMBER=$(gh pr create \
+          PR_URL=$(gh pr create \
             --base main \
             --head "${SYNC_BRANCH}" \
             --title "chore: rebuild site from CMS content" \
-            --body "Automated HTML sync after CMS build. Deploy already completed." \
-            --json number --query .number)
+            --body "Automated HTML sync after CMS build. Deploy already completed.")
 
-          gh pr merge "${PR_NUMBER}" --auto --merge
-          echo "Opened PR #${PR_NUMBER} for auto-merge."
+          gh pr merge "${PR_URL}" --auto --merge
+          echo "Opened ${PR_URL} for auto-merge."
