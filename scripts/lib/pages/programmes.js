@@ -171,10 +171,12 @@ function renderProgrammes({ site, page, programmes }) {
   const problem = page.problem || {};
 
   const body = `
-<div class="lnl-hero-container lnl-hero-container--full">
+<div class="lnl-hero-container lnl-hero-container--full lnl-hero--programmes">
   <div class="lnl-hero-content">
-    <h1>${escapeHtml(page.heading)}</h1>
-    <p>${escapeHtml(page.intro)}</p>
+    <div class="lnl-hero-photo-card">
+      <h1>${escapeHtml(page.heading)}</h1>
+      <p>${escapeHtml(page.intro)}</p>
+    </div>
   </div>
 </div>
 

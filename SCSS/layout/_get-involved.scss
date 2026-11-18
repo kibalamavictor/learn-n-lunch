@@ -128,3 +128,50 @@
     }
   }
 }
+
+.lnl-hero--get-involved .lnl-hero-content,
+.lnl-hero--programmes .lnl-hero-content {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 8%;
+  background: url('../assets/uploads/get-involved-group.webp') center 65% / cover no-repeat;
+
+  .lnl-hero-photo-card {
+    width: min(100%, 480px);
+    box-sizing: border-box;
+    padding: 28px 32px;
+    background: #fdc039;
+    border: 1px solid #000;
+  }
+
+  h1, p { color: #000; text-align: left; }
+  h1 { margin: 0 0 16px; }
+  p { margin: 0; }
+}
+
+@media (min-width: 1024px) {
+  .lnl-hero--get-involved .lnl-hero-content,
+.lnl-hero--programmes .lnl-hero-content {
+    min-height: 350px;
+    padding-left: calc(max(0px, (100% - 1400px) / 2) + 5%);
+  }
+}
+
+@media (max-width: 640px) {
+  .lnl-hero--get-involved .lnl-hero-content,
+.lnl-hero--programmes .lnl-hero-content {
+    justify-content: flex-end;
+    padding: 32px 6%;
+
+    .lnl-hero-photo-card { padding: 24px; }
+    h1 { font-size: 2rem; }
+  }
+}
+
+.lnl-hero--programmes .lnl-hero-content {
+  background-image: url('../assets/uploads/programmes-garden.webp');
+  background-position: center;
+}

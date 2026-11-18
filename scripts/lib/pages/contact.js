@@ -100,7 +100,14 @@ function renderGetInvolved({ site, page }) {
   );
 
   const body = `
-${renderPageHero(page)}
+<div class="lnl-hero-container lnl-hero-container--full lnl-hero--get-involved">
+  <div class="lnl-hero-content">
+    <div class="lnl-hero-photo-card">
+      <h1>${escapeHtml(page.heading)}</h1>
+      <p>${escapeHtml(page.intro)}</p>
+    </div>
+  </div>
+</div>
 
 <section class="mission-vision-section lnl-page-cards">
   ${cards}
