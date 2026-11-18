@@ -83,6 +83,7 @@ jobs:
             sitemap.xml \
             robots.txt
           git add assets/uploads/* 2>/dev/null || true
+          git add content/news content/blog content/reports
 
           if git diff --staged --quiet; then
             echo "No HTML changes to commit."

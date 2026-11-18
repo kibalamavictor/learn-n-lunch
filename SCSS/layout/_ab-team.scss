@@ -180,6 +180,17 @@
   transform: rotate(-15deg);
 }
 
+// Animate each square independently so the movement travels down the diagonal.
+.card-decoration {
+  background: transparent;
+
+  > span {
+    position: absolute;
+    inset: 0;
+    background: var(--text-dark);
+  }
+}
+
 .member-name {
   font-size: 1.45rem;
   font-weight: 900;
@@ -265,7 +276,8 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    touch-action: pan-x;
+    // Allow vertical page scrolling as well as horizontal carousel swipes.
+    touch-action: pan-x pan-y pinch-zoom;
     padding: 24px 0 36px;
 
     &::-webkit-scrollbar {
@@ -344,4 +356,146 @@
   .team-carousel-viewport {
     scroll-behavior: auto;
   }
+}
+
+
+.member-card {
+  transition: transform 400ms ease, width 400ms ease;
+}
+
+.card-decoration::before,
+.card-decoration::after {
+  transition: transform 300ms ease, opacity 250ms ease;
+}
+
+@media (hover: hover) {
+  .team-member:hover .member-card {
+    transform: translate(-166px, -46px) rotate(0deg);
+    width: 444px;
+    max-width: calc(100vw - 48px);
+    height: 222px;
+    padding: 13px 16px;
+    overflow-y: auto;
+  }
+
+  .team-member:hover .member-name {
+    margin-top: 0;
+    min-height: 25px;
+    padding-right: 28px;
+  }
+
+  .team-member:hover .card-decoration::before {
+    transform: translate(20px, -20px) rotate(0deg);
+    opacity: 0;
+  }
+
+  .team-member:hover .card-decoration::after {
+    transform: translate(48px, -35px) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@media (hover: hover) and (max-width: 1000px) {
+  .team-member:hover .member-card {
+    transform: translateY(-236px) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-card, .card-decoration::before, .card-decoration::after {
+    transition: none;
+  }
+}
+
+@media (hover: hover) and (max-width: 768px) {
+  .team-member:hover .member-card {
+    width: 360px;
+    height: 180px;
+    margin-left: 0;
+    transform: translateY(-150px) rotate(0deg);
+  }
+}
+
+@keyframes team-decoration-jitter {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  4% {
+    translate: 1px 0;
+  }
+
+  8% {
+    translate: 0 -1px;
+  }
+
+  12% {
+    translate: -1px 0;
+  }
+
+  16% {
+    translate: 0 1px;
+  }
+
+  20% {
+    translate: 0 0;
+  }
+
+  62% {
+    translate: 0 0;
+  }
+
+  66% {
+    translate: -1px 1px;
+  }
+
+  70% {
+    translate: 1px -1px;
+  }
+
+  74% {
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-decoration > span,
+  .card-decoration::before,
+  .card-decoration::after {
+    animation: team-decoration-jitter var(--jitter-duration, 2.4s) steps(1, end) var(--jitter-delay, 0s) infinite;
+  }
+
+  .card-decoration::before {
+    animation-duration: var(--jitter-before-duration, 2.4s);
+    animation-delay: var(--jitter-before-delay, -.8s);
+  }
+  .card-decoration::after {
+    animation-duration: var(--jitter-after-duration, 2.4s);
+    animation-delay: var(--jitter-after-delay, -1.6s);
+  }
+
+  .team-member:hover .card-decoration::before,
+  .team-member:hover .card-decoration::after {
+    animation: none;
+  }
+}
+
+button.card-decoration {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  appearance: none;
+}
+
+.card-decoration.is-stopped > span,
+.card-decoration.is-stopped::before,
+.card-decoration.is-stopped::after {
+  animation: none;
+}
+
+.card-decoration:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
 }

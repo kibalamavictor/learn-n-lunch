@@ -1101,3 +1101,17 @@ if (document.readyState === 'loading') {
 
   cards.forEach((card) => observer.observe(card));
 })();
+
+
+// Randomize each decorative square's pixel-jitter timing independently.
+document.querySelectorAll('.card-decoration').forEach((decoration) => {
+  decoration.addEventListener('click', () => {
+    decoration.classList.add('is-stopped');
+    decoration.setAttribute('aria-pressed', 'true');
+    decoration.setAttribute('aria-label', 'Decoration motion stopped');
+  });
+  ['', '-before', '-after'].forEach((part) => {
+    decoration.style.setProperty(`--jitter${part}-duration`, `${2 + Math.random() * 2}s`);
+    decoration.style.setProperty(`--jitter${part}-delay`, `${-Math.random() * 4}s`);
+  });
+});
