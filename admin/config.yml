@@ -266,6 +266,7 @@ collections:
         file: content/pages/programmes.md
         description: "Programmes overview — why we exist, the Theory of Change, and the programme cards. Edit each programme under the Programmes collection."
         fields:
+      - { label: "Active", name: isActive, widget: boolean, default: true, required: false, hint: "Turn off to hide this item from website listings without deleting its content." }
           - { label: "Page Title (SEO)", name: title, widget: string }
           - { label: SEO Title, name: seoTitle, widget: string, required: false }
           - { label: SEO Description, name: seoDescription, widget: text, required: false }
@@ -562,6 +563,7 @@ collections:
     format: frontmatter
     extension: md
     fields:
+      - { label: "Active", name: isActive, widget: boolean, default: true, required: false, hint: "Turn off to hide this item from website listings without deleting its content." }
       - { label: Article Title, name: title, widget: string }
       - label: Original Article Link
         name: sourceUrl
@@ -595,6 +597,7 @@ collections:
         field: status
         pattern: draft
     fields:
+      - { label: "Active", name: isActive, widget: boolean, default: true, required: false, hint: "Turn off to hide this item from website listings without deleting its content." }
       - { label: "1 · Title", name: title, widget: string, hint: "Story headline shown on cards and the post page." }
       - label: "Slug (URL)"
         name: slug
@@ -791,6 +794,7 @@ collections:
     extension: md
     summary: "{{title}} — {{status}}"
     fields:
+      - { label: "Active", name: isActive, widget: boolean, default: true, required: false, hint: "Turn off to hide this item from website listings without deleting its content." }
       - { label: "1 · Title", name: title, widget: string }
       - label: "Slug (URL)"
         name: slug

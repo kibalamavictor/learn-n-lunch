@@ -62,7 +62,7 @@ function loadBlogPosts() {
 }
 
 function loadPublishedBlogPosts() {
-  return loadBlogPosts().filter((post) => post.status === "published");
+  return loadBlogPosts().filter((post) => post.status === "published" && post.isActive !== false);
 }
 
 function loadAllContent() {
@@ -88,7 +88,7 @@ function loadAllContent() {
       impactMap: loadStats("impact-map")
     },
     universities: readJson(path.join(CONTENT, "settings/universities.json")).universities || [],
-    programmes: loadCollection("programmes").map((programme) => ({
+    programmes: loadCollection("programmes").filter((programme) => programme.isActive !== false).map((programme) => ({
       ...programme,
       slug: normalizePostSlug(programme.slug)
     })),
