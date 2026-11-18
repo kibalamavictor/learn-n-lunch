@@ -6,6 +6,9 @@ ogImage: /assets/uploads/learn_and_lunch_08.webp
 heading: CONTACT US
 intro: Reach out to Learn and Lunch for partnerships, media inquiries, volunteer
   opportunities, and student coalition engagement.
+emailCardEnabled: true
+phoneCardEnabled: true
+addressCardEnabled: true
 email: info@learnandlunch.org
 phone: +256 781899399
 address: Kampala, Uganda

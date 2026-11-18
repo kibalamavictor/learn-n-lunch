@@ -505,6 +505,9 @@ collections:
           - { label: Social Share Image, name: ogImage, widget: image, required: false }
           - { label: "1 · Heading", name: heading, widget: string }
           - { label: "1 · Intro", name: intro, widget: text }
+          - { label: "Show Email Card", name: emailCardEnabled, widget: boolean, default: true, required: false, hint: "Turn off to hide this card while keeping its contact details." }
+          - { label: "Show Phone Card", name: phoneCardEnabled, widget: boolean, default: true, required: false }
+          - { label: "Show Address Card", name: addressCardEnabled, widget: boolean, default: true, required: false }
           - { label: "2 · Email", name: email, widget: string }
           - { label: "2 · Phone", name: phone, widget: string, required: false }
           - { label: "2 · Address", name: address, widget: text, required: false }

@@ -48,7 +48,7 @@ function renderPageHero(page) {
 function buildContactMethods(page) {
   const methods = [];
 
-  if (page.email) {
+  if (page.email && page.emailCardEnabled !== false) {
     methods.push({
       title: "Email Us",
       description:
@@ -60,7 +60,7 @@ function buildContactMethods(page) {
     });
   }
 
-  if (page.phone) {
+  if (page.phone && page.phoneCardEnabled !== false) {
     const phoneHref = `tel:${page.phone.replace(/[^\d+]/g, "")}`;
     methods.push({
       title: "Call Us",
@@ -73,7 +73,7 @@ function buildContactMethods(page) {
     });
   }
 
-  if (page.address) {
+  if (page.address && page.addressCardEnabled !== false) {
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(page.address)}`;
     methods.push({
       title: "Visit Us",
