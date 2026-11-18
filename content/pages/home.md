@@ -60,9 +60,9 @@ howItWorks:
   studentsFlow:
     label: For Students
     steps:
-      - Join the student coalition
-      - Mobilize your campus
-      - Advocate for food security.
+      - Join the coalition
+      - Rally students
+      - Drive change.
     ctaLabel: Join the Coalition
     ctaUrl: https://forms.gle/NyLAiZgKy5mq6qLh8
   donorsFlow:
