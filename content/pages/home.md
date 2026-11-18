@@ -60,10 +60,10 @@ howItWorks:
   studentsFlow:
     label: For Students
     steps:
-      - Sign up
-      - Get access to meals
-      - Focus on learning.
-    ctaLabel: Sign up
+      - Join the student coalition
+      - Mobilize your campus
+      - Advocate for food security.
+    ctaLabel: Join the Coalition
     ctaUrl: https://forms.gle/NyLAiZgKy5mq6qLh8
   donorsFlow:
     label: For Donors
