@@ -5,7 +5,7 @@ bio: Designs student nutrition programs and promotes healthy feeding habits.
 photo: /about-us/about/photos/alfred.jpg
 photoAlt: Alfred Atwongyeire portrait
 cardVariant: member-card-yellow
+layout: solo
 order: 7
-layout: pair
 isActive: true
 ---
