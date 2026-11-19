@@ -190,7 +190,9 @@ function preferWebpAsset(assetPath) {
 function resolveAsset(depth, assetPath, options = {}) {
   if (!assetPath) return resolveHomeHref(depth);
   if (/^https?:\/\//.test(assetPath)) {
-    return optimizeCloudinaryUrl(assetPath, options.cloudinaryWidth);
+    return options.optimizeCloudinary === false
+      ? assetPath
+      : optimizeCloudinaryUrl(assetPath, options.cloudinaryWidth);
   }
   const optimizedPath = preferWebpAsset(assetPath);
   const clean = optimizedPath.startsWith("/") ? optimizedPath.slice(1) : optimizedPath;

@@ -20,3 +20,12 @@ test('page-specific photos and crops render independently and escape description
   assert.match(second, /center 80%/);
   assert.doesNotMatch(second, /one.jpg/);
 });
+
+test('hero uses the original full-resolution Cloudinary image without added transformations', () => {
+  const original = 'https://res.cloudinary.com/example/image/upload/v123/hero.jpg';
+  const html = renderPhotoHeroContent({ heroImage: original, heading: 'Hero' }, 1);
+  assert(html.includes(`src="${original}"`));
+  assert.doesNotMatch(html, /f_auto|q_auto|w_1200/);
+  const fallback = renderPhotoHeroContent({ heading: 'Hero' }, 1);
+  assert.doesNotMatch(fallback, /f_auto|q_auto|w_1200/);
+});
