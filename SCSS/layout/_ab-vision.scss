@@ -154,3 +154,18 @@
     height: 100px;
   }
 }
+
+@keyframes vision-accent-jitter {
+  0%, 12%, 100% { translate: 0 0; }
+  2% { translate: 2px 0; }
+  4% { translate: 0 -2px; }
+  6% { translate: -2px 1px; }
+  8% { translate: 1px 2px; }
+  10% { translate: -1px 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vision-card .vision-accent-box {
+    animation: vision-accent-jitter 8s steps(1, end) 1s infinite;
+  }
+}
