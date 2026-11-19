@@ -1,3 +1,4 @@
+const { renderPhotoHeroContent } = require("../photo-hero");
 const {
   escapeHtml,
   resolveAsset,
@@ -172,12 +173,7 @@ function renderProgrammes({ site, page, programmes }) {
 
   const body = `
 <div class="lnl-hero-container lnl-hero-container--full lnl-hero--programmes">
-  <div class="lnl-hero-content">
-    <div class="lnl-hero-photo-card">
-      <h1>${escapeHtml(page.heading)}</h1>
-      <p>${escapeHtml(page.intro)}</p>
-    </div>
-  </div>
+  ${renderPhotoHeroContent(page, depth)}
 </div>
 
 ${

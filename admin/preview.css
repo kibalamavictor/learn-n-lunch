@@ -682,3 +682,34 @@ body {
 @media (max-width: 430px) {
   .preview-qr-card { flex-direction: column; align-items: flex-start; }
 }
+
+.preview-photo-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 350px;
+  padding: 32px 8%;
+  background: #222;
+}
+.preview-photo-hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.preview-photo-hero-card {
+  width: min(100%, 480px);
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background: #fff;
+  border: 2px solid #000;
+  box-shadow: 6px 6px 0 #000;
+}
+.preview-photo-hero-card .preview-title { margin-top: 0; font-size: 32px; }
+.preview-photo-hero-card p { margin-bottom: 0; }
+@media (max-width: 640px) {
+  .preview-photo-hero { min-height: 520px; align-items: flex-end; padding: 32px 6%; }
+}

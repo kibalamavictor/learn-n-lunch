@@ -41,3 +41,21 @@ test('uploaded images are previewed and coalition follows the button URL', () =>
   assert.notEqual(first.props.src, second.props.src);
   assert.equal(findQr(render('home', { coalitionCta: { qrImageOverride: '/coalition-upload.png' } })).props.src, '/coalition-upload.png');
 });
+
+test('both photo hero previews follow uploaded images and crop changes', () => {
+  const render = previewHarness();
+  function findImage(tree) {
+    if (!tree || typeof tree !== 'object') return null;
+    if (tree.props?.className === 'preview-photo-hero-background') return tree;
+    for (const child of tree.children || []) { const found = findImage(child); if (found) return found; }
+    return null;
+  }
+  for (const name of ['programmes', 'getInvolved']) {
+    const image = findImage(render(name, { heroImage: '/new-photo.jpg', heroImagePosition: 0 }));
+    assert.equal(image.props.src, '/new-photo.jpg');
+    assert.equal(image.props.style.objectPosition, 'center 0%');
+    const changed = findImage(render(name, { heroImage: '/replacement.jpg', heroImagePosition: 85 }));
+    assert.equal(changed.props.src, '/replacement.jpg');
+    assert.equal(changed.props.style.objectPosition, 'center 85%');
+  }
+});

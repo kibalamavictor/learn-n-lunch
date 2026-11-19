@@ -1,3 +1,4 @@
+const { renderPhotoHeroContent } = require("../photo-hero");
 const { escapeHtml, resolveAsset, defaultFooterCta } = require("../utils");
 const { renderPage } = require("../partials");
 const {
@@ -101,12 +102,7 @@ function renderGetInvolved({ site, page }) {
 
   const body = `
 <div class="lnl-hero-container lnl-hero-container--full lnl-hero--get-involved">
-  <div class="lnl-hero-content">
-    <div class="lnl-hero-photo-card">
-      <h1>${escapeHtml(page.heading)}</h1>
-      <p>${escapeHtml(page.intro)}</p>
-    </div>
-  </div>
+  ${renderPhotoHeroContent(page, depth)}
 </div>
 
 <section class="mission-vision-section lnl-page-cards">

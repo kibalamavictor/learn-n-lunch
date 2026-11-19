@@ -201,6 +201,38 @@
     override: settings ? settings.footerQrImageOverride : qrDefaults.footerOverride
   });
 
+  const photoHeroPreview = (data, getAsset) => {
+    const rawPosition = data.heroImagePosition === "" || data.heroImagePosition == null ? 60 : Number(data.heroImagePosition);
+    const position = Number.isFinite(rawPosition) ? Math.max(0, Math.min(100, rawPosition)) : 60;
+    return h("div", { className: "preview-photo-hero" }, [
+      h("img", {
+        className: "preview-photo-hero-background",
+        src: assetUrl(getAsset, data.heroImage || "https://res.cloudinary.com/jxgiku8t/image/upload/v1794983049/learn-and-lunch-food-security-summit-2026.jpg"),
+        alt: data.heroImageAlt || "",
+        style: { objectPosition: `center ${position}%` }
+      }),
+      h("div", { className: "preview-photo-hero-card" }, [
+        h("h1", { className: "preview-title" }, text(data.heading, "Hero heading")),
+        data.intro ? h("p", null, data.intro) : null
+      ])
+    ]);
+  };
+
+  const ProgrammesPreview = ({ entry, getAsset }) => {
+    const data = dataOf(entry);
+    return h("div", { className: "preview-frame preview-page" }, [
+      kicker("Programmes · live preview"),
+      photoHeroPreview(data, getAsset),
+      section(text((data.problem || {}).heading, "Why we exist"), [
+        h("h3", null, (data.problem || {}).statement || ""),
+        h("p", null, (data.problem || {}).body || "")
+      ]),
+      section(text((data.theoryOfChange || {}).heading, "Theory of Change"), [
+        h("p", null, (data.theoryOfChange || {}).statement || "")
+      ])
+    ]);
+  };
+
   /* ——— Home ——— */
   const HomePreview = ({ entry, getAsset }) => {
     const data = dataOf(entry);
@@ -508,14 +540,13 @@
     ]);
   };
 
-  const GetInvolvedPreview = ({ entry }) => {
+  const GetInvolvedPreview = ({ entry, getAsset }) => {
     const data = dataOf(entry);
     const ops = Array.isArray(data.opportunities) ? data.opportunities : [];
 
     return h("div", { className: "preview-frame preview-page" }, [
       kicker("Get Involved · live preview"),
-      h("h1", { className: "preview-title" }, text(data.heading, "Get Involved")),
-      data.intro ? h("p", { className: "preview-lead" }, data.intro) : null,
+      photoHeroPreview(data, getAsset),
       ops.length
         ? h(
             "div",
@@ -829,6 +860,7 @@
     storiesPage: StoriesPagePreview,
     donate: DonatePreview,
     getInvolved: GetInvolvedPreview,
+    programmes: ProgrammesPreview,
     contactUs: ContactPreview,
     homeStats: HomeStatsPreview,
     impactStats: ImpactStatsPreview,

@@ -3,6 +3,9 @@ title: Get Involved
 seoTitle: Get Involved | Learn and Lunch
 seoDescription: Join the movement to end campus hunger. Partner with Learn and Lunch, join the student coalition, or volunteer to support university students in Uganda.
 ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-08.webp
+heroImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1794983049/learn-and-lunch-food-security-summit-2026.jpg
+heroImageAlt: Learn and Lunch Food Security Summit 2026
+heroImagePosition: 60
 heading: GET INVOLVED
 intro: Join the movement to end campus hunger. Whether you are a student leader, partner organization, or supporter, there is a practical way to contribute.
 opportunities:
