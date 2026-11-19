@@ -1287,13 +1287,22 @@ if (document.readyState === 'loading') {
       }, jitterDuration);
     }
 
-    decoration.addEventListener('click', () => {
+    function releaseSquares() {
       if (decoration.classList.contains('is-fallen')) return;
       dropSquares(decoration);
       decoration.classList.add('is-stopped', 'is-fallen');
       clearMotion();
       decoration.setAttribute('aria-pressed', 'true');
       decoration.setAttribute('aria-label', 'Decoration squares dropped');
+    }
+    // The photo and profile card form one hover target; the moving square is tiny.
+    const teamCard = decoration.closest('.team-member');
+    (teamCard || decoration).addEventListener('pointerenter', releaseSquares);
+    decoration.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        releaseSquares();
+      }
     });
     motionPreference.addEventListener('change', () => {
       clearMotion();
