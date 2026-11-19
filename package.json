@@ -9,7 +9,7 @@
     "optimize-site-assets": "node scripts/optimize-site-assets.js",
     "compile:css": "sass SCSS/style.scss dist/style.css",
     "minify-assets": "node scripts/minify-assets.js",
-    "prebuild": "npm run validate-content && npm run optimize-uploads && npm run optimize-site-assets && npm run compile:css && npm run minify-assets",
+    "prebuild": "npm run validate-content && npm run compile:css && npm run minify-assets",
     "build": "node scripts/build-content.js && npm run check-seo",
     "check-seo": "node scripts/check-seo.js"
   },

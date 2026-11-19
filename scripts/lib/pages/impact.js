@@ -204,9 +204,9 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
         <span class="stats-number-box" data-target="${stat.target}" data-suffix="${stat.exact ? "" : "+"}">0</span>
         <span class="stats-text-primary">${escapeHtml(stat.primaryLabel)}</span>
       </div>
-      
+
       <h2 class="stats-text-secondary">${escapeHtml(stat.secondaryLabel)}</h2>
-      
+
       <p class="stats-description">
         ${escapeHtml(stat.description)}
       </p>
@@ -227,9 +227,9 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
     <div class="impact-hero-content">
       <div class="impact-hero-image-container">
         <div class="impact-hero-image-frame">
-          <img 
-            src="${resolveAsset(depth, page.hero.image)}" 
-            alt="${escapeHtml(page.hero.imageAlt)}" 
+          <img
+            src="${resolveAsset(depth, page.hero.image)}"
+            alt="${escapeHtml(page.hero.imageAlt)}"
             class="impact-hero-image"
             fetchpriority="high"
             decoding="async"
@@ -240,7 +240,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
 
       <div class="impact-hero-text">
         <h2 class="impact-why-title">${escapeHtml(page.hero.meaningHeading).replace("Means to Us", "Means <br> to Us")}</h2>
-        
+
         <div class="impact-description">
           <p class="impact-paragraph">
             ${escapeHtml(page.hero.meaningBody)}

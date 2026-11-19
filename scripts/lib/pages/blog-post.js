@@ -70,9 +70,9 @@ ${renderStoryCarousel({
     ? ""
     : `
     <figure class="exam-story-image-wrapper">
-      <img 
-        src="${resolveAsset(depth, post.coverImage)}" 
-        alt="${escapeHtml(post.coverImageAlt || post.title)}" 
+      <img
+        src="${resolveAsset(depth, post.coverImage)}"
+        alt="${escapeHtml(post.coverImageAlt || post.title)}"
         class="exam-story-hero-image"
       />
       ${
@@ -97,7 +97,7 @@ ${renderStoryCarousel({
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>
         </button>
-    </a> 
+    </a>
     <div class="category-badge">${escapeHtml(category)}</div>
     <button class="share-button" type="button">
       Share

@@ -180,8 +180,17 @@ function relPrefix(depth) {
 
 function preferWebpAsset(assetPath) {
   if (!assetPath || /^https?:\/\//.test(assetPath)) return assetPath;
-  if (/\.webp$/i.test(assetPath)) return assetPath;
+  if (/\.webp$/i.test(assetPath)) {
+    // Some content already points at generated WebP copies; prefer retained originals.
+    for (const extension of ['.png', '.jpg', '.jpeg']) {
+      const original = assetPath.replace(/\.webp$/i, extension);
+      if (fs.existsSync(path.join(process.cwd(), original.replace(/^\//, '')))) return original;
+    }
+    return assetPath;
+  }
   const normalized = assetPath.startsWith("/") ? assetPath : `/${assetPath}`;
+  // Preserve an available original; use an older WebP only if the source is missing.
+  if (fs.existsSync(path.join(process.cwd(), normalized.slice(1)))) return assetPath;
   const webpPath = normalized.replace(/\.(png|jpe?g)$/i, ".webp");
   const fullPath = path.join(process.cwd(), webpPath.slice(1));
   return fs.existsSync(fullPath) ? webpPath : assetPath;
@@ -376,10 +385,9 @@ function normalizeListStrings(items, preferredKeys = []) {
     .filter(Boolean);
 }
 
-function optimizeCloudinaryUrl(url, width = 1200) {
-  if (!/^https:\/\/res\.cloudinary\.com\//.test(String(url))) return url;
-  if (/\/upload\/[^/]*(?:f_auto|q_auto)/.test(url)) return url;
-  return String(url).replace("/upload/", `/upload/f_auto,q_auto,w_${width}/`);
+// Retained for existing callers: photo delivery now preserves the supplied URL.
+function optimizeCloudinaryUrl(url) {
+  return url;
 }
 
 const FOOTER_CTA_BACKGROUND_IMAGE = optimizeCloudinaryUrl(
