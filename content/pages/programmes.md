@@ -8,7 +8,7 @@ seoDescription: How Learn and Lunch works to end campus hunger in Uganda — our
 ogImage: /assets/uploads/learn_and_lunch_06.webp
 heroImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1794983062/bernd-dittrich-tFDZCJtwBFo-unsplash.jpg
 heroImageAlt: Learn and Lunch Food Security Summit 2026
-heroImagePosition: 60
+heroImagePosition: 55
 heading: OUR PROGRAMMES
 intro: We listen. We organise. We build. From understanding the problem to
   testing what can work, our programmes turn student experiences into lasting
