@@ -39,13 +39,13 @@ strategicFramework:
   description: Our roadmap for ending campus hunger — research, student networks,
     and practical solutions that guide Learn and Lunch across universities.
   buttonLabel: Download Framework
-  file: /assets/uploads/strategic-framework.pdf
+  file: ""
 impactReport:
   heading: Impact Report 2025
   description: Read the latest outcomes, campus reach, and student stories.
     Download the full report to share with partners and donors.
   buttonLabel: Download Report
-  file: /assets/uploads/impact-report-2025.pdf
+  file: ""
 footerCta:
   title: BE PART OF THE MOVEMENT.
   buttonLabel: Donate Now
