@@ -7,45 +7,32 @@ seoDescription: Learn about Learn and Lunch — a student-led organisation
 ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-10.webp
 hero:
   heading: Who We Are
-  body: Learn and Lunch is a student led organisation working to address campus
-    hunger in Uganda. We treat hunger not as a personal failure, but as a
-    structural challenge within higher education that requires evidence,
-    coordination, and institutional response.
+  body: Learn and Lunch is a student-led organisation addressing campus hunger in Uganda. We bring students, universities and partners together to understand the challenges students face, improve access to food and make food security part of university life.
   image: /assets/uploads/learn-n-lunch-body-and-soil-partnership-10.webp
   imageAlt: Students sharing a meal donation
 standForHeading: What We Stand For
-standForStatement: We believe no student should have to choose between food and
-  education. We stand for dignity, equity, accountability, and student
-  leadership. Our work centers lived experience while protecting consent and
-  wellbeing.
+standForStatement: No student should have to choose between food and education.
+standForBody: We believe students should be able to ask for support without shame. Their experiences guide our work, from conversations about campus hunger to developing practical ways to help.
 missionVision:
-  mission: Learn and Lunch brings students, universities and partners together to
-    understand campus food insecurity, develop practical solutions and build the
-    capacity for food-secure universities.
-  vision: Universities where no student goes hungry and every student has access
-    to nutritious, diverse food and the opportunity to thrive in education.
+  mission: To bring students, universities and partners together to understand campus hunger, improve access to nutritious food and build lasting support for students who need it.
+  vision: Universities where no student goes hungry and everyone has the nourishment they need to learn and thrive.
 values:
   - name: COMMUNITY
-    description: Together, we grow <br> stronger.
+    description: Students, universities and partners working together.
     highlightVariant: highlight
-  - name: ACCESSIBILITY
-    description: Meals that students <br>can always count on.
+  - name: DIGNITY
+    description: Support that respects every student’s privacy and choices.
     highlightVariant: highlight-2
-  - name: TRUST
-    description: Reliable service, quality <br>food.
+  - name: ACCOUNTABILITY
+    description: Taking responsibility for our commitments and resources.
     highlightVariant: highlight-3
-  - name: EMPOWERMENT
-    description: Helping students thrive <br>academically and <br>personally.
+  - name: STUDENT LEADERSHIP
+    description: Students shaping the decisions that affect them.
     highlightVariant: highlight-4
 challenge:
   heading: THE CHALLENGE
-  body: Food insecurity among university students in Uganda is rarely discussed or
-    documented. Many students rely on inconsistent meals, informal coping
-    strategies, or complete meal skipping to survive academic life. Because
-    hunger is normalized and stigmatized, it remains largely invisible to
-    institutions and policymakers. Learn and Lunch exists to challenge this
-    silence by documenting realities, amplifying student voices responsibly, and
-    pushing for systemic solutions.
+  body: University costs go beyond tuition. Rent, transport and study materials can leave little for food. When money runs short or support from home is delayed, students may skip meals or eat less than they need. Many manage this quietly. We work to bring these experiences into the open and develop responses through research, advocacy, nutrition education and food support partnerships.
   image: /assets/uploads/learn_and_lunch_01.webp
   imageAlt: Team members in branded apparel preparing meals
+teamDescription: We are students and young leaders who believe hunger deserves a serious response on our campuses. Our team brings together experience in student engagement, advocacy, nutrition and programme development. We listen to students, build relationships and work with others to turn shared concern into practical support.
 ---

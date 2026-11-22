@@ -79,7 +79,7 @@ function renderAbout({ site, page, team }) {
     </h2>
 
     <div class="our-story-section-2">
-      <p style="font-family: Nunito, sans-serif;">${escapeHtml(page.standForStatement)}</p>
+      <p style="font-family: Nunito, sans-serif;">${escapeHtml(page.standForBody || page.standForStatement)}</p>
     </div>
 
     <hr style="margin: 0 auto; max-width: 1400px;">
@@ -133,7 +133,7 @@ function renderAbout({ site, page, team }) {
         </div>
 
         <p class="team-description">
-          ${escapeHtml(TEAM_SECTION.description)}
+          ${escapeHtml(page.teamDescription || TEAM_SECTION.description)}
         </p>
 
         <div class="team-carousel" data-team-carousel>

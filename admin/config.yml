@@ -229,6 +229,7 @@ collections:
               - { label: Image Alt, name: imageAlt, widget: string }
           - { label: "2 · Stand For Heading", name: standForHeading, widget: string }
           - { label: "2 · Stand For Statement", name: standForStatement, widget: text }
+          - { label: "2 · Stand For Body", name: standForBody, widget: text, required: false }
           - label: "3 · Mission & Vision"
             name: missionVision
             widget: object
@@ -258,6 +259,8 @@ collections:
               - { label: Body, name: body, widget: text }
               - { label: Image, name: image, widget: image }
               - { label: Image Alt, name: imageAlt, widget: string }
+
+          - { label: "6 · Team Introduction", name: teamDescription, widget: text, required: false }
 
       - name: programmes
         label: "Programmes"
