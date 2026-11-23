@@ -1,57 +1,97 @@
 ---
 title: Impact
-seoTitle: Our Impact | Learn and Lunch
-seoDescription: See how Learn and Lunch is making campus food insecurity visible
-  across Ugandan universities through research, student stories, campus reach,
-  and measurable outcomes.
-ogImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1792673952/learn-and-lunch-food-security-summit-2026_-96.jpg
+seoTitle: Our Impact | Learn And Lunch
+seoDescription: >-
+  Explore Learn And Lunch's progress in research, student engagement, practical
+  solutions and partnerships advancing food security in higher education in
+  Uganda.
+ogImage: >-
+  https://res.cloudinary.com/jxgiku8t/image/upload/v1792673952/learn-and-lunch-food-security-summit-2026_-96.jpg
 downloadForm:
   headingPrefix: Complete the form below to download our
   submitLabel: Submit
-  consentNote: By submitting this form, you agree to receive emails about news and
-    updates from Learn and Lunch.
+  consentNote: >-
+    By submitting this form, you agree to receive emails about news and updates
+    from Learn and Lunch.
   successTitle: Thank you! Your download is starting.
-  successBody: If the PDF doesn't open automatically, use the button below.
+  successBody: 'If the PDF doesn''t open automatically, use the button below.'
   againLabel: Download again
   submitEmail: info@learnandlunch.org
-  submitEndpoint: https://script.google.com/macros/s/AKfycbw2gX7LQnBztXSgfu6q_5w0de-eNLDTxHCSBoErjvzfL0LNC_puW91dA50rVxI9Ps50/exec
+  submitEndpoint: >-
+    https://script.google.com/macros/s/AKfycbw2gX7LQnBztXSgfu6q_5w0de-eNLDTxHCSBoErjvzfL0LNC_puW91dA50rVxI9Ps50/exec
 hero:
   heading: OUR IMPACT
-  subtitle: Learn and Lunch’s impact begins by making this hidden crisis visible
+  subtitle: >-
+    We track progress through the evidence we generate, the students and
+    institutions we engage, the solutions we put into practice and the changes
+    that help universities respond to campus food insecurity.
   image: /impact/impact/impact-hero-image.png
   imageAlt: Students enjoying lunch together
-  meaningHeading: What Impact Means to Us
-  meaningBody: For Learn and Lunch, impact is not only about numbers. It is about
-    whether students are safer, better represented, and more supported within
-    higher education systems. Impact means students speaking about hunger
-    without fear or shame, universities engaging with credible evidence on
-    student food insecurity, practical solutions being tested and refined by
-    students themselves, and advocacy efforts grounded in verified data and
-    lived experience.
-numbersHeading: The Numbers Tell the Story
+  meaningHeading: What Progress Means to Us
+  meaningBody: >-
+    For Learn And Lunch, progress is more than the number of activities
+    completed or people reached. It includes stronger understanding of campus
+    food insecurity, meaningful student participation, practical solutions
+    tested with campus communities and universities taking steps towards more
+    coordinated responses. We are committed to reporting what has been done,
+    what has changed and what we are still learning.
+numbersHeading: Our Work in Numbers
 faces:
-  heading: Faces Behind the Numbers
-  ctaLabel: See More Student Stories
+  heading: Student Experiences and Programme Milestones
+  ctaLabel: Explore Stories and Insights
   ctaUrl: /stories/
-scrollBanner: DRIVEN BY PASSION · POWERED BY PURPOSE · LEARN AND LUNCH ·
+scrollBanner: EVIDENCE · STUDENT LEADERSHIP · PRACTICAL SOLUTIONS · INSTITUTIONAL CHANGE ·
 strategicFramework:
-  heading: Strategic Framework 2025
-  description: Our roadmap for ending campus hunger — research, student networks,
-    and practical solutions that guide Learn and Lunch across universities.
+  heading: Strategic Direction
+  description: >-
+    Our strategic direction connects research, practical implementation, student
+    leadership and institutional partnerships to advance food security in higher
+    education.
   buttonLabel: Download Framework
-  file: ""
+  file: ''
 impactReport:
-  heading: Impact Report 2025
-  description: Read the latest outcomes, campus reach, and student stories.
-    Download the full report to share with partners and donors.
+  heading: Impact and Learning Report
+  description: 'Read about our activities, reach, programme results and lessons.'
   buttonLabel: Download Report
-  file: ""
+  file: ''
 footerCta:
-  title: BE PART OF THE MOVEMENT.
-  buttonLabel: Donate Now
+  title: HELP BUILD FOOD-SECURE UNIVERSITIES
+  buttonLabel: Support Our Work
   buttonUrl: /donate/
-  backgroundImage: https://res.cloudinary.com/pr7r5p6g/image/upload/v1785746712/footer_iwzqaw.jpg
-  backgroundImageAlt: Volunteers packing food
+  backgroundImage: >-
+    https://res.cloudinary.com/pr7r5p6g/image/upload/v1785746712/footer_iwzqaw.jpg
+  backgroundImageAlt: >-
+    Students, university teams and partners working together on campus food
+    security
   qrImage: /qr-code.png
   qrImageAlt: Scan to email info@learnandlunch.org
+social:
+  ogTitle: Our Impact | Learn And Lunch
+  ogDescription: >-
+    Explore Learn And Lunch's progress in research, student engagement,
+    practical solutions and partnerships advancing food security in higher
+    education in Uganda.
+  twitterTitle: Our Impact | Learn And Lunch
+  twitterDescription: >-
+    Explore Learn And Lunch's progress in research, student engagement,
+    practical solutions and partnerships advancing food security in higher
+    education in Uganda.
+storyExcerpts:
+  at-makerere-business-school-a-car-wash-fed-200-students: >-
+    Students at Makerere University Business School organised a fundraising car
+    wash that raised more than one million shillings and supported food packs
+    for 200 students.
+  hidden-costs-university-life-uganda: >-
+    Explore how the wider costs of university life can affect students’ ability
+    to access food and participate fully in higher education.
+  food-security-gender-equality-universities-uganda: >-
+    Food insecurity affects students differently. A gender-responsive approach
+    helps identify barriers and shape inclusive responses.
+  food-security-universities-uganda: >-
+    Learn why food security is an essential part of student wellbeing and
+    educational participation, and how practical responses can be developed.
+  first-campus-food-security-summit-2026: >-
+    The Campus Food Security Summit brought together 337 participants from 25
+    universities to discuss practical approaches to building food-secure
+    universities.
 ---

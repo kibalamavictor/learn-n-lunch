@@ -13,15 +13,15 @@
       "order": 2
     },
     {
-      "valueLabel": "20+",
-      "target": 20,
+      "valueLabel": "256",
+      "target": 256,
       "description": "Student <br> Ambassadors",
       "order": 3
     },
     {
       "valueLabel": "33",
       "target": 33,
-      "description": "Active <br> Volunteers",
+      "description": "Team Members and Volunteers",
       "order": 4
     }
   ]

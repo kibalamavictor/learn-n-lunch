@@ -1,7 +1,9 @@
 ---
 name: Martha Amanya
 role: Founder
-bio: Drives vision and strategic program growth.
+bio: >-
+  Contributes to the organisation's founding vision and strategic programme
+  development.
 photo: /about-us/about/photos/martha.jpg
 photoAlt: Martha Amanya portrait
 cardVariant: member-card-cyan

@@ -46,7 +46,7 @@ function renderToc(page, programmes, depth) {
     { key: "output", label: "Outputs", hint: "What we produce" },
     { key: "outcome", label: "Outcomes", hint: "What changes" },
     { key: "goal", label: "Goals", hint: "Our focus areas" }
-  ];
+  ].map(column => ({ ...column, ...toc.columns?.[column.key] }));
 
   const rows = toc.pathways
     .map((pathway) => {
@@ -57,7 +57,7 @@ function renderToc(page, programmes, depth) {
               (programme) =>
                 `<li><a class="prog-toc__chip" href="${
                   programme.hasPage ? programmeUrl(depth, programme) : `#${escapeHtml(programme.slug)}`
-                }">${escapeHtml(programme.title)}</a></li>`
+                }">${escapeHtml(toc.programmeLinkLabels?.[programme.slug] || programme.title)}</a></li>`
             )
             .join("")}</ul>`
         : pathway.chipsNote
@@ -69,7 +69,7 @@ function renderToc(page, programmes, depth) {
           (column) => `
         <div class="prog-toc__cell prog-toc__cell--${column.key}">
           <p class="prog-toc__label">${escapeHtml(column.label)}</p>
-          <h3 class="prog-toc__cell-title">${escapeHtml(pathway[column.key])}</h3>
+          <h3 class="prog-toc__cell-title">${escapeHtml(column.key === "activity" ? pathway.activityHeading || pathway.activity : pathway[column.key])}</h3>
           <p>${escapeHtml(pathway[`${column.key}Body`])}</p>
           ${column.key === "activity" ? chips : ""}
         </div>`
@@ -77,7 +77,7 @@ function renderToc(page, programmes, depth) {
         .join("");
 
       return `
-      <article class="prog-toc__row prog-toc__row--${escapeHtml(pathway.key)}" aria-label="${escapeHtml(pathway.activity)} pathway">${cells}
+      <article class="prog-toc__row prog-toc__row--${escapeHtml(pathway.key)}" aria-label="${escapeHtml(pathway.ariaLabel || `${pathway.activity} pathway`)}">${cells}
       </article>`;
     })
     .join("");
@@ -114,8 +114,8 @@ function renderToc(page, programmes, depth) {
         </div>${rows}
       </div>
 
-      <aside class="prog-toc__goal" aria-label="Strategic goal">
-        <p class="prog-toc__goal-label">Strategic goal</p>
+      <aside class="prog-toc__goal" aria-label="${escapeHtml(goal.ariaLabel || "Strategic goal")}">
+        <p class="prog-toc__goal-label">${escapeHtml(goal.label || "Strategic goal")}</p>
         <h3>${escapeHtml(goal.title || "")}</h3>
         <p>${escapeHtml(goal.body || "")}</p>
       </aside>
@@ -123,7 +123,7 @@ function renderToc(page, programmes, depth) {
 
     <div class="prog-toc__footer">
       ${download}
-      <a class="prog-toc__impact-link" href="${resolveAsset(depth, "impact/")}">See our impact so far <span aria-hidden="true">→</span></a>
+      <a class="prog-toc__impact-link" href="${resolveAsset(depth, "impact/")}">${escapeHtml(toc.impactLinkLabel || "See our impact so far")} <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>`;
@@ -132,25 +132,24 @@ function renderToc(page, programmes, depth) {
 function renderProgrammeCards(page, programmes, depth) {
   const cards = programmes
     .map((programme) => {
+      const card = { ...programme, ...page.programmeCards?.[programme.slug] };
       let link = "";
       if (programme.hasPage) {
-        link = `<a class="prog-card__link" href="${programmeUrl(depth, programme)}">Explore the programme<span class="visually-hidden">: ${escapeHtml(
-          programme.title
-        )}</span> <span aria-hidden="true">→</span></a>`;
+        link = `<a class="prog-card__link" href="${programmeUrl(depth, programme)}">${escapeHtml(card.linkLabel || "Explore the programme")}${card.linkLabel ? "" : `<span class="visually-hidden">: ${escapeHtml(programme.title)}</span>`} <span aria-hidden="true">→</span></a>`;
       } else if (programme.linkUrl) {
         link = `<a class="prog-card__link" href="${escapeHtml(resolveLink(depth, programme.linkUrl))}">${escapeHtml(
-          programme.linkLabel || "Learn more"
+          card.linkLabel || "Learn more"
         )} <span aria-hidden="true">→</span></a>`;
       }
 
       return `
       <article class="prog-card" id="${escapeHtml(programme.slug)}">
         <span class="prog-card__activity" style="background:${ACTIVITY_COLORS[programme.activity] || "#d3eeff"};">${escapeHtml(
-          activityLabel(page, programme.activity)
+          card.activityLabel || activityLabel(page, programme.activity)
         )}</span>
-        <h3 class="prog-card__title">${escapeHtml(programme.title)}</h3>
-        <p class="prog-card__summary">${escapeHtml(programme.summary)}</p>
-        ${programme.status ? `<p class="prog-card__status">${escapeHtml(programme.status)}</p>` : ""}
+        <h3 class="prog-card__title">${escapeHtml(card.title)}</h3>
+        <p class="prog-card__summary">${escapeHtml(card.summary)}</p>
+        ${card.status ? `<p class="prog-card__status">${escapeHtml(card.status)}</p>` : ""}
         ${link}
       </article>`;
     })
@@ -208,6 +207,7 @@ ${renderProgrammeCards(page, programmes, depth)}`;
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogImageAlt: seo.ogImageAlt,
@@ -389,6 +389,7 @@ ${related}`;
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogImageAlt: seo.ogImageAlt,

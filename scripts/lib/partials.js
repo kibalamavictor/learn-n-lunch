@@ -22,6 +22,7 @@ function renderHead({
   canonicalPath = "/",
   ogImage,
   ogImageAlt,
+  social,
   ogType = "website",
   keywords,
   articleMeta,
@@ -38,6 +39,7 @@ function renderHead({
     canonicalPath,
     ogImage,
     ogImageAlt,
+    social,
     ogType,
     keywords,
     articleMeta,
@@ -98,13 +100,13 @@ function renderNav({ depth, site, activePath, navbarStyle = "" }) {
           ${navItems}
           <li class="mobile-donate">
             <a href="${donateHref}" class="donate-btn">
-              <span aria-hidden="true"><img src="${heartSrc}" alt="" style="width: 14px;"></span> Donate
+              <span aria-hidden="true"><img src="${heartSrc}" alt="" style="width: 14px;"></span> ${escapeHtml(site.supportNavLabel || "Donate")}
             </a>
           </li>
         </ul>
 
         <a href="${donateHref}" class="donate-btn desktop-donate">
-          <span aria-hidden="true"><img src="${heartSrc}" alt="" style="width: 14px;"></span> Donate
+          <span aria-hidden="true"><img src="${heartSrc}" alt="" style="width: 14px;"></span> ${escapeHtml(site.supportNavLabel || "Donate")}
         </a>
       </div>
     </nav>`;
@@ -185,6 +187,7 @@ function renderPage({
   canonicalPath = "/",
   ogImage,
   ogImageAlt,
+  social,
   ogType = "website",
   keywords,
   articleMeta,
@@ -211,6 +214,7 @@ function renderPage({
     canonicalPath,
     ogImage,
     ogImageAlt,
+    social,
     ogType,
     keywords,
     articleMeta,

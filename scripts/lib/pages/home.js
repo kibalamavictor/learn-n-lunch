@@ -139,7 +139,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
               <img src="${resolveAsset(depth, post.coverImage, { cloudinaryWidth: 800 })}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy" decoding="async">
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
-                <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
+                <p class="mm-head">${escapeHtml(page.storyExcerpts?.[post.slug] || post.excerpt || post.title)}</p>
                 <a href="${getPostUrl(depth, post)}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>`;
@@ -285,7 +285,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
                   <p>${escapeHtml(page.impactIntro.body)}</p>
                   <a href="${resolveAsset(depth, page.impactIntro.ctaUrl.replace(/^\//, ""))}" class="learn-lunch-cta">
                       <span aria-hidden="true"><img src="${resolveAsset(depth, "heart-black.svg")}" alt="" style="width: 14px;"></span>
-                      <span>Learn More<span class="visually-hidden"> about Learn And Lunch</span></span>
+                      <span>${escapeHtml(page.impactIntro.ctaLabel || "Learn More")}${page.impactIntro.ctaLabel === "Learn More" ? '<span class="visually-hidden"> about Learn And Lunch</span>' : ""}</span>
                   </a>
               </div>
 
@@ -301,7 +301,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     </section>
 
     <div class="mm-container">
-      <h2 class="home-model-heading">OUR FOCUS AREAS</h2>
+      <h2 class="home-model-heading">${escapeHtml(page.modelWorkHeading || "OUR FOCUS AREAS")}</h2>
     </div>
     
     <section class="mission-vision-section home-focus-areas">
@@ -339,7 +339,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     <div class="moments-stack" style="--moments-stack-count: ${stackCount}">
       <div class="moments-stack-stage">
         <div class="moments-heading-section">
-          <h2 class="moments-heading">MOMENTS THAT<br>MATTER</h2>
+          <h2 class="moments-heading">${escapeHtml(page.moments.heading)}</h2>
         </div>
         <div class="moments-stack-cards">
       ${photos}
@@ -361,7 +361,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
     <div class="mm-container">
       <div class="mm-header">
         <div class="mm-title-col">
-          <h2 class="mm-title">STORIES OF<br>CHANGE</h2>
+          <h2 class="mm-title">${escapeHtml(page.storiesTeaser.heading)}</h2>
         </div>
         <div class="mm-desc-col">
           <p class="mm-desc">${escapeHtml(page.storiesTeaser.description)}</p>
@@ -385,7 +385,7 @@ function renderHome({ site, page, stats, testimonials, publishedPosts }) {
         </div>
 
         <div class="mm-more-wrap">
-          <a href="${resolveAsset(depth, page.storiesTeaser.moreUrl.replace(/^\//, ""))}" class="mm-more">Check Out More<span class="visually-hidden"> Stories</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
+          <a href="${resolveAsset(depth, page.storiesTeaser.moreUrl.replace(/^\//, ""))}" class="mm-more">${escapeHtml(page.storiesTeaser.moreLabel)} <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
         </div>
       </div>
     </div>
@@ -426,6 +426,7 @@ ${partnersHtml}`;
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogType: seo.ogType,

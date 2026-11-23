@@ -38,6 +38,7 @@ function resolvePageSeo({ site, page = {}, canonicalPath, defaults = {} }) {
     description,
     ogImage,
     ogImageAlt,
+    social: page.social,
     keywords: page.seoKeywords || defaults.keywords || null,
     canonicalPath: normalizeCanonicalPath(canonicalPath),
     ogType: defaults.ogType || "website"
@@ -344,6 +345,7 @@ function renderSeoHead({
   canonicalPath,
   ogImage,
   ogImageAlt,
+  social = {},
   ogType = "website",
   keywords,
   articleMeta,
@@ -386,25 +388,25 @@ function renderSeoHead({
     ? `
     <meta property="og:type" content="${escapeHtml(ogType)}">
     <meta property="og:site_name" content="${escapeHtml(site.siteName)}">
-    <meta property="og:title" content="${escapeHtml(title)}">
-    <meta property="og:description" content="${escapeHtml(metaDescription)}">
+    <meta property="og:title" content="${escapeHtml(social.ogTitle || title)}">
+    <meta property="og:description" content="${escapeHtml(collapseMetaText(social.ogDescription || metaDescription))}">
     <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
     <meta property="og:locale" content="en_US">
     <meta property="og:image" content="${escapeHtml(absoluteOgImage)}">${ogImageAltMeta}${articleMetaTags}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${escapeHtml(title)}">
-    <meta name="twitter:description" content="${escapeHtml(metaDescription)}">
+    <meta name="twitter:title" content="${escapeHtml(social.twitterTitle || title)}">
+    <meta name="twitter:description" content="${escapeHtml(collapseMetaText(social.twitterDescription || metaDescription))}">
     <meta name="twitter:image" content="${escapeHtml(absoluteOgImage)}">`
     : `
     <meta property="og:type" content="${escapeHtml(ogType)}">
     <meta property="og:site_name" content="${escapeHtml(site.siteName)}">
-    <meta property="og:title" content="${escapeHtml(title)}">
-    <meta property="og:description" content="${escapeHtml(metaDescription)}">
+    <meta property="og:title" content="${escapeHtml(social.ogTitle || title)}">
+    <meta property="og:description" content="${escapeHtml(collapseMetaText(social.ogDescription || metaDescription))}">
     <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
     <meta property="og:locale" content="en_US">${articleMetaTags}
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="${escapeHtml(title)}">
-    <meta name="twitter:description" content="${escapeHtml(metaDescription)}">`;
+    <meta name="twitter:title" content="${escapeHtml(social.twitterTitle || title)}">
+    <meta name="twitter:description" content="${escapeHtml(collapseMetaText(social.twitterDescription || metaDescription))}">`;
 
   return `
     <meta name="description" content="${escapeHtml(metaDescription)}">${keywordMeta}${authorMeta}

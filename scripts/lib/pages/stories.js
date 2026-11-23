@@ -70,7 +70,7 @@ function renderCategoryFeatures(depth, posts) {
       <div class="stories-feature-copy">
         <h2>${escapeHtml(post.title)}</h2>
         ${index === 0 && post.excerpt && post.excerpt !== post.title ? `<p>${escapeHtml(post.excerpt)}</p>` : ''}
-        <a class="makerere-lunch-cta-btn" href="${getPostUrl(depth, post)}">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span class="makerere-lunch-arrow" aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" class="arrow-move" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
+        <a class="makerere-lunch-cta-btn" href="${getPostUrl(depth, post)}">Read more<span class="visually-hidden">: ${escapeHtml(post.readMoreTitle || post.title)}</span> <span class="makerere-lunch-arrow" aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" class="arrow-move" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
       </div>
     </article>`).join('')}</div>`;
 }
@@ -97,7 +97,12 @@ function renderCategorySection(depth, { categorySlug, title, posts, carouselId }
 
 function renderStories({ site, page, publishedPosts }) {
   const depth = 1;
-  const sortedPosts = [...publishedPosts].sort((a, b) => {
+  const listingPosts = publishedPosts.map(post => ({
+    ...post,
+    excerpt: page.storyExcerpts?.[post.slug] || post.excerpt,
+    readMoreTitle: page.storyReadMoreTitles?.[post.slug]
+  }));
+  const sortedPosts = listingPosts.sort((a, b) => {
     const da = new Date(a.publishedAt || 0).getTime();
     const db = new Date(b.publishedAt || 0).getTime();
     return db - da;
@@ -128,7 +133,7 @@ function renderStories({ site, page, publishedPosts }) {
   const recentsSection = `
   <div class="stories-category-section" data-category="all">
     <div class="donor-highlight-container stories-section-heading">
-      <h2 class="stories-recents-title"><span class="stories-section-title-text"><span class="stories-title-last-line">RECENTS</span></span></h2>
+      <h2 class="stories-recents-title"><span class="stories-section-title-text"><span class="stories-title-last-line">${escapeHtml(page.sectionHeadings?.all || "RECENTS")}</span></span></h2>
     </div>
 
     ${renderFeaturedHero(depth, lead)}
@@ -146,7 +151,7 @@ function renderStories({ site, page, publishedPosts }) {
     .map((filter) =>
       renderCategorySection(depth, {
         categorySlug: filter.slug,
-        title: filter.label,
+        title: page.sectionHeadings?.[filter.slug] || filter.label,
         posts: getPostsForCategory(sortedPosts, filter.slug),
         carouselId: `stories-${filter.slug}`
       })
@@ -165,7 +170,7 @@ function renderStories({ site, page, publishedPosts }) {
 
     <div class="stories-search-bar">
       <div class="stories-search-input">
-        <input type="text" id="storiesSearchInput" placeholder="Search stories..." aria-label="Search stories">
+        <input type="text" id="storiesSearchInput" placeholder="${escapeHtml(page.search?.placeholder || "Search stories...")}" aria-label="${escapeHtml(page.search?.label || "Search stories")}">
       </div>
       <button class="stories-search-btn" id="storiesSearchBtn" type="button">Search</button>
     </div>
@@ -177,7 +182,10 @@ function renderStories({ site, page, publishedPosts }) {
 </section>
 
 <section class="stories-results" id="storiesResults">
-  <p id="storiesEmptyState" class="stories-empty-state" hidden>No stories match your search. Try another keyword or filter.</p>
+  <p id="storiesEmptyState" class="stories-empty-state" hidden
+    data-empty-category-search="${escapeHtml(page.search?.emptyCategorySearch || "")}"
+    data-empty-search="${escapeHtml(page.search?.emptySearch || "")}"
+    data-empty-category="${escapeHtml(page.search?.emptyCategory || "")}">${escapeHtml(page.search?.empty || "No stories match your search. Try another keyword or filter.")}</p>
 
   ${recentsSection}
 
@@ -202,6 +210,7 @@ function renderStories({ site, page, publishedPosts }) {
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogImageAlt: seo.ogImageAlt,

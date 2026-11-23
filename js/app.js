@@ -477,7 +477,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateEmptyState(rawTerm, category) {
       if (!storiesEmptyState) return;
       const label = getActiveButton()?.textContent.trim();
-      if (rawTerm && category !== "all") {
+      const { emptyCategorySearch, emptySearch, emptyCategory } = storiesEmptyState.dataset;
+      const template = rawTerm ? (category === "all" ? emptySearch : emptyCategorySearch) : emptyCategory;
+      if (template) {
+        storiesEmptyState.textContent = template.replace(/\{(category|search term)\}/g, (_, field) =>
+          field === "category" ? label : rawTerm
+        );
+      } else if (rawTerm && category !== "all") {
         storiesEmptyState.textContent = `No stories in ${label} match "${rawTerm}". Try another keyword or filter.`;
       } else if (rawTerm) {
         storiesEmptyState.textContent = `No stories match "${rawTerm}". Try another keyword.`;

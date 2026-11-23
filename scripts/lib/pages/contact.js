@@ -51,8 +51,8 @@ function buildContactMethods(page) {
 
   if (page.email && page.emailCardEnabled !== false) {
     methods.push({
-      title: "Email Us",
-      description:
+      title: page.emailCard?.title || "Email Us",
+      description: page.emailCard?.description ||
         "For partnerships, media inquiries, and volunteer opportunities, send us a message and our team will respond.",
       detail: page.email,
       detailHtml: `<a href="mailto:${escapeHtml(page.email)}">${escapeHtml(page.email)}</a>`,
@@ -64,12 +64,12 @@ function buildContactMethods(page) {
   if (page.phone && page.phoneCardEnabled !== false) {
     const phoneHref = `tel:${page.phone.replace(/[^\d+]/g, "")}`;
     methods.push({
-      title: "Call Us",
-      description:
+      title: page.phoneCard?.title || "Call Us",
+      description: page.phoneCard?.description ||
         "Prefer to speak directly? Call our team during business hours for quick support and questions.",
       detail: page.phone,
       detailHtml: `<a href="${escapeHtml(phoneHref)}">${escapeHtml(page.phone)}</a>`,
-      ctaLabel: "Call Now",
+      ctaLabel: page.phoneCard?.ctaLabel || "Call Now",
       ctaUrl: phoneHref
     });
   }
@@ -129,6 +129,7 @@ ${renderFaqSection(page.faq, page.faqHeading || "Frequently Asked Questions", {
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogImageAlt: seo.ogImageAlt,
@@ -176,6 +177,7 @@ ${renderPageHero(page)}
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogImageAlt: seo.ogImageAlt,

@@ -29,7 +29,7 @@ function renderStoryCarousel({
               <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
               <div class="mm-box">
                 <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
-                <a href="${postUrl}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
+                <a href="${postUrl}" class="mm-cta">Read more<span class="visually-hidden">: ${escapeHtml(post.readMoreTitle || post.title)}</span> <span aria-hidden="true"><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" alt="" style="width: 18px; padding-top: 7px;"/></span></a>
               </div>
             </article>`;
     })

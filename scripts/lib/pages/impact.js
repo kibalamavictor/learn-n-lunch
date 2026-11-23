@@ -16,7 +16,7 @@ function getFacesCarouselPosts(posts, limit = 5) {
   return [...studentPosts, ...fillers].slice(0, limit);
 }
 
-function renderImpactFacesCarousel(depth, posts, faces = {}) {
+function renderImpactFacesCarousel(depth, posts, faces = {}, excerpts = {}) {
   const facesPosts = getFacesCarouselPosts(posts);
   if (!facesPosts.length) return "";
 
@@ -38,7 +38,7 @@ function renderImpactFacesCarousel(depth, posts, faces = {}) {
           <img src="${resolveAsset(depth, post.coverImage)}" alt="${escapeHtml(post.coverImageAlt || post.title)}" class="mm-img" loading="lazy">
           <span class="mm-tag mm-tag--${escapeHtml(categorySlug)}" style="background:${tagColor};"></span>
           <div class="mm-box">
-            <p class="mm-head">${escapeHtml(post.excerpt || post.title)}</p>
+            <p class="mm-head">${escapeHtml(excerpts[post.slug] || post.excerpt || post.title)}</p>
             <a href="${postUrl}" class="mm-cta">Read more <span><img src="${resolveAsset(depth, "pixelated-arrow.svg")}" style="width: 18px; padding-top: 7px;" alt=""/></span></a>
           </div>
         </article>`;
@@ -265,7 +265,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
     <p class="impact-hero-title">${escapeHtml(faces.heading || "Faces Behind the Numbers").replace("the Numbers", "the Numbers<br>")}</p>
   </div>
 
-  ${renderImpactFacesCarousel(depth, publishedPosts, faces)}
+  ${renderImpactFacesCarousel(depth, publishedPosts, faces, page.storyExcerpts)}
 
   <img src="${resolveAsset(depth, "impact/impact/pixel-image.svg")}" class="pixel-image pixel-image--flipped" alt="" aria-hidden="true"/>
 
@@ -302,6 +302,7 @@ function renderImpact({ site, page, stats, impactMap, publishedPosts = [] }) {
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogType: seo.ogType,

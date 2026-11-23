@@ -27,7 +27,7 @@ function renderImpactMap(depth, mapData) {
               alt="${escapeHtml(mapData.mapAlt || "Learn And Lunch campus map")}"
             />
             <div class="lnl-map-marker-block">
-              <p class="lnl-map-tagline">AND WE'RE JUST<br>GETTING STARTED</p>
+              <p class="lnl-map-tagline">${mapData.tagline ? escapeHtml(mapData.tagline) : "AND WE'RE JUST<br>GETTING STARTED"}</p>
               <svg class="lnl-marker-stroke" width="261" height="283" viewBox="0 0 261 283" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M152.687 8.15576L64.5643 89.5209L152.687 43.2093L68.1403 121.248L207.605 37.0685L7.09277 203.637L254.093 50.1177L64.5643 199.031L207.605 127.389L91.3844 226.921L199.175 165.257L129.699 276.814"/>
               </svg>
@@ -35,8 +35,8 @@ function renderImpactMap(depth, mapData) {
           </div>
         </div>
         <div class="lnl-legend">
-          <span><i class="on"></i> Active campus</span>
-          <span><i class="soon"></i> Expanding soon</span>
+          <span><i class="on"></i> ${escapeHtml(mapData.legend?.active || "Active campus")}</span>
+          <span><i class="soon"></i> ${escapeHtml(mapData.legend?.soon || "Expanding soon")}</span>
         </div>
       </div>
     </div>

@@ -1,32 +1,75 @@
 ---
 title: Get Involved
-seoTitle: Get Involved | Learn and Lunch
-seoDescription: Join the movement to end campus hunger. Partner with Learn and Lunch, join the student coalition, or volunteer to support university students in Uganda.
+seoTitle: Get Involved | Learn And Lunch
+seoDescription: >-
+  Find ways to engage with Learn And Lunch through student associations,
+  university partnerships, research collaboration, volunteering and support for
+  food-secure higher education in Uganda.
 ogImage: /assets/uploads/learn-n-lunch-body-and-soil-partnership-08.webp
-heroImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1794983049/learn-and-lunch-food-security-summit-2026.jpg
+heroImage: >-
+  https://res.cloudinary.com/jxgiku8t/image/upload/v1794983049/learn-and-lunch-food-security-summit-2026.jpg
 heroImageAlt: Learn and Lunch Food Security Summit 2026
 heroImagePosition: 60
 heading: GET INVOLVED
-intro: Join the movement to end campus hunger. Whether you are a student leader, partner organization, or supporter, there is a practical way to contribute.
+intro: >-
+  Food-secure universities require students, university teams, researchers and
+  partners to work together. Whether you want to contribute through a student
+  association, collaborate institutionally, share expertise or support practical
+  solutions, there is a way to participate.
 opportunities:
-  - title: Join the Student Coalition
-    description: Become part of a campus-based network that mobilizes peers, shares evidence, and strengthens welfare advocacy.
+  - title: Engage Through Student Associations
+    description: >-
+      We work with existing student associations, guilds and campus networks to
+      strengthen food security awareness, peer engagement and student
+      participation. Students can help identify challenges, shape campus
+      responses and bring food security into student welfare conversations.
     ctaLabel: Join Coalition
-    ctaUrl: https://forms.gle/NyLAiZgKy5mq6qLh8
-  - title: Partner with Learn and Lunch
-    description: Collaborate with us on research, nutrition programming, or institutional dialogue to improve student welfare systems.
+    ctaUrl: 'https://forms.gle/NyLAiZgKy5mq6qLh8'
+  - title: Work With Universities and Partners
+    description: >-
+      We collaborate with universities, research institutions, civil society
+      organisations, technical experts and development partners on research,
+      practical interventions, nutrition education and institutional approaches
+      to campus food security.
     ctaLabel: Partner With Us
-    ctaUrl: mailto:info@learnandlunch.org
-  - title: Volunteer and Amplify
-    description: Support events, share stories, and help build awareness that no student should have to study hungry.
+    ctaUrl: 'mailto:info@learnandlunch.org'
+  - title: Contribute Your Skills
+    description: >-
+      We welcome volunteers and professionals who can contribute to research,
+      programme delivery, communications, student engagement, fundraising,
+      monitoring and organisational development.
     ctaLabel: Volunteer
-    ctaUrl: mailto:info@learnandlunch.org
-faqHeading: Frequently Asked Questions
+    ctaUrl: 'mailto:info@learnandlunch.org'
+faqHeading: Questions About Getting Involved
 faq:
-  - question: Who can join the student coalition?
-    answer: Any university student in Uganda who wants to advocate for campus welfare and food security can join. Coalition members mobilize peers, share evidence, and strengthen student-led dialogue on hunger.
-  - question: How do organizations partner with Learn and Lunch?
-    answer: Partners collaborate on research, nutrition programming, institutional dialogue, or event support. Email info@learnandlunch.org with your organization name and proposed collaboration.
-  - question: Can I volunteer if I am not a student?
-    answer: Yes. Supporters can volunteer at events, help amplify stories online, and contribute skills in communications, research, or logistics. Contact us to discuss how you can help.
+  - question: How can students participate?
+    answer: >-
+      Students can engage through existing associations, guilds, societies and
+      campus networks. We work with student leaders to strengthen food security
+      awareness, peer engagement and constructive dialogue with university
+      structures. Participation opportunities depend on the activities and
+      partnerships active on each campus.
+  - question: How can a university or organisation partner with Learn And Lunch?
+    answer: >-
+      Universities and organisations can collaborate with us on campus food
+      security research, assessments, nutrition education, practical
+      interventions, student engagement and institutional development. Email
+      info@learnandlunch.org with a brief introduction and the area of
+      collaboration you would like to explore.
+  - question: Can people who are not university students volunteer?
+    answer: >-
+      Yes. We welcome individuals with relevant skills and time to contribute to
+      research, communications, programme delivery, events, fundraising and
+      other organisational needs. Contact us to discuss current opportunities.
+social:
+  ogTitle: Get Involved | Learn And Lunch
+  ogDescription: >-
+    Find ways to engage with Learn And Lunch through student associations,
+    university partnerships, research collaboration, volunteering and support
+    for food-secure higher education in Uganda.
+  twitterTitle: Get Involved | Learn And Lunch
+  twitterDescription: >-
+    Find ways to engage with Learn And Lunch through student associations,
+    university partnerships, research collaboration, volunteering and support
+    for food-secure higher education in Uganda.
 ---

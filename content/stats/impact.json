@@ -5,7 +5,7 @@
       "target": 20,
       "primaryLabel": "STUDENT",
       "secondaryLabel": "AMBASSADORS",
-      "description": "Students actively leading research, peer engagement, mobilisation, and advocacy across campuses.",
+      "description": "Students and volunteers contributing to research, peer engagement, programme activities and advocacy across university communities.",
       "order": 1
     },
     {
@@ -14,7 +14,7 @@
       "exact": true,
       "primaryLabel": "ACTIVE",
       "secondaryLabel": "PROGRAMMES",
-      "description": "Ongoing work across research, nutrition, student leadership, meal access, campus gardens, and advocacy.",
+      "description": "Research, nutrition education, student leadership, meal access innovation, campus food initiatives and institutional engagement.",
       "order": 2
     },
     {
@@ -23,7 +23,7 @@
       "exact": true,
       "primaryLabel": "ACTIVE",
       "secondaryLabel": "VOLUNTEERS",
-      "description": "Volunteers supporting events, sessions, and programme delivery across our partner campuses.",
+      "description": "People contributing to programme planning, research, events, student engagement and delivery.",
       "order": 3
     },
     {
@@ -31,7 +31,7 @@
       "target": 2300,
       "primaryLabel": "STUDENTS",
       "secondaryLabel": "REACHED",
-      "description": "Students engaged through research, awareness, education sessions, campus activities, and digital media.",
+      "description": "Students engaged through research, awareness, education sessions, campus activities and digital engagement. This figure does not mean all students received direct food support.",
       "order": 4
     }
   ]

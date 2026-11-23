@@ -28,7 +28,7 @@
       "url": "https://www.linkedin.com/company/learn-n-lunch/"
     }
   ],
-  "footerCopyright": "\u00a9 2026 Learn And Lunch \u00b7 All Rights Reserved",
+  "footerCopyright": "© 2026 Learn And Lunch. All rights reserved.",
   "siteName": "Learn and Lunch",
   "navigation": [
     {
@@ -40,7 +40,7 @@
       "href": "/about-us/"
     },
     {
-      "label": "Programmes",
+      "label": "What We Do",
       "href": "/programmes/"
     },
     {
@@ -63,6 +63,7 @@
   "defaultSeoTitle": "Learn and Lunch | Campus Hunger & Student Food Security in Uganda",
   "alternateNames": [
     "Learn N' Lunch",
-    "Learn N\u2019 Lunch"
-  ]
+    "Learn N’ Lunch"
+  ],
+  "supportNavLabel": "Support Our Work"
 }

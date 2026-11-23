@@ -1,91 +1,226 @@
 ---
 isActive: true
 title: Programmes
-seoTitle: Our Programmes & Theory of Change | Learn and Lunch
-seoDescription: How Learn and Lunch works to end campus hunger in Uganda — our
-  theory of change and the programmes turning student experiences into lasting
-  change, from research and student leadership to hands-on nutrition sessions.
+seoTitle: What We Do | Learn And Lunch
+seoDescription: >-
+  Learn how Learn And Lunch advances food security in higher education through
+  research, student leadership, practical food access solutions, institutional
+  development and partnerships in Uganda.
 ogImage: /assets/uploads/learn_and_lunch_06.webp
-heroImage: https://res.cloudinary.com/jxgiku8t/image/upload/v1794983062/bernd-dittrich-tFDZCJtwBFo-unsplash.jpg
+heroImage: >-
+  https://res.cloudinary.com/jxgiku8t/image/upload/v1794983062/bernd-dittrich-tFDZCJtwBFo-unsplash.jpg
 heroImageAlt: Learn and Lunch Food Security Summit 2026
 heroImagePosition: 55
-heading: OUR PROGRAMMES
-intro: We listen. We organise. We build. From understanding the problem to
-  testing what can work, our programmes turn student experiences into lasting
-  change.
+heading: OUR WORK
+intro: >-
+  We combine research, practical implementation, student leadership and
+  institutional development. Our work helps universities understand campus food
+  insecurity, test solutions and strengthen the systems needed to sustain
+  progress.
 problem:
-  heading: Why we exist
-  statement: There is a side of university life we do not talk about enough.
-  body: Students are expected to learn, participate and succeed, yet some are
-    navigating university without reliable access to food. Campus hunger does
-    not always look like someone starving. Sometimes it is a skipped lunch, a
-    delayed allowance, or a student trying to concentrate through hunger.
+  heading: WHY THIS WORK MATTERS
+  statement: >-
+    Food security is part of the student experience and the wider conditions
+    that shape educational participation.
+  body: >-
+    Students need reliable access to adequate, nutritious and affordable food to
+    participate fully in university life. Yet campus food insecurity is not
+    always recognised in institutional planning or student support. Learn And
+    Lunch works to close this gap through evidence, practical action and
+    collaboration with universities and partners.
 theoryOfChange:
-  heading: Theory of Change
-  subheading: From student experiences to lasting change.
-  statement: If universities understand campus food insecurity, students are
-    empowered to participate in solutions, practical interventions are tested,
-    and institutions and partners are brought into action, then food security
-    can become part of how universities support student success.
+  heading: OUR APPROACH
+  subheading: >-
+    From understanding campus food insecurity to implementing solutions and
+    strengthening institutional responses.
+  statement: >-
+    We believe progress requires connected action. Research helps identify
+    challenges. Student leadership ensures that students shape responses.
+    Practical programmes test what works. Partnerships help universities and
+    other stakeholders strengthen and sustain effective approaches.
   strategicGoal:
     title: Food-secure universities
-    body: Where every student has the conditions to learn, thrive and succeed.
+    body: >-
+      Higher education environments where students can access adequate,
+      nutritious and affordable food, and where institutions are equipped to
+      sustain effective responses.
+    ariaLabel: Our shared goal
+    label: Long-term institutional change
   pathways:
-    - output: Evidence is generated.
-      outputBody: Student food insecurity is documented through research and student
-        experiences.
+    - output: Evidence is developed.
+      outputBody: >-
+        Research findings, student perspectives and campus assessments help
+        describe food access, affordability and nutrition challenges.
       activity: Understand
-      activityBody: Research student food insecurity and document lived experiences.
-      outcome: The problem becomes visible.
-      goal: Evidence & Understanding
-      outcomeBody: Universities and stakeholders better understand the relationship
-        between food insecurity and student success.
-      goalBody: Build the evidence needed to understand campus food insecurity.
+      activityBody: >-
+        Research student food insecurity, examine campus food environments and
+        document student experiences.
+      outcome: The challenge is better understood.
+      goal: Evidence and Understanding
+      outcomeBody: >-
+        Students, universities and partners have a stronger evidence base for
+        identifying gaps and designing appropriate responses.
+      goalBody: >-
+        Build reliable knowledge about campus food insecurity and use it to
+        guide action.
       key: understand
-    - output: Students are organised.
-      outputBody: Ambassadors and student networks engage in food-security action.
+      ariaLabel: Research and evidence pathway
+    - output: Student networks are engaged.
+      outputBody: >-
+        Student leaders and associations participate in food security education,
+        peer engagement and campus action.
       activity: Mobilise
-      activityBody: Equip students to learn, organise and lead.
-      outcome: Students have greater agency.
+      activityBody: >-
+        Work through student associations, guilds and campus networks to
+        strengthen student participation.
+      outcome: Students shape solutions.
       goal: Student Leadership
-      outcomeBody: Students participate in shaping and advancing solutions to the
-        challenges they experience.
-      goalBody: Position students as participants and leaders in solving the problem.
+      outcomeBody: >-
+        Students have stronger opportunities to identify challenges, contribute
+        ideas and participate in institutional dialogue and practical responses.
+      goalBody: >-
+        Position students as informed participants and leaders in building
+        food-secure universities.
       key: mobilise
-    - output: Solutions are tested.
-      outputBody: Meal access, campus gardens and nutrition interventions move from
-        ideas to practice.
+      ariaLabel: Student leadership pathway
+      activityHeading: Engage
+    - output: Solutions are put into practice.
+      outputBody: >-
+        Meal access initiatives, nutrition education and campus food projects
+        are designed, tested and improved with students and partners.
       activity: Build
-      activityBody: Develop and test practical food-security solutions.
-      outcome: Practical solutions become possible.
-      goal: Food Access & Innovation
-      outcomeBody: Universities and partners can see what improves student food access.
-      goalBody: Develop practical, dignified and scalable approaches to student food
-        security.
+      activityBody: >-
+        Develop, test and improve practical interventions that respond to
+        student food access and nutrition challenges.
+      outcome: Practical responses become stronger.
+      goal: Food Access and Innovation
+      outcomeBody: >-
+        Students and universities gain experience with approaches that can
+        improve food access and campus food environments.
+      goalBody: >-
+        Develop practical, dignified and context-responsive solutions that can
+        be improved and sustained.
       key: build
-    - output: Partnerships are built.
-      outputBody: Universities and technical organisations participate in developing
-        solutions.
+      ariaLabel: Food access and innovation pathway
+      activityHeading: Implement
+    - output: Institutional collaboration develops.
+      outputBody: >-
+        University stakeholders and partners contribute to the design and
+        implementation of food security responses.
       activity: Partner
-      activityBody: Work with universities, researchers, technical experts and other actors.
-      outcome: Institutions become more responsive.
-      goal: Institutional Change
-      outcomeBody: Food security begins to enter conversations about student welfare
-        and success.
-      goalBody: Help universities integrate food security into the wider student
-        success agenda.
-      chipsNote: Runs across every programme
+      activityBody: >-
+        Work with universities, researchers, technical experts and partners to
+        develop institutional responses.
+      outcome: University responses become more coordinated.
+      goal: Institutional Development
+      outcomeBody: >-
+        Food security is increasingly considered in student welfare, campus
+        operations, nutrition education and institutional planning.
+      goalBody: >-
+        Help universities build the structures, policies, partnerships and
+        capacity to respond to campus food insecurity.
+      chipsNote: This work supports and connects all programme areas.
       key: partner
-    - output: Dialogue is created.
-      outputBody: Stakeholders come together around campus food security.
+      ariaLabel: Institutional partnership pathway
+      activityHeading: Strengthen
+    - output: Dialogue and collaboration take place.
+      outputBody: >-
+        Stakeholders engage around evidence, student experiences and practical
+        responses to campus food insecurity.
       activity: Convene
-      activityBody: Bring stakeholders together to advance collective action.
-      outcome: Collective action grows.
+      activityBody: >-
+        Bring students, universities, researchers and partners together to
+        exchange evidence and advance shared action.
+      outcome: Collective action advances.
       goal: Collective Action
-      outcomeBody: Evidence, students and partners begin moving toward shared solutions.
-      goalBody: Build a national movement around food-secure higher education.
+      outcomeBody: >-
+        Students, institutions and partners identify opportunities to coordinate
+        their efforts and strengthen food security responses.
+      goalBody: >-
+        Build collaboration around food-secure higher education in Uganda and
+        beyond.
       key: convene
-programmesHeading: WHAT'S ALREADY HAPPENING
-programmesIntro: This work is already moving. Each programme puts part of our
-  theory of change into practice.
+      ariaLabel: Collective action pathway
+  impactLinkLabel: Explore Our Impact
+  columns:
+    activity:
+      label: Activities
+      hint: What we do
+    output:
+      label: Outputs
+      hint: What we deliver
+    outcome:
+      label: Outcomes
+      hint: What improves
+    goal:
+      label: Long-term change
+      hint: The institutional goal
+  programmeLinkLabels:
+    national-student-food-security-research: Explore Research and Evidence
+    student-ambassador-programme: Explore Student Leadership
+    campus-nutrition-series: Explore Nutrition Education
+    millu: Explore Millu
+    campus-gardens: Explore Campus Gardens
+    advocacy-and-dialogue: Explore Advocacy and Dialogue
+programmesHeading: OUR PROGRAMMES IN PRACTICE
+programmesIntro: >-
+  Our programme areas connect evidence, student leadership, practical solutions
+  and institutional development. Each programme contributes to a wider effort to
+  make food security part of higher education.
+social:
+  ogDescription: >-
+    Learn how Learn And Lunch advances food security in higher education through
+    research, student leadership, practical food access solutions, institutional
+    development and partnerships in Uganda.
+  twitterDescription: >-
+    Learn how Learn And Lunch advances food security in higher education through
+    research, student leadership, practical food access solutions, institutional
+    development and partnerships in Uganda.
+  ogTitle: Our Programmes & Theory of Change | Learn and Lunch
+  twitterTitle: Our Programmes & Theory of Change | Learn and Lunch
+programmeCards:
+  national-student-food-security-research:
+    activityLabel: Research
+    title: Campus Food Security Research
+    summary: >-
+      We generate evidence on student food insecurity, food access,
+      affordability and campus food environments to inform programmes and
+      institutional responses.
+  campus-nutrition-series:
+    activityLabel: Education
+    title: Campus Nutrition and Food Education
+    summary: >-
+      Practical learning that helps students understand nutrition, food choices
+      and affordable ways to prepare meals.
+    status: >-
+      A pilot Campus Nutrition Series was held at Kyambogo University on 25
+      April 2026.
+    linkLabel: Explore the Campus Nutrition Series
+  student-ambassador-programme:
+    activityLabel: Student Leadership
+    title: Student Ambassador Programme
+    summary: >-
+      We work with existing student associations and campus networks to
+      strengthen student leadership, peer engagement and food security action.
+  millu:
+    activityLabel: Innovation
+    title: 'Millu: Meal Access Innovation'
+    summary: >-
+      A student-centred meal access concept exploring more predictable ways for
+      students to plan and access meals.
+  campus-gardens:
+    activityLabel: Food Systems
+    title: Campus Garden Initiative
+    summary: >-
+      Working with students and technical partners to explore campus food
+      production, practical learning and improvements to the campus food
+      environment.
+  advocacy-and-dialogue:
+    activityLabel: Institutional Development
+    title: University Partnerships and Advocacy
+    summary: >-
+      We work with universities and partners to bring campus food security into
+      institutional dialogue, planning and practical action.
+    status: Campus Food Security Summit held on 21 October 2026.
+    linkLabel: Read about the Campus Food Security Summit
 ---

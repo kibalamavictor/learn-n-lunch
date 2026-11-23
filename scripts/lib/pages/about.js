@@ -57,7 +57,7 @@ function renderAbout({ site, page, team }) {
   const teamSlides = team.map((member) => renderTeamMember(depth, member)).join("\n");
 
   const bannerRepeats = Array.from({ length: 8 })
-    .map(() => `<span class="banner-text-2">${escapeHtml(TEAM_SECTION.bannerText)}</span>`)
+    .map(() => `<span class="banner-text-2">${escapeHtml(page.teamBanner || TEAM_SECTION.bannerText)}</span>`)
     .join("\n            ");
 
   const body = `
@@ -86,13 +86,13 @@ function renderAbout({ site, page, team }) {
 
     <section class="mission-vision-section">
       <div class="card mission-card">
-        <h2>MISSION</h2>
+        <h2>${escapeHtml(page.missionVision.missionHeading || "MISSION")}</h2>
         <p>${escapeHtml(page.missionVision.mission)}</p>
         <div class="card-accent-2"></div>
       </div>
 
       <div class="card vision-card">
-        <h2>VISION</h2>
+        <h2>${escapeHtml(page.missionVision.visionHeading || "VISION")}</h2>
         <p>${escapeHtml(page.missionVision.vision)}</p>
         <div class="vision-accent-box"></div>
         <div class="card-accent"></div>
@@ -126,7 +126,7 @@ function renderAbout({ site, page, team }) {
 
     <section class="team-section">
       <div class="team-container">
-        <h2 class="team-title">${TEAM_SECTION.title}</h2>
+        <h2 class="team-title">${page.teamHeading ? escapeHtml(page.teamHeading) : TEAM_SECTION.title}</h2>
 
         <div class="team-banner-2">
             ${bannerRepeats}
@@ -163,6 +163,7 @@ function renderAbout({ site, page, team }) {
     depth,
     title: seo.title,
     description: seo.description,
+    social: seo.social,
     canonicalPath: seo.canonicalPath,
     ogImage: seo.ogImage,
     ogType: seo.ogType,

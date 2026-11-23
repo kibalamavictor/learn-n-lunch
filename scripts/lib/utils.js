@@ -415,11 +415,11 @@ function imageDimensionAttrs(assetPath) {
 
 function defaultFooterCta(depth) {
   return {
-    title: "BE PART OF THE MOVEMENT.",
-    buttonLabel: "Donate Now",
+    title: "BUILDING FOOD-SECURE UNIVERSITIES.",
+    buttonLabel: "Support Our Work",
     buttonUrl: resolveAsset(depth, "donate/"),
     backgroundImage: FOOTER_CTA_BACKGROUND_IMAGE,
-    backgroundImageAlt: "Volunteers packing food",
+    backgroundImageAlt: "Students, university teams and partners working together on campus food security",
     qrImage: "/qr-code.png",
     qrImageAlt: "Scan to email info@learnandlunch.org"
   };
