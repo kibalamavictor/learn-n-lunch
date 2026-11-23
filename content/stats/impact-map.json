@@ -18,30 +18,6 @@
   "campuses": [
     {
       "place": "Kampala",
-      "name": "Makerere University",
-      "statA": {
-        "value": "8",
-        "label": "Student Ambassadors"
-      },
-      "statB": {
-        "value": "200+",
-        "label": "Students Reached"
-      },
-      "desktopOffset": {
-        "x": -2.5,
-        "y": -2.5
-      },
-      "abbr": "MAK",
-      "status": "active",
-      "report": "Student networks contribute to research, peer engagement and dialogue about campus food insecurity and student welfare.",
-      "x": 52.5,
-      "y": 62,
-      "labelDir": "up",
-      "blurb": "At Makerere University, student networks have contributed to research, peer engagement and dialogue about food insecurity and student welfare.",
-      "id": "makerere"
-    },
-    {
-      "place": "Kampala",
       "name": "Kyambogo University",
       "statA": {
         "value": "20+",
@@ -63,6 +39,30 @@
       "labelDir": "flip",
       "blurb": "At Kyambogo University, student leaders and associations have participated in food security awareness, nutrition education and campus engagement.",
       "id": "kyambogo"
+    },
+    {
+      "place": "Kampala",
+      "name": "Makerere University",
+      "statA": {
+        "value": "8",
+        "label": "Student Ambassadors"
+      },
+      "statB": {
+        "value": "200+",
+        "label": "Students Reached"
+      },
+      "desktopOffset": {
+        "x": -2.5,
+        "y": -2.5
+      },
+      "abbr": "MAK",
+      "status": "active",
+      "report": "Student networks contribute to research, peer engagement and dialogue about campus food insecurity and student welfare.",
+      "x": 52.5,
+      "y": 62,
+      "labelDir": "up",
+      "blurb": "At Makerere University, student networks have contributed to research, peer engagement and dialogue about food insecurity and student welfare.",
+      "id": "makerere"
     },
     {
       "place": "Kansanga, Kampala",
