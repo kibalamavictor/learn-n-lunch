@@ -13,8 +13,8 @@
       "order": 2
     },
     {
-      "valueLabel": "256",
-      "target": 256,
+      "valueLabel": "20+",
+      "target": 20,
       "description": "Student <br> Ambassadors",
       "order": 3
     },
