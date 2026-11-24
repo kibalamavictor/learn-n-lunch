@@ -33,7 +33,17 @@
         display: flex;
         align-items: center;
         gap: 30px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 40px 16px;
+        margin: -40px -16px;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     .flow-label {
@@ -48,6 +58,8 @@
         border: 2px solid #fff;
         transform: rotate(-10deg);
         display: inline-block;
+        flex: 0 0 auto;
+        white-space: nowrap;
         min-width: auto;
         text-align: center;
         position: relative;
@@ -236,8 +248,9 @@
         display: flex;
         align-items: center;
         gap: 35px;
-        flex: 1;
-        flex-wrap: wrap;
+        flex: 1 0 auto;
+        flex-wrap: nowrap;
+        white-space: nowrap;
     }
 
     @keyframes lnl-flow-arrow-cw {
@@ -373,10 +386,6 @@
     // }
 
     @media (max-width: 1024px) {
-        .flow-row {
-            justify-content: center;
-        }
-
         .flow-label {
             font-size: 28px;
         }
@@ -400,18 +409,7 @@
 
         .flow-row {
             padding: 18px 12px 18px 16px;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-items: center;
-            overflow-x: auto;
-            overflow-y: visible;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-
-            &::-webkit-scrollbar {
-                display: none;
-            }
+            margin: 0;
 
             &:has(.flow-label.donors) {
                 padding: 40px 16px 40px 20px;
@@ -419,7 +417,6 @@
         }
 
         .flow-label {
-            flex: 0 0 auto;
             font-size: 17px;
             overflow: visible;
         }
@@ -460,8 +457,6 @@
 
         .flow-steps {
             flex: 0 0 auto;
-            flex-wrap: nowrap;
-            white-space: nowrap;
             gap: 20px;
         }
 
@@ -486,6 +481,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+        .flow-row {
+            scroll-behavior: auto;
+        }
+
         .flow-arrow {
             animation: none;
         }

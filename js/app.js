@@ -564,9 +564,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =======================
-     HOW IT WORKS — flow label tap to CTA
+     HOW IT WORKS — flow label scrolls to CTA
   ==========================*/
-  const FLOW_MOBILE_BREAKPOINT = 768;
   const flowRows = document.querySelectorAll(".how-it-works-flows .flow-row");
 
   flowRows.forEach((row) => {
@@ -579,14 +578,9 @@ document.addEventListener("DOMContentLoaded", () => {
     label.setAttribute("aria-label", `${label.textContent.trim()}: scroll to ${cta.textContent.trim()}`);
 
     function scrollRowToCta() {
-      if (window.innerWidth > FLOW_MOBILE_BREAKPOINT) return;
-
-      const maxScroll = row.scrollWidth - row.clientWidth;
-      if (maxScroll <= 0) return;
-
-      const ctaEnd = cta.offsetLeft + cta.offsetWidth;
-      const target = Math.min(maxScroll, Math.max(0, ctaEnd - row.clientWidth + 16));
-      row.scrollTo({ left: target, behavior: "smooth" });
+      if (row.scrollWidth > row.clientWidth) {
+        row.scrollTo({ left: row.scrollWidth });
+      }
     }
 
     label.addEventListener("click", scrollRowToCta);

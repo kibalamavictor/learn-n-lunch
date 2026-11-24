@@ -49,7 +49,7 @@ howItWorks:
     steps:
       - Assess food access
       - Plan campus action
-      - Implement and solutions
+      - Implement solutions
     ctaLabel: Work With Us
     ctaUrl: /donate/
 storiesTeaser:
