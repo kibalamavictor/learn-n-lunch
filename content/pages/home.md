@@ -45,7 +45,7 @@ howItWorks:
     ctaLabel: Get Involved
     ctaUrl: https://forms.gle/NyLAiZgKy5mq6qLh8
   donorsFlow:
-    label: For Universities and Partners
+    label: For Partners
     steps:
       - Assess food access
       - Plan campus action
